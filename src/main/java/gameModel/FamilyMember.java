@@ -1,13 +1,12 @@
 package gameModel;
 
-public class FamilyMembers {
+public class FamilyMember {
 	Player player;
-	int actionpoint;
+	int actionpoint=0;
 	Color color;
 	
-	public FamilyMembers(Player player, int actionpoint, Color color) {
+	public FamilyMember(Player player, Color color) {
 		this.player = player;
-		this.actionpoint = actionpoint;
 		this.color = color;
 	}
 
