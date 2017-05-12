@@ -1,22 +1,9 @@
 package gameModel;
 
-import java.util.List;
+public interface TowerActionSpace extends ActionSpace {
 
-public class TowerActionSpace extends ActionSpace {
+	Tower getTower();
 
-	Tower tower;
+	void attachDevelopmentCard(Card card);
 
-	public TowerActionSpace(int actionCost, List<Effect> effects, Tower tower) {
-		super(actionCost, effects);
-		this.tower = tower;
-	}
-	
-	public TowerActionSpace(int actionCost, Effect effects, Tower tower) {
-		super(actionCost, effects);
-		this.tower = tower;
-	}
-
-	public Tower getTower() {
-		return tower;
-	}	
 }

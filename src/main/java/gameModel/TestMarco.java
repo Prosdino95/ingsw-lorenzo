@@ -3,18 +3,18 @@ package gameModel;
 public class TestMarco {
 
 	public static void main(String[] args) {
-		Board board=new Board();//model
+		RealBoard board=new RealBoard();//model
 		Effect e=new TestEffects();
 		//ho creato questa classe effetto solo per il test poi è da cancellare ovviamente
 		//il suo effetto e quello di scrivere una stringa a video indicando il giocatore su cui è attivata
-		ActionSpace a1 =new ActionSpace(4,e);
-		ActionSpace a2 =new ActionSpace(7,e);
+		RealActionSpace a1 =new RealActionSpace(4,e);
+		RealActionSpace a2 =new RealActionSpace(7,e);
 		Controller controller= new Controller(board);
 		Resource resource=new Resource(5,5,5,5);
-		Player redPlayer=new Player(resource,controller,Team.RED);
+		RealPlayer redPlayer=new RealPlayer(resource,controller,Team.RED);
 		Tower buildingsTower=new Tower();
-		TowerActionSpace t1=new TowerActionSpace(4,e,buildingsTower);
-		TowerActionSpace t2=new TowerActionSpace(4,e,buildingsTower);
+		RealTowerActionSpace t1=new RealTowerActionSpace(4,e,buildingsTower);
+		RealTowerActionSpace t2=new RealTowerActionSpace(4,e,buildingsTower);
 		
 		board.addActionSpace(a1);
 		board.addActionSpace(a2);

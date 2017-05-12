@@ -1,25 +1,9 @@
 package gameModel;
 
-import java.util.HashMap;
-import java.util.Map;
+public interface Board {
 
-public class Board {
+	void setupRound();
+	void addActionSpace(RealActionSpace a);
+	RealActionSpace getActionSpaces(int id);
 	
-	private Map<Integer,ActionSpace> actionSpaces;
-	
-	public Board(){
-		actionSpaces=new HashMap<>();
-	}
-
-	public void addActionSpace(ActionSpace a){
-		actionSpaces.put(a.getId(),a);
-	}
-
-	public ActionSpace getActionSpaces(int id) {
-		return actionSpaces.get(id);
-	}
-	
-	
-	
-
 }
