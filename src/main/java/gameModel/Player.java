@@ -34,10 +34,16 @@ public class Player {
 		System.out.println(resource);
 	}
 
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant){
+	public void placeFamilyMemberInSpaceActions(int idSpaceAction,Color c,int servant){
 		FamilyMember f= familyMembers.get(c);
-		controller.placeFamilyMember(idSpaceAction,f,servant);
+		controller.placeFamilyMemberInSpaceActions(idSpaceAction,f,servant);
 	}
+	
+	public void placeFamilyMemberInTower(int idSpaceAction,Color c,int servant){
+		FamilyMember f= familyMembers.get(c);
+		controller.placeFamilyMemberInTower(idSpaceAction,f,servant);
+	}
+
 
 	public Team getTeam() {
 		return team;
