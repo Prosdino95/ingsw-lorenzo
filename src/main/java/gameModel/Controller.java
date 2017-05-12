@@ -16,8 +16,7 @@ public class Controller {
 		else {	a.occupy();
 				a.activateEffect(f);
 				if(servant>0)
-					f.getPlayer().getResource().subResources(new Resource(0,0,0,servant));
-					//sta roba è veramente ridicola dobbiamo trovare un modo migliore di gestire le risorse
+					f.getPlayer().subResources(new Resource(0,0,0,servant));
 		}
 	}
 		

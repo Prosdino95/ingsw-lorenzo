@@ -30,10 +30,14 @@ public class RealPlayer implements Player {
 		f.setActionpoint(actionPoint);		
 	}
 	
-	public void printResources(){
-		System.out.println(resource);
-	}
-
+	 public void subResources(Resource r){ 
+	    this.resource.subResources(r); 
+	 } 
+		   
+	public void addResources(Resource r){ 
+		this.resource.addResources(r); 
+		  } 
+	
 	public void placeFamilyMemberInSpaceActions(int idSpaceAction,Color c,int servant){
 		FamilyMember f= familyMembers.get(c);
 		controller.placeFamilyMemberInSpaceActions(idSpaceAction,f,servant);
@@ -64,5 +68,4 @@ public class RealPlayer implements Player {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

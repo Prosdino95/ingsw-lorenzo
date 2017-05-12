@@ -23,7 +23,7 @@ public class TestMarco {
 		
 		redPlayer.setFamilyMember(Color.BLACK,5);
 		redPlayer.setFamilyMember(Color.WHITE,3);
-		redPlayer.printResources();
+		System.out.println(redPlayer.getResource());
 		System.out.println("familiare nero su spazio azione 0");
 		redPlayer.placeFamilyMemberInSpaceActions(0, Color.BLACK, 0);
 		System.out.println("familiare bianco su spazio azione 0");
@@ -32,7 +32,7 @@ public class TestMarco {
 		redPlayer.placeFamilyMemberInSpaceActions(1, Color.WHITE, 0);
 		System.out.println("familiare bianco su spazio azione 1 con spesa di 5 servitori");
 		redPlayer.placeFamilyMemberInSpaceActions(1, Color.WHITE, 5);
-		redPlayer.printResources();
+		System.out.println(redPlayer.getResource());
 		
 		
 		System.out.println("familiare nero su spazio azione 2 di una torre");
