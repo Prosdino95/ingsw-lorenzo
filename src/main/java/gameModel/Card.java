@@ -1,5 +1,6 @@
 package gameModel;
 
 public interface Card {
-	public int getId(Card card);
+	public int getId();
+	public CardType getType();
 }
