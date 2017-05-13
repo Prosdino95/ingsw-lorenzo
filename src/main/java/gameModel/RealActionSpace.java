@@ -8,6 +8,7 @@ public class RealActionSpace implements ActionSpace {
 	private boolean free=true;
 	private final int actionCost;
 	private List<Effect> effects=new ArrayList<>();
+	private ActionSpaceType type;
 
 	public RealActionSpace(int actionCost, List<Effect> effects) {
 		this.id=identifier;
@@ -22,7 +23,15 @@ public class RealActionSpace implements ActionSpace {
 		this.actionCost = actionCost;
 		this.effects.add(effect);
 	}
-	
+
+	public RealActionSpace(int actionCost, Effect effect, ActionSpaceType type) {
+		this.id=identifier;
+		identifier++;
+		this.actionCost = actionCost;
+		this.effects.add(effect);
+		this.type = type;
+	}
+
 	@Override
 	public void activateEffect(FamilyMember f){
 		System.out.println("attivato effetto di Spazio azione n "+id);
@@ -48,5 +57,15 @@ public class RealActionSpace implements ActionSpace {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public void setType(ActionSpaceType type) {
+		this.type = type;
+	}
+
+	@Override
+	public ActionSpaceType getType() {
+		return type;
 	}
 }

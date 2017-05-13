@@ -12,4 +12,7 @@ public interface ActionSpace {
 
 	void activateEffect(FamilyMember f);
 
+	void setType(ActionSpaceType type);
+	
+	ActionSpaceType getType();
 }
