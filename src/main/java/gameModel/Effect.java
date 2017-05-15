@@ -2,6 +2,6 @@ package gameModel;
 
 public interface Effect {
 	
-	public void activate(RealPlayer g);
+	public void activate(Player g);
 
 }

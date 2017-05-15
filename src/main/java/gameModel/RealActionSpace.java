@@ -10,18 +10,11 @@ public class RealActionSpace implements ActionSpace {
 	private List<Effect> effects=new ArrayList<>();
 	private ActionSpaceType type;
 
-	public RealActionSpace(int actionCost, List<Effect> effects) {
+	public RealActionSpace(int actionCost, List<Effect> effects,ActionSpaceType type) {
 		this.id=identifier;
 		identifier++;
 		this.actionCost = actionCost;
 		this.effects = effects;
-	}
-
-	public RealActionSpace(int actionCost, Effect effect) {
-		this.id=identifier;
-		identifier++;
-		this.actionCost = actionCost;
-		this.effects.add(effect);
 	}
 
 	public RealActionSpace(int actionCost, Effect effect, ActionSpaceType type) {

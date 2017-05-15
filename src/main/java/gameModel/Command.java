@@ -2,7 +2,7 @@ package gameModel;
 
 public class Command {
 	
-	RealBoard board;
+	private RealBoard board;
 
 	public Command(RealBoard board) {
 		this.board = board;

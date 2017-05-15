@@ -1,9 +1,9 @@
 package gameModel;
 
 public class FamilyMember {
-	RealPlayer player;
-	int actionpoint=0;
-	Color color;
+	private RealPlayer player;
+	private int actionPoint=0;
+	private Color color;
 	
 	public FamilyMember(RealPlayer player, Color color) {
 		this.player = player;
@@ -15,10 +15,16 @@ public class FamilyMember {
 	}
 
 	public int getActionpoint() {
-		return actionpoint;
+		return actionPoint;
 	}
 
 	public void setActionpoint(int actionpoint) {
-		this.actionpoint = actionpoint;
+		this.actionPoint = actionpoint;
 	}
+
+	public Color getColor() {
+		return color;
+	}
+	
+
 }
