@@ -7,14 +7,14 @@ public class TestMarco {
 		Effect e=new TestEffects();
 		//ho creato questa classe effetto solo per il test poi è da cancellare ovviamente
 		//il suo effetto e quello di scrivere una stringa a video indicando il giocatore su cui è attivata
-		RealActionSpace a1 =new RealActionSpace(4,e);
-		RealActionSpace a2 =new RealActionSpace(7,e);
+		RealActionSpace a1 =new RealActionSpace(4,e,ActionSpaceType.TOWER);
+		RealActionSpace a2 =new RealActionSpace(7,e,ActionSpaceType.TOWER);
 		Command command= new Command(board);
 		Resource resource=new Resource(5,5,5,5);
 		RealPlayer redPlayer=new RealPlayer(resource,command,Team.RED);
 		Tower buildingsTower=new Tower();
-		RealTowerActionSpace t1=new RealTowerActionSpace(4,e,buildingsTower);
-		RealTowerActionSpace t2=new RealTowerActionSpace(4,e,buildingsTower);
+		RealTowerActionSpace t1=new RealTowerActionSpace(4,e,buildingsTower,ActionSpaceType.TOWER);
+		RealTowerActionSpace t2=new RealTowerActionSpace(4,e,buildingsTower,ActionSpaceType.TOWER);
 		
 		board.addActionSpace(a1);
 		board.addActionSpace(a2);

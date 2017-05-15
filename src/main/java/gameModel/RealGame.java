@@ -61,7 +61,7 @@ public class RealGame {
 		Effect e=new TestEffects();
 		List<RealActionSpace> actionSpaces = new ArrayList<RealActionSpace>();
 		// Initialize action spaces on board
-		actionSpaces.add(new RealActionSpace(7,e));
+		actionSpaces.add(new RealActionSpace(7,e,ActionSpaceType.TOWER));
 		
 	}
 }

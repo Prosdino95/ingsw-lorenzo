@@ -4,15 +4,15 @@ import java.util.List;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
 
-	Tower tower;
+	private Tower tower;
 
-	public RealTowerActionSpace(int actionCost, List<Effect> effects, Tower tower) {
-		super(actionCost, effects);
+	public RealTowerActionSpace(int actionCost, List<Effect> effects, Tower tower,ActionSpaceType type) {
+		super(actionCost, effects,type);
 		this.tower = tower;
 	}
 	
-	public RealTowerActionSpace(int actionCost, Effect effects, Tower tower) {
-		super(actionCost, effects);
+	public RealTowerActionSpace(int actionCost, Effect effects, Tower tower,ActionSpaceType type) {
+		super(actionCost, effects,type);
 		this.tower = tower;
 	}
 
