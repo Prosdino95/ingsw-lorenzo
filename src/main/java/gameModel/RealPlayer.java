@@ -7,13 +7,13 @@ import java.util.Map;
 public class RealPlayer implements Player {
 	private Resource resource;
 	private Map<Color,FamilyMember> familyMembers;
-	private Controller controller;
+	private Command command;
 	private Team team;
 	
-	public RealPlayer(Resource resource, Controller controller,Team team) {
+	public RealPlayer(Resource resource, Command command,Team team) {
 		this.team=team;
 		this.resource = resource;
-		this.controller = controller;
+		this.command = command;
 		generateFamilyMember();
 	}
 
@@ -40,12 +40,12 @@ public class RealPlayer implements Player {
 	
 	public void placeFamilyMemberInSpaceActions(int idSpaceAction,Color c,int servant){
 		FamilyMember f= familyMembers.get(c);
-		controller.placeFamilyMemberInSpaceActions(idSpaceAction,f,servant);
+		command.placeFamilyMemberInSpaceActions(idSpaceAction,f,servant);
 	}
 	
 	public void placeFamilyMemberInTower(int idSpaceAction,Color c,int servant){
 		FamilyMember f= familyMembers.get(c);
-		controller.placeFamilyMemberInTower(idSpaceAction,f,servant);
+		command.placeFamilyMemberInTower(idSpaceAction,f,servant);
 	}
 
 

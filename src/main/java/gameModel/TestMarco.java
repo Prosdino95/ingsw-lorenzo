@@ -9,9 +9,9 @@ public class TestMarco {
 		//il suo effetto e quello di scrivere una stringa a video indicando il giocatore su cui è attivata
 		RealActionSpace a1 =new RealActionSpace(4,e);
 		RealActionSpace a2 =new RealActionSpace(7,e);
-		Controller controller= new Controller(board);
+		Command command= new Command(board);
 		Resource resource=new Resource(5,5,5,5);
-		RealPlayer redPlayer=new RealPlayer(resource,controller,Team.RED);
+		RealPlayer redPlayer=new RealPlayer(resource,command,Team.RED);
 		Tower buildingsTower=new Tower();
 		RealTowerActionSpace t1=new RealTowerActionSpace(4,e,buildingsTower);
 		RealTowerActionSpace t2=new RealTowerActionSpace(4,e,buildingsTower);

@@ -1,10 +1,10 @@
 package gameModel;
 
-public class Controller {
+public class Command {
 	
 	RealBoard board;
 
-	public Controller(RealBoard board) {
+	public Command(RealBoard board) {
 		this.board = board;
 	}
 //al posto di scrivere solleverà eccezioni
