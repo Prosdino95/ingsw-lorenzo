@@ -32,4 +32,17 @@ public class StupidCard implements Card {
 		return str;
 	}
 
+
+	@Override
+	public Resource getRequirement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void pay(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

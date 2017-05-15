@@ -64,28 +64,28 @@ public class RealGame {
 
 		// These parameters must all come from the customization file
 		tower = new Tower(CardType.TERRITORIES);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower));
+		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
 
 		tower = new Tower(CardType.CHARACTERS);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower));
+		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
 
 		tower = new Tower(CardType.BUILDINGS);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower));
+		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
 		
 		tower = new Tower(CardType.VENTURES);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower));
+		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
+		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
 
 		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
 		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
