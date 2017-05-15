@@ -68,4 +68,10 @@ public class RealPlayer implements Player {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void prepareForNewRound() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -4,7 +4,8 @@ import java.util.List;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
 
-	Tower tower;
+	private Tower tower;
+	private Card card;
 
 	public RealTowerActionSpace(int actionCost, List<Effect> effects, Tower tower) {
 		super(actionCost, effects);
@@ -23,7 +24,14 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 
 	@Override	
 	public void attachDevelopmentCard(Card card) {
-		// TODO Auto-generated method stub
-		
-	}	
+		this.card = card;
+	}
+	
+	public String toString() {
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += card.toString();
+		return str;
+	}
 }

@@ -4,29 +4,97 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RealBoard implements Board {
-	private List<Card> developmentCards;
-	private List<RealActionSpace> actionSpaces;
+	private List<ActionSpace> actionSpaces;
 	private List<Player> players;
+	private List<Card> territoriesCards;
+	private List<Card> buildingsCards;
+	private List<Card> charactersCards; 
+	private List<Card> venturesCards;
+	private List<Card> cards;
+	private Dice dice;
 	
 	public RealBoard() {
-		this.developmentCards = new ArrayList<Card>();
-		this.actionSpaces = new ArrayList<RealActionSpace>();
+		this.actionSpaces = new ArrayList<ActionSpace>();
 		this.players = new ArrayList<Player>();
+		this.cards = new ArrayList<Card>();
 	}
 	
-	public RealBoard(List<Card> developmentCards, List<RealActionSpace> actionSpaces, List<Player> players) {
-		this.developmentCards = developmentCards;
+	public RealBoard(List<Card> cards, List<ActionSpace> actionSpaces) {
+		this.players = new ArrayList<Player>();
 		this.actionSpaces = actionSpaces;
-		this.players = players;
+		
+		this.cards = cards;
+		this.venturesCards = new ArrayList<Card>();
+		this.buildingsCards = new ArrayList<Card>();
+		this.charactersCards = new ArrayList<Card>();
+		this.territoriesCards = new ArrayList<Card>();
+		for (Card c : cards) {
+			switch (c.getType()) {
+			case BUILDINGS:
+				buildingsCards.add(c);
+				break;
+			case CHARACTERS:
+				charactersCards.add(c);
+				break;
+			case TERRITORIES:
+				territoriesCards.add(c);
+				break;
+			case VENTURES:
+				venturesCards.add(c);
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void setupRound() {
-		for (RealActionSpace as : actionSpaces) {
-			if (as instanceof RealTowerActionSpace) {
-				((RealTowerActionSpace) as).attachDevelopmentCard(developmentCards.remove(0));
+		for (ActionSpace as : actionSpaces) {
+			if (as instanceof TowerActionSpace) {
+				CardType color = ((TowerActionSpace) as).getTower().getType();
+				Card card = popCard(color);
+				if (card.equals(null)) {
+					System.err.println("Finished cards");
+				}
+				((RealTowerActionSpace) as).attachDevelopmentCard(card);
 			}
 		}
+		
+		for (Player p : players) {
+			p.prepareForNewRound();
+		}
+	}
+
+	private Card popCard(CardType color) {
+		switch (color) {
+			case BUILDINGS:
+				return buildingsCards.remove(0);
+		case CHARACTERS:
+				return charactersCards.remove(0);
+		case TERRITORIES:
+				return territoriesCards.remove(0);
+		case VENTURES:
+				return venturesCards.remove(0);
+		default:
+				break;
+		}
+
+		for (Card c : cards) {
+			if (c.getType().equals(color)) {
+				return c;
+			}
+		}
+		return null;
+	}
+
+	private Card getCard(CardType type) {
+		for (Card c : cards) {
+			if (c.getType().equals(type)) {
+				return c;
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -36,10 +104,33 @@ public class RealBoard implements Board {
 
 	@Override
 	public RealActionSpace getActionSpaces(int id) {
-		for (RealActionSpace as : this.actionSpaces) {
-			if (as.getId() == id) return as;
+		for (ActionSpace as : this.actionSpaces) {
+			if (as.getId() == id) return (RealActionSpace) as;
 		}
 		return null;
+	}
+
+	@Override
+	public void addPlayer(Player player) {
+		players.add(player);
+	}
+	
+	public String toString() {
+		String str = "";
+		str += "Action Spaces\n";
+		for (ActionSpace as : actionSpaces) {
+			str += as.toString();
+			str += "\n";
+		}
+		return str;
+	}
+
+	public Dice getDice() {
+		return dice;
+	}
+
+	private void setDice(Dice dice) {
+		this.dice = dice;
 	}
 
 }
