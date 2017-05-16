@@ -8,12 +8,13 @@ public class RealPlayer implements Player {
 	private Resource resource;
 	private Map<Color,FamilyMember> familyMembers;
 	private Command command;
+	private Board board;
 	private Team team;
 	
-	public RealPlayer(Resource resource, Command command,Team team) {
+	public RealPlayer(Resource resource, Board board,Team team) {
 		this.team=team;
 		this.resource = resource;
-		this.command = command;
+		this.board = board;
 		generateFamilyMember();
 	}
 
@@ -38,16 +39,11 @@ public class RealPlayer implements Player {
 		this.resource.addResources(r); 
 		  } 
 	
-	public void placeFamilyMemberInSpaceActions(int idSpaceAction,Color c,int servant){
+	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws Exception{
 		FamilyMember f= familyMembers.get(c);
-		command.placeFamilyMemberInSpaceActions(idSpaceAction,f,servant);
+		command=new PlaceFamilyMemberCommand(board,idSpaceAction,f,servant);
+		command.isLegal();
 	}
-	
-	public void placeFamilyMemberInTower(int idSpaceAction,Color c,int servant){
-		FamilyMember f= familyMembers.get(c);
-		command.placeFamilyMemberInTower(idSpaceAction,f,servant);
-	}
-
 
 	public Team getTeam() {
 		return team;

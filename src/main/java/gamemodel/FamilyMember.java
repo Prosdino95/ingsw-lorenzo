@@ -15,6 +15,10 @@ public class FamilyMember {
 		this.used=true;
 	}
 	
+	public boolean isUsed(){
+		return used;
+	}
+	
 	public void prepareForNewRound(){
 		this.used=false;
 	}

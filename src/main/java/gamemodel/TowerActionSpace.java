@@ -6,4 +6,6 @@ public interface TowerActionSpace extends ActionSpace {
 
 	void attachDevelopmentCard(Card card);
 
+	void giveCard(FamilyMember f);
+
 }

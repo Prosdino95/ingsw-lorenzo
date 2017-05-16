@@ -34,4 +34,10 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		str += card.toString();
 		return str;
 	}
+
+	@Override
+	public void giveCard(FamilyMember f) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -27,7 +27,6 @@ public class RealActionSpace implements ActionSpace {
 
 	@Override
 	public void activateEffect(FamilyMember f){
-		System.out.println("attivato effetto di Spazio azione n "+id);
 		for(Effect e:effects)
 			e.activate(f.getPlayer());
 	}

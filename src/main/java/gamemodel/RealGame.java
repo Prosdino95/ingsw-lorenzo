@@ -100,10 +100,10 @@ public class RealGame {
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new RealPlayer(new Resource(5,5,5,5), new Command((RealBoard) board), Team.RED));
-		players.add(new RealPlayer(new Resource(5,5,5,5), new Command((RealBoard) board), Team.BLUE));
-		players.add(new RealPlayer(new Resource(5,5,5,5), new Command((RealBoard) board), Team.GREEN));
-		players.add(new RealPlayer(new Resource(5,5,5,5), new Command((RealBoard) board), Team.YELLOW));
+		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.RED));
+		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.BLUE));
+		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
+		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
 		
 		for (Player p : players) {
 			board.addPlayer(p);
