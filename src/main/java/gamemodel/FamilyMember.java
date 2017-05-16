@@ -4,10 +4,19 @@ public class FamilyMember {
 	private RealPlayer player;
 	private int actionPoint=0;
 	private Color color;
+	private boolean used=false;
 	
 	public FamilyMember(RealPlayer player, Color color) {
 		this.player = player;
 		this.color = color;
+	}
+	
+	public void use(){
+		this.used=true;
+	}
+	
+	public void prepareForNewRound(){
+		this.used=false;
 	}
 
 	public RealPlayer getPlayer() {
