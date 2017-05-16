@@ -1,4 +1,4 @@
-package gameModel;
+package gamemodel;
 
 public class TestEffects implements Effect {
 

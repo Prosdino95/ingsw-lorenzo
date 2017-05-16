@@ -1,4 +1,4 @@
-package gameModel;
+package gamemodel;
 
 import java.util.List;
 import java.util.Map;

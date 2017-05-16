@@ -1,4 +1,4 @@
-package gameModel;
+package gamemodel;
 
 public class Tower {
 	private boolean towerFree=true;

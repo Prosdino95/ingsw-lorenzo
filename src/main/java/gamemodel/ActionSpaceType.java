@@ -1,4 +1,4 @@
-package gameModel;
+package gamemodel;
 
 public enum ActionSpaceType {
 		TOWER,
