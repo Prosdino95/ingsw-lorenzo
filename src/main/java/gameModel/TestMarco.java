@@ -25,14 +25,15 @@ public class TestMarco {
 		redPlayer.setFamilyMember(Color.WHITE,3);
 		System.out.println(redPlayer.getResource());
 		System.out.println("familiare nero su spazio azione 0");
-		redPlayer.placeFamilyMemberInSpaceActions(0, Color.BLACK, 0);
+		//redPlayer.placeFamilyMemberInSpaceActions(0, Color.BLACK, 0);
 		System.out.println("familiare bianco su spazio azione 0");
-		redPlayer.placeFamilyMemberInSpaceActions(0, Color.WHITE, 0);
+		//redPlayer.placeFamilyMemberInSpaceActions(0, Color.WHITE, 0);
 		System.out.println("familiare bianco su spazio azione 1 senza spesa servitori");
-		redPlayer.placeFamilyMemberInSpaceActions(1, Color.WHITE, 0);
+		//redPlayer.placeFamilyMemberInSpaceActions(1, Color.WHITE, 0);
 		System.out.println("familiare bianco su spazio azione 1 con spesa di 5 servitori");
 		redPlayer.placeFamilyMemberInSpaceActions(1, Color.WHITE, 5);
 		System.out.println(redPlayer.getResource());
+		
 		
 		
 		System.out.println("familiare nero su spazio azione 2 di una torre");

@@ -74,4 +74,16 @@ public class RealPlayer implements Player {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void subPoint(Point point) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPoint(Point point) {
+		// TODO Auto-generated method stub
+		
+	}
 }

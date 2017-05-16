@@ -1,22 +1,32 @@
 package gameModel;
 
 import java.util.List;
+import java.util.Map;
 
-public class LeaderCard extends DoubleEffectCard {
+public class LeaderCard extends RealCard {
 	
 	private boolean useEffect=false;
 	private boolean playCard=false;
 	
-	public LeaderCard(Resource requirement, Resource price, CardType type, 
-			List<Effect> immediateEffects,List<Effect> permanentEffects) {
-		super(requirement, price, type, immediateEffects, permanentEffects);
+
+	
+	
+	public LeaderCard(Resource resourceRequirement, Resource resourcePrice, Point point, Point pointPrice,
+			CardType type, Map<CardType, Integer> requirementCard) {
+		super(resourceRequirement, resourcePrice, point, pointPrice, type, requirementCard);
 	}
 	
-	public LeaderCard(Resource requirement, Resource price, CardType type, 
-			Effect immediateEffects,Effect permanentEffects) {
-		super(requirement, price, type, immediateEffects, permanentEffects);
+	public void useEffect(){
+		useEffect=true;
 	}
-
+	
+	public void playCard(){
+		playCard=true;		
+	}
+	
+	public void precapeForNewRound(){
+		playCard=false;
+	}
 
 	public boolean isUseEffect() {
 		return useEffect;

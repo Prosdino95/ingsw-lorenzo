@@ -1,8 +1,15 @@
 package gameModel;
 
+import java.util.Map;
+
 public interface Card {
 	public void pay(Player p);
+	public Resource getResourceRequirement();
+	public Resource getResourcePrice();
+	public Point getPointRequirement();
+	public Point getPointPrice();
 	public CardType getType();
-	public Resource getRequirement();
-	int getId(); 
+	public int getId(); 
+	public Map<CardType, Integer> getRequirementCard(); 
+
 }

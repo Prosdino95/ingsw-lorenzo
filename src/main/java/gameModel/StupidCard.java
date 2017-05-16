@@ -1,5 +1,7 @@
 package gameModel;
 
+import java.util.Map;
+
 public class StupidCard implements Card {
 	private int id;
 	private CardType type;
@@ -33,16 +35,41 @@ public class StupidCard implements Card {
 	}
 
 
-	@Override
-	public Resource getRequirement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void pay(Player p) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Resource getResourceRequirement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resource getResourcePrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Point getPointRequirement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Point getPointPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<CardType, Integer> getRequirementCard() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
