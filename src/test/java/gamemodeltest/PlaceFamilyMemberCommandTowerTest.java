@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import gamemodel.*;
 
-public class PlaceFamilyMemberCommandTest {
+public class PlaceFamilyMemberCommandTowerTest {
 	
 	Tower t;
 	Tower t1;

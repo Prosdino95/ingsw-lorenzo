@@ -39,6 +39,10 @@ public class RealPlayer implements Player {
 		this.resource.addResources(r); 
 		  } 
 	
+	public boolean isEnoughtResource(Resource r){ 
+		return this.resource.isEnought(r); 
+		  }
+	
 	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws Exception{
 		FamilyMember f= familyMembers.get(c);
 		command=new PlaceFamilyMemberCommand(board,idSpaceAction,f,servant);
