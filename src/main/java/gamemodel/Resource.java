@@ -52,5 +52,26 @@ public class Resource {
 				"Stone=" + stone +"\n"+
 				"Wood=" + wood +"\n"+
 				"Servant=" + servant;
-	}		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Resource other = (Resource) obj;
+		if (gold != other.gold)
+			return false;
+		if (servant != other.servant)
+			return false;
+		if (stone != other.stone)
+			return false;
+		if (wood != other.wood)
+			return false;
+		return true;
+	}
+
 }

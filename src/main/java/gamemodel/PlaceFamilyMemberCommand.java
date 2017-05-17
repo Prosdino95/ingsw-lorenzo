@@ -33,23 +33,35 @@ public class PlaceFamilyMemberCommand implements Command {
 	}
 	
 	private boolean IsEnoughtStrong(){
-		return(f.getActionpoint()+servants>=a.getActionCost());		
+		return(f.getActionpoint()+servants>=a.getActionCost());
 	}
 
+	private boolean controlServant() throws Exception{
+		if(servants>0)
+			f.getPlayer().subResources(new Resource(0,0,0,servants));
+		if(f.getPlayer().getResource().getServant()<0){
+			f.getPlayer().addResources(new Resource(0,0,0,servants));
+			return false;	
+		}
+		return true;	
+			
+	}
 	private void placeFMInTower() throws Exception{
 		TowerActionSpace t=(TowerActionSpace)a;
 		if(!f.isUsed())
 			if(t.isFree())
 				if(t.getTower().controlPlayer(f))				
 					if(t.getTower().isFree())
-						if(IsEnoughtStrong()){
-								f.use();
-								t.getTower().occupyTower();
-								t.activateEffect(f);
-								t.giveCard(f);
-								t.occupy();
-								t.getTower().addPlayer(f);
-								}
+						if(IsEnoughtStrong())
+							if(controlServant()){
+									f.use();
+									t.getTower().occupyTower();
+									t.activateEffect(f);
+									t.giveCard(f);
+									t.occupy();
+									t.getTower().addPlayer(f);
+									}
+							else throw new Exception("servants non sufficienti");
 						else throw new Exception("punti azione insufficenti");
 					else throw new Exception("torre occupata");					
 				else throw new Exception("torre occupata già da un tuo familiare");

@@ -62,6 +62,14 @@ public class PlaceFamilyMemberCommandTest {
 		try{p1.placeFamilyMember(id0, Color.BLACK, 5);}
 		catch(Exception e){s=e.getMessage();}
 		assertEquals("",s);
+		assertEquals(new Resource(5,5,5,0),p1.getResource());
+	}
+	@Test 
+	public void testTooMatchServant(){
+		try{p1.placeFamilyMember(id0, Color.BLACK, 7);}
+		catch(Exception e){s=e.getMessage();}
+		assertEquals("servants non sufficienti",s);
+		assertEquals(new Resource(5,5,5,5),p1.getResource());
 	}
 	
 	@Test
@@ -95,5 +103,4 @@ public class PlaceFamilyMemberCommandTest {
 		catch(Exception e){s=e.getMessage();}		
 		assertEquals("familiare già impiegato",s);		
 	}
-
 }
