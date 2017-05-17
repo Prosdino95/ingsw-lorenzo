@@ -43,6 +43,10 @@ public class RealPlayer implements Player {
 	public boolean isEnoughtResource(Resource r){ 
 		return this.resource.isEnought(r); 
 		  }
+	@Override
+	public FamilyMember getFamilyMember(Color c){
+		return familyMembers.get(c);
+	}
 	
 	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws Exception{
 		FamilyMember f= familyMembers.get(c);
@@ -87,4 +91,5 @@ public class RealPlayer implements Player {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

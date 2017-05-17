@@ -1,10 +1,7 @@
 package gamemodel.command;
 
-import gamemodel.ActionSpace;
-import gamemodel.Board;
-import gamemodel.FamilyMember;
-import gamemodel.Resource;
-import gamemodel.TowerActionSpace;
+import gamemodel.*;
+
 
 public class PlaceFamilyMemberCommand implements Command {
 	
@@ -103,21 +100,27 @@ public class PlaceFamilyMemberCommand implements Command {
 	}
 	
 	private void placeFMInHarvestAndProduction() throws Exception{
+		HarvestProductionActionSpace h=(HarvestProductionActionSpace)a;	
 		if(!f.isUsed())
-			if(IsEnoughtStrong())
-				if(controlServant())
-					if(a.isFree()){
-						f.use();
-						a.activateEffect(f);
-						a.occupy();
-					}
-					else{
-						f.use();
-						f.setActionpoint(f.getActionpoint()-3);
-						a.activateEffect(f);
-					}
-				else throw new Exception("servants non sufficienti");
-			else throw new Exception("punti azione insufficenti");
+			if(h.controlPlayer(f))
+				if(IsEnoughtStrong())
+					if(controlServant())
+						if(h.isFree()){
+							f.use();
+							f.setActionpoint(f.getActionpoint()+servants);
+							h.activateEffect(f);
+							h.occupy();
+							h.addPlayer(f);
+						}
+						else{
+							f.use();
+							f.setActionpoint(f.getActionpoint()+servants-3);
+							h.activateEffect(f);
+							h.addPlayer(f);
+						}
+					else throw new Exception("servants non sufficienti");
+				else throw new Exception("punti azione insufficenti");
+			else throw new Exception("spazio già occupato da un tuo familiare");
 		else throw new Exception("familiare già impiegato");
 	}
 	

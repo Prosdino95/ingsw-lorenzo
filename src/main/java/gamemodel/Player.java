@@ -12,7 +12,8 @@ public interface Player {
 	public void setFamilyMember(Color color,int actionPoint);
 	public void subResources(Resource r);
 	public void addResources(Resource r);
-	void prepareForNewRound();
-	void subPoint(Point point);
-	void addPoint(Point point);
+	public void prepareForNewRound();
+	public void subPoint(Point point);
+	public void addPoint(Point point);
+	public FamilyMember getFamilyMember(Color c);
 }
