@@ -2,6 +2,7 @@ package gamemodel;
 
 import java.util.HashMap;
 import java.util.Map;
+import gamemodel.command.*;
 
 
 public class RealPlayer implements Player {

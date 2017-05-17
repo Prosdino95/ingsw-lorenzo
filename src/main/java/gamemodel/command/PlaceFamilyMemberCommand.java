@@ -1,4 +1,10 @@
-package gamemodel;
+package gamemodel.command;
+
+import gamemodel.ActionSpace;
+import gamemodel.Board;
+import gamemodel.FamilyMember;
+import gamemodel.Resource;
+import gamemodel.TowerActionSpace;
 
 public class PlaceFamilyMemberCommand implements Command {
 	
@@ -26,10 +32,10 @@ public class PlaceFamilyMemberCommand implements Command {
 				placeFMInMarket();
 				break;
 			case HARVEST:
-				placeFMInHarvester();
+				placeFMInHarvestAndProduction();
 				break;
 			case PRODUCTION:
-				placeFMInProductions();
+				placeFMInHarvestAndProduction();
 				break;
 			case COUNCIL_PALACE:
 				placeFMInCouncilPlace();
@@ -50,7 +56,7 @@ public class PlaceFamilyMemberCommand implements Command {
 		return false;			
 	}
 	private boolean CardControl() {
-		//TODO spesa per i punti fatta solo per risorse
+		//TODO
 		return true;
 		
 	}
@@ -96,12 +102,23 @@ public class PlaceFamilyMemberCommand implements Command {
 		else throw new Exception("familiare già impiegato");
 	}
 	
-	private void placeFMInHarvester(){
-		
-	}
-	
-	private void placeFMInProductions() {
-		
+	private void placeFMInHarvestAndProduction() throws Exception{
+		if(!f.isUsed())
+			if(IsEnoughtStrong())
+				if(controlServant())
+					if(a.isFree()){
+						f.use();
+						a.activateEffect(f);
+						a.occupy();
+					}
+					else{
+						f.use();
+						f.setActionpoint(f.getActionpoint()-3);
+						a.activateEffect(f);
+					}
+				else throw new Exception("servants non sufficienti");
+			else throw new Exception("punti azione insufficenti");
+		else throw new Exception("familiare già impiegato");
 	}
 	
 	private void placeFMInCouncilPlace(){
