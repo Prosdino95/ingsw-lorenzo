@@ -49,8 +49,8 @@ public class RealPlayer implements Player {
 	}
 	
 	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws Exception{
-		FamilyMember f= familyMembers.get(c);
-		command=new PlaceFamilyMemberCommand(board,idSpaceAction,f,servant);
+		FamilyMember f= familyMembers.get(c);		
+		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(board,idSpaceAction,f,servant);
 		command.isLegal();
 	}
 
