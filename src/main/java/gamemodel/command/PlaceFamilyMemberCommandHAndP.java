@@ -2,6 +2,9 @@ package gamemodel.command;
 
 import gamemodel.*;
 
+import gamemodel.ActionSpace.ActionSpace;
+import gamemodel.ActionSpace.MemoryActionSpace;
+
 public class PlaceFamilyMemberCommandHAndP implements Command {
 	private FamilyMember f;
 	private int servant;
@@ -28,7 +31,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 
 	@Override
 	public void isLegal() throws Exception {
-			HarvestProductionActionSpace h=(HarvestProductionActionSpace)a;	
+			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
 				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())

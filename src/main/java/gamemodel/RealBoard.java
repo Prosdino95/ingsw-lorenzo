@@ -3,6 +3,11 @@ package gamemodel;
 import java.util.ArrayList;
 import java.util.List;
 
+import gamemodel.ActionSpace.ActionSpace;
+import gamemodel.ActionSpace.RealActionSpace;
+import gamemodel.ActionSpace.RealTowerActionSpace;
+import gamemodel.ActionSpace.TowerActionSpace;
+
 public class RealBoard implements Board {
 	private List<ActionSpace> actionSpaces;
 	private List<Player> players;

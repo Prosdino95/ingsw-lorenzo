@@ -1,4 +1,8 @@
-package gamemodel;
+package gamemodel.ActionSpace;
+
+import gamemodel.Card;
+import gamemodel.FamilyMember;
+import gamemodel.Tower;
 
 public interface TowerActionSpace extends ActionSpace {
 

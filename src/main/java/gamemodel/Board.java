@@ -1,5 +1,7 @@
 package gamemodel;
 
+import gamemodel.ActionSpace.RealActionSpace;
+
 public interface Board {
 
 	void setupRound();

@@ -1,4 +1,6 @@
-package gamemodel;
+package gamemodel.ActionSpace;
+
+import gamemodel.FamilyMember;
 
 public interface ActionSpace {
 

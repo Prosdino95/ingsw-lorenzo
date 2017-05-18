@@ -20,7 +20,7 @@ public class PlaceFMCommandFactory {
 			case PRODUCTION:
 				return new PlaceFamilyMemberCommandHAndP(board,id,f,servant);
 			case COUNCIL_PALACE:
-				return null;
+				return new PlaceFamilyMemberCommandCouncilPlace(board,id,f,servant);
 		}
 		return null;		
 	}

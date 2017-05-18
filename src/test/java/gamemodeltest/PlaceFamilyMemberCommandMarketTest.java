@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.*;
+import gamemodel.ActionSpace.ActionSpaceType;
+import gamemodel.ActionSpace.RealActionSpace;
 
 
 public class PlaceFamilyMemberCommandMarketTest {

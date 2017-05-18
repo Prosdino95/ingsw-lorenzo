@@ -2,6 +2,8 @@ package gamemodel;
 
 import java.util.List;
 
+import gamemodel.ActionSpace.RealActionSpace;
+
 public class CustomizationFileReader {
 
 	public CustomizationFileReader(String path) {

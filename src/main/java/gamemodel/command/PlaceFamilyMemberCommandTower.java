@@ -1,6 +1,8 @@
 package gamemodel.command;
 
 import gamemodel.*;
+import gamemodel.ActionSpace.ActionSpace;
+import gamemodel.ActionSpace.TowerActionSpace;
 
 public class PlaceFamilyMemberCommandTower implements Command {
 	

@@ -1,6 +1,9 @@
-package gamemodel;
+package gamemodel.ActionSpace;
 
 import java.util.*;
+
+import gamemodel.Effect;
+import gamemodel.FamilyMember;
 
 public class RealActionSpace implements ActionSpace {
 	private final int id;

@@ -1,8 +1,11 @@
 package gamemodel;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
+
+import gamemodel.ActionSpace.*;
 
 public class RealGame {
 	private List<Player> players;

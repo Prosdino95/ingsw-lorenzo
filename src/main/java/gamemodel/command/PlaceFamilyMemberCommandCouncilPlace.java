@@ -1,19 +1,19 @@
 package gamemodel.command;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.ActionSpace;
+import gamemodel.ActionSpace.*;
 
-public class PlaceFamilyMemberCommandMarket implements Command {
+public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	private FamilyMember f;
 	private int servant;
 	private ActionSpace a;
 	
-	public PlaceFamilyMemberCommandMarket(Board board,int id,FamilyMember f, int servant) {
+	public PlaceFamilyMemberCommandCouncilPlace(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
 		this.a=board.getActionSpaces(id);
 	}
-
+	
 	private boolean IsEnoughtStrong(){
 		return(f.getActionpoint()+servant>=a.getActionCost());
 	}
@@ -29,18 +29,18 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 
 	@Override
 	public void isLegal() throws Exception {
+			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
-				if(a.isFree())
+				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())
 						if(controlServant()){
-							f.use();
-							a.activateEffect(f);
-							a.occupy();				
+								f.use();
+								h.activateEffect(f);
+								h.addPlayer(f);
 							}
 						else throw new Exception("servants non sufficienti");
 					else throw new Exception("punti azione insufficenti");
-				else throw new Exception("spazio azione occupato");
+				else throw new Exception("spazio già occupato da un tuo familiare");
 			else throw new Exception("familiare già impiegato");
-		}		
+		}
 }
-
