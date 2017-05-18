@@ -1,4 +1,4 @@
-package gamemodeltest;
+package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
