@@ -1,5 +1,7 @@
 package gamemodel;
 
+import gamemodel.command.GameException;
+
 public interface Player {
 
 	void playRound();
@@ -8,7 +10,7 @@ public interface Player {
 
 	public Resource getResource();
 	public Team getTeam();
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws Exception;
+	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException;
 	public void setFamilyMember(Color color,int actionPoint);
 	public void subResources(Resource r);
 	public void addResources(Resource r);

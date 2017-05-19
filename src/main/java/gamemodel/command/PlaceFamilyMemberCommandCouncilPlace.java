@@ -18,7 +18,7 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 		return(f.getActionpoint()+servant>=a.getActionCost());
 	}
 
-	private boolean controlServant() throws Exception{
+	private boolean controlServant() throws GameException{
 		if(servant>=0)
 			if(f.getPlayer().isEnoughtResource(new Resource(0,0,0,servant))){
 				f.getPlayer().subResources(new Resource(0,0,0,servant));
@@ -28,7 +28,7 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	}
 
 	@Override
-	public void isLegal() throws Exception {
+	public void isLegal() throws GameException {
 			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
 				if(h.controlPlayer(f))
@@ -38,9 +38,9 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 								h.activateEffect(f);
 								h.addPlayer(f);
 							}
-						else throw new Exception("servants non sufficienti");
-					else throw new Exception("punti azione insufficenti");
-				else throw new Exception("spazio già occupato da un tuo familiare");
-			else throw new Exception("familiare già impiegato");
+						else throw new GameException(GameError.RESOURCE_ERR_SERVANTS);
+					else throw new GameException(GameError.FM_ERR_PA);
+				else throw new GameException(GameError.SA_ERR_FM);
+			else throw new GameException(GameError.FM_ERR_USE);
 		}
 }

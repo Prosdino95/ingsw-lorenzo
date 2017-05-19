@@ -18,7 +18,7 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 		return(f.getActionpoint()+servant>=a.getActionCost());
 	}
 
-	private boolean controlServant() throws Exception{
+	private boolean controlServant() throws GameException{
 		if(servant>=0)
 			if(f.getPlayer().isEnoughtResource(new Resource(0,0,0,servant))){
 				f.getPlayer().subResources(new Resource(0,0,0,servant));
@@ -28,7 +28,7 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 	}
 
 	@Override
-	public void isLegal() throws Exception {
+	public void isLegal() throws GameException {
 			if(!f.isUsed())
 				if(a.isFree())
 					if(IsEnoughtStrong())
@@ -37,10 +37,10 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 							a.activateEffect(f);
 							a.occupy();				
 							}
-						else throw new Exception("servants non sufficienti");
-					else throw new Exception("punti azione insufficenti");
-				else throw new Exception("spazio azione occupato");
-			else throw new Exception("familiare già impiegato");
+						else throw new GameException(GameError.RESOURCE_ERR_SERVANTS);
+					else throw new GameException(GameError.FM_ERR_PA);
+				else throw new GameException(GameError.SA_ERR);
+			else throw new GameException(GameError.FM_ERR_USE);
 		}		
 }
 

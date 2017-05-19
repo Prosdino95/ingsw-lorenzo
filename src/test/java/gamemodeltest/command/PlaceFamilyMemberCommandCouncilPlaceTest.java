@@ -10,15 +10,17 @@ import org.junit.Test;
 
 import gamemodel.*;
 import gamemodel.ActionSpace.*;
+import gamemodel.command.GameError;
+import gamemodel.command.GameException;
 
 public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	Board b;
-	RealPlayer p1,p2;
+	Player p1,p2;
 	MemoryActionSpace a0;
 	RealActionSpace a1;
 	Effect e;
-	String s;
+	GameError s;
 	int id0,id1;
 	
 	@Before
@@ -34,7 +36,6 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		p1.setFamilyMember(Color.BLACK, 1);
 		p1.setFamilyMember(Color.WHITE, 7);
 		p2.setFamilyMember(Color.WHITE,7);
-		s=new String("");
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
 	}
@@ -45,45 +46,45 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	public void testDoubleUseFamiliare(){
 		try{p1.placeFamilyMember(id0, Color.WHITE, 5);
 			p1.placeFamilyMember(id1, Color.WHITE, 0);}
-		catch(Exception e){s=e.getMessage();}		
-		assertEquals("familiare già impiegato",s);		
+		catch(GameException e){s=e.getType();}		
+		assertEquals(GameError.FM_ERR_USE,s);		
 	}
 	
 	@Test
 	public void testZeroServantsFail() {
 		try{p1.placeFamilyMember(id0, Color.BLACK, 0);}
-		catch(Exception e){s=e.getMessage();}
-		assertEquals("punti azione insufficenti",s);		
+		catch(GameException e){s=e.getType();}
+		assertEquals(GameError.FM_ERR_PA,s);		
 	}
 		
 	@Test
 	public void testSomeServants(){
 		try{p1.placeFamilyMember(id0, Color.BLACK, 5);}
-		catch(Exception e){s=e.getMessage();}
-		assertEquals("",s);
+		catch(GameException e){s=e.getType();}
+		assertEquals(null,s);
 		assertEquals(new Resource(5,5,5,0),p1.getResource());
 	}
 	@Test 
 	public void testTooMatchServant(){
 		try{p1.placeFamilyMember(id0, Color.BLACK, 7);}
-		catch(Exception e){s=e.getMessage();}
-		assertEquals("servants non sufficienti",s);
+		catch(GameException e){s=e.getType();}
+		assertEquals(GameError.RESOURCE_ERR_SERVANTS,s);
 		assertEquals(new Resource(5,5,5,5),p1.getResource());
 	}
 	
 	@Test
-	public void testDoublePlaceSamePost() throws Exception{
+	public void testDoublePlaceSamePost() throws GameException{
 		try{p1.placeFamilyMember(id0, Color.BLACK, 5);
 			p1.placeFamilyMember(id0, Color.WHITE, 0);}
-		catch(Exception e){s=e.getMessage();}
-		assertEquals("spazio già occupato da un tuo familiare",s);		
+		catch(GameException e){s=e.getType();}
+		assertEquals(GameError.SA_ERR_FM,s);		
 	}
 	
 	@Test
-	public void testDoublePlaceSamePostDifferentPlayer() throws Exception{
+	public void testDoublePlaceSamePostDifferentPlayer() throws GameException{
 		List<RealPlayer> testplayers=new ArrayList<RealPlayer>();
-		testplayers.add(p1);
-		testplayers.add(p2);
+		testplayers.add((RealPlayer) p1);
+		testplayers.add((RealPlayer) p2);
 		p1.placeFamilyMember(id0, Color.WHITE, 0);
 		p2.placeFamilyMember(id0, Color.WHITE, 0);
 		assertEquals(a0.getPlayers(),testplayers);		

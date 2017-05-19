@@ -18,6 +18,7 @@ public class RealActionSpace implements ActionSpace {
 		identifier++;
 		this.actionCost = actionCost;
 		this.effects = effects;
+		this.type = type;
 	}
 
 	public RealActionSpace(int actionCost, Effect effect, ActionSpaceType type) {
