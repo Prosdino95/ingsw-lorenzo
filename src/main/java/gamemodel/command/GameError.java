@@ -3,7 +3,7 @@ package gamemodel.command;
 public enum GameError {
 	
 	RESOURCE_ERR_SERVANTS,//"servants non sufficienti"			
-	RESOURCE_ERR,//"carta troppo costosa"
+	RESOURCE_ERR_CARD,//"carta troppo costosa"
 	FM_ERR_PA,//"punti azione insufficenti"	
 	FM_ERR_USE,//"familiare già impiegato"
 	TWR_ERR_OCCUPY,//"torre occupata"

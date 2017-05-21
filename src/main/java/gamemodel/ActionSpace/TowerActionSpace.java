@@ -12,4 +12,6 @@ public interface TowerActionSpace extends ActionSpace {
 
 	void giveCard(FamilyMember f);
 
+	Card getCard();
+
 }

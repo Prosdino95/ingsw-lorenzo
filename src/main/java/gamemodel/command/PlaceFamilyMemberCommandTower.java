@@ -39,14 +39,15 @@ public class PlaceFamilyMemberCommandTower implements Command {
 						if(IsEnoughtStrong())
 							if(controlServant()){
 								t.activateEffect(f);
-									if(CardControl()){
+									if(CardControl(t.getCard(),f.getPlayer())){
 										f.use();
 										t.getTower().occupyTower();									
 										t.giveCard(f);
 										t.occupy();
 										t.getTower().addPlayer(f);
 										}
-								else throw new GameException(GameError.RESOURCE_ERR);	
+								else throw new GameException(GameError.RESOURCE_ERR_CARD);	
+								//TODO 
 								//t.rollbackEffect(f);	
 							}
 							else throw new GameException(GameError.RESOURCE_ERR_SERVANTS);
@@ -57,9 +58,13 @@ public class PlaceFamilyMemberCommandTower implements Command {
 		else throw new GameException(GameError.FM_ERR_USE);
 	}
 
-	private boolean CardControl() {
-		// TODO Auto-generated method stub
-		return true;
+	private boolean CardControl(Card c, RealPlayer p) {
+		if(f.getPlayer().isEnoughtResource(c.getResourceRequirement())){
+			c.pay(p);
+			return true;
+		}
+			
+		else return false;
 	}
 		
 }
