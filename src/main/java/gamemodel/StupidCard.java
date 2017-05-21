@@ -72,4 +72,10 @@ public class StupidCard implements Card {
 		return null;
 	}
 
+	@Override
+	public boolean ControlResource(Player p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -1,6 +1,8 @@
 package gamemodel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import gamemodel.command.*;
 
@@ -8,9 +10,14 @@ import gamemodel.command.*;
 public class RealPlayer implements Player {
 	private Resource resource;
 	private Map<Color,FamilyMember> familyMembers;
+	private Point point;
 	private Command command;
 	private Board board;
 	private Team team;
+	private List<Card> buildings=new ArrayList<>();
+	private List<Card> territories=new ArrayList<>();	
+	private List<Card> ventures=new ArrayList<>();
+	private List<Card> characters=new ArrayList<>();
 	
 	public RealPlayer(Resource resource, Board board,Team team) {
 		this.team=team;
@@ -27,22 +34,27 @@ public class RealPlayer implements Player {
 		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));		
 	}
 	
+	@Override
 	public void setFamilyMember(Color color,int actionPoint){
 		FamilyMember f= familyMembers.get(color);
 		f.setActionpoint(actionPoint);		
 	}
 	
+	@Override
 	 public void subResources(Resource r){ 
 	    this.resource.subResources(r); 
 	 } 
-		   
+	
+	 @Override
 	public void addResources(Resource r){ 
 		this.resource.addResources(r); 
 		  } 
 	
+	@Override
 	public boolean isEnoughtResource(Resource r){ 
 		return this.resource.isEnought(r); 
 		  }
+	
 	@Override
 	public FamilyMember getFamilyMember(Color c){
 		return familyMembers.get(c);
@@ -53,11 +65,13 @@ public class RealPlayer implements Player {
 		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(board,idSpaceAction,f,servant);
 		command.isLegal();
 	}
-
+	
+	@Override
 	public Team getTeam() {
 		return team;
 	}
-
+	
+	@Override
 	public Resource getResource() {
 		return resource;
 	}
@@ -82,14 +96,31 @@ public class RealPlayer implements Player {
 
 	@Override
 	public void subPoint(Point point) {
-		// TODO Auto-generated method stub
+		point.addPoint(point);
 		
 	}
 
 	@Override
 	public void addPoint(Point point) {
-		// TODO Auto-generated method stub
+		point.subPoint(point);
 		
 	}
-
+	
+	@Override
+	public boolean isEnoughtPoint(Point point){ 
+		return this.point.isEnought(point); 
+		  }
+	
+	public int contCard(CardType type){
+		if(type==CardType.BUILDINGS)
+			return buildings.size();
+		if(type==CardType.CHARACTERS)
+			return characters.size();
+		if(type==CardType.TERRITORIES)
+			return territories.size();
+		if(type==CardType.VENTURES)
+			return ventures.size();
+		return 0;
+		
+	}
 }

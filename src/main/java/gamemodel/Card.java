@@ -11,5 +11,6 @@ public interface Card {
 	public CardType getType();
 	public int getId(); 
 	public Map<CardType, Integer> getRequirementCard(); 
+	public boolean ControlResource(Player p);
 
 }

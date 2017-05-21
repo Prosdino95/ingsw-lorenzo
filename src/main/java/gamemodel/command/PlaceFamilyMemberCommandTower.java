@@ -59,7 +59,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 	}
 
 	private boolean CardControl(Card c, RealPlayer p) {
-		if(f.getPlayer().isEnoughtResource(c.getResourceRequirement())){
+		if(c.ControlResource(p)){
 			c.pay(p);
 			return true;
 		}

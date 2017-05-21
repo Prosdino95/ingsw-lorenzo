@@ -19,5 +19,18 @@ public class Point
 		this.faith+=p.faith;
 		this.victory+=p.victory;
 	}
+	
+	public void subPoint(Point p)
+	{
+		this.military-=p.military;
+		this.faith-=p.faith;
+		this.victory-=p.victory;
+	}
 
+	public boolean isEnought(Point p) {
+			return(this.military>=p.military &&
+				this.faith>=p.faith &&
+				this.victory>=p.victory);
+				
+		}
 }
