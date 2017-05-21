@@ -3,8 +3,8 @@ package gamemodel;
 public class TestEffects implements Effect {
 
 	@Override
-	public void activate(Player g) {
-		System.out.println("effetto attivato su giocatore "+ g.getTeam());
+	public void activate(Player player) {
+		System.out.println("effetto attivato su giocatore "+ player.getTeam());
 
 	}
 

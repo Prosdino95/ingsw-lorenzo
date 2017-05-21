@@ -1,7 +1,6 @@
 package gamemodel;
 
-public interface Effect {
-	
-	public void activate(Player g);
-
+public interface Effect 
+{
+	public void activate(Player player);
 }
