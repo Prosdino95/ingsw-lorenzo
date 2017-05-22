@@ -8,6 +8,8 @@ import gamemodel.ActionSpace.ActionSpaceType;
 import gamemodel.ActionSpace.MemoryActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gamemodel.effects.Effect;
+import gamemodel.effects.TestEffects;
 
 public class PlaceFamilyMemberCommandHAndPTest {
 	

@@ -1,5 +1,8 @@
-package gamemodel;
+package gamemodel.effects;
 
+import gamemodel.Player;
+import gamemodel.Point;
+import gamemodel.Resource;
 
 public class Exchange implements Effect 
 {

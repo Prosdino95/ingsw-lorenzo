@@ -1,4 +1,6 @@
-package gamemodel;
+package gamemodel.effects;
+
+import gamemodel.Player;
 
 public class TestEffects implements Effect {
 

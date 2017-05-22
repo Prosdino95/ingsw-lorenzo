@@ -1,4 +1,7 @@
-package gamemodel;
+package gamemodel.effects;
+
+import gamemodel.Player;
+import gamemodel.Resource;
 
 public class ResourceModify implements Effect 
 {

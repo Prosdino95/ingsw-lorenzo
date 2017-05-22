@@ -1,4 +1,6 @@
-package gamemodel;
+package gamemodel.effects;
+
+import gamemodel.Player;
 
 public interface Effect 
 {

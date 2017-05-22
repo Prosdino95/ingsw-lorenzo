@@ -3,10 +3,10 @@ package gamemodel.ActionSpace;
 import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.Effect;
 import gamemodel.FamilyMember;
 import gamemodel.Player;
 import gamemodel.RealPlayer;
+import gamemodel.effects.Effect;
 
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 	

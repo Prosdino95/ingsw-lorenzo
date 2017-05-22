@@ -10,6 +10,8 @@ import gamemodel.ActionSpace.ActionSpaceType;
 import gamemodel.ActionSpace.RealTowerActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gamemodel.effects.Effect;
+import gamemodel.effects.ResourceModify;
 
 public class PlaceFamilyMemberCommandTowerTest {
 	

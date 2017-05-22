@@ -3,9 +3,9 @@ package gamemodel.ActionSpace;
 import java.util.List;
 
 import gamemodel.Card;
-import gamemodel.Effect;
 import gamemodel.FamilyMember;
 import gamemodel.Tower;
+import gamemodel.effects.Effect;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
 

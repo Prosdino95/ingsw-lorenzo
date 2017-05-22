@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import gamemodel.ActionSpace.*;
+import gamemodel.effects.Effect;
+import gamemodel.effects.TestEffects;
 
 public class RealGame {
 	private List<Player> players;

@@ -1,5 +1,9 @@
-package gamemodel;
+package gamemodel.effects;
 
+import gamemodel.CardType;
+import gamemodel.Player;
+import gamemodel.Point;
+import gamemodel.Resource;
 
 public class PointForResource implements Effect 
 {
@@ -17,16 +21,17 @@ public class PointForResource implements Effect
 	@Override
 	public void activate(Player player)
 	{
+		int cardNumber;
 		if(this.typeIn.equals(CardType.TERRITORIES))
 		{
 			if(this.resources==null)
 			{
-				for(;;)												//TODO completare i cicli for,bisogna sapere il numero
-					player.addPoint(this.points);					//TODO delle tipologie di carte in mano al giocatore	
+				for(cardNumber=0;cardNumber<player.contCard(CardType.TERRITORIES);cardNumber++)											
+					player.addPoint(this.points);					
 			}
 			if(this.points==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.TERRITORIES);cardNumber++)
 					player.addResources(this.resources);
 			}
 		}
@@ -34,12 +39,12 @@ public class PointForResource implements Effect
 		{
 			if(this.resources==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.BUILDINGS);cardNumber++)
 					player.addPoint(this.points);
 			}
 			if(this.points==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.BUILDINGS);cardNumber++)
 					player.addResources(this.resources);
 			}
 		}
@@ -47,12 +52,12 @@ public class PointForResource implements Effect
 		{
 			if(this.resources==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.CHARACTERS);cardNumber++)
 					player.addPoint(this.points);
 			}
 			if(this.points==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.CHARACTERS);cardNumber++)
 					player.addResources(this.resources);
 			}
 		}
@@ -60,12 +65,12 @@ public class PointForResource implements Effect
 		{
 			if(this.resources==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.VENTURES);cardNumber++)
 					player.addPoint(this.points);
 			}
 			if(this.points==null)
 			{
-				for(;;)
+				for(cardNumber=0;cardNumber<player.contCard(CardType.VENTURES);cardNumber++)
 					player.addResources(this.resources);
 			}
 		}
