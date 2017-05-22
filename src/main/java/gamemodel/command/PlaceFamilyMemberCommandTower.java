@@ -46,9 +46,10 @@ public class PlaceFamilyMemberCommandTower implements Command {
 										t.occupy();
 										t.getTower().addPlayer(f);
 										}
-								else throw new GameException(GameError.RESOURCE_ERR_CARD);	
-								//TODO 
-								//t.rollbackEffect(f);	
+								else{
+									t.rollbackEffect(f);
+									throw new GameException(GameError.RESOURCE_ERR_CARD);	 									
+								}
 							}
 							else throw new GameException(GameError.RESOURCE_ERR_SERVANTS);
 						else throw new GameException(GameError.FM_ERR_PA);

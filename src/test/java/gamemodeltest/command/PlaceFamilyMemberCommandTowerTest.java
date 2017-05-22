@@ -134,7 +134,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 		try{p3.placeFamilyMember(id0, Color.BLACK, 0);}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.RESOURCE_ERR_CARD,s);
-		//TODO assertEquals(new Resource(0,0,0,5),p3.getResource());
+		assertEquals(new Resource(0,0,0,5),p3.getResource());
 		
 	}
 }

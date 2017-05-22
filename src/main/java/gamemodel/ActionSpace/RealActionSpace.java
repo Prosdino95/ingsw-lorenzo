@@ -2,8 +2,9 @@ package gamemodel.ActionSpace;
 
 import java.util.*;
 
+
 import gamemodel.FamilyMember;
-import gamemodel.effects.Effect;
+import gamemodel.effects.*;
 
 public class RealActionSpace implements ActionSpace {
 	private final int id;
@@ -33,6 +34,12 @@ public class RealActionSpace implements ActionSpace {
 	public void activateEffect(FamilyMember f){
 		for(Effect e:effects)
 			e.activate(f.getPlayer());
+	}
+	
+	@Override
+	public void rollbackEffect(FamilyMember f){
+		for(Effect e:effects)
+			((EffectRollBack) e).rollBack(f.getPlayer());
 	}
 	
 	@Override

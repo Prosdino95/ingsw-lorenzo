@@ -17,4 +17,6 @@ public interface ActionSpace {
 	void setType(ActionSpaceType type);
 	
 	ActionSpaceType getType();
+
+	void rollbackEffect(FamilyMember f);
 }
