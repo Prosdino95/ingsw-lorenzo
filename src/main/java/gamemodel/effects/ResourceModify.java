@@ -3,7 +3,7 @@ package gamemodel.effects;
 import gamemodel.Player;
 import gamemodel.Resource;
 
-public class ResourceModify implements Effect 
+public class ResourceModify implements Effect,EffectRollBack 
 {
 	private Resource resources;
 	
@@ -12,11 +12,18 @@ public class ResourceModify implements Effect
 		this.resources=resources;
 	}
 	
+	
 	@Override
 	public void activate(Player player)
 	{
 		player.addResources(resources);
 	}
+	@Override
+	public void rollBack(Player player)
+	{
+		player.subResources(resources);
+	}
+	
 }
 
 
