@@ -57,12 +57,12 @@ public class Exchange implements Effect
 			player.subPoint(this.pointsOut);
 			player.addPoint(this.pointsIn);
 		}
-		if(this.pointsOut==null && this.resourcesIn==null && pointsIn instanceof Point==true)
+		if(this.pointsOut==null && this.resourcesIn==null)
 		{
 			player.subResources(this.resourcesOut);
 			player.addPoint(this.pointsIn);
 		}
-		if(this.pointsIn==null && this.resourcesOut==null && resourcesIn instanceof Resource==true)
+		if(this.pointsIn==null && this.resourcesOut==null)
 		{
 			player.subPoint(this.pointsOut);
 			player.addResources(this.resourcesIn);

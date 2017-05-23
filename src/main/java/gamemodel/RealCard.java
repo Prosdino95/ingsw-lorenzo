@@ -16,9 +16,9 @@ public class RealCard implements Card {
 		
 
 	public boolean ControlResource(Player p){
-		if(resourceRequirement instanceof Resource==true)
+		if(resourceRequirement!=null)
 			return p.isEnoughtResource(resourceRequirement);
-		if(pointRequirement instanceof Point==true)
+		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
 		if(!requirementCard.isEmpty())
 			return(requirementCard.get(CardType.BUILDINGS)>=p.contCard(CardType.BUILDINGS)) 
@@ -32,10 +32,10 @@ public class RealCard implements Card {
 
 	@Override
 	public void pay(Player p){
-		if(resourcePrice instanceof Resource==true)
-		p.subResources(resourcePrice);	
-		if(pointPrice instanceof Point==true)
-		p.subPoint(pointPrice);
+		if(resourcePrice!=null)
+			p.subResources(resourcePrice);	
+		if(pointPrice!=null)
+			p.subPoint(pointPrice);
 	}
 	
 	public Resource getResourceRequirement() {

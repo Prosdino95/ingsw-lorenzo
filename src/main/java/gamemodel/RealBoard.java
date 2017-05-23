@@ -59,7 +59,7 @@ public class RealBoard implements Board {
 			if (as instanceof TowerActionSpace) {
 				CardType color = ((TowerActionSpace) as).getTower().getType();
 				Card card = popCard(color);
-				if (card.equals(null)) {
+				if (card==null) {
 					System.err.println("Finished cards");
 				}
 				((RealTowerActionSpace) as).attachDevelopmentCard(card);
