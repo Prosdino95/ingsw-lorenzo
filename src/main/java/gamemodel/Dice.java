@@ -15,7 +15,7 @@ public class Dice
 	public void rollDice()
 	{
 		Random random=new Random();
-		this.value=random.nextInt(7);
+		this.value=random.nextInt(6)+1;
 	}
 	
 	@Override
