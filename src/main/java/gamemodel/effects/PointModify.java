@@ -3,7 +3,7 @@ package gamemodel.effects;
 import gamemodel.Player;
 import gamemodel.Point;
 
-public class PointModify implements Effect 
+public class PointModify implements Effect,EffectRollBack
 {
 	private Point points;
 	
@@ -16,6 +16,11 @@ public class PointModify implements Effect
 	public void activate(Player player) 
 	{
 		player.addPoint(points);
+	}
+	@Override
+	public void rollBack(Player player)
+	{
+		player.subPoint(points);
 	}
 
 }
