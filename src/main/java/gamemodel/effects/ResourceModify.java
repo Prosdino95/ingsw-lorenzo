@@ -12,7 +12,6 @@ public class ResourceModify implements Effect,EffectRollBack
 		this.resources=resources;
 	}
 	
-	
 	@Override
 	public void activate(Player player)
 	{
