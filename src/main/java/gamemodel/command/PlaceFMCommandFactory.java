@@ -10,7 +10,7 @@ public class PlaceFMCommandFactory {
 	}
 
 	public Command placeFMCommandFactory(Board board, int id, FamilyMember f, int servant) {
-		switch(board.getActionSpaces(id).getType()){
+		switch(board.getActionSpace(id).getType()){
 			case TOWER:				
 				return new PlaceFamilyMemberCommandTower(board,id,f,servant);
 			case MARKET:

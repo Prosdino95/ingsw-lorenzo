@@ -12,7 +12,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 	public PlaceFamilyMemberCommandHAndP(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpaces(id);
+		this.a=board.getActionSpace(id);
 	}
 
 	private boolean IsEnoughtStrong(){

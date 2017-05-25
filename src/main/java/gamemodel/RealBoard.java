@@ -108,7 +108,7 @@ public class RealBoard implements Board {
 	}
 
 	@Override
-	public RealActionSpace getActionSpaces(int id) {
+	public RealActionSpace getActionSpace(int id) {
 		for (ActionSpace as : this.actionSpaces) {
 			if (as.getId() == id) return (RealActionSpace) as;
 		}
@@ -136,6 +136,11 @@ public class RealBoard implements Board {
 
 	private void setDice(Dice dice) {
 		this.dice = dice;
+	}
+
+	@Override
+	public List<ActionSpace> getActionSpaces() {
+		return this.actionSpaces;
 	}
 
 }

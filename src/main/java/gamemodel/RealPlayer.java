@@ -123,4 +123,9 @@ public class RealPlayer implements Player {
 		return 0;
 		
 	}
+
+	@Override
+	public List<FamilyMember> getFamilyMembers() {
+		return  new ArrayList<>(familyMembers.values());
+	}
 }

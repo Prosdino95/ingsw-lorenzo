@@ -51,7 +51,7 @@ public class RealGame {
 		board.setupRound();
 	}
 
-	private void initializeGame() {
+	public RealGame initializeGame() {
 		// Read customization file
 
 		List<Card> developmentCards = new ArrayList<Card>();
@@ -119,6 +119,12 @@ public class RealGame {
 			turnOrder.add(p);
 		}
 		Collections.shuffle(turnOrder);
+		//TODO remove this return (creato per provare CLIView)
+		return this;
 
+	}
+
+	public Board getBoard() {
+		return board;
 	}
 }

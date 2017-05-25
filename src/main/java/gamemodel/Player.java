@@ -1,5 +1,7 @@
 package gamemodel;
 
+import java.util.List;
+
 import gamemodel.command.GameException;
 
 public interface Player {
@@ -18,6 +20,7 @@ public interface Player {
 	public void subPoint(Point point);
 	public void addPoint(Point point);
 	public FamilyMember getFamilyMember(Color c);
+	public List<FamilyMember> getFamilyMembers();
 	boolean isEnoughtPoint(Point p);
 	boolean isEnoughtResource(Resource r);
 	int contCard(CardType type);

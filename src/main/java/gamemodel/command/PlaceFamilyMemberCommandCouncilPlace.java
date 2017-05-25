@@ -11,7 +11,7 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	public PlaceFamilyMemberCommandCouncilPlace(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpaces(id);
+		this.a=board.getActionSpace(id);
 	}
 	
 	private boolean IsEnoughtStrong(){
