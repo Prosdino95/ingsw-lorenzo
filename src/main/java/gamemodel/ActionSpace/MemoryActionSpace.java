@@ -16,6 +16,10 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 		super(actionCost, effect, type);
 	}
 	
+	public MemoryActionSpace(int actionCost, List<Effect> effect, ActionSpaceType type) {
+		super(actionCost, effect, type);
+	}
+	
 	public List<RealPlayer> getPlayers() {
 		return players;
 	}
@@ -30,4 +34,10 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 	public void addPlayer(FamilyMember f){
 		players.add(f.getPlayer());
 	}
+
+	@Override
+	public String toString() {
+		return "RealActionSpace [id=" + getId() + ", free=" + isFree() + ", actionCost=" + getActionCost() + ", effects=" + 
+					getEffects() +", players=" + players + ", type=" + getType() + "]";
+	}	
 }

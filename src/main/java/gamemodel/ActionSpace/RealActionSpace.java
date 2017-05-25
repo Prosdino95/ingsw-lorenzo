@@ -61,6 +61,11 @@ public class RealActionSpace implements ActionSpace {
 	public int getId() {
 		return id;
 	}
+	
+
+	public List<Effect> getEffects() {
+		return effects;
+	}
 
 	@Override
 	public void setType(ActionSpaceType type) {
@@ -71,4 +76,13 @@ public class RealActionSpace implements ActionSpace {
 	public ActionSpaceType getType() {
 		return type;
 	}
+
+
+	@Override
+	public String toString() {
+		return "RealActionSpace [id=" + id + ", free=" + free + ", actionCost=" + actionCost + ", effects=" + effects
+				+ ", type=" + type + "]";
+	}
+	
+	
 }

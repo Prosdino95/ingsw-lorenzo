@@ -1,0 +1,55 @@
+{
+  "ActionSpace": [
+    {
+      "action-cost": 1,
+      "effect": [
+      			{
+      				"type":"testeffect"
+      			}
+      			],
+      "type": "market"
+    },
+    {
+      "action-cost": 3,
+      "effect":[
+      			{
+      				"type":"resourse-mod",
+      				"wood":3
+      			}
+      			],
+      "type": "market"
+    },
+    {
+      "action-cost": 5,
+      "effect": [
+      			{
+      				"type":"testeffect"
+      			},
+      			{
+      				"type":"resourse-mod",
+      				"wood":3
+      			}
+      			],
+      "type": "market"
+    },
+    {
+      "action-cost": 7,
+      "effect":[
+      			{
+      				"type":"testeffect"
+      			}
+      			],
+      "type": "council-place"
+    },
+    {
+      "action-cost": 7,
+      "effect":[],
+      "type": "harvest"
+    },
+    {
+      "action-cost": 7,
+      "effect":[],
+      "type": "production"
+    }
+  ]
+}
