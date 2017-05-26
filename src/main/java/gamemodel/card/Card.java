@@ -1,6 +1,11 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.util.Map;
+
+import gamemodel.CardType;
+import gamemodel.Player;
+import gamemodel.Point;
+import gamemodel.Resource;
 
 public interface Card {
 	public void pay(Player p);

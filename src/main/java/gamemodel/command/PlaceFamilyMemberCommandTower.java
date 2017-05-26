@@ -3,6 +3,7 @@ package gamemodel.command;
 import gamemodel.*;
 import gamemodel.ActionSpace.ActionSpace;
 import gamemodel.ActionSpace.TowerActionSpace;
+import gamemodel.card.Card;
 
 public class PlaceFamilyMemberCommandTower implements Command {
 	

@@ -1,7 +1,12 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import gamemodel.CardType;
+import gamemodel.Player;
+import gamemodel.Point;
+import gamemodel.Resource;
 
 public class RealCard implements Card {
 		

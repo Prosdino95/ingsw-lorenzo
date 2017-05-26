@@ -1,7 +1,10 @@
-package gamemodel;
+package gamemodel.card;
 
-import java.util.List;
 import java.util.Map;
+
+import gamemodel.CardType;
+import gamemodel.Point;
+import gamemodel.Resource;
 
 public class LeaderCard extends RealCard {
 	
