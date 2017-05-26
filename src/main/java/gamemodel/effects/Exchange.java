@@ -67,6 +67,17 @@ public class Exchange implements Effect
 			player.subPoint(this.pointsOut);
 			player.addResources(this.resourcesIn);
 		}
+		
+		
+	}
+	@Override
+	public String toString() {
+		String str = "";
+		str+="In --> ";
+		str+="out --> ";
+		
+		return "Exchange [pointsIn=" + pointsIn + ", pointsOut=" + pointsOut + ", resourcesIn=" + resourcesIn
+				+ ", resourcesOut=" + resourcesOut + "]";
 	}
 }
 
