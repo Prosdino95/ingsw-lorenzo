@@ -25,7 +25,7 @@ public class ResourceModify implements Effect,EffectRollBack
 
 	@Override
 	public String toString() {
-		return "ResourceModify [resources=" + resources + "]";
+		return  ""+resources;
 	}
 	
 	

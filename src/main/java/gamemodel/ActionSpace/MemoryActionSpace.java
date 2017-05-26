@@ -6,6 +6,7 @@ import java.util.List;
 import gamemodel.FamilyMember;
 import gamemodel.Player;
 import gamemodel.RealPlayer;
+import gamemodel.Team;
 import gamemodel.effects.Effect;
 
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
@@ -35,9 +36,20 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 		players.add(f.getPlayer());
 	}
 
-	@Override
 	public String toString() {
-		return "MemoryActionSpace [id=" + getId() + ", free=" + isFree() + ", actionCost=" + getActionCost() + ", effects=" + 
-					getEffects() +", players=" + players + ", type=" + getType() + "]";
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += this.getType();
+		str+=" ";
+		if(!this.getEffects().isEmpty())
+			str +=this.getEffects();
+		if(!this.players.isEmpty()){
+			str+=", players:[";
+			for(RealPlayer p:players)
+			str +=p.getTeam()+" ";
+			str+="] ";
+		}	
+		return str;
 	}	
 }

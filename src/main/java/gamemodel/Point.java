@@ -36,7 +36,14 @@ public class Point
 
 	@Override
 	public String toString() {
-		return "Point [military=" + military + ", faith=" + faith + ", victory=" + victory + "]";
+		String srt="";
+		if(military!=0)
+			srt+="military= "+this.military;
+		if(faith!=0)
+			srt+="faith= "+this.faith;
+		if(victory!=0)
+			srt+="victory= "+this.victory;
+		return srt;
 	}
 	
 }

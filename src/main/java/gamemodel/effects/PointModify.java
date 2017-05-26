@@ -25,7 +25,7 @@ public class PointModify implements Effect,EffectRollBack
 
 	@Override
 	public String toString() {
-		return "PointModify [points=" + points + "]";
+		return "" + points;
 	}
 	
 	

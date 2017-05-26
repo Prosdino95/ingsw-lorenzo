@@ -78,10 +78,20 @@ public class RealActionSpace implements ActionSpace {
 	}
 
 
-	@Override
 	public String toString() {
-		return "RealActionSpace [id=" + id + ", free=" + free + ", actionCost=" + actionCost + ", effects=" + effects
-				+ ", type=" + type + "]";
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += this.getType();
+		str+=" ";
+		if(!this.getEffects().isEmpty())
+			str +=this.getEffects();
+		str+=", ";
+		if(this.free)
+			str+="free";
+		else
+			str+="occupy";
+		return str;
 	}
 	
 	
