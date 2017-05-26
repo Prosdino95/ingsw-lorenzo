@@ -1,0 +1,390 @@
+{
+	"buildings-cards":[
+					{
+						"name":"Mint",
+						"action-cost":5,
+						"resource-requirement":{
+											"stone":3,
+											"wood":1					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":5
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Tax Office",
+						"action-cost":5,
+						"resource-requirement":{
+											"stone":1,
+											"wood":3					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":5
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Triumphal Arch",
+						"action-cost":6,
+						"resource-requirement":{
+											"stone":2,
+											"gold":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":6
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Theater",
+						"action-cost":6,
+						"resource-requirement":{
+											"gold":2,
+											"wood":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":6
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Carpenter's Shop",
+						"action-cost":4,
+						"resource-requirement":{
+											"gold":1,
+											"wood":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":3
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Stonemason's Shop",
+						"action-cost":3,
+						"resource-requirement":{
+											"gold":1,
+											"stone":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":2
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Chapel",
+						"action-cost":2,
+						"resource-requirement":{
+											"wood":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":1
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Residence",
+						"action-cost":1,
+						"resource-requirement":{
+											"stone":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":1
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Marketplace",
+						"action-cost":3,
+						"resource-requirement":{
+											"wood":2,
+											"stone":1					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":3
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Treasury",
+						"action-cost":3,
+						"resource-requirement":{
+											"wood":3					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":4
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Painters' Guild",
+						"action-cost":4,
+						"resource-requirement":{
+											"wood":4					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":5
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Sculptors' Guild",
+						"action-cost":5,
+						"resource-requirement":{
+											"stone":4					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":6
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Stonemasons' Guild",
+						"action-cost":4,
+						"resource-requirement":{
+											"wood":1,
+											"stone":2					
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":4
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Baptistery",
+						"action-cost":2,
+						"resource-requirement":{
+											"stone":3				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":2,
+      										"fatih":1
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Barracks",
+						"action-cost":1,
+						"resource-requirement":{
+											"stone":1,
+											"wood":1				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":3
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Strongold",
+						"action-cost":6,
+						"resource-requirement":{
+											"gold":2,
+											"stone":2,
+											"wood":2				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":8
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Bank",
+						"action-cost":2,
+						"resource-requirement":{
+											"gold":3,
+											"stone":3,
+											"wood":1				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":7
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Fair",
+						"action-cost":4,
+						"resource-requirement":{
+											"gold":4,
+											"wood":3				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":8
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Garden",
+						"action-cost":1,
+						"resource-requirement":{
+											"stone":2,
+											"wood":3,
+											"servants":2				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":10
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Fortress",
+						"action-cost":5,
+						"resource-requirement":{
+											"stone":4,
+											"wood":2,
+											"gold":2				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":9
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Palace",
+						"action-cost":6,
+						"resource-requirement":{
+											"stone":1,
+											"wood":3,
+											"gold":3				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":9
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Church",
+						"action-cost":1,
+						"resource-requirement":{
+											"stone":4,
+											"wood":1				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":5,
+      										"faith":1
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Military Academy",
+						"action-cost":3,
+						"resource-requirement":{
+											"stone":2,
+											"wood":2,
+											"servants":1				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":7
+      										}
+      								],
+						"permanent-effects":[]						
+					},
+					
+					{
+						"name":"Cathedral",
+						"action-cost":2,
+						"resource-requirement":{
+											"stone":4,
+											"wood":4				
+											},
+						"effect": [
+      										{
+      										"type":"point-mod",
+      										"victory":7,
+      										"faith":3
+      										}
+      								],
+						"permanent-effects":[]						
+					}					
+	]
+}	

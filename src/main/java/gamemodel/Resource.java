@@ -49,13 +49,13 @@ public class Resource {
 	public String toString() {
 		String srt="";
 		if(gold!=0)
-			srt+="gold= "+this.gold;
+			srt+=" gold="+this.gold;
 		if(stone!=0)
-			srt+="stone= "+this.stone;
+			srt+=" stone="+this.stone;
 		if(wood!=0)
-			srt+="wood= "+this.wood;
+			srt+=" wood="+this.wood;
 		if(servant!=0)
-			srt+="servants= "+this.servant;
+			srt+=" servants="+this.servant;
 		return srt;
 	}
 

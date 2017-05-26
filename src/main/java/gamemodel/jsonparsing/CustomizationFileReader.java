@@ -1,8 +1,6 @@
 package gamemodel.jsonparsing;
 
 import java.io.*;
-
-
 import java.util.*;
 
 public class CustomizationFileReader<T> {

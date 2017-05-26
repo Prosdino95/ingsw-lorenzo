@@ -38,11 +38,11 @@ public class Point
 	public String toString() {
 		String srt="";
 		if(military!=0)
-			srt+="military= "+this.military;
+			srt+=" military= "+this.military;
 		if(faith!=0)
-			srt+="faith= "+this.faith;
+			srt+=" faith= "+this.faith;
 		if(victory!=0)
-			srt+="victory= "+this.victory;
+			srt+=" victory= "+this.victory;
 		return srt;
 	}
 	

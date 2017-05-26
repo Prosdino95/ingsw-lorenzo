@@ -1,23 +1,42 @@
 package gamemodel.card;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.effects.Effect;
 
 public class RealCard implements Card {
-		
-	private Resource resourceRequirement;
-	private Resource resourcePrice;
-	private Point pointRequirement;
-	private Point pointPrice;
-	private CardType type;
-	private final int id;
+	
+	protected String name;	
+	protected Resource resourceRequirement;
+	protected Resource resourcePrice;
+	protected Point pointRequirement;
+	protected Point pointPrice;
+	protected List<Effect> istantEffect;
+	protected CardType type;
+	protected final int id;
 	private static int identifier=0;
-	private Map<CardType,Integer> requirementCard=new HashMap<>();
+	protected Map<CardType,Integer> requirementCard=new HashMap<>();
+	
+	public RealCard(String name,Resource resourceRequirement, Resource resourcePrice, Point point, 
+			Point pointPrice, List<Effect> istantEffects, CardType type,
+			Map<CardType, Integer> requirementCard) {		
+		this.name=name;
+		this.id=identifier;
+		identifier++;
+		this.resourceRequirement = resourceRequirement;
+		this.resourcePrice = resourcePrice;
+		this.pointRequirement = point;
+		this.pointPrice = pointPrice;
+		this.type = type;
+		this.requirementCard = requirementCard;
+		this.istantEffect=istantEffects;
+	}
 		
 
 	public boolean ControlResource(Player p){
@@ -71,16 +90,25 @@ public class RealCard implements Card {
 		return requirementCard;
 	}
 
-	public RealCard(Resource resourceRequirement, Resource resourcePrice, Point point, 
-			Point pointPrice, CardType type,Map<CardType, Integer> requirementCard) {
-		this.id=identifier;
-		identifier++;
-		this.resourceRequirement = resourceRequirement;
-		this.resourcePrice = resourcePrice;
-		this.pointRequirement = point;
-		this.pointPrice = pointPrice;
-		this.type = type;
-		this.requirementCard = requirementCard;
+	
+	@Override
+	public String toString(){
+		String str = "";
+		str +=this.type+"\n";
+		str +="id:"+this.id+" "+this.name+"\n";
+		if(resourceRequirement!=resourcePrice)
+			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+		if(resourcePrice!=null)
+			str +="resource price-> "+this.resourcePrice+ "\n";	
+		if(pointRequirement!=pointPrice)
+			str +="point requirement-> "+this.pointRequirement+ "\n";
+		if(pointPrice!=null)
+			str +="point price-> "+this.pointPrice+ "\n";
+		if(this.istantEffect!=null)
+			str +="istant effect-> "+this.istantEffect+ "\n";
+		str+="\n";
+		return str;
 	}
+	
 
 }

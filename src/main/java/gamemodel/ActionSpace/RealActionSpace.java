@@ -84,13 +84,14 @@ public class RealActionSpace implements ActionSpace {
 		str += "-> ";
 		str += this.getType();
 		str+=" ";
-		if(!this.getEffects().isEmpty())
+		if(this.getEffects()!=null)
 			str +=this.getEffects();
 		str+=", ";
 		if(this.free)
 			str+="free";
 		else
 			str+="occupy";
+		str+="\n";
 		return str;
 	}
 	

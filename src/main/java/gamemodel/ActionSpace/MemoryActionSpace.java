@@ -50,6 +50,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 			str +=p.getTeam()+" ";
 			str+="] ";
 		}	
+		str+="\n";
 		return str;
 	}	
 }

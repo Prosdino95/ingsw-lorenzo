@@ -49,6 +49,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 			str += "-> ";
 			str += card.toString();
 		}	
+		str+="\n";
 		return str;
 	}
 
