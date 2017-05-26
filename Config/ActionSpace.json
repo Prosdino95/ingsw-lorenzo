@@ -3,14 +3,12 @@
 
     {
       "action-cost": 1,
-      "type": "harvest",
-      "effect": []   
+      "type": "harvest" 
     },
 
     {
       "action-cost": 1,
-      "type": "production",
-      "effect":[]    
+      "type": "production"  
     },
 
     {

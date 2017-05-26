@@ -42,7 +42,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 		str += "-> ";
 		str += this.getType();
 		str+=" ";
-		if(!this.getEffects().isEmpty())
+		if(this.getEffects()!=null)
 			str +=this.getEffects();
 		if(!this.players.isEmpty()){
 			str+=", players:[";

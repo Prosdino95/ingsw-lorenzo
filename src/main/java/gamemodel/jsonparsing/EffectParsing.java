@@ -44,20 +44,7 @@ public class EffectParsing {
 	}
 
 	private Effect exchange(JsonValue item) {
-		String out=item.asObject().getString("out", null);
-		String in=item.asObject().getString("in", null);
-		
-		if(in.equals("resource") && out.equals("resource"))
-			return(new Exchange(resourceMod(item),resourceMod(item)));
-		
-		if(in.equals("point") && out.equals("point"))
-			return(new Exchange(pointMod(item),pointMod(item)));
-		
-		if(in.equals("point") && out.equals("resource"))
-			return(new Exchange(pointMod(item),resourceMod(item)));
-		
-		if(in.equals("resource") && out.equals("point"))
-			return(new Exchange(resourceMod(item),pointMod(item)));
+		// TODO Auto-generated method stub
 		return null;
 	}
 
