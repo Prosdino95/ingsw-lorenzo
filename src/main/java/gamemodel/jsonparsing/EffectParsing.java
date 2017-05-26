@@ -25,7 +25,7 @@ public class EffectParsing {
 				break;
 				case "point-mod": istantEffect.add(pointMod(item));
 				break;	
-				case "resourse-mod": istantEffect.add(resourceMod(item));
+				case "resource-mod": istantEffect.add(resourceMod(item));
 				break;
 				case "testeffect": istantEffect.add(new TestEffects());
 				break;

@@ -18,7 +18,7 @@
       "type": "market",
       "effect": [
       			{
-      				"type":"resourse-mod",
+      				"type":"resource-mod",
       				"gold":5
       			}
       			]     
@@ -29,7 +29,7 @@
       "type": "market",
       "effect": [
       			{
-      				"type":"resourse-mod",
+      				"type":"resource-mod",
       				"servants":5
       			}
       			]     
@@ -40,7 +40,7 @@
       "type": "market",
       "effect": [
       			{
-      				"type":"resourse-mod",
+      				"type":"resource-mod",
       				"gold":2
       			},
       			{
@@ -70,7 +70,7 @@
       				"quantity":1
       			},
       			{
-      				"type":"resourse-mod",
+      				"type":"resource-mod",
       				"gold":1
       			}
       			]     

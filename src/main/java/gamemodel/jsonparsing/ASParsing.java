@@ -13,14 +13,14 @@ import gamemodel.effects.*;
 
 public class ASParsing {
 	
-	private List<RealActionSpace> AS=new ArrayList<>();
+	private List<ActionSpace> AS=new ArrayList<>();
 	private List<Effect> effects;
 	private ActionSpaceType type;
 	private int cost;
-	
-	
 		
-	public List<RealActionSpace> parsing(JsonArray items){
+
+	public List<ActionSpace> parsing(String json){
+		JsonArray items = Json.parse(json).asObject().get("ActionSpace").asArray();
 		for (JsonValue item : items) {
     		cost=item.asObject().getInt("action-cost", 1);
     		effects=new ArrayList<>();
@@ -33,8 +33,6 @@ public class ASParsing {
     private ActionSpaceType makeAS(String s) {
     	switch(s){
     		case "market":marketAS();
-    		break;
-    		case "tower":towerAS();
     		break;
     		case "harvest":memoryAS(ActionSpaceType.HARVEST);
     		break;
@@ -49,11 +47,6 @@ public class ASParsing {
     private void memoryAS(ActionSpaceType type) {
 		this.type=type;
 		AS.add(new MemoryActionSpace(cost, effects, type));   	
-		
-	}
-
-	private void towerAS() {
-		// TODO Auto-generated method stub
 		
 	}
 
