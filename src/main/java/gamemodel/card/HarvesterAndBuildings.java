@@ -16,5 +16,5 @@ public class HarvesterAndBuildings extends RealCard
 		super(resourceRequirement,resourcePrice,point,pointPrice,type,requirementCard);
 		this.actionCost=actionCost;
 	}
-	
+// TODO implementare gli override delle funzioni della sopra-classe	
 }
