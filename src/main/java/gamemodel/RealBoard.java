@@ -7,6 +7,7 @@ import gamemodel.ActionSpace.ActionSpace;
 import gamemodel.ActionSpace.RealActionSpace;
 import gamemodel.ActionSpace.RealTowerActionSpace;
 import gamemodel.ActionSpace.TowerActionSpace;
+import gamemodel.card.Card;
 
 public class RealBoard implements Board {
 	private List<ActionSpace> actionSpaces;

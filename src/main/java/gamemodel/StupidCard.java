@@ -2,6 +2,8 @@ package gamemodel;
 
 import java.util.Map;
 
+import gamemodel.card.Card;
+
 public class StupidCard implements Card {
 	private int id;
 	private CardType type;

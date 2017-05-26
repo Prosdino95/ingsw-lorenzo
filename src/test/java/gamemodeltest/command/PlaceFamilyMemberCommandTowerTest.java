@@ -8,6 +8,8 @@ import org.junit.Test;
 import gamemodel.*;
 import gamemodel.ActionSpace.ActionSpaceType;
 import gamemodel.ActionSpace.RealTowerActionSpace;
+import gamemodel.card.Card;
+import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;

@@ -3,6 +3,7 @@ package gamemodel;
 import java.util.List;
 
 import gamemodel.ActionSpace.RealActionSpace;
+import gamemodel.card.Card;
 
 public class CustomizationFileReader {
 
