@@ -1,55 +1,87 @@
 {
   "ActionSpace": [
+
     {
       "action-cost": 1,
-      "effect": [
-      			{
-      				"type":"testeffect"
-      			}
-      			],
-      "type": "market"
+      "type": "harvest",
+      "effect": []   
     },
+
     {
-      "action-cost": 3,
-      "effect":[
+      "action-cost": 1,
+      "type": "production",
+      "effect":[]    
+    },
+
+    {
+      "action-cost": 1,
+      "type": "market",
+      "effect": [
       			{
       				"type":"resourse-mod",
-      				"wood":3
+      				"gold":5
       			}
-      			],
-      "type": "market"
+      			]     
     },
+
     {
-      "action-cost": 5,
+      "action-cost": 1,
+      "type": "market",
       "effect": [
       			{
-      				"type":"testeffect"
+      				"type":"resourse-mod",
+      				"servants":5
+      			}
+      			]     
+    },
+    
+    {
+      "action-cost": 1,
+      "type": "market",
+      "effect": [
+      			{
+      				"type":"resourse-mod",
+      				"gold":2
+      			},
+      			{
+      				"type":"point-mod",
+      				"military":3
+      			}
+      			]     
+    },  
+
+    {
+      "action-cost": 1,
+      "type": "market",
+      "effect": [
+      			{
+      				"type":"council-privileges",
+      				"quantity":2
+      			}
+      			]     
+    },   
+
+    {
+      "action-cost": 1,
+      "type": "council-place",
+      "effect": [
+      			{
+      				"type":"council-privileges",
+      				"quantity":1
       			},
       			{
       				"type":"resourse-mod",
-      				"wood":3
+      				"gold":1
       			}
-      			],
-      "type": "market"
-    },
-    {
-      "action-cost": 7,
-      "effect":[
-      			{
-      				"type":"testeffect"
-      			}
-      			],
-      "type": "council-place"
-    },
-    {
-      "action-cost": 7,
-      "effect":[],
-      "type": "harvest"
-    },
-    {
-      "action-cost": 7,
-      "effect":[],
-      "type": "production"
-    }
+      			]     
+    }      
   ]
+
 }
+
+
+
+
+
+
+

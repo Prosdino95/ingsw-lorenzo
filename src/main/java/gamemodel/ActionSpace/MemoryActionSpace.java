@@ -37,7 +37,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 
 	@Override
 	public String toString() {
-		return "RealActionSpace [id=" + getId() + ", free=" + isFree() + ", actionCost=" + getActionCost() + ", effects=" + 
+		return "MemoryActionSpace [id=" + getId() + ", free=" + isFree() + ", actionCost=" + getActionCost() + ", effects=" + 
 					getEffects() +", players=" + players + ", type=" + getType() + "]";
 	}	
 }

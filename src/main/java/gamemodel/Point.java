@@ -33,4 +33,10 @@ public class Point
 				this.victory>=p.victory);
 				
 		}
+
+	@Override
+	public String toString() {
+		return "Point [military=" + military + ", faith=" + faith + ", victory=" + victory + "]";
+	}
+	
 }
