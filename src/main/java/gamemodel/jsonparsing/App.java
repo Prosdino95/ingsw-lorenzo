@@ -6,15 +6,35 @@ import java.util.*;
 import gamemodel.card.*;
 import gamemodel.ActionSpace.*;
 
+/*
+  	-->Improving the Canals venture card con effetto immendiato non implementato
+	-->repire the cathedral stesso come sopra
+	-->improving roads stesso come sopra
+*/
+
 public class App{
 	
     public static void main( String[] args )
-    {
+    {	
     	//testAS();
     	//testBCard();
-    	testTCard();
+    	//testTCard();
+    	//testCCard();
+    	testVCard();
     	
     } 
+    
+    private static void testCCard() {
+    	List<Card> Bcard= new CustomizationFileReader<Card>("Config/CharacterCards.json",new CardParsing()::parsing).parse();
+    	for(Card a:Bcard)
+    		System.out.println(a);
+	}
+    
+    private static void testVCard() {
+    	List<Card> Bcard= new CustomizationFileReader<Card>("Config/VentureCards.json",new CardParsing()::parsing).parse();
+    	for(Card a:Bcard)
+    		System.out.println(a);
+	}
     
     private static void testTCard() {
     	List<Card> Bcard= new CustomizationFileReader<Card>("Config/TerritoryCards.json",new CardParsing()::parsing).parse();

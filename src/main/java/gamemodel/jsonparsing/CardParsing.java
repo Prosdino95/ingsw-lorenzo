@@ -60,21 +60,21 @@ public class CardParsing {
 
 	private JsonArray arrayBuild(String json) {
 
-		if(Json.parse(json).asObject().get("buildings-cards")!=null){
+		if(Json.parse(json).asObject().get("building-cards")!=null){
 			type=CardType.BUILDINGS;
-			return Json.parse(json).asObject().get("buildings-cards").asArray();
+			return Json.parse(json).asObject().get("building-cards").asArray();
 		}
-		if(Json.parse(json).asObject().get("characters-cards")!=null){
+		if(Json.parse(json).asObject().get("character-cards")!=null){
 			type=CardType.CHARACTERS;
-			return Json.parse(json).asObject().get("characters-Cards").asArray();
+			return Json.parse(json).asObject().get("character-Cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("territory-cards")!=null){
 			type=CardType.TERRITORIES;
 			return Json.parse(json).asObject().get("territory-cards").asArray();
 		}
-		if(Json.parse(json).asObject().get("ventures-cards")!=null){
+		if(Json.parse(json).asObject().get("venture-cards")!=null){
 			type=CardType.VENTURES;
-			return Json.parse(json).asObject().get("ventures-cards").asArray();
+			return Json.parse(json).asObject().get("venture-cards").asArray();
 		}
 		return null;
 	}
@@ -82,18 +82,26 @@ public class CardParsing {
 
 
 	private void cardCostParsing(JsonValue item) {
+		rRequirement=null;
+		rPrice=null;
+		pRequirement=null;
+		pPrice=null;		
 		if(item.asObject().get("resource-requirement")!=null)
 			rRequirement=resourceParsing(item.asObject().get("resource-requirement").asObject());
+		
 		if(item.asObject().get("resource-price")==null)
 			rPrice=rRequirement;
 		else
 			rPrice=resourceParsing(item.asObject().get("resource-price").asObject());
+		
 		if(item.asObject().get("point-requirement")!=null)
-			pRequirement=pointParsing(item.asObject().get("resource-requirement").asObject());
+			pRequirement=pointParsing(item.asObject().get("point-requirement").asObject());
+		
 		if(item.asObject().get("point-price")==null)
 			pPrice=pRequirement;
 		else
 			pPrice=pointParsing(item.asObject().get("point-price").asObject());	
+		
 		if(item.asObject().get("card-requirement")!=null)
 			cardRequirementBuild(item);
 	}

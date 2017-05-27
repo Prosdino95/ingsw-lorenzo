@@ -98,18 +98,18 @@ public class RealCard implements Card {
 		String str = "";
 		str +=this.type+"\n";
 		str +="id:"+this.id+" "+this.name+"\n";
-		if(resourceRequirement!=resourcePrice)
+		if(this.resourceRequirement!=resourcePrice)
 			str +="resource requirement-> "+this.resourceRequirement+ "\n";
-		if(resourcePrice!=null)
+		if(this.resourcePrice!=null)
 			str +="resource price-> "+this.resourcePrice+ "\n";	
-		if(pointRequirement!=pointPrice)
+		if(this.pointRequirement!=pointPrice)
 			str +="point requirement-> "+this.pointRequirement+ "\n";
-		if(pointPrice!=null)
+		if(this.pointPrice!=null)
 			str +="point price-> "+this.pointPrice+ "\n";
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";
 		if(this.permanentEffect!=null)
-			str +="permanent effect-> "+this.istantEffect+ "\n";
+			str +="permanent effect-> "+this.permanentEffect+ "\n";
 		str+="\n";
 		return str;
 	}
