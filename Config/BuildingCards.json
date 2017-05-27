@@ -7,13 +7,13 @@
 											"stone":3,
 											"wood":1					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":5
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -23,13 +23,13 @@
 											"stone":1,
 											"wood":3					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":5
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -39,13 +39,13 @@
 											"stone":2,
 											"gold":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":6
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -55,13 +55,13 @@
 											"gold":2,
 											"wood":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":6
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -71,13 +71,13 @@
 											"gold":1,
 											"wood":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":3
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -87,13 +87,13 @@
 											"gold":1,
 											"stone":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":2
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -102,13 +102,13 @@
 						"resource-requirement":{
 											"wood":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"faith":1
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -117,13 +117,13 @@
 						"resource-requirement":{
 											"stone":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":1
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -133,13 +133,13 @@
 											"wood":2,
 											"stone":1					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":3
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -148,13 +148,13 @@
 						"resource-requirement":{
 											"wood":3					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":4
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -163,13 +163,13 @@
 						"resource-requirement":{
 											"wood":4					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":5
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -178,13 +178,13 @@
 						"resource-requirement":{
 											"stone":4					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":6
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -194,13 +194,13 @@
 											"wood":1,
 											"stone":2					
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":4
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -209,14 +209,14 @@
 						"resource-requirement":{
 											"stone":3				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":2,
       										"fatih":1
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -226,13 +226,13 @@
 											"stone":1,
 											"wood":1				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":3
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -243,13 +243,20 @@
 											"stone":2,
 											"wood":2				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":8
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[
+											{
+      										"type":"point-mod",
+      										"victory":2,
+      										"military":2
+      										}
+						
+											]						
 					},
 					
 					{
@@ -260,13 +267,18 @@
 											"stone":3,
 											"wood":1				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":7
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[
+											{
+      										"type":"resource-mod",
+      										"gold":5
+      										}
+											]						
 					},
 					
 					{
@@ -276,13 +288,13 @@
 											"gold":4,
 											"wood":3				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":8
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -293,13 +305,18 @@
 											"wood":3,
 											"servants":2				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":10
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[
+											{
+      										"type":"point-mod",
+      										"victory":3
+      										}
+											]						
 					},
 					
 					{
@@ -310,13 +327,22 @@
 											"wood":2,
 											"gold":2				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":9
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[
+											{
+      										"type":"point-mod",
+      										"victory":2
+      										},
+      										{
+      										"type":"council-privileges",
+      										"quantity":1
+      										}
+											]						
 					},
 					
 					{
@@ -327,13 +353,13 @@
 											"wood":3,
 											"gold":3				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":9
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -343,14 +369,14 @@
 											"stone":4,
 											"wood":1				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":5,
       										"faith":1
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -361,13 +387,13 @@
 											"wood":2,
 											"servants":1				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":7
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[]						
 					},
 					
 					{
@@ -377,14 +403,19 @@
 											"stone":4,
 											"wood":4				
 											},
-						"effect": [
+						"istant-effect": [
       										{
       										"type":"point-mod",
       										"victory":7,
       										"faith":3
       										}
       								],
-						"permanent-effects":[]						
+						"permanent-effect":[
+											{
+      										"type":"point-mod",
+      										"victory":1
+      										}
+											]						
 					}					
 	]
 }	

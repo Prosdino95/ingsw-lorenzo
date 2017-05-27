@@ -18,13 +18,14 @@ public class RealCard implements Card {
 	protected Point pointRequirement;
 	protected Point pointPrice;
 	protected List<Effect> istantEffect;
+	protected List<Effect> permanentEffect;
 	protected CardType type;
 	protected final int id;
 	private static int identifier=0;
 	protected Map<CardType,Integer> requirementCard=new HashMap<>();
 	
 	public RealCard(String name,Resource resourceRequirement, Resource resourcePrice, Point point, 
-			Point pointPrice, List<Effect> istantEffects, CardType type,
+			Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, CardType type,
 			Map<CardType, Integer> requirementCard) {		
 		this.name=name;
 		this.id=identifier;
@@ -36,6 +37,7 @@ public class RealCard implements Card {
 		this.type = type;
 		this.requirementCard = requirementCard;
 		this.istantEffect=istantEffects;
+		this.permanentEffect=permanentEffect;
 	}
 		
 
@@ -106,6 +108,8 @@ public class RealCard implements Card {
 			str +="point price-> "+this.pointPrice+ "\n";
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";
+		if(this.permanentEffect!=null)
+			str +="permanent effect-> "+this.istantEffect+ "\n";
 		str+="\n";
 		return str;
 	}

@@ -19,6 +19,7 @@ public class CardParsing {
 	private Point pRequirement,pPrice;
 	private Map<CardType, Integer> rCard;
 	private List<Effect> istantEffects;
+	private List<Effect> permanentEffects;
 	private CardType type;
 	
 	public List<Card> parsing(String json){
@@ -27,9 +28,13 @@ public class CardParsing {
 			actionCost=item.asObject().getInt("action-cost", 0);
     		name=item.asObject().getString("name", null);
     		cardCostParsing(item);
-    		if(item.asObject().get("effect")!=null){
+    		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
-    			istantEffects=new EffectParsing().parsing(item.asObject().get("effect").asArray());
+    			istantEffects=new EffectParsing().parsing(item.asObject().get("istant-effect").asArray());
+    		}
+    		if(item.asObject().get("permanent-effect")!=null){
+    			permanentEffects=new ArrayList<>();
+    			permanentEffects=new EffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
     		}
     		makeCard();  		
     	}	
@@ -40,13 +45,13 @@ public class CardParsing {
 	
 	private void makeCard() {
 		switch(type){
-		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects, type, rCard, actionCost));
+		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
 			break;
-		case CHARACTERS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects, type, rCard, actionCost));
+		case CHARACTERS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
 			break;
-		case TERRITORIES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects, type, rCard));
+		case TERRITORIES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
 			break;
-		case VENTURES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects, type, rCard));
+		case VENTURES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
 			break;
 		}
 	}

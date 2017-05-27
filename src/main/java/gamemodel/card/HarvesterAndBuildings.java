@@ -13,9 +13,10 @@ public class HarvesterAndBuildings extends RealCard
 	private int actionCost;
 	
 	public HarvesterAndBuildings(String name, Resource resourceRequirement, Resource resourcePrice, 
-			Point point,Point pointPrice, List<Effect> istantEffects, CardType type,Map<CardType, Integer> requirementCard,int actionCost)
+			Point point,Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, 
+			CardType type,Map<CardType, Integer> requirementCard,int actionCost)
 	{
-		super(name,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type,requirementCard);
+		super(name,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,permanentEffect, type,requirementCard);
 		this.actionCost=actionCost;
 	}
 	
@@ -33,9 +34,10 @@ public class HarvesterAndBuildings extends RealCard
 		if(pointPrice!=null)
 			str +="point price-> "+this.pointPrice+ "\n";
 		if(this.istantEffect!=null)
-			str +="istant effect-> "+this.istantEffect+ "\n";
-		
-		str +="Action Cost-> "+this.actionCost;
+			str +="istant effect-> "+this.istantEffect+ "\n";		
+		str +="Action Cost-> "+this.actionCost+ "\n";
+		if(this.permanentEffect!=null)
+			str +="Action effect-> "+this.istantEffect+ "\n";		
 		str+="\n";
 		return str;
 	}
