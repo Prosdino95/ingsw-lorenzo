@@ -47,9 +47,9 @@ public class CardParsing {
 		switch(type){
 		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
 			break;
-		case CHARACTERS:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
+		case CHARACTERS:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
 			break;
-		case TERRITORIES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
+		case TERRITORIES:cards.add(new HarvesterAndBuildings(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
 			break;
 		case VENTURES:cards.add(new RealCard(name,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
 			break;
@@ -59,6 +59,7 @@ public class CardParsing {
 
 
 	private JsonArray arrayBuild(String json) {
+
 		if(Json.parse(json).asObject().get("buildings-cards")!=null){
 			type=CardType.BUILDINGS;
 			return Json.parse(json).asObject().get("buildings-cards").asArray();
@@ -67,9 +68,9 @@ public class CardParsing {
 			type=CardType.CHARACTERS;
 			return Json.parse(json).asObject().get("characters-Cards").asArray();
 		}
-		if(Json.parse(json).asObject().get("territories-cards")!=null){
+		if(Json.parse(json).asObject().get("territory-cards")!=null){
 			type=CardType.TERRITORIES;
-			return Json.parse(json).asObject().get("territories-cards").asArray();
+			return Json.parse(json).asObject().get("territory-cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("ventures-cards")!=null){
 			type=CardType.VENTURES;

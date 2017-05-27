@@ -37,7 +37,7 @@ public class HarvesterAndBuildings extends RealCard
 			str +="istant effect-> "+this.istantEffect+ "\n";		
 		str +="Action Cost-> "+this.actionCost+ "\n";
 		if(this.permanentEffect!=null)
-			str +="Action effect-> "+this.istantEffect+ "\n";		
+			str +="Action effect-> "+this.permanentEffect+ "\n";		
 		str+="\n";
 		return str;
 	}

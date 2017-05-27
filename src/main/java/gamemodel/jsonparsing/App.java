@@ -11,12 +11,19 @@ public class App{
     public static void main( String[] args )
     {
     	//testAS();
-    	testCard();
+    	//testBCard();
+    	testTCard();
     	
     } 
     
+    private static void testTCard() {
+    	List<Card> Bcard= new CustomizationFileReader<Card>("Config/TerritoryCards.json",new CardParsing()::parsing).parse();
+    	for(Card a:Bcard)
+    		System.out.println(a);
+	}
     
-    private static void testCard() {
+    
+    private static void testBCard() {
     	List<Card> Bcard= new CustomizationFileReader<Card>("Config/BuildingCards.json",new CardParsing()::parsing).parse();
     	for(Card a:Bcard)
     		System.out.println(a);
