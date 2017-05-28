@@ -13,7 +13,11 @@ import gamemodel.*;
 
 public class EffectParsing {
 	
-	private List<Effect> istantEffect=new ArrayList<>();;
+	private List<Effect> istantEffect;
+	
+	public EffectParsing(){
+		istantEffect=new ArrayList<>();
+	}
 
 	
 	public List<Effect> parsing(JsonArray effects) {

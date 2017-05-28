@@ -8,7 +8,7 @@ public class CustomizationFileReader<T> {
 	private Parser<T> pars;
 	private String json;
 	
-	CustomizationFileReader(String path,Parser<T> pars){
+	public CustomizationFileReader(String path,Parser<T> pars){
 		this.pars=pars;
 		this.json=reedFile(new File(path));
 	}

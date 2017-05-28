@@ -9,13 +9,16 @@ import gamemodel.ActionSpace.*;
 import gamemodel.card.Card;
 import gamemodel.effects.Effect;
 import gamemodel.effects.TestEffects;
+import gamemodel.jsonparsing.ASParsing;
+import gamemodel.jsonparsing.CardParsing;
+import gamemodel.jsonparsing.CustomizationFileReader;
+import gamemodel.jsonparsing.TowerASParsing;
 
 public class RealGame {
 	private List<Player> players;
 	private Board board;
 	private Integer roundNumber;
 	private List<Player> turnOrder;
-//	private CustomizationFileReader customizationFileReader;
 
 	public static void main(String[] args) {
 		RealGame game = new RealGame();
@@ -53,54 +56,19 @@ public class RealGame {
 	}
 
 	public RealGame initializeGame() {
-		// Read customization file
+
 
 		List<Card> developmentCards = new ArrayList<Card>();
-		for (int id = 0; id < 24; id++) {
-			developmentCards.add(new StupidCard(id, CardType.TERRITORIES));
-			developmentCards.add(new StupidCard(id + 24, CardType.BUILDINGS));
-			developmentCards.add(new StupidCard(id + 48, CardType.CHARACTERS));
-			developmentCards.add(new StupidCard(id + 72, CardType.VENTURES));
-		}
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/CharacterCards.json",new CardParsing()::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/VentureCards.json",new CardParsing()::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/TerritoryCards.json",new CardParsing()::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/BuildingCards.json",new CardParsing()::parsing).parse());				
 		Collections.shuffle(developmentCards);
 
 		List<ActionSpace> actionSpaces = new ArrayList<ActionSpace>();
-		Effect e=new TestEffects();
-		Tower tower;
-
-		// These parameters must all come from the customization file
-		tower = new Tower(CardType.TERRITORIES);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
-
-		tower = new Tower(CardType.CHARACTERS);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
-
-		tower = new Tower(CardType.BUILDINGS);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
 		
-		tower = new Tower(CardType.VENTURES);
-		actionSpaces.add(new RealTowerActionSpace(1, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(3, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(5, e, tower,ActionSpaceType.TOWER));
-		actionSpaces.add(new RealTowerActionSpace(7, e, tower,ActionSpaceType.TOWER));
-
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.MARKET));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.HARVEST));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.PRODUCTION));
-		actionSpaces.add(new RealActionSpace(1, e, ActionSpaceType.COUNCIL_PALACE));
-		
+		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse());
+		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());				
 		
 		board = new RealBoard(developmentCards, actionSpaces);
 

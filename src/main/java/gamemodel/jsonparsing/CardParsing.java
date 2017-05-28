@@ -28,10 +28,12 @@ public class CardParsing {
 			actionCost=item.asObject().getInt("action-cost", 0);
     		name=item.asObject().getString("name", null);
     		cardCostParsing(item);
+    		istantEffects=null;
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
     			istantEffects=new EffectParsing().parsing(item.asObject().get("istant-effect").asArray());
     		}
+    		permanentEffects=null;
     		if(item.asObject().get("permanent-effect")!=null){
     			permanentEffects=new ArrayList<>();
     			permanentEffects=new EffectParsing().parsing(item.asObject().get("permanent-effect").asArray());

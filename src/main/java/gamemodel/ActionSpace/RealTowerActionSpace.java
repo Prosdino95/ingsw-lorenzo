@@ -44,9 +44,8 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		str +=this.getTower();
 		str += " ";
 		if(this.getEffects()!=null)
-			str +=this.getEffects();	
+			str +=this.getEffects()+"\n";	
 		if(!(card==null)){	
-			str += "-> ";
 			str += card.toString();
 		}	
 		str+="\n";

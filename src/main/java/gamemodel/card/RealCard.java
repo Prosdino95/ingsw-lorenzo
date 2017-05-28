@@ -96,8 +96,7 @@ public class RealCard implements Card {
 	@Override
 	public String toString(){
 		String str = "";
-		str +=this.type+"\n";
-		str +="id:"+this.id+" "+this.name+"\n";
+		str +="id:"+this.id+" "+this.type+"\n"+this.name+"\n";
 		if(this.resourceRequirement!=resourcePrice)
 			str +="resource requirement-> "+this.resourceRequirement+ "\n";
 		if(this.resourcePrice!=null)

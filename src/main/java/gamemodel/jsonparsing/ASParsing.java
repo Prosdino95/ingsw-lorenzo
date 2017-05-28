@@ -23,6 +23,7 @@ public class ASParsing {
 		JsonArray items = Json.parse(json).asObject().get("ActionSpace").asArray();
 		for (JsonValue item : items) {
     		cost=item.asObject().getInt("action-cost", 1);
+    		effects=null;
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
     			effects=new EffectParsing().parsing(item.asObject().get("effect").asArray());
