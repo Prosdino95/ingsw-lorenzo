@@ -66,7 +66,7 @@ public class CardParsing {
 		}
 		if(Json.parse(json).asObject().get("character-cards")!=null){
 			type=CardType.CHARACTERS;
-			return Json.parse(json).asObject().get("character-Cards").asArray();
+			return Json.parse(json).asObject().get("character-cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("territory-cards")!=null){
 			type=CardType.TERRITORIES;

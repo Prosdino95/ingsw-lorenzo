@@ -19,8 +19,8 @@ public class App{
     	//testAS();
     	//testBCard();
     	//testTCard();
-    	//testCCard();
-    	testVCard();
+    	testCCard();
+    	//testVCard();
     	
     } 
     

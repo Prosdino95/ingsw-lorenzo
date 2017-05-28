@@ -1,5 +1,274 @@
 {
 	"character-cards":[
-	
+						{
+						"name":"Warlord",
+						"resource-requirement":{
+												"gold":2				
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"military":3
+      										}
+      								],
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Stonemason",
+						"resource-requirement":{
+												"gold":2				
+												},
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Dame",
+						"resource-requirement":{
+												"gold":4				
+												},
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Warlord",
+						"resource-requirement":{
+												"gold":2				
+												},
+						"istant-effect": [
+      										{
+      										"type":"council-privileges",
+      										"quantity":1
+      										}
+      								],
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Farmer",
+						"resource-requirement":{
+												"gold":3				
+												},
+						"permanent-effect":[]						
+					},
+
+					{
+						"name":"Artisan",
+						"resource-requirement":{
+												"gold":3				
+												},
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Preacher",
+						"resource-requirement":{
+												"gold":2				
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":4
+      										}
+      								],
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Abbess",
+						"resource-requirement":{
+												"gold":3				
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":4
+      										}
+      								]				
+					},
+					
+					{
+						"name":"Capitan",
+						"resource-requirement":{
+												"gold":4			
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"military":2
+      										}
+      								]						
+					},
+					
+					{
+						"name":"Architet",
+						"resource-requirement":{
+												"gold":4			
+												},
+						"istant-effect": [
+      										
+      								]						
+					},
+					
+					{
+						"name":"Patron",
+						"resource-requirement":{
+												"gold":3			
+												},
+						"istant-effect": [
+      										
+      								]						
+					},
+					
+					{
+						"name":"Hero",
+						"resource-requirement":{
+												"gold":4		
+												},
+						"istant-effect": [
+											{
+      										"type":"council-privileges",
+      										"quantity":1
+      										}
+      										
+      									]						
+					},
+					
+					{
+						"name":"Paesant",
+						"resource-requirement":{
+												"gold":4			
+												},
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Scholar",
+						"resource-requirement":{
+												"gold":4			
+												},
+						"permanent-effect":[]						
+					},
+					
+					{
+						"name":"Papal Messenger",
+						"resource-requirement":{
+												"gold":5			
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":3
+      										}
+      								]				
+					},
+					
+					{
+						"name":"Royal Messenger",
+						"resource-requirement":{
+												"gold":5		
+												},
+						"istant-effect": [
+											{
+      										"type":"council-privileges",
+      										"quantity":3
+      										}
+      										
+      									]						
+					},
+					
+					{
+						"name":"Noble",
+						"resource-requirement":{
+												"gold":6		
+												},
+						"istant-effect": [
+											
+      										
+      									]						
+					},
+					
+					{
+						"name":"Governator",
+						"resource-requirement":{
+												"gold":6		
+												},
+						"istant-effect": [
+											
+      										
+      									]						
+					},
+					
+					{
+						"name":"Paramour",
+						"resource-requirement":{
+												"gold":7		
+												},
+						"istant-effect": [
+											
+      										
+      									]						
+					},
+					
+					{
+						"name":"Herald",
+						"resource-requirement":{
+												"gold":6		
+												},
+						"istant-effect": [
+											
+      										
+      									]						
+					},
+					
+					{
+						"name":"Cardinal",
+						"resource-requirement":{
+												"gold":4			
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":2
+      										}
+      								]				
+					},
+					
+					{
+						"name":"Bihop",
+						"resource-requirement":{
+												"gold":5		
+												},
+						"istant-effect": [
+      										{
+      										"type":"point-mod",
+      										"faith":1
+      										}
+      								]				
+					},
+					
+					{
+						"name":"General",
+						"resource-requirement":{
+												"gold":5		
+												},
+						"istant-effect": [
+						
+      								]				
+					},
+					
+					{
+						"name":"Ambassador",
+						"resource-requirement":{
+												"gold":6		
+												},
+						"istant-effect": [
+											{
+      										"type":"council-privileges",
+      										"quantity":1
+      										}
+      										
+      									]						
+					}
 	]
 }	
