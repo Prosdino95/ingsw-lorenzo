@@ -13,7 +13,8 @@
       										"victory":5
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+						]						
 					},
 					
 					{
@@ -77,7 +78,35 @@
       										"victory":3
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"wood":1
+													}
+												},
+												"receive":{
+													"resource":{
+														"gold":3
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"wood":2
+													}
+												},
+												"receive":{
+													"resource":{
+														"gold":5
+													}
+												}	
+											}
+
+						]						
 					},
 					
 					{
@@ -93,7 +122,34 @@
       										"victory":2
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":1
+													}
+												},
+												"receive":{
+													"resource":{
+														"gold":3
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":2
+													}
+												},
+												"receive":{
+													"resource":{
+														"gold":5
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -108,7 +164,22 @@
       										"faith":1
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"receive":{
+													"point":{
+														"faith":1
+													}
+												}	
+											}
+
+						]						
 					},
 					
 					{
@@ -123,7 +194,23 @@
       										"victory":1
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"receive":{
+													"council-privileges":{
+      												"quantity":1	
+      												}												
+												
+											}
+										}
+
+						]						
 					},
 					
 					{
@@ -139,7 +226,23 @@
       										"victory":3
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":3
+													}
+												},
+												"receive":{
+													"resource":{
+														"wood":2,
+														"stone":2
+													}
+												}	
+											}
+
+						]						
 					},
 					
 					{
@@ -154,7 +257,34 @@
       										"victory":4
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":3
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":2
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":5
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -169,7 +299,34 @@
       										"victory":5
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"wood":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":3
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"wood":3
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":7
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -184,7 +341,34 @@
       										"victory":6
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":3
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":3
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":7
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -200,7 +384,23 @@
       										"victory":4
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":1,
+													"servants":1,
+													"wood":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":6
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -213,10 +413,28 @@
       										{
       										"type":"point-mod",
       										"victory":2,
-      										"fatih":1
+      										"faith":1
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"point":{
+													"faith":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":2
+													},
+													"resource":{
+														"gold":2
+													}
+												}	
+											}
+
+						]						
 					},
 					
 					{
@@ -232,7 +450,21 @@
       										"victory":3
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"servants":1
+													}
+												},
+												"receive":{
+													"point":{
+														"military":3
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -294,7 +526,22 @@
       										"victory":8
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":4
+													}
+												},
+												"receive":{
+													"resource":{
+														"wood":3,
+														"stone":3
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -359,7 +606,24 @@
       										"victory":9
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":4
+													},
+													"resource":{
+														"servants":2
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -376,7 +640,34 @@
       										"faith":1
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"wood":1
+													}
+												},
+												"receive":{
+													"point":{
+														"faith":2
+													}
+												}	
+											},
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"stone":1
+													}
+												},
+												"receive":{
+													"point":{
+														"faith":2
+													}
+												}	
+											}
+						]						
 					},
 					
 					{
@@ -393,7 +684,22 @@
       										"victory":7
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"exchange",
+												"give":{
+													"resource":{
+													"servants":1
+													}
+												},
+												"receive":{
+													"point":{
+														"victory":1,
+														"military":3
+													}
+												}
+											}															
+						]						
 					},
 					
 					{

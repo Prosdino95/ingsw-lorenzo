@@ -35,21 +35,42 @@ public class EffectParsing {
 				break;
 				case "exchange": istantEffect.add(exchange(item));
 				break;
-				case "point-for-resource": istantEffect.add(pointForResource(item));
+				case "point-for-resource": istantEffect.add(resourceForResource(item));
 				break;	
 			}	
 		}
 		return istantEffect;
 	}
 	
-	private Effect pointForResource(JsonValue item) {
+	private Effect resourceForResource(JsonValue item) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	private Effect exchange(JsonValue item) {
-		// TODO Auto-generated method stub
-		return null;
+		JsonValue give,receive;
+		Resource rin=null,rout=null;
+		Point pin=null,pout=null;
+		Effect councilPrivilege=null;
+		give=item.asObject().get("give");
+		if(give.asObject().get("resource")!=null)
+			rout=resourceMod(give.asObject().get("resource"));
+		
+		if(give.asObject().get("point")!=null)
+			pout=pointMod(give.asObject().get("point"));
+		
+		receive=item.asObject().get("receive");
+		if(receive.asObject().get("resource")!=null)
+			rin=resourceMod(receive.asObject().get("resource"));
+		
+		if(receive.asObject().get("point")!=null)
+			pin=pointMod(receive.asObject().get("point"));
+				
+		if(receive.asObject().get("council-privileges")!=null)
+			councilPrivilege=councilPrivileges(receive.asObject().get("council-privileges"));
+		
+		return new Exchange(pin, pout, rin, rout, councilPrivilege);
+			
 	}
 
 	private Effect councilPrivileges(JsonValue item) {

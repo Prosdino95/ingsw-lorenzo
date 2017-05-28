@@ -64,12 +64,21 @@ public class Exchange implements Effect
 	}
 	@Override
 	public String toString() {
-		String str = "";
-		str+="In --> ";
-		str+="out --> ";
+		String str ="\n"+ "Exchange: "+"\n";
+		str+="give --> ";
+		if(this.resourcesOut!=null)
+			str+=resourcesOut+"\n";
+		if(this.pointsOut!=null)
+			str+=pointsOut+"\n";
+		str+="receive --> ";
+		if(this.resourcesIn!=null)
+			str+=resourcesIn;
+		if(this.pointsIn!=null)
+			str+=pointsIn;
+		if(this.councilPrivilegesIn!=null)
+			str+=councilPrivilegesIn;
+		return str;
 		
-		return "Exchange [pointsIn=" + pointsIn + ", pointsOut=" + pointsOut + ", resourcesIn=" + resourcesIn
-				+ ", resourcesOut=" + resourcesOut + "]";
 	}
 }
 

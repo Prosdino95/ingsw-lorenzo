@@ -18,13 +18,20 @@ public class App{
     {	
     	//testAS();
     	testBCard();
-    	testTCard();
-    	testCCard();
-    	testVCard();
-    	
+    	//testTCard();
+    	//testCCard();
+    	//testVCard();
+    	//test();
     } 
     
-    private static void testCCard() {
+    private static void test() {
+    	List<Card> Bcard= new CustomizationFileReader<Card>("Config/test.json",new CardParsing()::parsing).parse();
+    	for(Card a:Bcard)
+    		System.out.println(a);
+		
+	}
+
+	private static void testCCard() {
     	List<Card> Bcard= new CustomizationFileReader<Card>("Config/CharacterCards.json",new CardParsing()::parsing).parse();
     	for(Card a:Bcard)
     		System.out.println(a);
