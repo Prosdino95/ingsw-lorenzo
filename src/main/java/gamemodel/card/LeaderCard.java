@@ -16,10 +16,10 @@ public class LeaderCard extends RealCard {
 
 	
 	
-	public LeaderCard(String name, Resource resourceRequirement, Resource resourcePrice, Point point,
+	public LeaderCard(String name,int period, Resource resourceRequirement, Resource resourcePrice, Point point,
 			Point pointPrice,CardType type,List<Effect> istantEffect, List<Effect> permanentEffect,
 			Map<CardType, Integer> requirementCard) {
-		super(name,resourceRequirement, resourcePrice, point, pointPrice, istantEffect, permanentEffect, type, requirementCard);
+		super(name,period,resourceRequirement, resourcePrice, point, pointPrice, istantEffect, permanentEffect, type, requirementCard);
 	}
 	
 	public void useEffect(){

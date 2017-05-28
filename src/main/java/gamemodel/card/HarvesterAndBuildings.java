@@ -12,11 +12,11 @@ public class HarvesterAndBuildings extends RealCard
 {
 	private int actionCost;
 	
-	public HarvesterAndBuildings(String name, Resource resourceRequirement, Resource resourcePrice, 
+	public HarvesterAndBuildings(String name,int period, Resource resourceRequirement, Resource resourcePrice, 
 			Point point,Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, 
 			CardType type,Map<CardType, Integer> requirementCard,int actionCost)
 	{
-		super(name,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,permanentEffect, type,requirementCard);
+		super(name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,permanentEffect, type,requirementCard);
 		this.actionCost=actionCost;
 	}
 	

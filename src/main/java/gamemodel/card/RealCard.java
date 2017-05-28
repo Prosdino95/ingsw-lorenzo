@@ -12,7 +12,8 @@ import gamemodel.effects.Effect;
 
 public class RealCard implements Card {
 	
-	protected String name;	
+	protected String name;
+	private int period;
 	protected Resource resourceRequirement;
 	protected Resource resourcePrice;
 	protected Point pointRequirement;
@@ -24,10 +25,11 @@ public class RealCard implements Card {
 	private static int identifier=0;
 	protected Map<CardType,Integer> requirementCard=new HashMap<>();
 	
-	public RealCard(String name,Resource resourceRequirement, Resource resourcePrice, Point point, 
+	public RealCard(String name,int period,Resource resourceRequirement, Resource resourcePrice, Point point, 
 			Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, CardType type,
-			Map<CardType, Integer> requirementCard) {		
+			Map<CardType, Integer> requirementCard) {	
 		this.name=name;
+		this.period=period;
 		this.id=identifier;
 		identifier++;
 		this.resourceRequirement = resourceRequirement;
@@ -51,9 +53,7 @@ public class RealCard implements Card {
 					&&(requirementCard.get(CardType.CHARACTERS)>=p.contCard(CardType.CHARACTERS))
 					&&(requirementCard.get(CardType.VENTURES)>=p.contCard(CardType.VENTURES))
 					&&(requirementCard.get(CardType.TERRITORIES)>=p.contCard(CardType.TERRITORIES));
-		return true;
-							
-		
+		return true;		
 	}
 
 	@Override
@@ -82,6 +82,10 @@ public class RealCard implements Card {
 
 	public CardType getType() {
 		return type;
+	}
+	
+	public int getPeriod(){
+		return this.period;
 	}
 	
 	public int getId() {
