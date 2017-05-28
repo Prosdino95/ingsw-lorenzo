@@ -26,10 +26,10 @@ public class RealCard implements Card {
 		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
 		if(!requirementCard.isEmpty())
-			return(requirementCard.get(CardType.BUILDINGS)>=p.contCard(CardType.BUILDINGS)) 
-					&&(requirementCard.get(CardType.CHARACTERS)>=p.contCard(CardType.CHARACTERS))
-					&&(requirementCard.get(CardType.VENTURES)>=p.contCard(CardType.VENTURES))
-					&&(requirementCard.get(CardType.TERRITORIES)>=p.contCard(CardType.TERRITORIES));
+			return(requirementCard.get(CardType.BUILDINGS)>=p.countCard(CardType.BUILDINGS)) 
+					&&(requirementCard.get(CardType.CHARACTERS)>=p.countCard(CardType.CHARACTERS))
+					&&(requirementCard.get(CardType.VENTURES)>=p.countCard(CardType.VENTURES))
+					&&(requirementCard.get(CardType.TERRITORIES)>=p.countCard(CardType.TERRITORIES));
 		return true;
 							
 		

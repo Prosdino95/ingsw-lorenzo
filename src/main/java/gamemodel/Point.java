@@ -13,6 +13,20 @@ public class Point
 		this.victory=victory;
 	}
 	
+	public int getMilitary()
+	{
+		return this.military;
+	}
+	public int getFaith()
+	{
+		return this.faith;
+	}
+	public int getVictory()
+	{
+		return this.victory;
+	}
+	
+	
 	public void addPoint(Point p)
 	{
 		this.military+=p.military;
@@ -27,10 +41,10 @@ public class Point
 		this.victory-=p.victory;
 	}
 
-	public boolean isEnought(Point p) {
+	public boolean isEnought(Point p) 
+	{
 			return(this.military>=p.military &&
 				this.faith>=p.faith &&
 				this.victory>=p.victory);
-				
-		}
+	}
 }

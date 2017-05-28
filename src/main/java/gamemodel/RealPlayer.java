@@ -113,7 +113,9 @@ public class RealPlayer implements Player {
 		return this.point.isEnought(point); 
 		  }
 	
-	public int contCard(CardType type){
+	@Override
+	public int countCard(CardType type)
+	{
 		if(type==CardType.BUILDINGS)
 			return buildings.size();
 		if(type==CardType.CHARACTERS)
@@ -123,7 +125,6 @@ public class RealPlayer implements Player {
 		if(type==CardType.VENTURES)
 			return ventures.size();
 		return 0;
-		
 	}
 
 	@Override

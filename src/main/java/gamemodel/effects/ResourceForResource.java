@@ -107,62 +107,137 @@ public class ResourceForResource implements Effect
 		this.pointsIn=null;
 	}
 	
+	private int foo(int cardNumber,int forEach)
+	{
+		int c;
+		int howManyTimes=0;
+		for(c=1;c<=cardNumber;c++)
+		{
+			if(c%forEach==0)
+				howManyTimes++;
+		}
+		return howManyTimes;
+	}
+	private int foo(Point points,int forEach)
+	{
+		int c;
+		int howManyTimes=0;
+		if(points.getFaith()!=0)
+		{
+			for(c=1;c<=points.getFaith();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		if(points.getMilitary()!=0)
+		{
+			for(c=1;c<=points.getMilitary();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		if(points.getVictory()!=0)
+		{
+			for(c=1;c<=points.getVictory();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		return howManyTimes;
+	}
+	private int foo(Resource resources,int forEach)
+	{
+		int c;
+		int howManyTimes=0;
+		if(resources.getGold()!=0)
+		{
+			for(c=1;c<=resources.getGold();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		if(resources.getServant()!=0)
+		{
+			for(c=1;c<=resources.getServant();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		if(resources.getStone()!=0)
+		{
+			for(c=1;c<=resources.getStone();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		if(resources.getWood()!=0)
+		{
+			for(c=1;c<=resources.getWood();c++)
+			{
+				if(c%forEach==0)
+					howManyTimes++;
+			}
+		}
+		return howManyTimes;
+	}
+	
 	@Override
 	public void activate(Player player)
 	{
-		/*int cardNumber;
-		if(this.typeIn.equals(CardType.TERRITORIES))
+		if(cardType!=null)
 		{
-			if(this.resources==null)
+			int howManyTimes;
+			howManyTimes=foo(player.countCard(cardType),forEach);
+			int c;
+			if(pointsOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.TERRITORIES);cardNumber++)											
-					player.addPoint(this.points);					
+				for(c=0;c<howManyTimes;c++)
+					player.addPoint(pointsOut);
 			}
-			if(this.points==null)
+			if(resourcesOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.TERRITORIES);cardNumber++)
-					player.addResources(this.resources);
+				for(c=0;c<howManyTimes;c++)
+					player.addResources(resourcesOut);
 			}
 		}
-		if(this.typeIn.equals(CardType.BUILDINGS))
+		if(pointsIn!=null)
 		{
-			if(this.resources==null)
+			int howManyTimes;
+			howManyTimes=foo(pointsIn,forEach);
+			int c;
+			if(pointsOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.BUILDINGS);cardNumber++)
-					player.addPoint(this.points);
+				for(c=0;c<howManyTimes;c++)
+					player.addPoint(pointsOut);
 			}
-			if(this.points==null)
+			if(resourcesOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.BUILDINGS);cardNumber++)
-					player.addResources(this.resources);
+				for(c=0;c<howManyTimes;c++)
+					player.addResources(resourcesOut);
 			}
 		}
-		if(this.typeIn.equals(CardType.CHARACTERS))
+		if(resourcesIn!=null)
 		{
-			if(this.resources==null)
+			int howManyTimes;
+			howManyTimes=foo(resourcesIn,forEach);
+			int c;
+			if(pointsOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.CHARACTERS);cardNumber++)
-					player.addPoint(this.points);
+				for(c=0;c<howManyTimes;c++)
+					player.addPoint(pointsOut);
 			}
-			if(this.points==null)
+			if(resourcesOut!=null)
 			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.CHARACTERS);cardNumber++)
-					player.addResources(this.resources);
+				for(c=0;c<howManyTimes;c++)
+					player.addResources(resourcesOut);
 			}
 		}
-		if(this.typeIn.equals(CardType.VENTURES))
-		{
-			if(this.resources==null)
-			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.VENTURES);cardNumber++)
-					player.addPoint(this.points);
-			}
-			if(this.points==null)
-			{
-				for(cardNumber=0;cardNumber<player.contCard(CardType.VENTURES);cardNumber++)
-					player.addResources(this.resources);
-			}
-		}
-	*/return ;}
+	}
 }
 
