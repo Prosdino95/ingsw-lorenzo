@@ -26,6 +26,8 @@ public class CouncilPrivileges implements Effect
 	@Override
 	public void activate(Player player)
 	{
+		
+		// TODO modificare la questione della scelta, ora decisa dalla variabile selection
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
