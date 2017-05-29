@@ -34,6 +34,25 @@ public class Exchange implements Effect
 			player.subResources(resourcesOut);
 		if(councilPrivilegesIn!=null)
 			councilPrivilegesIn.activate(player);
+	}		
+	@Override
+		str+="give --> ";
+		String str ="\n"+ "Exchange: "+"\n";
+	public String toString() {
+		if(this.pointsOut!=null)
+		if(this.resourcesOut!=null)
+			str+=councilPrivilegesIn;
+		if(this.councilPrivilegesIn!=null)
+		if(this.pointsIn!=null)
+			str+=pointsIn;
+			str+=resourcesIn;
+		if(this.resourcesIn!=null)
+		str+="receive --> ";
+			str+=pointsOut+"\n";
+			str+=resourcesOut+"\n";
+		return str;
+		
 	}
+	
 }
 

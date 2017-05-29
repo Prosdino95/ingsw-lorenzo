@@ -31,8 +31,8 @@ public class PlaceFamilyMemberCommandTowerTest {
 		e=new ResourceModify(new Resource(2,2,2,0));
 		t=new Tower();
 		b=new RealBoard();
-		c0=new RealCard(new Resource(3,3,3,0), new Resource(3,3,3,0), null, null, null, null);
-		c1=new RealCard(new Resource(0,0,0,0), new Resource(0,0,0,0), null, null, null, null);
+		c0=new RealCard(null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,null, null, null, null);
+		c1=new RealCard(null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,null, null, null, null);
 		p1=new RealPlayer(new Resource(1,1,1,5), b, Team.RED);
 		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new RealTowerActionSpace(5, e, t, ActionSpaceType.TOWER);

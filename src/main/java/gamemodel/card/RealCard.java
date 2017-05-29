@@ -1,23 +1,46 @@
 package gamemodel.card;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.effects.Effect;
 
 public class RealCard implements Card {
-		
-	private Resource resourceRequirement;
-	private Resource resourcePrice;
-	private Point pointRequirement;
-	private Point pointPrice;
-	private CardType type;
-	private final int id;
+	
+	protected String name;
+	private int period;
+	protected Resource resourceRequirement;
+	protected Resource resourcePrice;
+	protected Point pointRequirement;
+	protected Point pointPrice;
+	protected List<Effect> istantEffect;
+	protected List<Effect> permanentEffect;
+	protected CardType type;
+	protected final int id;
 	private static int identifier=0;
-	private Map<CardType,Integer> requirementCard=new HashMap<>();
+	protected Map<CardType,Integer> requirementCard=new HashMap<>();
+	
+	public RealCard(String name,int period,Resource resourceRequirement, Resource resourcePrice, Point point, 
+			Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, CardType type,
+			Map<CardType, Integer> requirementCard) {	
+		this.name=name;
+		this.period=period;
+		this.id=identifier;
+		identifier++;
+		this.resourceRequirement = resourceRequirement;
+		this.resourcePrice = resourcePrice;
+		this.pointRequirement = point;
+		this.pointPrice = pointPrice;
+		this.type = type;
+		this.requirementCard = requirementCard;
+		this.istantEffect=istantEffects;
+		this.permanentEffect=permanentEffect;
+	}
 		
 
 	public boolean ControlResource(Player p){
@@ -26,13 +49,11 @@ public class RealCard implements Card {
 		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
 		if(!requirementCard.isEmpty())
-			return(requirementCard.get(CardType.BUILDINGS)>=p.countCard(CardType.BUILDINGS)) 
-					&&(requirementCard.get(CardType.CHARACTERS)>=p.countCard(CardType.CHARACTERS))
-					&&(requirementCard.get(CardType.VENTURES)>=p.countCard(CardType.VENTURES))
-					&&(requirementCard.get(CardType.TERRITORIES)>=p.countCard(CardType.TERRITORIES));
-		return true;
-							
-		
+			return(requirementCard.get(CardType.BUILDINGS)>=p.contCard(CardType.BUILDINGS)) 
+					&&(requirementCard.get(CardType.CHARACTERS)>=p.contCard(CardType.CHARACTERS))
+					&&(requirementCard.get(CardType.VENTURES)>=p.contCard(CardType.VENTURES))
+					&&(requirementCard.get(CardType.TERRITORIES)>=p.contCard(CardType.TERRITORIES));
+		return true;		
 	}
 
 	@Override
@@ -63,6 +84,10 @@ public class RealCard implements Card {
 		return type;
 	}
 	
+	public int getPeriod(){
+		return this.period;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -71,16 +96,26 @@ public class RealCard implements Card {
 		return requirementCard;
 	}
 
-	public RealCard(Resource resourceRequirement, Resource resourcePrice, Point point, 
-			Point pointPrice, CardType type,Map<CardType, Integer> requirementCard) {
-		this.id=identifier;
-		identifier++;
-		this.resourceRequirement = resourceRequirement;
-		this.resourcePrice = resourcePrice;
-		this.pointRequirement = point;
-		this.pointPrice = pointPrice;
-		this.type = type;
-		this.requirementCard = requirementCard;
+	
+	@Override
+	public String toString(){
+		String str = "";
+		str +="id:"+this.id+" "+this.type+"\n"+this.name+"\n";
+		if(this.resourceRequirement!=resourcePrice)
+			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+		if(this.resourcePrice!=null)
+			str +="resource price-> "+this.resourcePrice+ "\n";	
+		if(this.pointRequirement!=pointPrice)
+			str +="point requirement-> "+this.pointRequirement+ "\n";
+		if(this.pointPrice!=null)
+			str +="point price-> "+this.pointPrice+ "\n";
+		if(this.istantEffect!=null)
+			str +="istant effect-> "+this.istantEffect+ "\n";
+		if(this.permanentEffect!=null)
+			str +="permanent effect-> "+this.permanentEffect+ "\n";
+		str+="\n";
+		return str;
 	}
+	
 
 }

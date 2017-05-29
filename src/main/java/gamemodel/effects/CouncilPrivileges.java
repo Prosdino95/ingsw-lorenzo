@@ -47,4 +47,11 @@ public class CouncilPrivileges implements Effect
 			}		
 		}	
 	}
+
+	@Override
+	public String toString() {
+		return "CouncilPrivileges=" + numberOfCouncilPrivileges;
+	}
+	
+	
 }

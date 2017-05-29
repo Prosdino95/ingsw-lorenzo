@@ -22,6 +22,13 @@ public class ResourceModify implements Effect,EffectRollBack
 	{
 		player.subResources(resources);
 	}
+
+	@Override
+	public String toString() {
+		return  ""+resources;
+	}
+	
+	
 	
 }
 

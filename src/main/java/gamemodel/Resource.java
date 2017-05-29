@@ -47,11 +47,16 @@ public class Resource {
 	}
 	@Override
 	public String toString() {
-		return "Resource \n"+
-				"Gold=" + gold + "\n"+
-				"Stone=" + stone +"\n"+
-				"Wood=" + wood +"\n"+
-				"Servant=" + servant;
+		String srt="";
+		if(gold!=0)
+			srt+=" gold="+this.gold;
+		if(stone!=0)
+			srt+=" stone="+this.stone;
+		if(wood!=0)
+			srt+=" wood="+this.wood;
+		if(servant!=0)
+			srt+=" servants="+this.servant;
+		return srt;
 	}
 
 	@Override

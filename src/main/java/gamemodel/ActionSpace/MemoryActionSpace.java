@@ -1,6 +1,7 @@
 package gamemodel.ActionSpace;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import gamemodel.FamilyMember;
@@ -13,6 +14,10 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 	private List<RealPlayer> players=new ArrayList<RealPlayer>();
 
 	public MemoryActionSpace(int actionCost, Effect effect, ActionSpaceType type) {
+		super(actionCost, effect, type);
+	}
+	
+	public MemoryActionSpace(int actionCost, List<Effect> effect, ActionSpaceType type) {
 		super(actionCost, effect, type);
 	}
 	
@@ -30,4 +35,22 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 	public void addPlayer(FamilyMember f){
 		players.add(f.getPlayer());
 	}
+
+	public String toString() {
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += this.getType();
+		str+=" ";
+		if(this.getEffects()!=null)
+			str +=this.getEffects();
+		if(!this.players.isEmpty()){
+			str+=", players:[";
+			for(RealPlayer p:players)
+			str +=p.getTeam()+" ";
+			str+="] ";
+		}	
+		str+="\n";
+		return str;
+	}	
 }

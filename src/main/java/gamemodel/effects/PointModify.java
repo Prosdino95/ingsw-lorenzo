@@ -23,4 +23,11 @@ public class PointModify implements Effect,EffectRollBack
 		player.subPoint(points);
 	}
 
+	@Override
+	public String toString() {
+		return "" + points;
+	}
+	
+	
+
 }

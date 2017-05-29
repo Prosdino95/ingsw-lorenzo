@@ -47,4 +47,17 @@ public class Point
 				this.faith>=p.faith &&
 				this.victory>=p.victory);
 	}
+
+	@Override
+	public String toString() {
+		String srt="";
+		if(military!=0)
+			srt+=" military= "+this.military;
+		if(faith!=0)
+			srt+=" faith= "+this.faith;
+		if(victory!=0)
+			srt+=" victory= "+this.victory;
+		return srt;
+	}
+	
 }

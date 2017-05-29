@@ -42,5 +42,11 @@ public class Tower {
 		playersInTower.clear();
 		towerFree=true;
 	}
+
+	@Override
+	public String toString() {
+		return " "+type;
+	}
+	
 	
 }

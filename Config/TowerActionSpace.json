@@ -1,0 +1,120 @@
+{
+  "TowerActionSpace": [
+
+    {
+      "action-cost": 1,
+      "card-tower":"territories" 
+    },
+    {
+      "action-cost": 3,
+      "card-tower": "territories"  
+    },
+    {
+      "action-cost": 5,
+      "card-tower": "territories",
+      "effect": [
+      			{
+      				"type":"resource-mod",
+      				"wood":1
+      			}
+      			]     
+    },
+    {
+      "action-cost": 7,
+      "card-tower": "territories",
+      "effect": [
+      			{
+      				"type":"resource-mod",
+      				"wood":2
+      			}
+      			]     
+    },
+
+	{
+      "action-cost": 1,
+      "card-tower":"characters"
+    },
+    {
+      "action-cost": 3,
+      "card-tower": "characters"   
+    },
+    {
+      "action-cost": 5,
+      "card-tower": "characters",
+      "effect": [
+      			{
+      				"type":"resource-mod",
+      				"stone":1
+      			}
+      			]     
+    },
+    {
+      "action-cost": 7,
+      "card-tower": "characters",
+      "effect": [
+      			{
+      				"type":"resource-mod",
+      				"stone":2
+      			}
+      			]     
+    },
+
+    {
+      "action-cost": 1,
+      "card-tower":"buildings"  
+    },
+    {
+      "action-cost": 3,
+      "card-tower": "buildings"
+    },   
+    {
+      "action-cost": 5,
+      "card-tower": "buildings",
+      "effect": [
+      			{
+      				"type":"point-mod",
+      				"military":1
+      			}
+      			]     
+    },
+    {
+      "action-cost": 7,
+      "card-tower": "buildings",
+      "effect": [
+      			{
+      				"type":"point-mod",
+      				"military":2
+      			}
+      			]     
+    },
+
+    {
+      "action-cost": 1,
+      "card-tower":"ventures" 
+    },
+    {
+      "action-cost": 3,
+      "card-tower": "ventures"
+    },   
+    {
+      "action-cost": 5,
+      "card-tower": "ventures",
+      "effect": [
+            {
+              "type":"resource-mod",
+              "gold":1
+            }
+            ]     
+    },
+    {
+      "action-cost": 7,
+      "card-tower": "ventures",
+      "effect": [
+            {
+              "type":"resource-mod",
+              "gold":2
+            }
+            ]     
+    } 
+   ]
+}
