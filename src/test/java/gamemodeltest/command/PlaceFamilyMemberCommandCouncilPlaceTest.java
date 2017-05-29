@@ -79,7 +79,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		try{p1.placeFamilyMember(id0, Color.BLACK, 5);
 			p1.placeFamilyMember(id0, Color.WHITE, 0);}
 		catch(GameException e){s=e.getType();}
-		assertEquals(GameError.SA_ERR_FM,s);		
+		assertEquals(null,s);		
 	}
 	
 	@Test

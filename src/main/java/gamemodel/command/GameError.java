@@ -9,5 +9,6 @@ public enum GameError {
 	TWR_ERR_OCCUPY,//"torre occupata"
 	TWR_ERR_FM,//"torre occupata già da un tuo familiare"
 	SA_ERR_FM,//"spazio già occupato da un tuo familiare"
-	SA_ERR;//"spazio azione occupato"
+	SA_ERR,//"spazio azione occupato"
+	SA_MAX_FM;//spazio azione palazzo ha già 4 giocatori
 }

@@ -31,7 +31,7 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	public void isLegal() throws GameException {
 			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
-				if(h.controlPlayer(f))
+				if(h.getPlayers().size()<4)
 					if(IsEnoughtStrong())
 						if(controlServant()){
 								f.use();
@@ -40,7 +40,7 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 							}
 						else throw new GameException(GameError.RESOURCE_ERR_SERVANTS);
 					else throw new GameException(GameError.FM_ERR_PA);
-				else throw new GameException(GameError.SA_ERR_FM);
+				else throw new GameException(GameError.SA_MAX_FM);
 			else throw new GameException(GameError.FM_ERR_USE);
 		}
 }
