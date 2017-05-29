@@ -17,5 +17,7 @@ public interface Card {
 	public int getId(); 
 	public Map<CardType, Integer> getRequirementCard(); 
 	public boolean ControlResource(Player p);
+	public void activeIstantEffect(Player p);
+	public void activePermanentEffect(Player p);
 
 }

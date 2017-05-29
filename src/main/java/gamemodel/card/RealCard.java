@@ -116,6 +116,23 @@ public class RealCard implements Card {
 		str+="\n";
 		return str;
 	}
-	
+
+
+	@Override
+	public void activeIstantEffect(Player p) {
+		for(Effect e:this.istantEffect)
+			e.activate(p);		
+	}
+
+
+	@Override
+	public void activePermanentEffect(Player p) {
+		for(Effect e:this.permanentEffect)
+			e.activate(p);	
+		
+	}
+
+
+
 
 }

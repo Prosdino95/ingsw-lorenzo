@@ -6,7 +6,9 @@ public class PlaceFMCommandFactory {
 	private static final PlaceFMCommandFactory singleton=new PlaceFMCommandFactory();
 
 	public static PlaceFMCommandFactory getSingleton() {
-		return singleton;
+		if (singleton != null) 
+			return singleton;
+		return null;
 	}
 
 	public Command placeFMCommandFactory(Board board, int id, FamilyMember f, int servant) {

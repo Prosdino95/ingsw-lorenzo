@@ -131,4 +131,25 @@ public class RealPlayer implements Player {
 	public List<FamilyMember> getFamilyMembers() {
 		return  new ArrayList<>(familyMembers.values());
 	}
+
+	public Point getPoint() {
+		return point;
+	}
+
+	public List<Card> getBuildings() {
+		return buildings;
+	}
+
+	public List<Card> getTerritories() {
+		return territories;
+	}
+
+	public List<Card> getVentures() {
+		return ventures;
+	}
+
+	public List<Card> getCharacters() {
+		return characters;
+	}
+	
 }

@@ -107,7 +107,7 @@ public class ResourceForResource implements Effect
 		this.pointsIn=null;
 	}
 	
-	private int foo(int cardNumber,int forEach)
+	private int count(int cardNumber,int forEach)
 	{
 		int c;
 		int howManyTimes=0;
@@ -193,7 +193,7 @@ public class ResourceForResource implements Effect
 		if(cardType!=null)
 		{
 			int howManyTimes;
-			howManyTimes=foo(player.contCard(cardType),forEach);
+			howManyTimes=count(player.contCard(cardType),forEach);
 			int c;
 			if(pointsOut!=null)
 			{

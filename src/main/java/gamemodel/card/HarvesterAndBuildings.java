@@ -20,6 +20,10 @@ public class HarvesterAndBuildings extends RealCard
 		this.actionCost=actionCost;
 	}
 	
+	public int getActionCost(){
+		return this.actionCost;
+	}
+	
 	@Override
 	public String toString(){
 		String str = "";

@@ -40,16 +40,17 @@ public class Exchange implements Effect
 		String str ="\n"+ "Exchange: "+"\n";
 		str+="give --> ";
 		if(this.pointsOut!=null)
-		if(this.resourcesOut!=null)
-			str+=councilPrivilegesIn;
-		if(this.councilPrivilegesIn!=null)
-		if(this.pointsIn!=null)
-			str+=pointsIn;
-			str+=resourcesIn;
-		if(this.resourcesIn!=null)
-		str+="receive --> ";
 			str+=pointsOut+"\n";
+		if(this.resourcesOut!=null)
 			str+=resourcesOut+"\n";
+		str+="receive --> ";
+		if(this.councilPrivilegesIn!=null)
+			str+=councilPrivilegesIn;
+		if(this.pointsIn!=null)
+			str+=pointsIn;			
+		if(this.resourcesIn!=null)		
+			str+=resourcesIn;
+			
 		return str;
 		
 	}
