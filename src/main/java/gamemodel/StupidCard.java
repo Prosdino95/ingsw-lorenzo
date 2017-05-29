@@ -80,4 +80,16 @@ public class StupidCard implements Card {
 		return false;
 	}
 
+	@Override
+	public void activeIstantEffect(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void activePermanentEffect(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
