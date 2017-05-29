@@ -23,5 +23,5 @@ public interface Player {
 	public List<FamilyMember> getFamilyMembers();
 	boolean isEnoughtPoint(Point p);
 	boolean isEnoughtResource(Resource r);
-	int countCard(CardType type);
+	int contCard(CardType type);
 }

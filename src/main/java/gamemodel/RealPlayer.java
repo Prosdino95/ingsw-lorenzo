@@ -114,7 +114,7 @@ public class RealPlayer implements Player {
 		  }
 	
 	@Override
-	public int countCard(CardType type)
+	public int contCard(CardType type)
 	{
 		if(type==CardType.BUILDINGS)
 			return buildings.size();

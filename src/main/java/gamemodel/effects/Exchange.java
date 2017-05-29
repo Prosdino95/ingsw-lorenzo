@@ -36,9 +36,9 @@ public class Exchange implements Effect
 			councilPrivilegesIn.activate(player);
 	}		
 	@Override
-		str+="give --> ";
-		String str ="\n"+ "Exchange: "+"\n";
 	public String toString() {
+		String str ="\n"+ "Exchange: "+"\n";
+		str+="give --> ";
 		if(this.pointsOut!=null)
 		if(this.resourcesOut!=null)
 			str+=councilPrivilegesIn;

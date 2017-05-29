@@ -193,7 +193,7 @@ public class ResourceForResource implements Effect
 		if(cardType!=null)
 		{
 			int howManyTimes;
-			howManyTimes=foo(player.countCard(cardType),forEach);
+			howManyTimes=foo(player.contCard(cardType),forEach);
 			int c;
 			if(pointsOut!=null)
 			{
