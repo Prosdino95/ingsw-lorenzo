@@ -26,4 +26,5 @@ public interface Player {
 	boolean isEnoughtResource(Resource r);
 	int contCard(CardType type);
 	public boolean controlResourceAndPay(Card card);
+	void placeFamilyMember(Action action) throws GameException;
 }

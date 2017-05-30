@@ -48,7 +48,7 @@ public class Resource {
 	
 	public Resource minus(Resource resources)
 	{
-		return new Resource(this.gold-resources.gold,this.servant-resources.servant,this.stone-resources.stone,this.wood-resources.wood);
+		return new Resource(this.gold-resources.gold,this.stone-resources.stone,this.wood-resources.wood,this.servant-resources.servant);
 	}
 	
 	@Override

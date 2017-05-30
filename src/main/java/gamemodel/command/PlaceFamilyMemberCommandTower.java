@@ -46,7 +46,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 							if(controlServant()){
 								t.activateEffect(f);
 									if(f.getPlayer().controlResourceAndPay(t.getCard())){
-										f.use();
+										f.getPlayer().getFamilyMember(f.getColor()).use();
 										t.getTower().occupyTower();									
 										t.giveCard(f);
 										t.occupy();

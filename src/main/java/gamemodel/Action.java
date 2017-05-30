@@ -7,7 +7,18 @@ public class Action {
 	ActionSpace spaceAction;
 	FamilyMember fm;
 	int servants;
+	
+	public Action(){
+		super();
+	}
 
+	public Action(Player player, ActionSpace spaceAction, FamilyMember fm, int servants) {
+		super();
+		this.player = player;
+		this.spaceAction = spaceAction;
+		this.fm = fm;
+		this.servants = servants;
+	}
 	public int getServants() {
 		return servants;
 	}

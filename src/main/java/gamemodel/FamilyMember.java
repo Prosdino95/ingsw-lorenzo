@@ -14,7 +14,12 @@ public class FamilyMember {
 	public FamilyMember clone() {
 		FamilyMember fm = new FamilyMember(player, color);
 		fm.setActionpoint(actionPoint);
+		fm.setUse(this.used);
 		return fm;
+	}
+	
+	public void setUse(Boolean used){
+		this.used=used;
 	}
 	
 	public void use(){
