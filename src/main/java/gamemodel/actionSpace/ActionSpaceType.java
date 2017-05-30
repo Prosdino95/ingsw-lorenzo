@@ -1,4 +1,4 @@
-package gamemodel.ActionSpace;
+package gamemodel.actionSpace;
 
 public enum ActionSpaceType {
 	
