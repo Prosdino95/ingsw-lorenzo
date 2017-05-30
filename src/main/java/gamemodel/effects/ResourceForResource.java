@@ -119,41 +119,15 @@ public class ResourceForResource implements Effect
 	}
 	private int count(Resource resources,int forEach)
 	{
-		int c;
-		int howManyTimes=0;
-		if(resources.getGold()!=0)
-		{
-			for(c=1;c<=resources.getGold();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		if(resources.getServant()!=0)
-		{
-			for(c=1;c<=resources.getServant();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		if(resources.getStone()!=0)
-		{
-			for(c=1;c<=resources.getStone();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		if(resources.getWood()!=0)
-		{
-			for(c=1;c<=resources.getWood();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		return howManyTimes;
+		if(this.resourcesIn.getGold()!=0)
+			return resources.getGold()/forEach;
+		if(this.resourcesIn.getServant()!=0)
+			return resources.getServant()/forEach;
+		if(this.resourcesIn.getWood()!=0)
+			return resources.getWood()/forEach;
+		if(this.resourcesIn.getStone()!=0)
+			return resources.getStone()/forEach;
+		return 0;
 	}
 	
 	@Override
@@ -183,23 +157,21 @@ public class ResourceForResource implements Effect
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;c<count(player.getResource(),forEach);c++)
+				for(c=0;c<count(player.getPoint(),forEach);c++)
 					player.addResources(resourcesOut);
 			}
 		}
 		if(resourcesIn!=null)
 		{
-			int howManyTimes;
-			howManyTimes=count(player.getResource(),forEach);
 			int c;
 			if(pointsOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;c<count(player.getResource(),forEach);c++)
 					player.addPoint(pointsOut);
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;c<count(player.getResource(),forEach);c++)
 					player.addResources(resourcesOut);
 			}
 		}

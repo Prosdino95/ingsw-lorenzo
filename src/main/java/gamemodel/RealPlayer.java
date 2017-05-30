@@ -25,7 +25,7 @@ public class RealPlayer implements Player {
 		this.team=team;
 		this.resource = resource;
 		this.board = board;
-		this.point=new Point(0,7,0);  //TODO risettare a (0,0,0)
+		this.point=new Point(0,0,0);
 		generateFamilyMember();
 	}
 
