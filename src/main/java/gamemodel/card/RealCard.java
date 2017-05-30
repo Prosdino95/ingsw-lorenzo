@@ -1,5 +1,6 @@
 package gamemodel.card;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,6 +131,13 @@ public class RealCard implements Card {
 		for(Effect e:this.permanentEffect)
 			e.activate(p);	
 		
+	}
+
+
+	@Override
+	public Collection<Effect> getPermanentEffects() {
+		
+		return this.permanentEffect;
 	}
 
 

@@ -1,10 +1,11 @@
 package gamemodel.command;
 
 import gamemodel.*;
+
 import gamemodel.ActionSpace.ActionSpace;
 import gamemodel.ActionSpace.ActionSpaceType;
 import gamemodel.ActionSpace.MemoryActionSpace;
-import gamemodel.card.Card;
+import gamemodel.ActionSpace.TowerActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {
@@ -19,6 +20,10 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 	}
 
 	private boolean IsEnoughtStrong(){
+		MemoryActionSpace h=(MemoryActionSpace)a;
+		ModForza e=(ModForza) f.getPlayer().getPermanentEffect("MOD_FORZA");
+		if(e.getAtype().equals(h.getType()))		
+			return(f.getActionpoint()+servant+e.getModForza()>=a.getActionCost());
 		return(f.getActionpoint()+servant>=a.getActionCost());
 	}
 

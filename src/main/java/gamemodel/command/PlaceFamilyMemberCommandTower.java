@@ -18,6 +18,11 @@ public class PlaceFamilyMemberCommandTower implements Command {
 	}
 
 	private boolean IsEnoughtStrong(){
+		//TODO enum....
+		TowerActionSpace t=(TowerActionSpace)a;
+		ModForza e=(ModForza) f.getPlayer().getPermanentEffect("MOD_FORZA");
+		if(e.getCtype().equals(t.getTower().getType()))		
+			return(f.getActionpoint()+servant+e.getModForza()>=a.getActionCost());
 		return(f.getActionpoint()+servant>=a.getActionCost());
 	}
 

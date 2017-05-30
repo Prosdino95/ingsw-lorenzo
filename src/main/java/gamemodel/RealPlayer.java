@@ -7,6 +7,7 @@ import java.util.Map;
 
 import gamemodel.card.Card;
 import gamemodel.command.*;
+import gamemodel.effects.Effect;
 
 
 public class RealPlayer implements Player {
@@ -20,11 +21,13 @@ public class RealPlayer implements Player {
 	private List<Card> territories=new ArrayList<>();	
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
+	private List<PEffect> permanentEffects=new ArrayList<>();
 	
 	public RealPlayer(Resource resource, Board board,Team team) {
 		this.team=team;
 		this.resource = resource;
 		this.board = board;
+		this.point=new Point(0,7,0);  //TODO risettare a (0,0,0)
 		generateFamilyMember();
 	}
 
@@ -98,13 +101,13 @@ public class RealPlayer implements Player {
 
 	@Override
 	public void subPoint(Point point) {
-		point.addPoint(point);
+		this.point.subPoint(point);
 		
 	}
 
 	@Override
 	public void addPoint(Point point) {
-		point.subPoint(point);
+		this.point.addPoint(point);
 		
 	}
 	
@@ -150,6 +153,21 @@ public class RealPlayer implements Player {
 
 	public List<Card> getCharacters() {
 		return characters;
+	}
+
+	public void giveCard(Card card) {
+		card.activeIstantEffect(this);
+		for(Effect e:card.getPermanentEffects())
+			if(e instanceof PEffect)				
+				this.permanentEffects.add((PEffect) e);
+		
+	}
+
+	public PEffect getPermanentEffect(String tag) {
+		for(PEffect e:this.permanentEffects)
+			if(e.tag.equals(tag))
+				return e;
+		return null;		
 	}
 	
 }
