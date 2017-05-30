@@ -45,6 +45,12 @@ public class Resource {
 	public int getServant() {
 		return servant;
 	}
+	
+	public Resource minus(Resource resources)
+	{
+		return new Resource(this.gold-resources.gold,this.servant-resources.servant,this.stone-resources.stone,this.wood-resources.wood);
+	}
+	
 	@Override
 	public String toString() {
 		String srt="";

@@ -11,20 +11,22 @@ import gamemodel.card.HarvesterAndBuildings;
 public class PlaceFamilyMemberCommandHAndP implements Command {
 	private FamilyMember f;
 	private int servant;
-	private ActionSpace a;
+	private MemoryActionSpace h;
 	
 	public PlaceFamilyMemberCommandHAndP(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpace(id);
+		// this.h=board.getActionSpace(id);
 	}
 
+	public PlaceFamilyMemberCommandHAndP(Action action) {
+		this.f = action.getFm();
+		this.servant = action.getServants();
+		this.h = (MemoryActionSpace) action.getActionSpace();
+	}
+	
 	private boolean IsEnoughtStrong(){
-		MemoryActionSpace h=(MemoryActionSpace)a;
-		ModForza e=(ModForza) f.getPlayer().getPermanentEffect("MOD_FORZA");
-		if(e.getAtype().equals(h.getType()))		
-			return(f.getActionpoint()+servant+e.getModForza()>=a.getActionCost());
-		return(f.getActionpoint()+servant>=a.getActionCost());
+		return(f.getActionpoint()>=h.getActionCost());
 	}
 
 	private boolean controlServant() throws GameException{
@@ -38,7 +40,6 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 
 	@Override
 	public void isLegal() throws GameException {
-			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
 				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())

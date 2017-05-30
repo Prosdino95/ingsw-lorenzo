@@ -2,23 +2,37 @@ package gamemodel;
 
 import gamemodel.ActionSpace.ActionSpaceType;
 
-public class ModForza extends PEffect {
+public class StrengthModifyAndDiscount extends PEffect {
 	
 	private int modForza;
 	private ActionSpaceType atype;
-	private CardType ctype;	
-	//sconto
+	private CardType ctype;
+	private Resource discount;
 
+
+	public Resource getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Resource discount) {
+		this.discount = discount;
+	}
 
 	public int getModForza() {
 		return modForza;
 	}
 
-	public ModForza(int modForza, ActionSpaceType atype, CardType ctype) {
+	public StrengthModifyAndDiscount(int modForza, ActionSpaceType atype, CardType ctype) {
 		super("MOD_FORZA");
 		this.modForza = modForza;
 		this.atype = atype;
 		this.ctype = ctype;
+	}
+
+	public StrengthModifyAndDiscount(Resource resource, CardType type) {
+		super("Discount");
+		this.ctype=type;
+		this.discount=resource;
 	}
 
 	public ActionSpaceType getAtype() {

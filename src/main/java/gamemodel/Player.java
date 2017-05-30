@@ -2,6 +2,7 @@ package gamemodel;
 
 import java.util.List;
 
+import gamemodel.card.Card;
 import gamemodel.command.GameException;
 
 public interface Player {
@@ -13,7 +14,6 @@ public interface Player {
 	public Resource getResource();
 	public Point getPoint();
 	public Team getTeam();
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException;
 	public void setFamilyMember(Color color,int actionPoint);
 	public void subResources(Resource r);
 	public void addResources(Resource r);
@@ -25,4 +25,5 @@ public interface Player {
 	boolean isEnoughtPoint(Point p);
 	boolean isEnoughtResource(Resource r);
 	int contCard(CardType type);
+	public boolean controlResourceAndPay(Card card);
 }

@@ -44,9 +44,9 @@ public class RealCard implements Card {
 	}
 		
 
-	public boolean ControlResource(Player p){
+	public boolean controlResource(Player p,Resource discount){
 		if(resourceRequirement!=null)
-			return p.isEnoughtResource(resourceRequirement);
+			return p.isEnoughtResource(resourceRequirement.minus(discount));
 		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
 		if(!requirementCard.isEmpty())
@@ -58,9 +58,9 @@ public class RealCard implements Card {
 	}
 
 	@Override
-	public void pay(Player p){
+	public void pay(Player p,Resource discount){
 		if(resourcePrice!=null)
-			p.subResources(resourcePrice);	
+			p.subResources(resourcePrice.minus(discount));	
 		if(pointPrice!=null)
 			p.subPoint(pointPrice);
 	}
@@ -136,7 +136,6 @@ public class RealCard implements Card {
 
 	@Override
 	public Collection<Effect> getPermanentEffects() {
-		
 		return this.permanentEffect;
 	}
 

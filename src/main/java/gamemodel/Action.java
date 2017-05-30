@@ -1,0 +1,37 @@
+package gamemodel;
+
+import gamemodel.ActionSpace.ActionSpace;
+
+public class Action {
+	Player player;
+	ActionSpace spaceAction;
+	FamilyMember fm;
+	int servants;
+
+	public int getServants() {
+		return servants;
+	}
+	public void setServants(int servants) {
+		this.servants = servants;
+	}
+	public Player getPlayer() {
+		return player;
+	}
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	public ActionSpace getActionSpace() {
+		return spaceAction;
+	}
+	public void setSpaceAction(ActionSpace spaceAction) {
+		this.spaceAction = spaceAction;
+	}
+	public FamilyMember getFm() {
+		return fm;
+	}
+	public void setFm(FamilyMember fm) {
+		this.fm = fm;
+	}
+	
+	
+}

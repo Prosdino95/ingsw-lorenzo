@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gamemodel.ActionSpace.ActionSpaceType;
+import gamemodel.ActionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
@@ -22,6 +24,7 @@ public class RealPlayer implements Player {
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
 	private List<PEffect> permanentEffects=new ArrayList<>();
+	private Action currentAction = new Action();
 	
 	public RealPlayer(Resource resource, Board board,Team team) {
 		this.team=team;
@@ -65,9 +68,11 @@ public class RealPlayer implements Player {
 		return familyMembers.get(c);
 	}
 	
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException{
-		FamilyMember f= familyMembers.get(c);		
-		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(board,idSpaceAction,f,servant);
+	public void placeFamilyMember(Action action) throws GameException {
+		currentAction = action;
+		increasePower();
+		command=PlaceFMCommandFactory.getSingleton().
+				placeFMCommandFactory(action);
 		command.isLegal();
 	}
 	
@@ -169,5 +174,71 @@ public class RealPlayer implements Player {
 				return e;
 		return null;		
 	}
+	
+	private void increasePower()
+	{
+		FamilyMember fm = currentAction.getFm().clone();
+		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
+		currentAction.setFm(fm);
+	
+		//TODO enum....
+//		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
+		for (PEffect e : permanentEffects) {
+			if (e.tag.equals("MOD_FORZA")) {
+				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
+				if (mf.getAtype() == ActionSpaceType.TOWER && 
+						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {
+					if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) {
+						fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+						currentAction.setFm(fm);
+					}
+				} else if (mf.getAtype() == ActionSpaceType.HARVEST &&
+						currentAction.getActionSpace().getType() == ActionSpaceType.HARVEST) {
+					fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+					currentAction.setFm(fm);
+				} else if (mf.getAtype() == ActionSpaceType.PRODUCTION &&
+						currentAction.getActionSpace().getType() == ActionSpaceType.PRODUCTION) {
+					fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+					currentAction.setFm(fm);
+				} 
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public boolean controlResourceAndPay(Card card)
+	{
+		Resource discount=new Resource(0,0,0,0);
+		for (PEffect e : permanentEffects) 
+			if (e.tag.equals("Discount")) 
+			{
+				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
+				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
+					discount.addResources(mf.getDiscount());
+			}
+		if(card.controlResource(this, discount)){
+			card.pay(this, discount);
+			return true;
+		}
+			
+		else return false;			
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

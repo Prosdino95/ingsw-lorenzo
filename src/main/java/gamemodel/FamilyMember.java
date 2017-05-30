@@ -11,10 +11,17 @@ public class FamilyMember {
 		this.color = color;
 	}
 	
+	public FamilyMember clone() {
+		FamilyMember fm = new FamilyMember(player, color);
+		fm.setActionpoint(actionPoint);
+		return fm;
+	}
+	
 	public void use(){
 		this.used=true;
 	}
-	
+
+
 	public boolean isUsed(){
 		return used;
 	}
