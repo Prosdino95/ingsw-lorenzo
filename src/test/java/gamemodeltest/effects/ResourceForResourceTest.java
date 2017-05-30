@@ -23,6 +23,8 @@ public class ResourceForResourceTest
 	Player p2;
 	Player p3;
 	Player p4;
+	Player p5;
+	Player p6;
 	
 	@Before
 	public void setUp() throws Exception 
@@ -32,9 +34,10 @@ public class ResourceForResourceTest
 		p2=new RealPlayer(new Resource(7,0,4,13), b, Team.RED);
 		p3=new RealPlayer(new Resource(2,3,4,5), b, Team.RED);
 		p4=new RealPlayer(new Resource(150,7,8,9), b, Team.RED);
-		
+		p5=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
+		p6=new RealPlayer(new Resource(0,0,0,0), b, Team.RED);
 	}
-
+	
 	@Test
 	public void testActivatePperP() 
 	{
@@ -68,22 +71,20 @@ public class ResourceForResourceTest
 		effect.activate(p4);
 		assertEquals(new Point(300,90,120),p4.getPoint());
 	}
-	//TODO lista di carte vuote al giocatore
+	
 	@Test
 	public void testActivateCperP()
 	{
-		
-		
-		
-		
+		Effect effect=ResourceForResource.constructor("TERRITORIES",null,null,null,new Point(10,3,4),52);
+		effect.activate(p5);
+		assertEquals(new Point(70,21,28),p5.getPoint());
 	}
-
+	
 	@Test
 	public void testActivateCperR()
 	{
-		
-		
-		
-		
+		Effect effect=ResourceForResource.constructor("VENTURES",null,null,new Resource(0,9,27,89),null,10);
+		effect.activate(p6);
+		assertEquals(new Resource(0,9,27,89),p6.getResource());
 	}
 }

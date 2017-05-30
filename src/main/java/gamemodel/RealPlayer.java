@@ -21,7 +21,8 @@ public class RealPlayer implements Player {
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
 	
-	public RealPlayer(Resource resource, Board board,Team team) {
+	public RealPlayer(Resource resource, Board board,Team team) 
+	{
 		this.team=team;
 		this.resource = resource;
 		this.board = board;

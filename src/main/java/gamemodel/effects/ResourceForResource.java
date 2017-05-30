@@ -143,7 +143,7 @@ public class ResourceForResource implements Effect
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;;c++)
+				for(c=0;c<player.contCard(cardType)/forEach;c++)
 					player.addResources(resourcesOut);
 			}
 		}
