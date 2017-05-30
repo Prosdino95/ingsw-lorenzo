@@ -1,6 +1,6 @@
 package gamemodel;
 
-import gamemodel.ActionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpace;
 
 public class Action {
 	Player player;

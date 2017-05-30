@@ -2,8 +2,8 @@ package gamemodel;
 
 import java.util.List;
 
-import gamemodel.ActionSpace.ActionSpace;
-import gamemodel.ActionSpace.RealActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.RealActionSpace;
 
 public interface Board {
 

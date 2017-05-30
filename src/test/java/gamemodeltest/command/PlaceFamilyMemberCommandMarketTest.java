@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.RealActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;

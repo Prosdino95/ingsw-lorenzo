@@ -14,18 +14,18 @@ import gamemodel.Board;
 import gamemodel.CardType;
 import gamemodel.Color;
 import gamemodel.StrengthModifyAndDiscount;
-import gamemodel.PEffect;
+import gamemodel.PermanentEffect;
 import gamemodel.Player;
 import gamemodel.RealBoard;
 import gamemodel.RealPlayer;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.Tower;
-import gamemodel.ActionSpace.ActionSpace;
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.MemoryActionSpace;
-import gamemodel.ActionSpace.RealActionSpace;
-import gamemodel.ActionSpace.RealTowerActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
+import gamemodel.actionSpace.RealActionSpace;
+import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
@@ -35,7 +35,7 @@ import gamemodel.effects.Effect;
 public class CommandPeffectTest {
 	 RealPlayer p;
 	 GameError s;
-	 PEffect e,e1,e2;
+	 PermanentEffect e,e1,e2;
 	 Action action, action1,action2;
 
 	@Before

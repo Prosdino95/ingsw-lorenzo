@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.*;
+import gamemodel.actionSpace.*;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;

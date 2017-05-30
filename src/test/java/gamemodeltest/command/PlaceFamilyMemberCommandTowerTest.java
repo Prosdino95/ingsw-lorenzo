@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.RealTowerActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.RealCard;
 import gamemodel.command.GameError;

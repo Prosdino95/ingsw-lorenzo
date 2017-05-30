@@ -1,11 +1,10 @@
 package gamemodel.command;
 
 import gamemodel.*;
-
-import gamemodel.ActionSpace.ActionSpace;
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.MemoryActionSpace;
-import gamemodel.ActionSpace.TowerActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {

@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.TowerActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
@@ -23,7 +23,7 @@ public class RealPlayer implements Player {
 	private List<Card> territories=new ArrayList<>();	
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
-	private List<PEffect> permanentEffects=new ArrayList<>();
+	private List<PermanentEffect> permanentEffects=new ArrayList<>();
 	private Action currentAction = new Action();
 	
 	public RealPlayer(Resource resource, Board board,Team team) {
@@ -163,13 +163,13 @@ public class RealPlayer implements Player {
 	public void giveCard(Card card) {
 		card.activeIstantEffect(this);
 		for(Effect e:card.getPermanentEffects())
-			if(e instanceof PEffect)				
-				this.permanentEffects.add((PEffect) e);
+			if(e instanceof PermanentEffect)				
+				this.permanentEffects.add((PermanentEffect) e);
 		
 	}
 
-	public PEffect getPermanentEffect(String tag) {
-		for(PEffect e:this.permanentEffects)
+	public PermanentEffect getPermanentEffect(String tag) {
+		for(PermanentEffect e:this.permanentEffects)
 			if(e.tag.equals(tag))
 				return e;
 		return null;		
@@ -183,7 +183,7 @@ public class RealPlayer implements Player {
 	
 		//TODO enum....
 //		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
-		for (PEffect e : permanentEffects) {
+		for (PermanentEffect e : permanentEffects) {
 			if (e.tag.equals("MOD_FORZA")) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
@@ -216,7 +216,7 @@ public class RealPlayer implements Player {
 	public boolean controlResourceAndPay(Card card)
 	{
 		Resource discount=new Resource(0,0,0,0);
-		for (PEffect e : permanentEffects) 
+		for (PermanentEffect e : permanentEffects) 
 			if (e.tag.equals("Discount")) 
 			{
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;

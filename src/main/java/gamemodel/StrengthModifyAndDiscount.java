@@ -1,8 +1,8 @@
 package gamemodel;
 
-import gamemodel.ActionSpace.ActionSpaceType;
+import gamemodel.actionSpace.ActionSpaceType;
 
-public class StrengthModifyAndDiscount extends PEffect {
+public class StrengthModifyAndDiscount extends PermanentEffect {
 	
 	private int modForza;
 	private ActionSpaceType atype;
