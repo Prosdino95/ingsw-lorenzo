@@ -107,48 +107,17 @@ public class ResourceForResource implements Effect
 		this.pointsIn=null;
 	}
 	
-	private int count(int cardNumber,int forEach)
+	private int count(Point points,int forEach)
 	{
-		int c;
-		int howManyTimes=0;
-		for(c=1;c<=cardNumber;c++)
-		{
-			if(c%forEach==0)
-				howManyTimes++;
-		}
-		return howManyTimes;
+			if(this.pointsIn.getFaith()!=0)
+				return points.getFaith()/forEach;
+			if(this.pointsIn.getMilitary()!=0)
+				return points.getMilitary()/forEach;
+			if(this.pointsIn.getVictory()!=0)
+				return points.getVictory()/forEach;
+			return 0;
 	}
-	private int foo(Point points,int forEach)
-	{
-		int c;
-		int howManyTimes=0;
-		if(points.getFaith()!=0)
-		{
-			for(c=1;c<=points.getFaith();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		if(points.getMilitary()!=0)
-		{
-			for(c=1;c<=points.getMilitary();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		if(points.getVictory()!=0)
-		{
-			for(c=1;c<=points.getVictory();c++)
-			{
-				if(c%forEach==0)
-					howManyTimes++;
-			}
-		}
-		return howManyTimes;
-	}
-	private int foo(Resource resources,int forEach)
+	private int count(Resource resources,int forEach)
 	{
 		int c;
 		int howManyTimes=0;
@@ -192,40 +161,36 @@ public class ResourceForResource implements Effect
 	{
 		if(cardType!=null)
 		{
-			int howManyTimes;
-			howManyTimes=count(player.contCard(cardType),forEach);
 			int c;
 			if(pointsOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;c<player.contCard(cardType)/forEach;c++)
 					player.addPoint(pointsOut);
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;;c++)
 					player.addResources(resourcesOut);
 			}
 		}
 		if(pointsIn!=null)
 		{
-			int howManyTimes;
-			howManyTimes=foo(pointsIn,forEach);
 			int c;
 			if(pointsOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;c<count(player.getPoint(),forEach);c++)
 					player.addPoint(pointsOut);
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;c<howManyTimes;c++)
+				for(c=0;c<count(player.getResource(),forEach);c++)
 					player.addResources(resourcesOut);
 			}
 		}
 		if(resourcesIn!=null)
 		{
 			int howManyTimes;
-			howManyTimes=foo(resourcesIn,forEach);
+			howManyTimes=count(player.getResource(),forEach);
 			int c;
 			if(pointsOut!=null)
 			{

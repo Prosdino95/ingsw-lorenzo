@@ -25,6 +25,7 @@ public class RealPlayer implements Player {
 		this.team=team;
 		this.resource = resource;
 		this.board = board;
+		this.point=new Point(0,7,0);  //TODO risettare a (0,0,0)
 		generateFamilyMember();
 	}
 
@@ -98,13 +99,13 @@ public class RealPlayer implements Player {
 
 	@Override
 	public void subPoint(Point point) {
-		point.addPoint(point);
+		this.point.subPoint(point);
 		
 	}
 
 	@Override
 	public void addPoint(Point point) {
-		point.subPoint(point);
+		this.point.addPoint(point);
 		
 	}
 	

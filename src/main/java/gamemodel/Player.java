@@ -11,6 +11,7 @@ public interface Player {
 	void vaticanReport();
 
 	public Resource getResource();
+	public Point getPoint();
 	public Team getTeam();
 	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException;
 	public void setFamilyMember(Color color,int actionPoint);
