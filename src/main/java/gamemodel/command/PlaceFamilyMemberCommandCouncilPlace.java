@@ -6,16 +6,22 @@ import gamemodel.actionSpace.*;
 public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	private FamilyMember f;
 	private int servant;
-	private ActionSpace a;
+	private MemoryActionSpace h;
 	
 	public PlaceFamilyMemberCommandCouncilPlace(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpace(id);
+		this.h=(MemoryActionSpace) board.getActionSpace(id);
+	}
+	
+	public PlaceFamilyMemberCommandCouncilPlace(Action action) {
+		this.f = action.getFm();
+		this.servant = action.getServants();
+		this.h = (MemoryActionSpace) action.getActionSpace();
 	}
 	
 	private boolean IsEnoughtStrong(){
-		return(f.getActionpoint()+servant>=a.getActionCost());
+		return(f.getActionpoint()+servant>=h.getActionCost());
 	}
 
 	private boolean controlServant() throws GameException{
@@ -29,12 +35,11 @@ public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 
 	@Override
 	public void isLegal() throws GameException {
-			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
 				if(h.getPlayers().size()<4)
 					if(IsEnoughtStrong())
 						if(controlServant()){
-								f.use();
+								f.getPlayer().getFamilyMember(f.getColor()).use();
 								h.activateEffect(f);
 								h.addPlayer(f);
 							}

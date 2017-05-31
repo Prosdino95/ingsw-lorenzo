@@ -11,6 +11,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 	private FamilyMember f;
 	private int servant;
 	private MemoryActionSpace h;
+	private Action action;
 	
 	public PlaceFamilyMemberCommandHAndP(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
@@ -22,6 +23,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 		this.f = action.getFm();
 		this.servant = action.getServants();
 		this.h = (MemoryActionSpace) action.getActionSpace();
+		this.action=action;
 	}
 	
 	private boolean IsEnoughtStrong(){
@@ -43,14 +45,14 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())
 						if(controlServant())
-							if(h.isFree()){
-								f.use();
+							if(h.isAccessible(action)){
+								f.getPlayer().getFamilyMember(f.getColor()).use();
 								cardEffect(h.getType());
 								h.occupy();
 								h.addPlayer(f);
 							}
 							else{
-								f.use();
+								f.getPlayer().getFamilyMember(f.getColor()).use();
 								f.setActionpoint(f.getActionpoint()-3);
 								cardEffect(h.getType());
 								h.addPlayer(f);

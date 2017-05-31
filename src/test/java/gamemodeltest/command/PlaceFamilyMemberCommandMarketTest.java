@@ -29,32 +29,28 @@ public class PlaceFamilyMemberCommandMarketTest {
 		b=new RealBoard();
 		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
 		a0=new RealActionSpace(5, e, ActionSpaceType.MARKET);
-		id0=a0.getId();
 		a1=new RealActionSpace(0, e, ActionSpaceType.MARKET);
-		id1=a1.getId();
 		p1.setFamilyMember(Color.BLACK, 1);
 		p1.setFamilyMember(Color.WHITE, 7);
-		b.addActionSpace(a0);	
-		b.addActionSpace(a1);
 	}
 		
 	@Test
 	public void testZeroServantsFail() {
-		try{p1.placeFamilyMember(id0, Color.BLACK, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.FM_ERR_PA,s);		
 	}
 		
 	@Test
 	public void testSomeServants(){
-		try{p1.placeFamilyMember(id0, Color.BLACK, 5);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
 		assertEquals(new Resource(5,5,5,0),p1.getResource());
 	}
 	@Test 
 	public void testTooMatchServant(){
-		try{p1.placeFamilyMember(id0, Color.BLACK, 7);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),7));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.RESOURCE_ERR_SERVANTS,s);
 		assertEquals(new Resource(5,5,5,5),p1.getResource());
@@ -62,16 +58,16 @@ public class PlaceFamilyMemberCommandMarketTest {
 	
 	@Test
 	public void testDoublePlaceSamePost(){
-		try{p1.placeFamilyMember(id1, Color.BLACK, 0);
-			p1.placeFamilyMember(id1, Color.WHITE, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),5));
+			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR,s);
 	}
 	
 	@Test
 	public void testDoubleUseFamiliare(){
-		try{p1.placeFamilyMember(id0, Color.WHITE, 5);
-			p1.placeFamilyMember(id1, Color.WHITE, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));
+			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		
 	}

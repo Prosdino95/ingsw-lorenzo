@@ -10,6 +10,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 	private FamilyMember f;
 	private int servant;
 	private TowerActionSpace t;
+	private Action action;
 	
 	public PlaceFamilyMemberCommandTower(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
@@ -21,6 +22,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 		this.f = action.getFm();
 		this.servant = action.getServants();
 		this.t = (TowerActionSpace) action.getActionSpace();
+		this.action=action;
 	}
 
 	private boolean IsEnoughtStrong(){
@@ -39,7 +41,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 	@Override
 	public void isLegal() throws GameException {
 		if(!f.isUsed())
-			if(t.isFree())
+			if(t.isAccessible(action))
 				if(t.getTower().controlPlayer(f))				
 					if(t.getTower().isFree())
 						if(IsEnoughtStrong())
