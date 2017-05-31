@@ -29,13 +29,14 @@ import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
+import gamemodel.permanenteffect.NoActionSpace;
 import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 public class CommandPeffectTest {
 	 RealPlayer p;
 	 GameError s;
-	 PermanentEffect e,e1,e2;
+	 PermanentEffect e,e1,e2,e3;
 	 Action action, action1,action2;
 
 	@Before
@@ -43,11 +44,13 @@ public class CommandPeffectTest {
 		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDINGS);
 		e1=new StrengthModifyAndDiscount(3, ActionSpaceType.HARVEST, null);
 		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDINGS);
+		e3=new NoActionSpace("NO_ACTION_SPACE",ActionSpaceType.MARKET);
 		List<Effect> le=new ArrayList<>();
 		List<Effect> le2=new ArrayList<>();
 		le.add(e);
 		le.add(e1);
 		le2.add(e2);
+		le2.add(e3);
 		Card c=new RealCard(null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<Effect>(), le,CardType.BUILDINGS, null);
 		Card c1=new RealCard(null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<Effect>(), le,CardType.BUILDINGS, null);
 		Card c2=new RealCard(null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<Effect>(), le2,CardType.BUILDINGS, null);
@@ -113,6 +116,13 @@ public class CommandPeffectTest {
 		assertEquals(new Resource(0,1,1,5),p.getResource());
 	}
 	
+	@Test
+	public void test4()
+	{
+		try{p.placeFamilyMember(new Action(p,new RealActionSpace(0,e,ActionSpaceType.MARKET),p.getFamilyMember(Color.ORANGE),0));}
+		catch(GameException e){s=e.getType();}
+		assertEquals(GameError.SA_ERR,s);
+	}
 	
 	
 	

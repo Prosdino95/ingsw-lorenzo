@@ -10,6 +10,7 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
+import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
@@ -56,9 +57,20 @@ public class RealPlayer implements Player {
 	 } 
 	
 	 @Override
-	public void addResources(Resource r){ 
-		this.resource.addResources(r); 
-		  } 
+	public void addResources(Resource r)
+	 { 
+		 if(!(r.isEnought(new Resource(0,0,0,0))))
+		 {
+			 int a=2;
+			 a=a/0;
+		 }
+		 
+		 this.resource.addResources(r);
+		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
+		 {
+			this.subResources(((Debuff)permanentEffect).getResources());
+		 }	 	 		 
+	 } 
 	
 	@Override
 	public boolean isEnoughtResource(Resource r){ 
@@ -115,6 +127,10 @@ public class RealPlayer implements Player {
 	@Override
 	public void addPoint(Point point) {
 		this.point.addPoint(point);
+		for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_POINT"))
+		{
+			this.subPoint(((Debuff)permanentEffect).getPoints());
+		}
 		
 	}
 	
@@ -180,6 +196,11 @@ public class RealPlayer implements Player {
 	private void increasePower()
 	{
 		FamilyMember fm = currentAction.getFm().clone();
+		for (PermanentEffect e : permanentEffects) 
+		{
+			if (e.hasTag("HALVE_SERVANTS"))
+				fm.setActionpoint(fm.getActionpoint() + currentAction.getServants()/2);
+		}
 		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
 		currentAction.setFm(fm);
 	
@@ -207,7 +228,18 @@ public class RealPlayer implements Player {
 		}
 	}
 	
-
+	public List<PermanentEffect> getPEffects(String tag)
+	{
+		List<PermanentEffect> temp=new ArrayList<>();
+		for(PermanentEffect pEffect:this.permanentEffects)
+			if(pEffect.hasTag(tag))
+				temp.add(pEffect);
+		return temp;
+	}
+	
+	
+	
+	
 	@Override
 	public boolean controlResourceAndPay(Card card)
 	{

@@ -16,7 +16,7 @@ public class PlaceFMCommandFactory {
 			case TOWER:				
 				return new PlaceFamilyMemberCommandTower(action);
 			case MARKET:
-//				return new PlaceFamilyMemberCommandMarket(action);
+				return new PlaceFamilyMemberCommandMarket(action);
 			case HARVEST:
 				return new PlaceFamilyMemberCommandHAndP(action);
 			case PRODUCTION:

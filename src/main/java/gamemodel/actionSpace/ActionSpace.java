@@ -1,5 +1,6 @@
 package gamemodel.actionSpace;
 
+import gamemodel.Action;
 import gamemodel.FamilyMember;
 
 public interface ActionSpace {
@@ -19,4 +20,6 @@ public interface ActionSpace {
 	ActionSpaceType getType();
 
 	void rollbackEffect(FamilyMember f);
+	
+	public boolean isAccessible(Action a);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
+import gamemodel.permanenteffect.PermanentEffect;
 
 public interface Player {
 
@@ -27,4 +28,5 @@ public interface Player {
 	int contCard(CardType type);
 	public boolean controlResourceAndPay(Card card);
 	void placeFamilyMember(Action action) throws GameException;
+	public List<PermanentEffect> getPEffects(String tag);
 }

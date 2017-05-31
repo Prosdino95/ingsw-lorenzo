@@ -57,4 +57,11 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		f.getPlayer().giveCard(this.card);
 		
 	}
+	
+	@Override
+	public void activateEffect(FamilyMember f) 
+	{
+		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
+			super.activateEffect(f);
+	}
 }
