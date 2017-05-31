@@ -10,6 +10,8 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
+import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
 public class RealPlayer implements Player {
@@ -170,7 +172,7 @@ public class RealPlayer implements Player {
 
 	public PermanentEffect getPermanentEffect(String tag) {
 		for(PermanentEffect e:this.permanentEffects)
-			if(e.tag.equals(tag))
+			if(e.hasTag(tag))
 				return e;
 		return null;		
 	}
@@ -184,7 +186,7 @@ public class RealPlayer implements Player {
 		//TODO enum....
 //		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
 		for (PermanentEffect e : permanentEffects) {
-			if (e.tag.equals("MOD_FORZA")) {
+			if (e.hasTag("MOD_FORZA")) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
 						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {
@@ -205,19 +207,13 @@ public class RealPlayer implements Player {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public boolean controlResourceAndPay(Card card)
 	{
 		Resource discount=new Resource(0,0,0,0);
 		for (PermanentEffect e : permanentEffects) 
-			if (e.tag.equals("Discount")) 
+			if (e.hasTag("Discount")) 
 			{
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 

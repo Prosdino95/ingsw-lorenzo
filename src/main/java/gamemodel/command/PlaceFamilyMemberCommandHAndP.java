@@ -45,14 +45,13 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 						if(controlServant())
 							if(h.isFree()){
 								f.use();
-								f.setActionpoint(f.getActionpoint()+servant);
 								cardEffect(h.getType());
 								h.occupy();
 								h.addPlayer(f);
 							}
 							else{
 								f.use();
-								f.setActionpoint(f.getActionpoint()+servant-3);
+								f.setActionpoint(f.getActionpoint()-3);
 								cardEffect(h.getType());
 								h.addPlayer(f);
 							}

@@ -13,8 +13,6 @@ import gamemodel.Action;
 import gamemodel.Board;
 import gamemodel.CardType;
 import gamemodel.Color;
-import gamemodel.StrengthModifyAndDiscount;
-import gamemodel.PermanentEffect;
 import gamemodel.Player;
 import gamemodel.RealBoard;
 import gamemodel.RealPlayer;
@@ -31,6 +29,8 @@ import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
+import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 public class CommandPeffectTest {
 	 RealPlayer p;

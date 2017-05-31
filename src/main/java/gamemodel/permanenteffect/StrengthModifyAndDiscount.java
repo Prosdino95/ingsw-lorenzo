@@ -1,5 +1,8 @@
-package gamemodel;
+package gamemodel.permanenteffect;
 
+import gamemodel.CardType;
+import gamemodel.Player;
+import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 
 public class StrengthModifyAndDiscount extends PermanentEffect {
