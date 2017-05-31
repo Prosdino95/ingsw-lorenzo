@@ -137,19 +137,20 @@ public class RealPlayer implements Player {
 	public Point getPoint() {
 		return point;
 	}
-
+	
+	@Override
 	public List<Card> getBuildings() {
 		return buildings;
 	}
-
+	@Override
 	public List<Card> getTerritories() {
 		return territories;
 	}
-
+	@Override
 	public List<Card> getVentures() {
 		return ventures;
 	}
-
+	@Override
 	public List<Card> getCharacters() {
 		return characters;
 	}

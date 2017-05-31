@@ -2,6 +2,7 @@ package gamemodel;
 
 import java.util.List;
 
+import gamemodel.card.Card;
 import gamemodel.command.GameException;
 
 public interface Player {
@@ -25,4 +26,8 @@ public interface Player {
 	boolean isEnoughtPoint(Point p);
 	boolean isEnoughtResource(Resource r);
 	int contCard(CardType type);
+	public List<Card> getBuildings();
+	public List<Card> getTerritories();
+	public List<Card> getVentures();
+	public List<Card> getCharacters();
 }

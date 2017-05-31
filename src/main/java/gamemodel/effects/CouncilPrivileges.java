@@ -31,7 +31,7 @@ public class CouncilPrivileges implements Effect
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
-			int selection=0;
+			int selection=3;
 			switch (selection)
 			{
 				case 0: player.addResources((Resource) this.choice.get(0));
