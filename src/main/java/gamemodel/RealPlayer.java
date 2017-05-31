@@ -85,8 +85,7 @@ public class RealPlayer implements Player {
 	public void placeFamilyMember(Action action) throws GameException {
 		currentAction = action;
 		increasePower();
-		command=PlaceFMCommandFactory.getSingleton().
-				placeFMCommandFactory(action);
+		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(action);
 		command.isLegal();
 	}
 	
