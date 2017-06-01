@@ -5,8 +5,8 @@ public class UINodeChooseUI extends UINode {
 
 	int choose;
 
-	public UINodeChooseUI(String desc) {
-		super(desc);
+	public UINodeChooseUI(String desc, UITree tree) {
+		super(desc, tree);
 	}
 
 	@Override

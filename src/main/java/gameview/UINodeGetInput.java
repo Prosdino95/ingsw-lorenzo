@@ -7,11 +7,11 @@ public class UINodeGetInput extends UINode {
 	Consumer<String> set;
 	String choose;
 
-	public UINodeGetInput(String desc,Consumer<String> set) {
-		super(desc);
+	public UINodeGetInput(String desc,Consumer<String> set, UITree tree) {
+		super(desc, tree);
 		this.set=set;
 	}
-
+	
 	@Override
 	public void run() {
 		System.out.println(intro);
@@ -22,6 +22,7 @@ public class UINodeGetInput extends UINode {
 			System.out.println("QUANTI => Mi serve un numero");
 			run();
 		}
+		super.run();
 	}
 
 }

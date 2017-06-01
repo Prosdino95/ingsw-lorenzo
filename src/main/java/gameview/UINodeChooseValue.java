@@ -8,8 +8,8 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 	Consumer<E> setter;
 	Supplier<List<E>> getterList;
 
-	public UINodeChooseValue (String desc,Consumer<E> set,Supplier<List<E>> getterList) {
-		super(desc);
+	public UINodeChooseValue (String desc,Consumer<E> set,Supplier<List<E>> getterList, UITree tree) {
+		super(desc, tree);
 		this.setter=set;
 		this.getterList=getterList;
 	}
@@ -32,12 +32,10 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 		try {
 			E choose = getterList.get().get(CLIView.getInt());
 			setter.accept(choose);			
-			if(!descendants.isEmpty())
-			this.nextNode=descendants.get(0);
-			}		
-		catch(IndexOutOfBoundsException e){
+			super.run();
+		} catch(IndexOutOfBoundsException e) {
 			System.out.println("Invalin choise");
 			run();
-			}
+		}
 	}
 }

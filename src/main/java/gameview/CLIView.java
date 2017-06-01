@@ -40,6 +40,7 @@ public class CLIView {
 		}
 		return getString();
 	}
+	
 
 }
 

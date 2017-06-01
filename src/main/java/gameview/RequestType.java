@@ -1,7 +1,8 @@
 package gameview;
 
-public enum ResponseType{
+public enum RequestType{
 	CHAT,
 	PLACEFAMILYMEMBER,
+	ANSWER,
 	LEADERCARD;
 }

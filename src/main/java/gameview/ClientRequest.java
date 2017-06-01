@@ -3,14 +3,14 @@ package gameview;
 import gamemodel.ActionSpace.*;
 import gamemodel.*;
 
-public class ClientResponse {	
-	private ResponseType type;
+public class ClientRequest {	
+	private RequestType type;
 	private ActionSpace where;
 	private int servants;
 	private FamilyMember which;
+	private String answer;
 	
-	
-	public void setType(ResponseType type) {
+	public void setType(RequestType type) {
 		this.type = type;
 	}
 	
@@ -18,7 +18,7 @@ public class ClientResponse {
 		this.servants= Integer.parseInt(servants);
 	}
 		
-	public ResponseType getType() {
+	public RequestType getType() {
 		return type;
 	}
 	
@@ -33,10 +33,18 @@ public class ClientResponse {
 
 	@Override
 	public String toString() {
-		return "ClientResponse [type=" + type + ", where=" + where + ", servants=" + servants + ", which=" + which
-				+ "]";
+		return "ClientRequest [type=" + type + ", where=" + where + ", servants=" + servants + ", which=" + which
+				+ ", answer=" + answer + "]";
 	}
 
 	public void cleanUp() {
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public String getAnswer() {
+		return answer;
 	}
 }
