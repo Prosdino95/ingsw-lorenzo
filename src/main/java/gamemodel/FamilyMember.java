@@ -1,6 +1,12 @@
 package gamemodel;
 
 public class FamilyMember {
+	@Override
+	public String toString() {
+		return "FamilyMember [player=" + player + ", actionPoint=" + actionPoint + ", color=" + color + ", used=" + used
+				+ "]";
+	}
+
 	private RealPlayer player;
 	private int actionPoint=0;
 	private Color color;

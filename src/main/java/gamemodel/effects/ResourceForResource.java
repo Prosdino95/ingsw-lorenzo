@@ -131,6 +131,12 @@ public class ResourceForResource implements Effect
 	}
 	
 	@Override
+	public String toString() {
+		return "ResourceForResource [cardType=" + cardType + ", resourcesIn=" + resourcesIn + ", pointsIn=" + pointsIn
+				+ ", resourcesOut=" + resourcesOut + ", pointsOut=" + pointsOut + ", forEach=" + forEach + "]";
+	}
+
+	@Override
 	public void activate(Player player)
 	{
 		if(cardType!=null)

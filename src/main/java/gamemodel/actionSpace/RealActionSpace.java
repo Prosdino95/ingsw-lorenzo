@@ -94,23 +94,29 @@ public class RealActionSpace implements ActionSpace {
 		return type;
 	}
 
-
+	@Override
 	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += this.getType();
-		str+=" ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects();
-		str+=", ";
-		if(this.free)
-			str+="free";
-		else
-			str+="occupy";
-		str+="\n";
-		return str;
+		return "RealActionSpace [id=" + id + ", free=" + free + ", actionCost=" + actionCost + ", type=" + type
+				+ ", getEffects()=" + getEffects() + "]";
 	}
+
+
+//	public String toString() {
+//		String str = "";
+//		str += this.getId();
+//		str += "-> ";
+//		str += this.getType();
+//		str+=" ";
+//		if(this.getEffects()!=null)
+//			str +=this.getEffects();
+//		str+=", ";
+//		if(this.free)
+//			str+="free";
+//		else
+//			str+="occupy";
+//		str+="\n";
+//		return str;
+//	}
 	
 	
 }
