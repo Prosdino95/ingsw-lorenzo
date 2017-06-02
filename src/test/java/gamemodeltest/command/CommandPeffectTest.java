@@ -40,7 +40,7 @@ public class CommandPeffectTest {
 	 Action action, action1,action2;
 
 	@Before
-	public void setUpBeforeClass(){
+	public void setUpBeforeClass() throws GameException{
 		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDINGS);
 		e1=new StrengthModifyAndDiscount(3, ActionSpaceType.HARVEST, null);
 		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDINGS);

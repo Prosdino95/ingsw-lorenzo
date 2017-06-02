@@ -12,6 +12,7 @@ import gamemodel.RealBoard;
 import gamemodel.RealPlayer;
 import gamemodel.Resource;
 import gamemodel.Team;
+import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.Effect;
 import gamemodel.effects.Exchange;
@@ -40,14 +41,14 @@ public class ExchangeTest
 	}
 
 	@Test
-	public void testActivateRR() 
+	public void testActivateRR() throws GameException 
 	{
 		Exchange effect=new Exchange(null,null,new Resource(5,0,0,0),new Resource(0,0,2,0),null);
 		effect.activate(p1);
 		assertEquals(new Resource(10,5,3,5),p1.getResource());
 	}
 	@Test
-	public void testActivateRP() 
+	public void testActivateRP() throws GameException 
 	{
 		Exchange effect=new Exchange(new Point(1,0,0),null,null,new Resource(1,0,0,0),null);
 		effect.activate(p2);
@@ -55,7 +56,7 @@ public class ExchangeTest
 		assertEquals(new Point(1,0,0),p2.getPoint());
 	}
 	@Test
-	public void testActivateRC() 
+	public void testActivateRC() throws GameException 
 	{
 		Exchange effect=new Exchange(null,null,null,new Resource(1,0,0,0),councilPrivileges);
 		effect.activate(p3);
@@ -63,11 +64,11 @@ public class ExchangeTest
 		assertEquals(new Point(2,0,0),p3.getPoint());
 	}
 	@Test
-	public void testActivatePRP() 
+	public void testActivatePRP() throws GameException 
 	{
-		Exchange effect=new Exchange(new Point(0,0,2),new Point(1,0,0),new Resource(2,0,0,0),null,null);
+		Exchange effect=new Exchange(new Point(0,0,2),new Point(0,0,0),new Resource(2,0,0,0),null,null);
 		effect.activate(p4);
-		assertEquals(new Resource(7,5,5,5),p4.getResource());//TODO problema se non si hanno le risorse per pagare
-		assertEquals(new Point(-1,0,2),p4.getPoint());
+		assertEquals(new Resource(7,5,5,5),p4.getResource());
+		assertEquals(new Point(0,0,2),p4.getPoint());
 	}
 }

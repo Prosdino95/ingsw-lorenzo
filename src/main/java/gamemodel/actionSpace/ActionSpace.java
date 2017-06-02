@@ -2,6 +2,7 @@ package gamemodel.actionSpace;
 
 import gamemodel.Action;
 import gamemodel.FamilyMember;
+import gamemodel.command.GameException;
 
 public interface ActionSpace {
 
@@ -13,7 +14,7 @@ public interface ActionSpace {
 
 	void occupy();
 
-	void activateEffect(FamilyMember f);
+	void activateEffect(FamilyMember f) throws GameException;
 
 	void setType(ActionSpaceType type);
 	

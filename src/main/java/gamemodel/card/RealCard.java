@@ -9,6 +9,7 @@ import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
 public class RealCard implements Card {
@@ -120,14 +121,14 @@ public class RealCard implements Card {
 
 
 	@Override
-	public void activeIstantEffect(Player p) {
+	public void activeIstantEffect(Player p) throws GameException {
 		for(Effect e:this.istantEffect)
 			e.activate(p);		
 	}
 
 
 	@Override
-	public void activePermanentEffect(Player p) {
+	public void activePermanentEffect(Player p) throws GameException {
 		for(Effect e:this.permanentEffect)
 			e.activate(p);	
 		

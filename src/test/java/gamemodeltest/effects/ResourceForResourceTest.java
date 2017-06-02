@@ -13,6 +13,7 @@ import gamemodel.RealBoard;
 import gamemodel.RealPlayer;
 import gamemodel.Resource;
 import gamemodel.Team;
+import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 import gamemodel.effects.ResourceForResource;
 
@@ -39,7 +40,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivatePperP() 
+	public void testActivatePperP() throws GameException 
 	{
 		p1.addPoint(new Point(0,7,0));
 		Effect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),null,new Point(0,0,5),2);
@@ -48,7 +49,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivateRperR()
+	public void testActivateRperR() throws GameException
 	{
 		Effect effect=ResourceForResource.constructor("Resource",new Resource(0,0,1,0),null,new Resource(0,5,0,0),null,3);
 		effect.activate(p2);
@@ -56,7 +57,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivatePperR() 
+	public void testActivatePperR() throws GameException 
 	{
 		p3.addPoint(new Point(0,10,0));
 		Effect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),new Resource(0,40,3,0),null,3);
@@ -65,7 +66,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivateRperP() 
+	public void testActivateRperP() throws GameException 
 	{
 		Effect effect=ResourceForResource.constructor("Resource",new Resource(1,0,0,0),null,null,new Point(10,3,4),5);
 		effect.activate(p4);
@@ -73,7 +74,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivateCperP()
+	public void testActivateCperP() throws GameException
 	{
 		for(int c=0;c<372;c++)
 			p5.getTerritories().add(null);
@@ -83,7 +84,7 @@ public class ResourceForResourceTest
 	}
 	
 	@Test
-	public void testActivateCperR()
+	public void testActivateCperR() throws GameException
 	{
 		for(int c=0;c<19;c++)
 			p6.getVentures().add(null);

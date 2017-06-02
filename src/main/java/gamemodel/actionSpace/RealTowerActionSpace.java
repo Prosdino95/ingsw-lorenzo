@@ -5,6 +5,7 @@ import java.util.List;
 import gamemodel.FamilyMember;
 import gamemodel.Tower;
 import gamemodel.card.Card;
+import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
@@ -53,13 +54,13 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	}
 
 	@Override
-	public void giveCard(FamilyMember f) {
+	public void giveCard(FamilyMember f) throws GameException {
 		f.getPlayer().giveCard(this.card);
 		
 	}
 	
 	@Override
-	public void activateEffect(FamilyMember f) 
+	public void activateEffect(FamilyMember f) throws GameException 
 	{
 		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
 			super.activateEffect(f);

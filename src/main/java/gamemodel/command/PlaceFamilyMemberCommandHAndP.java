@@ -63,7 +63,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 			else throw new GameException(GameError.FM_ERR_USE);
 		}
 
-	private void cardEffect(ActionSpaceType type) {
+	private void cardEffect(ActionSpaceType type) throws GameException {
 		
 		if(type==ActionSpaceType.HARVEST){			
 			for(int i=0;i<f.getPlayer().getTerritories().size();i++){

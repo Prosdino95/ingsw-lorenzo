@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Dice 
 {
-	private Map<Color,Integer>dice= new HashMap<>(3);
+	private Map<Color,Integer>dice= new HashMap<>();
 	
 	public Dice(){
 		dice.put(Color.BLACK, 0);
@@ -19,8 +19,9 @@ public class Dice
 	
 	public void setFMActionPoints(Map<Color,FamilyMember> familyMembers){
 		for (Map.Entry<Color, FamilyMember> entry : familyMembers.entrySet())
-		{			
-			entry.getValue().setActionpoint(dice.get(entry.getKey()));
+		{	
+			if(entry.getKey()!=Color.UNCOLORED)
+				entry.getValue().setActionpoint(dice.get(entry.getKey()));
 			
 		}
 	}

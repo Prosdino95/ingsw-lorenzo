@@ -4,6 +4,7 @@ import java.util.*;
 
 import gamemodel.Action;
 import gamemodel.FamilyMember;
+import gamemodel.command.GameException;
 import gamemodel.effects.*;
 import gamemodel.permanenteffect.*;
 
@@ -47,7 +48,7 @@ public class RealActionSpace implements ActionSpace {
 	}
 
 	@Override
-	public void activateEffect(FamilyMember f){
+	public void activateEffect(FamilyMember f) throws GameException{
 		for(Effect e:effects)
 			e.activate(f.getPlayer());
 	}

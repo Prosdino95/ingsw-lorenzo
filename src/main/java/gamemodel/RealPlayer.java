@@ -61,11 +61,13 @@ public class RealPlayer implements Player {
 	 @Override
 	public void addResources(Resource r)
 	 { 
-		 if(!(r.isEnought(new Resource(0,0,0,0))))
-		 {
-			 int a=2;
-			 a=a/0;
-		 }
+		if(r==null)
+			return; 
+		if(!(r.isEnought(new Resource(0,0,0,0))))
+		{
+			int a=2;
+			a=a/0;
+		}
 		 
 		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
 		 {
@@ -185,7 +187,7 @@ public class RealPlayer implements Player {
 		return characters;
 	}
 
-	public void giveCard(Card card) {
+	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
 		for(Effect e:card.getPermanentEffects())
 			if(e instanceof PermanentEffect)				

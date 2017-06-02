@@ -7,6 +7,7 @@ import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
 public interface Card {
@@ -18,8 +19,8 @@ public interface Card {
 	public CardType getType();
 	public int getId(); 
 	public Map<CardType, Integer> getRequirementCard(); 
-	public void activeIstantEffect(Player p);
-	public void activePermanentEffect(Player p);
+	public void activeIstantEffect(Player p) throws GameException;
+	public void activePermanentEffect(Player p) throws GameException;
 	public Collection<? extends Effect> getPermanentEffects();
 	void pay(Player p, Resource discount);
 
