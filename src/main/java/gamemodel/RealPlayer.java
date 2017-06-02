@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import gamemodel.card.Card;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
 import gamemodel.permanenteffect.Debuff;
-import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
@@ -115,7 +116,10 @@ public class RealPlayer implements Player {
 
 	@Override
 	public void prepareForNewRound() {
-		// TODO Auto-generated method stub
+		board.getDice().setFMActionPoints(familyMembers);
+		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
+			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
+		}
 		
 	}
 

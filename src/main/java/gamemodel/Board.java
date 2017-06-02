@@ -13,5 +13,6 @@ public interface Board {
 	void addPlayer(Player player);
 	String toString();
 	List<ActionSpace> getActionSpaces();
+	Dice getDice();
 	
 }

@@ -28,7 +28,7 @@ public class RealBoard implements Board {
 	public RealBoard(List<Card> cards, List<ActionSpace> actionSpaces) {
 		this.players = new ArrayList<Player>();
 		this.actionSpaces = actionSpaces;
-		
+		this.dice=new Dice();
 		this.cards = cards;
 		this.venturesCards = new ArrayList<Card>();
 		this.buildingsCards = new ArrayList<Card>();
@@ -66,7 +66,7 @@ public class RealBoard implements Board {
 				((RealTowerActionSpace) as).attachDevelopmentCard(card);
 			}
 		}
-		
+		dice.rollDice();
 		for (Player p : players) {
 			p.prepareForNewRound();
 		}
@@ -135,9 +135,6 @@ public class RealBoard implements Board {
 		return dice;
 	}
 
-	private void setDice(Dice dice) {
-		this.dice = dice;
-	}
 
 	@Override
 	public List<ActionSpace> getActionSpaces() {
