@@ -3,6 +3,8 @@ package gamemodel.effects;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.command.GameError;
+import gamemodel.command.GameException;
 
 public class Exchange implements Effect 
 {
@@ -22,19 +24,20 @@ public class Exchange implements Effect
 	}
 	
 	@Override
-	public void activate(Player player)
+	public void activate(Player player) throws GameException
 	{
-		if(pointsIn!=null)
-			player.addPoint(pointsIn);
-		if(pointsOut!=null)
-			player.subPoint(pointsOut);
-		if(resourcesIn!=null)
-			player.addResources(resourcesIn);
-		if(resourcesOut!=null)
-			player.subResources(resourcesOut);
+		if(!player.isEnoughtPoint(this.pointsOut))
+			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+		if(!player.isEnoughtResource(this.resourcesOut))
+			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+		player.addPoint(pointsIn);
+		player.subPoint(pointsOut);
+		player.addResources(resourcesIn);
+		player.subResources(resourcesOut);
 		if(councilPrivilegesIn!=null)
 			councilPrivilegesIn.activate(player);
 	}		
+	
 	@Override
 	public String toString() {
 		String str ="\n"+ "Exchange: "+"\n";

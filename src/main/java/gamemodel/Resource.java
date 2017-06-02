@@ -14,12 +14,16 @@ public class Resource {
 	}
 	
 	public void addResources(Resource r){
+		if(r==null)
+			return;
 		this.gold+=r.gold;
 		this.stone+=r.stone;
 		this.wood+=r.wood;
 		this.servant+=r.servant;
 	}
 	public void subResources(Resource r){
+		if(r==null)
+			return;
 		this.gold-=r.gold;
 		this.stone-=r.stone;
 		this.wood-=r.wood;
@@ -27,10 +31,12 @@ public class Resource {
 	}
 	
 	public boolean isEnought(Resource r){
+		if(r!=null)
 		return(this.gold>=r.gold &&
 			this.stone>=r.stone &&
 			this.wood>=r.wood &&
 			this.servant>=r.servant);
+		return true;
 			
 	}
 	public int getGold() {
@@ -49,6 +55,17 @@ public class Resource {
 	public Resource minus(Resource resources)
 	{
 		return new Resource(this.gold-resources.gold,this.stone-resources.stone,this.wood-resources.wood,this.servant-resources.servant);
+	}
+	
+	public void normalize() {
+		if(this.gold<0)
+			this.gold=0;
+		if(this.stone<0)
+			this.stone=0;
+		if(this.wood<0)
+			this.wood=0;
+		if(this.servant<0)
+			this.servant=0;		
 	}
 	
 	@Override

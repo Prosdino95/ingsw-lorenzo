@@ -65,11 +65,13 @@ public class RealPlayer implements Player {
 			 a=a/0;
 		 }
 		 
-		 this.resource.addResources(r);
 		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
 		 {
-			this.subResources(((Debuff)permanentEffect).getResources());
-		 }	 	 		 
+			r.subResources(((Debuff)permanentEffect).getResources());
+			r.normalize();
+			
+		 }	
+		 this.resource.addResources(r);
 	 } 
 	
 	@Override

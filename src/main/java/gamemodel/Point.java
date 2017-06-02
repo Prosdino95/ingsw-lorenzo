@@ -29,6 +29,8 @@ public class Point
 	
 	public void addPoint(Point p)
 	{
+		if(p==null)
+			return;
 		this.military+=p.military;
 		this.faith+=p.faith;
 		this.victory+=p.victory;
@@ -36,6 +38,8 @@ public class Point
 	
 	public void subPoint(Point p)
 	{
+		if(p==null)
+			return;
 		this.military-=p.military;
 		this.faith-=p.faith;
 		this.victory-=p.victory;
@@ -43,9 +47,11 @@ public class Point
 
 	public boolean isEnought(Point p) 
 	{
+		if(p!=null)
 			return(this.military>=p.military &&
 				this.faith>=p.faith &&
 				this.victory>=p.victory);
+		return true;
 	}
 	
 	
