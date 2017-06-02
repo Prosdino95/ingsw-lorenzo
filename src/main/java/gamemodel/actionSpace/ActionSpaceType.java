@@ -1,6 +1,7 @@
-package gamemodel.ActionSpace;
+package gamemodel.actionSpace;
 
 public enum ActionSpaceType {
+	
 		TOWER,
 		MARKET,
 		HARVEST,

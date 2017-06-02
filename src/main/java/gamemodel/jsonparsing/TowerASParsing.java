@@ -8,7 +8,7 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.*;
+import gamemodel.actionSpace.*;
 import gamemodel.effects.*;
 
 public class TowerASParsing {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
+import gamemodel.permanenteffect.PermanentEffect;
 
 public interface Player {
 
@@ -14,7 +15,6 @@ public interface Player {
 	public Resource getResource();
 	public Point getPoint();
 	public Team getTeam();
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException;
 	public void setFamilyMember(Color color,int actionPoint);
 	public void subResources(Resource r);
 	public void addResources(Resource r);
@@ -30,4 +30,7 @@ public interface Player {
 	public List<Card> getTerritories();
 	public List<Card> getVentures();
 	public List<Card> getCharacters();
+	public boolean controlResourceAndPay(Card card);
+	void placeFamilyMember(Action action) throws GameException;
+	public List<PermanentEffect> getPEffects(String tag);
 }

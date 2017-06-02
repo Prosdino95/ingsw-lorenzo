@@ -1,25 +1,33 @@
 package gamemodel.command;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.ActionSpace;
-import gamemodel.ActionSpace.ActionSpaceType;
-import gamemodel.ActionSpace.MemoryActionSpace;
-import gamemodel.card.Card;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {
 	private FamilyMember f;
 	private int servant;
-	private ActionSpace a;
+	private MemoryActionSpace h;
+	private Action action;
 	
 	public PlaceFamilyMemberCommandHAndP(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpace(id);
+		// this.h=board.getActionSpace(id);
 	}
 
+	public PlaceFamilyMemberCommandHAndP(Action action) {
+		this.f = action.getFm();
+		this.servant = action.getServants();
+		this.h = (MemoryActionSpace) action.getActionSpace();
+		this.action=action;
+	}
+	
 	private boolean IsEnoughtStrong(){
-		return(f.getActionpoint()+servant>=a.getActionCost());
+		return(f.getActionpoint()>=h.getActionCost());
 	}
 
 	private boolean controlServant() throws GameException{
@@ -33,21 +41,19 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 
 	@Override
 	public void isLegal() throws GameException {
-			MemoryActionSpace h=(MemoryActionSpace)a;	
 			if(!f.isUsed())
 				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())
 						if(controlServant())
-							if(h.isFree()){
-								f.use();
-								f.setActionpoint(f.getActionpoint()+servant);
+							if(h.isAccessible(action)){
+								f.getPlayer().getFamilyMember(f.getColor()).use();
 								cardEffect(h.getType());
 								h.occupy();
 								h.addPlayer(f);
 							}
 							else{
-								f.use();
-								f.setActionpoint(f.getActionpoint()+servant-3);
+								f.getPlayer().getFamilyMember(f.getColor()).use();
+								f.setActionpoint(f.getActionpoint()-3);
 								cardEffect(h.getType());
 								h.addPlayer(f);
 							}

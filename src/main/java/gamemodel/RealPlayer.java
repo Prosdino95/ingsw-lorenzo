@@ -1,12 +1,19 @@
 package gamemodel;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.command.*;
+import gamemodel.effects.Effect;
+import gamemodel.permanenteffect.Debuff;
+import gamemodel.permanenteffect.*;
+import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
 public class RealPlayer implements Player {
@@ -20,6 +27,8 @@ public class RealPlayer implements Player {
 	private List<Card> territories=new ArrayList<>();	
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
+	private List<PermanentEffect> permanentEffects=new ArrayList<>();
+	private Action currentAction = new Action();
 	
 	public RealPlayer(Resource resource, Board board,Team team) 
 	{
@@ -50,9 +59,22 @@ public class RealPlayer implements Player {
 	 } 
 	
 	 @Override
-	public void addResources(Resource r){ 
-		this.resource.addResources(r); 
-		  } 
+	public void addResources(Resource r)
+	 { 
+		 if(!(r.isEnought(new Resource(0,0,0,0))))
+		 {
+			 int a=2;
+			 a=a/0;
+		 }
+		 
+		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
+		 {
+			r.subResources(((Debuff)permanentEffect).getResources());
+			r.normalize();
+			
+		 }	
+		 this.resource.addResources(r);
+	 } 
 	
 	@Override
 	public boolean isEnoughtResource(Resource r){ 
@@ -64,9 +86,10 @@ public class RealPlayer implements Player {
 		return familyMembers.get(c);
 	}
 	
-	public void placeFamilyMember(int idSpaceAction,Color c,int servant) throws GameException{
-		FamilyMember f= familyMembers.get(c);		
-		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(board,idSpaceAction,f,servant);
+	public void placeFamilyMember(Action action) throws GameException {
+		currentAction = action;
+		increasePower();
+		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(action);
 		command.isLegal();
 	}
 	
@@ -94,7 +117,10 @@ public class RealPlayer implements Player {
 
 	@Override
 	public void prepareForNewRound() {
-		// TODO Auto-generated method stub
+		board.getDice().setFMActionPoints(familyMembers);
+		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
+			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
+		}
 		
 	}
 
@@ -107,6 +133,10 @@ public class RealPlayer implements Player {
 	@Override
 	public void addPoint(Point point) {
 		this.point.addPoint(point);
+		for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_POINT"))
+		{
+			this.subPoint(((Debuff)permanentEffect).getPoints());
+		}
 		
 	}
 	
@@ -154,5 +184,96 @@ public class RealPlayer implements Player {
 	public List<Card> getCharacters() {
 		return characters;
 	}
+
+	public void giveCard(Card card) {
+		card.activeIstantEffect(this);
+		for(Effect e:card.getPermanentEffects())
+			if(e instanceof PermanentEffect)				
+				this.permanentEffects.add((PermanentEffect) e);
+		
+	}
+
+	public PermanentEffect getPermanentEffect(String tag) {
+		for(PermanentEffect e:this.permanentEffects)
+			if(e.hasTag(tag))
+				return e;
+		return null;		
+	}
+	
+	private void increasePower()
+	{
+		FamilyMember fm = currentAction.getFm().clone();
+		for (PermanentEffect e : permanentEffects) 
+		{
+			if (e.hasTag("HALVE_SERVANTS"))
+				fm.setActionpoint(fm.getActionpoint() + currentAction.getServants()/2);
+		}
+		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
+		currentAction.setFm(fm);
+	
+		//TODO enum....
+//		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
+		for (PermanentEffect e : permanentEffects) {
+			if (e.hasTag("MOD_FORZA")) {
+				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
+				if (mf.getAtype() == ActionSpaceType.TOWER && 
+						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {
+					if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) {
+						fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+						currentAction.setFm(fm);
+					}
+				} else if (mf.getAtype() == ActionSpaceType.HARVEST &&
+						currentAction.getActionSpace().getType() == ActionSpaceType.HARVEST) {
+					fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+					currentAction.setFm(fm);
+				} else if (mf.getAtype() == ActionSpaceType.PRODUCTION &&
+						currentAction.getActionSpace().getType() == ActionSpaceType.PRODUCTION) {
+					fm.setActionpoint(fm.getActionpoint() + mf.getModForza());
+					currentAction.setFm(fm);
+				} 
+			}
+		}
+	}
+	
+	public List<PermanentEffect> getPEffects(String tag)
+	{
+		List<PermanentEffect> temp=new ArrayList<>();
+		for(PermanentEffect pEffect:this.permanentEffects)
+			if(pEffect.hasTag(tag))
+				temp.add(pEffect);
+		return temp;
+	}
+	
+	
+	
+	
+	@Override
+	public boolean controlResourceAndPay(Card card)
+	{
+		Resource discount=new Resource(0,0,0,0);
+		for (PermanentEffect e : permanentEffects) 
+			if (e.hasTag("Discount")) 
+			{
+				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
+				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
+					discount.addResources(mf.getDiscount());
+			}
+		if(card.controlResource(this, discount)){
+			card.pay(this, discount);
+			return true;
+		}
+			
+		else return false;			
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

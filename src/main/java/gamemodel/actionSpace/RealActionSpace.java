@@ -1,10 +1,11 @@
-package gamemodel.ActionSpace;
+package gamemodel.actionSpace;
 
 import java.util.*;
 
-
+import gamemodel.Action;
 import gamemodel.FamilyMember;
 import gamemodel.effects.*;
+import gamemodel.permanenteffect.*;
 
 public class RealActionSpace implements ActionSpace {
 	private final int id;
@@ -28,6 +29,21 @@ public class RealActionSpace implements ActionSpace {
 		this.actionCost = actionCost;
 		this.effects.add(effect);
 		this.type = type;
+	}
+	
+	public boolean isAccessible(Action action)
+	{
+		for(PermanentEffect pEffect : action.getPlayer().getPEffects("NO_ACTION_SPACE"))
+			if(((NoActionSpace) pEffect).getAType()==this.type)
+				return false;
+		
+		if(!action.getPlayer().getPEffects("NO_MATTER_IF_OCCUPIED").isEmpty())
+			return true;
+		
+		if(this.free==false)
+			return false;
+		
+		return true;
 	}
 
 	@Override

@@ -1,24 +1,32 @@
 package gamemodel.command;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.ActionSpace;
-import gamemodel.ActionSpace.TowerActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 
 public class PlaceFamilyMemberCommandTower implements Command {
 	
 	private FamilyMember f;
 	private int servant;
-	private ActionSpace a;
+	private TowerActionSpace t;
+	private Action action;
 	
 	public PlaceFamilyMemberCommandTower(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
 		this.servant=servant;
-		this.a=board.getActionSpace(id);
+		this.t=(TowerActionSpace) board.getActionSpace(id);
+	}
+
+	public PlaceFamilyMemberCommandTower(Action action) {
+		this.f = action.getFm();
+		this.servant = action.getServants();
+		this.t = (TowerActionSpace) action.getActionSpace();
+		this.action=action;
 	}
 
 	private boolean IsEnoughtStrong(){
-		return(f.getActionpoint()+servant>=a.getActionCost());
+		return(f.getActionpoint() >= t.getActionCost());
 	}
 
 	private boolean controlServant() throws GameException{
@@ -32,16 +40,15 @@ public class PlaceFamilyMemberCommandTower implements Command {
 
 	@Override
 	public void isLegal() throws GameException {
-		TowerActionSpace t=(TowerActionSpace)a;
 		if(!f.isUsed())
-			if(t.isFree())
+			if(t.isAccessible(action))
 				if(t.getTower().controlPlayer(f))				
 					if(t.getTower().isFree())
 						if(IsEnoughtStrong())
 							if(controlServant()){
 								t.activateEffect(f);
-									if(CardControl(t.getCard(),f.getPlayer())){
-										f.use();
+									if(f.getPlayer().controlResourceAndPay(t.getCard())){
+										f.getPlayer().getFamilyMember(f.getColor()).use();
 										t.getTower().occupyTower();									
 										t.giveCard(f);
 										t.occupy();
@@ -58,15 +65,6 @@ public class PlaceFamilyMemberCommandTower implements Command {
 				else throw new GameException(GameError.TWR_ERR_FM);
 			else throw new GameException(GameError.SA_ERR);
 		else throw new GameException(GameError.FM_ERR_USE);
-	}
-
-	private boolean CardControl(Card c, RealPlayer p) {
-		if(c.ControlResource(p)){
-			c.pay(p);
-			return true;
-		}
-			
-		else return false;
 	}
 		
 }

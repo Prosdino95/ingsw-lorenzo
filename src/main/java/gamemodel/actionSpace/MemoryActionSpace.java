@@ -1,4 +1,4 @@
-package gamemodel.ActionSpace;
+package gamemodel.actionSpace;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace {
 			str+=", players:[";
 			for(RealPlayer p:players)
 			str +=p.getTeam()+" ";
-			str+="] ";
+		str+="] ";
 		}	
 		str+="\n";
 		return str;

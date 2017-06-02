@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.*;
-import gamemodel.ActionSpace.*;
+import gamemodel.actionSpace.*;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
@@ -33,7 +33,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new MemoryActionSpace(5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
-		a1=new RealActionSpace(0, e, ActionSpaceType.MARKET);
+		a1=new MemoryActionSpace(0, e, ActionSpaceType.COUNCIL_PALACE);
 		id1=a1.getId();
 		p1.setFamilyMember(Color.BLACK, 1);
 		p1.setFamilyMember(Color.WHITE, 7);
@@ -46,29 +46,29 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	@Test
 	public void testDoubleUseFamiliare(){
-		try{p1.placeFamilyMember(id0, Color.WHITE, 5);
-			p1.placeFamilyMember(id1, Color.WHITE, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),5));
+			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		
 	}
 	
 	@Test
 	public void testZeroServantsFail() {
-		try{p1.placeFamilyMember(id0, Color.BLACK, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.FM_ERR_PA,s);		
 	}
 		
 	@Test
 	public void testSomeServants(){
-		try{p1.placeFamilyMember(id0, Color.BLACK, 5);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
 		assertEquals(new Resource(5,5,5,0),p1.getResource());
 	}
 	@Test 
 	public void testTooMatchServant(){
-		try{p1.placeFamilyMember(id0, Color.BLACK, 7);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),7));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.RESOURCE_ERR_SERVANTS,s);
 		assertEquals(new Resource(5,5,5,5),p1.getResource());
@@ -76,8 +76,8 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	@Test
 	public void testDoublePlaceSamePost() throws GameException{
-		try{p1.placeFamilyMember(id0, Color.BLACK, 5);
-			p1.placeFamilyMember(id0, Color.WHITE, 0);}
+		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));
+			p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);		
 	}
@@ -87,9 +87,21 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		List<RealPlayer> testplayers=new ArrayList<RealPlayer>();
 		testplayers.add((RealPlayer) p1);
 		testplayers.add((RealPlayer) p2);
-		p1.placeFamilyMember(id0, Color.WHITE, 0);
-		p2.placeFamilyMember(id0, Color.WHITE, 0);
+		p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));
+		p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0));
 		assertEquals(a0.getPlayers(),testplayers);		
+	}
+	
+	@Test
+	public void tooMuchFM() throws GameException{
+		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));
+			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),0));
+			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.ORANGE),0));
+			p2.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.WHITE),0));
+			p1.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.BLACK),0));
+		}
+		catch(GameException e){s=e.getType();}
+		assertEquals(GameError.SA_MAX_FM,s);		
 	}
 	
 

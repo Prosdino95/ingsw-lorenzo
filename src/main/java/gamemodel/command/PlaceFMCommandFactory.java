@@ -11,18 +11,18 @@ public class PlaceFMCommandFactory {
 		return null;
 	}
 
-	public Command placeFMCommandFactory(Board board, int id, FamilyMember f, int servant) {
-		switch(board.getActionSpace(id).getType()){
+	public Command placeFMCommandFactory(Action action) {
+		switch(action.getActionSpace().getType()){
 			case TOWER:				
-				return new PlaceFamilyMemberCommandTower(board,id,f,servant);
+				return new PlaceFamilyMemberCommandTower(action);
 			case MARKET:
-				return new PlaceFamilyMemberCommandMarket(board,id,f,servant);
+				return new PlaceFamilyMemberCommandMarket(action);
 			case HARVEST:
-				return new PlaceFamilyMemberCommandHAndP(board,id,f,servant);
+				return new PlaceFamilyMemberCommandHAndP(action);
 			case PRODUCTION:
-				return new PlaceFamilyMemberCommandHAndP(board,id,f,servant);
+				return new PlaceFamilyMemberCommandHAndP(action);
 			case COUNCIL_PALACE:
-				return new PlaceFamilyMemberCommandCouncilPlace(board,id,f,servant);
+				return new PlaceFamilyMemberCommandCouncilPlace(action);
 		}
 		return null;		
 	}

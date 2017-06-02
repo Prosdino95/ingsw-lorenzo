@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import gamemodel.ActionSpace.*;
+import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
 import gamemodel.effects.Effect;
 import gamemodel.effects.TestEffects;

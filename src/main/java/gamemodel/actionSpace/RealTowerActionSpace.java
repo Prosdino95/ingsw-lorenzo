@@ -1,4 +1,4 @@
-package gamemodel.ActionSpace;
+package gamemodel.actionSpace;
 
 import java.util.List;
 
@@ -54,7 +54,14 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 
 	@Override
 	public void giveCard(FamilyMember f) {
-		// TODO Auto-generated method stub
+		f.getPlayer().giveCard(this.card);
 		
+	}
+	
+	@Override
+	public void activateEffect(FamilyMember f) 
+	{
+		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
+			super.activateEffect(f);
 	}
 }
