@@ -17,7 +17,7 @@ public class CLIView {
 		Player player=new RealPlayer(null, board, Team.BLUE);
 		
 		CLIView view = new CLIView();
-		view.uiTree = new UITree(board, player);
+		view.uiTree = new UITree(board, player,new ServerEndler());
 		view.uiTree.run();
 	}
 	

@@ -1,13 +1,15 @@
 package gameview;
 
-import gamemodel.ActionSpace.*;
+
+import gamemodel.actionSpace.ActionSpace;
 import gamemodel.*;
 
-public class ClientRequest {	
+public class ClientRequest {
+	
 	private RequestType type;
-	private ActionSpace where;
+	private int where;
 	private int servants;
-	private FamilyMember which;
+	private Color which;
 	private String answer;
 	
 	public void setType(RequestType type) {
@@ -23,12 +25,25 @@ public class ClientRequest {
 	}
 	
 	public void setWhere(ActionSpace where){
-		this.where=where;
+		this.where=where.getId();
 	}
 	
 	public void setWhich(FamilyMember which){
-		this.which=which;
+		this.which=which.getColor();
 		
+	}
+	
+
+	public int getWhere() {
+		return where;
+	}
+
+	public int getServants() {
+		return servants;
+	}
+
+	public Color getWhich() {
+		return which;
 	}
 
 	@Override
