@@ -35,7 +35,7 @@ public class EffectParsing {
 				break;
 				case "exchange": istantEffect.add(exchange(item));
 				break;
-				case "point-for-resource": istantEffect.add(resourceForResource(item));
+				case "resource-for-resource": istantEffect.add(resourceForResource(item));
 				break;	
 			}	
 		}
@@ -43,9 +43,37 @@ public class EffectParsing {
 	}
 	
 	private Effect resourceForResource(JsonValue item) {
-		// TODO Auto-generated method stub
-		return null;
+		JsonValue forWhat,receive;
+		String type=null;
+		int forEach=0;
+		Resource rin=null,rout=null;
+		Point pin=null,pout=null;
+		forEach=item.asObject().getInt("quantity", 0);
+		
+		receive=item.asObject().get("receive");
+		if(receive.asObject().get("resource")!=null)
+			rout=resourceMod(receive.asObject().get("resource"));
+		
+		if(receive.asObject().get("point")!=null)
+			pout=pointMod(receive.asObject().get("point"));
+		
+		try{type=item.asObject().getString("for",null);}
+		
+		catch(UnsupportedOperationException e){		
+			forWhat=item.asObject().get("for");
+			if(forWhat.asObject().get("resource")!=null){
+				rin=resourceMod(forWhat.asObject().get("resource"));
+				type="Resource";
+			}		
+			else if(forWhat.asObject().get("point")!=null){
+				pin=pointMod(forWhat.asObject().get("point"));
+				type="Point";
+			}
+		}	
+		return ResourceForResource.constructor(type, rin, pin, rout, pout, forEach);
 	}
+	
+	
 
 	private Effect exchange(JsonValue item) {
 		JsonValue give,receive;
@@ -72,6 +100,7 @@ public class EffectParsing {
 		return new Exchange(pin, pout, rin, rout, councilPrivilege);
 			
 	}
+	
 
 	private Effect councilPrivileges(JsonValue item) {
 		int quantity=item.asObject().getInt("quantity", 0);

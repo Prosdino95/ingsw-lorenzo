@@ -14,6 +14,17 @@
       										}
       								],
 						"permanent-effect":[
+											{
+											"type":"resource-for-resource",
+												"receive":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"for":"BUILDINGS",
+												"quantity":1
+														
+											}
 						]						
 					},
 					
@@ -30,7 +41,19 @@
       										"victory":5
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"resource-for-resource",
+												"receive":{
+													"resource":{
+													"gold":1
+													}
+												},
+												"for":"TERRITORIES",
+												"quantity":1
+														
+											}
+						]						
 					},
 					
 					{
@@ -46,7 +69,18 @@
       										"victory":6
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"resource-for-resource",
+												"receive":{
+													"point":{
+													"victory":2
+													}
+												},
+												"for":"VENTURES",
+												"quantity":1		
+												}
+						]						
 					},
 					
 					{
@@ -62,7 +96,18 @@
       										"victory":6
       										}
       								],
-						"permanent-effect":[]						
+						"permanent-effect":[
+											{
+											"type":"resource-for-resource",
+												"receive":{
+													"point":{
+													"victory":1
+													}
+												},
+												"for":"CHARACTERS",
+												"quantity":1		
+												}	
+						]						
 					},
 					
 					{

@@ -52,7 +52,7 @@ public class ResourceForResource implements Effect
 		return effect;
 	}
 
-	public ResourceForResource(CardType cardType,Point pointsOut,int forEach)
+	private ResourceForResource(CardType cardType,Point pointsOut,int forEach)
 	{
 		this.cardType=cardType;
 		this.pointsOut=pointsOut;
@@ -61,7 +61,7 @@ public class ResourceForResource implements Effect
 		this.resourcesIn=null;
 		this.resourcesOut=null;
 	}
-	public ResourceForResource(CardType cardType,Resource resourcesOut,int forEach)
+	private ResourceForResource(CardType cardType,Resource resourcesOut,int forEach)
 	{
 		this.cardType=cardType;
 		this.resourcesOut=resourcesOut;
@@ -70,7 +70,7 @@ public class ResourceForResource implements Effect
 		this.resourcesIn=null;
 		this.pointsOut=null;
 	}
-	public ResourceForResource(Point pointsIn,Point pointsOut,int forEach)
+	private ResourceForResource(Point pointsIn,Point pointsOut,int forEach)
 	{
 		this.pointsIn=pointsIn;
 		this.pointsOut=pointsOut;
@@ -79,7 +79,7 @@ public class ResourceForResource implements Effect
 		this.resourcesOut=null;
 		this.resourcesIn=null;
 	}
-	public ResourceForResource(Point pointsIn,Resource resourcesOut,int forEach)
+	private ResourceForResource(Point pointsIn,Resource resourcesOut,int forEach)
 	{
 		this.pointsIn=pointsIn;
 		this.resourcesOut=resourcesOut;
@@ -88,7 +88,7 @@ public class ResourceForResource implements Effect
 		this.pointsOut=null;
 		this.resourcesIn=null;
 	}
-	public ResourceForResource(Resource resourcesIn,Point pointsOut,int forEach)
+	private ResourceForResource(Resource resourcesIn,Point pointsOut,int forEach)
 	{
 		this.resourcesIn=resourcesIn;
 		this.pointsOut=pointsOut;
@@ -97,7 +97,7 @@ public class ResourceForResource implements Effect
 		this.resourcesOut=null;
 		this.pointsIn=null;
 	}
-	public ResourceForResource(Resource resourcesIn,Resource resourcesOut,int forEach)
+	private ResourceForResource(Resource resourcesIn,Resource resourcesOut,int forEach)
 	{
 		this.resourcesIn=resourcesIn;
 		this.resourcesOut=resourcesOut;
@@ -175,6 +175,25 @@ public class ResourceForResource implements Effect
 					player.addResources(resourcesOut);
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		String str ="\n"+ "Reasource for Resource: "+"\n";
+		str+="receve --> ";
+		if(this.pointsOut!=null)
+			str+=pointsOut+"\n";
+		if(this.resourcesOut!=null)
+			str+=resourcesOut+"\n";
+		str+="for "+this.forEach+" ";
+		if(this.pointsIn!=null)
+			str+=pointsIn;			
+		if(this.resourcesIn!=null)		
+			str+=resourcesIn;
+		if(this.cardType!=null)	
+			str+=cardType;
+		return str;
+		
 	}
 }
 

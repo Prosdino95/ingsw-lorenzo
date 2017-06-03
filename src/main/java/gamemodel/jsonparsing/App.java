@@ -16,9 +16,9 @@ public class App{
     public static void main( String[] args )
     {	
     	//testAS();
-    	testBCard();
+    	//testBCard();
     	//testTCard();
-    	//testCCard();
+    	testCCard();
     	//testVCard();
     	//test();
     } 
