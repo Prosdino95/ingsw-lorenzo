@@ -1,5 +1,6 @@
 package gameview;
 
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class UINodeGetInput extends UINode {
@@ -13,7 +14,7 @@ public class UINodeGetInput extends UINode {
 	}
 	
 	@Override
-	public void run() {
+	public void run() throws IOException {
 		System.out.println(intro);
 		choose = CLIView.getString();
 		try {

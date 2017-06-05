@@ -2,9 +2,12 @@ package gameview;
 
 
 import gamemodel.actionSpace.ActionSpace;
+
+import java.io.Serializable;
+
 import gamemodel.*;
 
-public class ClientRequest {
+public class ClientRequest implements Serializable {
 	
 	private RequestType type;
 	private int where;

@@ -1,12 +1,24 @@
 package gameview;
 
+import java.io.Serializable;
+
 import gamemodel.command.GameError;
 
-public class ServerResponse {
+public class ServerResponse implements Serializable {
 	private ServerQuestion question;
 	private GameError error;
 	private String type;
+	private ModelShell ms;
 	
+	public ModelShell getModel() {
+		return ms;
+	}
+
+	public void setModel(ModelShell model) {
+		type = "NM";
+		this.ms = model;
+	}
+
 	public ServerResponse() {
 		type = "O";
 	}
@@ -44,6 +56,10 @@ public class ServerResponse {
 
 	public boolean isThereAnError() {
 		return type.equals("E");
+	}
+
+	public boolean isThereANewModel() {
+		return type.equals("NM");
 	}
 
 }

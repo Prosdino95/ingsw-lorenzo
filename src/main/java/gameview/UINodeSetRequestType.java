@@ -1,5 +1,6 @@
 package gameview;
 
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class UINodeSetRequestType extends UINode {
@@ -14,7 +15,7 @@ public class UINodeSetRequestType extends UINode {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws IOException {
 		set.accept(type);
 		super.run();
 	}

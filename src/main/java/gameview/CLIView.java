@@ -11,7 +11,7 @@ public class CLIView {
 
 	UITree uiTree;
 	
-	public static void main(String[] arg) {
+	public static void main(String[] arg) throws IOException {
 		Board board = new RealGame().initializeGame().getBoard();
 		board.setupRound();
 		Player player=new RealPlayer(null, board, Team.BLUE);

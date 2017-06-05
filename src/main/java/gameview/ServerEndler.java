@@ -19,15 +19,15 @@ public class ServerEndler {
 
 
 	public ServerResponse send(ClientRequest request) throws IOException {
-		
 		out.writeObject(request);
 		out.flush();
-		return null;
-		
+		ServerResponse response = null;
+		try {
+			response = (ServerResponse) in.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
 	}
-	
-	
-	
-	
-
 }

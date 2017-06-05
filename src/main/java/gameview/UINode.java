@@ -1,6 +1,7 @@
 package gameview;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public abstract class UINode {
 		return intro;
 	}	
 	
-	public void run() {
+	public void run() throws IOException {
 		if(!descendants.isEmpty())
 			this.nextNode=descendants.get(0);	
 	}

@@ -1,5 +1,7 @@
 package gameview;
 
+import java.io.IOException;
+
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.command.GameError;
@@ -9,6 +11,7 @@ public class UITree {
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
 	private ServerEndler serverEndler;
+	private ModelShell ms;
 	
 	public UITree(Board b, Player p, ServerEndler serverEndler) {
 		this.serverEndler=serverEndler;
@@ -24,18 +27,18 @@ public class UITree {
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
 					request::setWhere,
-					b::getActionSpaces, this);
+					ms::getActionSpaces, this);
 		UINodeChooseValue<FamilyMember> which = 
 				new UINodeChooseValue<FamilyMember>("Which?",
 						request::setWhich,
-						p::getFamilyMembers, this);		
+						ms::getFamilyMembers, this);		
 		UINodeGetInput servants= 
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
 		
 		UINode talkToServer = new UINode("Waiting for server response...", this) {
 			@Override
-			public void run() {
+			public void run() throws IOException {
 				ServerResponse response = tree.sendRequestToServer();
 
 				while (!response.isItOk()) {
@@ -104,7 +107,7 @@ public class UITree {
 		
 		UINode talkToServer = new UINode("Waiting for server response...", this) {
 			@Override
-			public void run() {
+			public void run() throws IOException {
 				ServerResponse response = tree.sendRequestToServer();
 
 				while (!response.isItOk()) {
@@ -122,7 +125,13 @@ public class UITree {
 					} else if (response.isThereAnError()) {
 						System.out.print("You can't do that because: ");
 						print(response.getError());
-					} else {
+						tree.reset();
+					} else if (response.isThereANewModel()) {
+						System.out.println("Updated model...");
+						ms = response.getModel();
+					}
+					
+					else {
 						int a = 1/0;
 					}
 				}
@@ -156,12 +165,11 @@ public class UITree {
 		System.out.println(error);
 	}
 
-	protected ServerResponse sendRequestToServer() {
+	protected ServerResponse sendRequestToServer() throws IOException {
 		return serverEndler.send(request);
-		
 	}
 
-	public void run() {
+	public void run() throws IOException {
 		while (true) {
 			while (next != null) {
 				next.run();

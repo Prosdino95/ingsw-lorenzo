@@ -1,5 +1,6 @@
 package gameview;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -26,7 +27,7 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 	}
 	
 	@Override
-	public void run() {
+	public void run() throws IOException {
 		System.out.println(intro);
 		print(getterList.get());
 		try {
