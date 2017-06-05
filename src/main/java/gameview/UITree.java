@@ -83,7 +83,9 @@ public class UITree {
 	}
 	
 	
-	public UITree(Board b, Player p) {
+	public UITree(ModelShell modelShell, ServerEndler serverEndler2) {
+		ms = modelShell;
+		this.serverEndler=serverEndler2;
 		UINodeSetRequestType placeFM = 
 				new UINodeSetRequestType("Place family member", 
 						request::setType,
@@ -96,11 +98,11 @@ public class UITree {
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
 					request::setWhere,
-					b::getActionSpaces, this);
+					ms::getActionSpaces, this);
 		UINodeChooseValue<FamilyMember> which = 
 				new UINodeChooseValue<FamilyMember>("Which?",
 						request::setWhich,
-						p::getFamilyMembers, this);		
+						ms::getFamilyMembers, this);		
 		UINodeGetInput servants= 
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
@@ -125,13 +127,7 @@ public class UITree {
 					} else if (response.isThereAnError()) {
 						System.out.print("You can't do that because: ");
 						print(response.getError());
-						tree.reset();
-					} else if (response.isThereANewModel()) {
-						System.out.println("Updated model...");
-						ms = response.getModel();
-					}
-					
-					else {
+					} else {
 						int a = 1/0;
 					}
 				}
@@ -142,9 +138,6 @@ public class UITree {
 				return;
 			}
 		};
-
-
-
 		root= new UINodeChooseUI("Root", this)
 				.addSon(placeFM
 						.addSon(where
@@ -157,7 +150,9 @@ public class UITree {
 		reset();
 
 		System.out.println("Hi, this is Lorenzo!");
-	}
+		
+}
+
 
 
 
@@ -182,5 +177,11 @@ public class UITree {
 	public void reset() {
 		next = root;
 		request.cleanUp();
+	}
+
+
+	public void setModelShell(ModelShell modelShell) {
+		// TODO Auto-generated method stub
+		ms = modelShell;
 	}
 }

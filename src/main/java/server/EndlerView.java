@@ -9,6 +9,7 @@ import gamemodel.Player;
 import gamemodel.RealGame;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
+import gameview.ServerResponse;
 
 public class EndlerView {
 	
@@ -41,8 +42,10 @@ public class EndlerView {
 	public void run() throws ClassNotFoundException, IOException{
 		while(true){
 			request=(ClientRequest) in.readObject();
-			controller.doRequest(request,player);
-			System.out.println("wwwwww");
+			ServerResponse sr;
+			sr=controller.doRequest(request,player);
+			out.writeObject(sr);
+			out.flush();
 		}
 	}
 	
@@ -50,7 +53,7 @@ public class EndlerView {
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException
 	{
-		ServerSocket ss=new ServerSocket(3014);
+		ServerSocket ss=new ServerSocket(3017);
 		Socket s=null;
 		System.out.println("server ready");
 		s=ss.accept();
