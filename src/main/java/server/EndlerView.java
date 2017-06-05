@@ -2,9 +2,11 @@ package server;
 
 import java.io.IOException;
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 import gamemodel.Player;
+import gamemodel.RealGame;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
 
@@ -40,12 +42,28 @@ public class EndlerView {
 		while(true){
 			request=(ClientRequest) in.readObject();
 			controller.doRequest(request,player);
+			System.out.println("wwwwww");
 		}
 	}
 	
 	
 	
-	
+	public static void main(String[]args) throws IOException, ClassNotFoundException
+	{
+		ServerSocket ss=new ServerSocket(3014);
+		Socket s=null;
+		System.out.println("server ready");
+		s=ss.accept();
+		EndlerView ev=new EndlerView(s);
+		RealGame rg=new RealGame();
+		rg.initializeGame();
+		ev.setPlayer(rg.getPlayer());
+		Controller c=new Controller(rg);
+		ev.setController(c);
+		ev.run();
+		System.out.println(rg.getBoard().getActionSpace(0));
+		
+	}
 	
 
 }

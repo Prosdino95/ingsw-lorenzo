@@ -1,6 +1,8 @@
 package gamemodel;
 
-public enum CardType {
+import java.io.Serializable;
+
+public enum CardType implements Serializable {
 	TERRITORIES,
 	BUILDINGS,
 	CHARACTERS,

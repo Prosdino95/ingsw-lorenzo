@@ -7,8 +7,12 @@ import java.io.Serializable;
 
 import gamemodel.*;
 
-public class ClientRequest implements Serializable {
+public class ClientRequest  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RequestType type;
 	private int where;
 	private int servants;

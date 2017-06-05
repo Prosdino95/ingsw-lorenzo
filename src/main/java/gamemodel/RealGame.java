@@ -96,4 +96,9 @@ public class RealGame {
 	public Board getBoard() {
 		return board;
 	}
+	
+	public Player getPlayer() {
+		return players.get(1);
+	}
+	
 }

@@ -12,7 +12,7 @@ public class ServerEndler {
 	
 	
 	public ServerEndler() throws IOException{
-		Socket s = new Socket("localhost", 3000);
+		Socket s = new Socket("localhost", 3014);
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
 	}
