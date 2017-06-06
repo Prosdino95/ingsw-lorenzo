@@ -11,7 +11,7 @@ import gamemodel.command.GameException;
 import gameview.ClientRequest;
 import gameview.ServerResponse;
 
-public class EndlerView {
+public class HandlerView implements Runnable{
 	
 	private Controller controller;
 	private ObjectOutputStream out; 
@@ -20,11 +20,15 @@ public class EndlerView {
 	private Player player;
 	
 	
-	public EndlerView(Socket s) throws IOException{	
+	public HandlerView(Socket s) throws IOException{	
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
 	}
 	
+	public HandlerView()
+	{
+		super();
+	}
 	
 	
 	public Player getPlayer() {
@@ -39,13 +43,24 @@ public class EndlerView {
 		this.controller=c;
 	}
 	
-	public void run() throws ClassNotFoundException, IOException{
+	public void run(){
 		while(true){
-			request=(ClientRequest) in.readObject();
+			try {
+				request=(ClientRequest) in.readObject();
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			ServerResponse sr;
 			sr=controller.doRequest(request,player);
-			out.writeObject(sr);
-			out.flush();
+			try {
+				out.writeObject(sr);
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	
@@ -57,7 +72,7 @@ public class EndlerView {
 		Socket s=null;
 		System.out.println("server ready");
 		s=ss.accept();
-		EndlerView ev=new EndlerView(s);
+		HandlerView ev=new HandlerView(s);
 		RealGame rg=new RealGame();
 		rg.initializeGame();
 		ev.setPlayer(rg.getPlayer());

@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ServerEndler {
+public class HandlerServer {
 	
 	private ObjectOutputStream out; 
 	private ObjectInputStream in; 
 	
 	
-	public ServerEndler() throws IOException{
-		Socket s = new Socket("localhost", 3017);
+	public HandlerServer() throws IOException{
+		Socket s = new Socket("localhost", 3076);
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
 	}

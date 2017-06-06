@@ -10,10 +10,10 @@ public class UITree {
 	private UINodeChooseUI root;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
-	private ServerEndler serverEndler;
+	private HandlerServer serverEndler;
 	private ModelShell ms;
 	
-	public UITree(Board b, Player p, ServerEndler serverEndler) {
+	public UITree(Board b, Player p, HandlerServer serverEndler) {
 		this.serverEndler=serverEndler;
 		UINodeSetRequestType placeFM = 
 				new UINodeSetRequestType("Place family member", 
@@ -83,7 +83,7 @@ public class UITree {
 	}
 	
 	
-	public UITree(ModelShell modelShell, ServerEndler serverEndler2) {
+	public UITree(ModelShell modelShell, HandlerServer serverEndler2) {
 		ms = modelShell;
 		this.serverEndler=serverEndler2;
 		UINodeSetRequestType placeFM = 
