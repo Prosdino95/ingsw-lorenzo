@@ -1,9 +1,11 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tower {
+public class Tower implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private boolean towerFree=true;
 	private CardType type;
 	private List<RealPlayer> playersInTower=new ArrayList<RealPlayer>();

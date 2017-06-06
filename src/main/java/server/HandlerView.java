@@ -18,6 +18,7 @@ public class HandlerView implements Runnable{
 	private ObjectInputStream in; 
 	private ClientRequest request;
 	private Player player;
+	private boolean live=true;
 	
 	
 	public HandlerView(Socket s) throws IOException{	
@@ -44,21 +45,25 @@ public class HandlerView implements Runnable{
 	}
 	
 	public void run(){
-		while(true){
-			try {
-				request=(ClientRequest) in.readObject();
-			} catch (ClassNotFoundException | IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			ServerResponse sr;
-			sr=controller.doRequest(request,player);
-			try {
-				out.writeObject(sr);
-				out.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		while(live){
+			try {					
+					request=(ClientRequest) in.readObject();
+					System.out.println("receive from client"+request);
+					ServerResponse sr;
+					sr=controller.doRequest(request,player);
+					System.out.println("send to client"+sr);
+					out.writeObject(sr);
+					out.flush();				
+				}
+			catch (ClassNotFoundException | IOException e) {
+				try {
+					in.close();
+					out.close();
+					live=false;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		}
@@ -73,8 +78,7 @@ public class HandlerView implements Runnable{
 		System.out.println("server ready");
 		s=ss.accept();
 		HandlerView ev=new HandlerView(s);
-		RealGame rg=new RealGame();
-		rg.initializeGame();
+		RealGame rg=new RealGame(4);
 		ev.setPlayer(rg.getPlayer());
 		Controller c=new Controller(rg);
 		ev.setController(c);

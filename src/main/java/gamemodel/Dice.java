@@ -1,9 +1,12 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Dice 
+public class Dice implements Serializable 
 {
+
+	private static final long serialVersionUID = 1L;
 	private Map<Color,Integer>dice= new HashMap<>();
 	
 	public Dice(){

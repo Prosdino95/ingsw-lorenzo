@@ -1,9 +1,14 @@
 package server;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import gamemodel.RealGame;
 
 public class GameManager implements Runnable 
 {
+	private ExecutorService pool = Executors.newCachedThreadPool();
 	List<HandlerView> hw=new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
@@ -12,8 +17,15 @@ public class GameManager implements Runnable
 	
 	private void setupGame()
 	{
+		System.out.println("creazione partita");
+		RealGame rl=new RealGame(hw.size());
+		Controller c=new Controller(rl);
+		for(int i=0;i<hw.size();i++){
+			hw.get(i).setPlayer(rl.getPlayers().get(i));
+			hw.get(i).setController(c);
+			pool.execute(hw.get(i));
+		}
 		System.out.println("game partito con " + hw.size());
-		return;
 	}
 	
 	private synchronized void checkWait()
@@ -26,16 +38,12 @@ public class GameManager implements Runnable
 		{
 			e.printStackTrace();
 		}
-		if(whoWokeMeUp=="TimeOut")
-			isFull=true;
-		if(whoWokeMeUp=="Add")
-			return;
 	}
 	
 	public synchronized void addHV(HandlerView hv)
 	{
 		hw.add(hv);
-		System.out.println("aggiunto");
+		System.out.println("aggiunto in"+this);
 		if(hw.size()==4)
 			isFull=true;
 		whoWokeMeUp="Add";
@@ -67,12 +75,10 @@ public class GameManager implements Runnable
 		
 	}
 
-	public synchronized void timerFinishded() {
-		// TODO Auto-generated method stub
+	public synchronized void timerFinishded() {		
 		whoWokeMeUp="TimeOut";
-		notify();
-
-		
+		isFull=true;
+		notify();		
 	}
 
 	public boolean getIsFull() {

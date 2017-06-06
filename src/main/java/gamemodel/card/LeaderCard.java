@@ -1,5 +1,6 @@
 package gamemodel.card;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +9,10 @@ import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.effects.Effect;
 
-public class LeaderCard extends RealCard {
+public class LeaderCard extends RealCard  implements Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
 	private boolean useEffect=false;
 	private boolean playCard=false;
 	

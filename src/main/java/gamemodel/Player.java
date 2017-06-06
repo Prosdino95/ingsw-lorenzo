@@ -1,12 +1,13 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public interface Player {
+public interface Player extends Serializable{
 
 	void playRound();
 

@@ -11,9 +11,7 @@ import gamemodel.RealPlayer;
 import gamemodel.actionSpace.ActionSpace;
 
 public class ModelShell implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private Board board;
 	private Player player;
@@ -22,6 +20,9 @@ public class ModelShell implements Serializable {
 		// TODO Auto-generated constructor stub4
 		board = board2;
 		player = player2;
+	}
+	public ModelShell() {
+		// TODO Auto-generated constructor stub
 	}
 	public Board getBoard() {
 		return board;
@@ -42,5 +43,10 @@ public class ModelShell implements Serializable {
 	
 	public List<FamilyMember> getFamilyMembers() {
 		return player.getFamilyMembers();
+	}
+	public void update(ModelShell model) {
+		this.board=model.board;
+		this.player=model.player;
+		
 	}
 }

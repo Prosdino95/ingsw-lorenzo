@@ -17,7 +17,7 @@ public class Server {
 		
 		Server server=new Server();
 		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server.serverSocket)));		
-		server.serverSocket=new ServerSocket(3024);
+		server.serverSocket=new ServerSocket(3001);
 		server.start();
 	}
 
@@ -25,11 +25,11 @@ public class Server {
 	private void start() throws IOException {
 		System.out.println("server start");
 		while(true){
+			Socket s=serverSocket.accept();
 			if(gm==null || gm.getIsFull()){
 				gm=new GameManager();
 				pool.execute(gm);
 			}
-			Socket s=serverSocket.accept();
 			System.out.println("ricevuta nuova connessione");
 			HandlerView hv =new HandlerView(s);		
 			gm.addHV(hv);			

@@ -1,5 +1,6 @@
 package gamemodel.actionSpace;
 
+import java.io.Serializable;
 import java.util.List;
 
 import gamemodel.FamilyMember;
@@ -8,8 +9,9 @@ import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
-public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
+public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Tower tower;
 	private Card card;
 

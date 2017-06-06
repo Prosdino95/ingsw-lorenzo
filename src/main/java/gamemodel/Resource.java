@@ -1,6 +1,10 @@
 package gamemodel;
 
-public class Resource {
+import java.io.Serializable;
+
+public class Resource implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int gold;
 	private int stone;
 	private int wood;

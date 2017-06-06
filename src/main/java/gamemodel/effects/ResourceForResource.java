@@ -1,5 +1,6 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 
 import gamemodel.CardType;
@@ -7,8 +8,9 @@ import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 
-public class ResourceForResource implements Effect 
+public class ResourceForResource implements Effect,Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private CardType cardType;
 	private Resource resourcesIn;
 	private Point pointsIn;

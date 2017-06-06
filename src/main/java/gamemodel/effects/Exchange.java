@@ -1,13 +1,17 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
+
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
-public class Exchange implements Effect 
+public class Exchange implements Effect,Serializable 
 {
+
+	private static final long serialVersionUID = 1L;
 	private Point pointsIn;
 	private Point pointsOut;
 	private Resource resourcesIn;

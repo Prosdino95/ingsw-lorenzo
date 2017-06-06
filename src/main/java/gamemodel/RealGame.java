@@ -19,14 +19,18 @@ public class RealGame {
 	private Board board;
 	private Integer roundNumber;
 	private List<Player> turnOrder;
+	
+	public RealGame(int num){
+		initializeGame(num);
+	}
 
 	public static void main(String[] args) {
-		RealGame game = new RealGame();
+		RealGame game = new RealGame(4);
 		game.start();
 	}
 	
 	public void start() {
-		initializeGame();
+		
 		
 		for (roundNumber = 1; roundNumber < 7; roundNumber++) {
 			System.out.println("Round number " + roundNumber);
@@ -55,7 +59,7 @@ public class RealGame {
 		board.setupRound();
 	}
 
-	public RealGame initializeGame() {
+	public RealGame initializeGame(int num) {
 
 
 		List<Card> developmentCards = new ArrayList<Card>();
@@ -76,8 +80,8 @@ public class RealGame {
 		players = new ArrayList<Player>();
 		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.RED));
 		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.BLUE));
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
+		if(num>=3)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
+		if(num==4)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
 		
 		for (Player p : players) {
 			board.addPlayer(p);
@@ -99,6 +103,10 @@ public class RealGame {
 	
 	public Player getPlayer() {
 		return players.get(1);
+	}
+	
+	public List<Player> getPlayers() {
+		return this.players;
 	}
 	
 }

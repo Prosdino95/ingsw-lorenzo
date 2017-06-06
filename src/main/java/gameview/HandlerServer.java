@@ -9,10 +9,11 @@ public class HandlerServer {
 	
 	private ObjectOutputStream out; 
 	private ObjectInputStream in; 
+	private Socket s;
 	
 	
 	public HandlerServer() throws IOException{
-		Socket s = new Socket("localhost", 3076);
+		s = new Socket("localhost", 3001);
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
 	}
@@ -21,13 +22,17 @@ public class HandlerServer {
 	public ServerResponse send(ClientRequest request) throws IOException {
 		out.writeObject(request);
 		out.flush();
+		System.out.println("send to server"+request);
 		ServerResponse response = null;
 		try {
 			response = (ServerResponse) in.readObject();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("receive from server"+response);
+		} catch (ClassNotFoundException | IOException e) {
+			in.close();
+			out.close();
+			s.close();
 			e.printStackTrace();
-		}
+		}		
 		return response;
 	}
 }

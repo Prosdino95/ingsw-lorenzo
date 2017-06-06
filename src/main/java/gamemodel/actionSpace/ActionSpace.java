@@ -1,10 +1,12 @@
 package gamemodel.actionSpace;
 
+import java.io.Serializable;
+
 import gamemodel.Action;
 import gamemodel.FamilyMember;
 import gamemodel.command.GameException;
 
-public interface ActionSpace {
+public interface ActionSpace extends Serializable{
 
 	int getId();
 

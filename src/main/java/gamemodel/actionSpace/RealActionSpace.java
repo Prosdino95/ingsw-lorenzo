@@ -1,5 +1,6 @@
 package gamemodel.actionSpace;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gamemodel.Action;
@@ -8,7 +9,9 @@ import gamemodel.command.GameException;
 import gamemodel.effects.*;
 import gamemodel.permanenteffect.*;
 
-public class RealActionSpace implements ActionSpace {
+public class RealActionSpace implements ActionSpace,Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private final int id;
 	private static int identifier=0;
 	private boolean free=true;

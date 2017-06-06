@@ -41,6 +41,17 @@ public class GameManagerTest {
 		if(!gm.getIsFull())
 			gm.addHV(new HandlerView());		
 	}
+
+	@Test
+	public void test3() throws IOException, InterruptedException 
+	{
+		new Thread(gm).start();
+		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerView());
+		Thread.sleep(6000);
+		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerView());
+	}
 	
 
 }
