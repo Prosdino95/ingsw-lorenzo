@@ -32,7 +32,7 @@ public class Resource {
 	
 	public boolean isEnought(Resource r){
 		if(r!=null)
-		return(this.gold>=r.gold &&
+			return(this.gold>=r.gold &&
 			this.stone>=r.stone &&
 			this.wood>=r.wood &&
 			this.servant>=r.servant);

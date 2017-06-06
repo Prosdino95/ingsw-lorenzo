@@ -16,7 +16,7 @@ public class GameManager implements Runnable
 		return;
 	}
 	
-	private void checkWait()
+	private synchronized void checkWait()
 	{
 		try 
 		{

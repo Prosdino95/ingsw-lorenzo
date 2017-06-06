@@ -1,6 +1,10 @@
 package gameview;
 
-public class ServerQuestion {
+import java.io.Serializable;
+
+public class ServerQuestion implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String answer;
 	private String question;
 	
