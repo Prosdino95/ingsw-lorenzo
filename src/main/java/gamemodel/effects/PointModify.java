@@ -29,15 +29,15 @@ public class PointModify implements IstantEffect,EffectRollBack,Serializable
 		player.subPoint(points);
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "PointModify [points=" + points + "]";
-	}
+	}*/
 
-//	@Override
-//	public String toString() {
-//		return "" + points;
-//	}
+	@Override
+	public String toString() {
+		return "" + points;
+	}
 	
 	
 

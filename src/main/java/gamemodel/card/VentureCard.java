@@ -16,9 +16,9 @@ public class VentureCard extends RealCard {
 	private List<IstantEffect> activateEffect;
 
 	public VentureCard(String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
-			Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffects, CardType type, Map<CardType, Integer> requirementCard, List<IstantEffect> activateEffect) {
+			Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffects, CardType type, Map<CardType, Integer> requirementCard) {
 		super(name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type, requirementCard);
-		this.activateEffect=activateEffect;
+		this.activateEffect=activateEffects;
 	}
 	
 	public void activePermanentEffect(Player p) throws GameException {
@@ -30,12 +30,32 @@ public class VentureCard extends RealCard {
 	public Collection<IstantEffect> getActivateEffects() {
 		return this.activateEffect;
 	}
-
+	
 	@Override
+	public String toString(){
+		String str = "";
+		str +=this.type+"\n";
+		str +="id:"+this.id+" "+this.name+"\n";
+		if(resourceRequirement!=resourcePrice)
+			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+			str +="resource price-> "+this.resourcePrice+ "\n";	
+		if(resourcePrice!=null)
+		if(pointRequirement!=pointPrice)
+			str +="point requirement-> "+this.pointRequirement+ "\n";
+		if(pointPrice!=null)
+			str +="point price-> "+this.pointPrice+ "\n";
+		if(this.istantEffect!=null)
+			str +="istant effect-> "+this.istantEffect+ "\n";		
+		if(this.activateEffect!=null)
+			str +="Action effect-> "+this.activateEffect+ "\n";		
+		return str;
+	}
+
+	/*@Override
 	public String toString() {
 		return "HarvesterAndBuildings [name=" + name + ", resourceRequirement="
 				+ resourceRequirement + ", resourcePrice=" + resourcePrice + ", pointRequirement=" + pointRequirement
 				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", requirementCard=" + requirementCard + "]";
-	}
+	}*/
 
 }

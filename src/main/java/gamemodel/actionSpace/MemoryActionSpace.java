@@ -39,29 +39,29 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		players.add(f.getPlayer());
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "MemoryActionSpace [players=" + players + ", getPlayers()=" + getPlayers() + ", getEffects()="
 				+ getEffects() + "]";
-	}
+	}*/
 
-//	public String toString() {
-//		String str = "";
-//		str += this.getId();
-//		str += "-> ";
-//		str += this.getType();
-//		str+=" ";
-//		if(this.getEffects()!=null)
-//			str +=this.getEffects();
-//		if(!this.players.isEmpty()){
-//			str+=", players:[";
-//			for(RealPlayer p:players)
-//			str +=p.getTeam()+" ";
-//			str+="] ";
-//		}	
-//		str+="\n";
-//		return str;
-//	}
+	public String toString() {
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += this.getType();
+		str+=" ";
+		if(this.getEffects()!=null)
+			str +=this.getEffects();
+		if(!this.players.isEmpty()){
+			str+=", players:[";
+			for(Player p:players)
+			str +=p.getTeam()+" ";
+			str+="] ";
+		}	
+		str+="\n";
+		return str;
+	}
 	
 	
 }

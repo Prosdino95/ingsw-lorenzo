@@ -21,7 +21,7 @@ public class CardParsing {
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
 	private Map<CardType, Integer> rCard;
-	private List<IstantEffect> istantEffects;
+	private List<IstantEffect> istantEffects,activateEffects;
 	private List<PermanentEffect> permanentEffects;
 	private CardType type;
 	
@@ -35,9 +35,16 @@ public class CardParsing {
     		istantEffects=null;
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
-    			istantEffects=new EffectParsing().parsing(item.asObject().get("istant-effect").asArray());
+    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray());
     		}
-    		permanentEffects=null;
+    		if(item.asObject().get("activate-effect")!=null){
+    			activateEffects=new ArrayList<>();
+    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
+    		}
+    		if(item.asObject().get("permanent-effect")!=null){
+    			permanentEffects=new ArrayList<>();
+    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
+    		}
     		makeCard();  		
     	}	
 		return cards;
@@ -46,16 +53,16 @@ public class CardParsing {
 	
 	
 	private void makeCard() {
-		//switch(type){
-		//case BUILDINGS:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
-			//break;
-		//case CHARACTERS:cards.add(new CharactersCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
-			//break;
-		//case TERRITORIES:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
-			//break;
-		//case VENTURES:cards.add(new VentureCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
-			//break;
-		//}
+		switch(type){
+		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
+			break;
+		case CHARACTERS:cards.add(new CharactersCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
+			break;
+		case TERRITORIES:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
+			break;
+		case VENTURES:cards.add(new VentureCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard));
+			break;
+		}
 	}
 
 

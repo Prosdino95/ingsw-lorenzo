@@ -97,28 +97,6 @@ public class RealCard implements Card,Serializable {
 		return requirementCard;
 	}
 
-	
-//	@Override
-//	public String toString(){
-//		String str = "RealCard [\n";
-//		str +="id:"+this.id+" "+this.type+"\n"+this.name+"\n";
-//		if(this.resourceRequirement!=resourcePrice)
-//			str +="resource requirement-> "+this.resourceRequirement+ "\n";
-//		if(this.resourcePrice!=null)
-//			str +="resource price-> "+this.resourcePrice+ "\n";	
-//		if(this.pointRequirement!=pointPrice)
-//			str +="point requirement-> "+this.pointRequirement+ "\n";
-//		if(this.pointPrice!=null)
-//			str +="point price-> "+this.pointPrice+ "\n";
-//		if(this.istantEffect!=null)
-//			str +="istant effect-> "+this.istantEffect+ "\n";
-//		if(this.permanentEffect!=null)
-//			str +="permanent effect-> "+this.permanentEffect+ "\n";
-//		str+="\n";
-//		str+="]";
-//		return str;
-//	}
-
 
 	@Override
 	public void activeIstantEffect(Player p) throws GameException {

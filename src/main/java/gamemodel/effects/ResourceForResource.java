@@ -132,11 +132,11 @@ public class ResourceForResource implements IstantEffect,Serializable
 		return 0;
 	}
 	
-	@Override
+/*	@Override
 	public String toString() {
 		return "ResourceForResource [cardType=" + cardType + ", resourcesIn=" + resourcesIn + ", pointsIn=" + pointsIn
 				+ ", resourcesOut=" + resourcesOut + ", pointsOut=" + pointsOut + ", forEach=" + forEach + "]";
-	}
+	}*/
 
 	@Override
 	public void activate(Player player)
@@ -186,7 +186,7 @@ public class ResourceForResource implements IstantEffect,Serializable
 	}
 	
 	
-	/*public String toString() {
+	public String toString() {
 		String str ="\n"+ "Reasource for Resource: "+"\n";
 		str+="receve --> ";
 		if(this.pointsOut!=null)
@@ -202,6 +202,6 @@ public class ResourceForResource implements IstantEffect,Serializable
 			str+=cardType;
 		return str;
 		
-	}*/
+	}
 }
 

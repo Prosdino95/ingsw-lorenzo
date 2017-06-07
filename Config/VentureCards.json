@@ -11,7 +11,7 @@
       										"military":5
       										}
       								],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -27,7 +27,7 @@
       										"faith":1
       										}
       								],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -45,7 +45,7 @@
       										"quantity":1
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -60,7 +60,7 @@
       										"quantity":2
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -77,7 +77,7 @@
       										"gold":3
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -91,7 +91,7 @@
       										"servants":4
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -108,7 +108,7 @@
       										"faith":2
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -130,7 +130,7 @@
       										"faith":3
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -144,7 +144,7 @@
       										"military":6
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -160,7 +160,7 @@
       										"faith":2
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -178,7 +178,7 @@
       										"quantity":1
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -199,7 +199,7 @@
       										"quantity":1
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -213,7 +213,7 @@
 											"type":"testeffect"
 											}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -227,7 +227,7 @@
       										"servants":5
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -248,7 +248,7 @@
       										"faith":1
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -270,7 +270,7 @@
       										"faith":3
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -284,7 +284,7 @@
       										"military":7
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -305,7 +305,7 @@
 
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -323,7 +323,7 @@
       										"quantity":1
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -337,7 +337,7 @@
       										"faith":4
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -356,7 +356,7 @@
       										"gold":3    										
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -370,7 +370,7 @@
       										"type":"testeffect"    										
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -387,7 +387,7 @@
       										"faith":3   										
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					},
 					
 					{
@@ -409,7 +409,7 @@
       										"faith":2
       										}
       									],
-						"permanent-effect":[]						
+						"activate-effect":[]						
 					}	
 	]
 }	

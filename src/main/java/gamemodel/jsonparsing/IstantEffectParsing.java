@@ -11,11 +11,11 @@ import gamemodel.effects.*;
 import gamemodel.*;
 
 
-public class EffectParsing {
+public class IstantEffectParsing {
 	
 	private List<IstantEffect> istantEffect;
 	
-	public EffectParsing(){
+	public IstantEffectParsing(){
 		istantEffect=new ArrayList<>();
 	}
 

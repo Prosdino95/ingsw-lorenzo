@@ -27,7 +27,7 @@ public class ASParsing {
     		effects=null;
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
-    			effects=new EffectParsing().parsing(item.asObject().get("effect").asArray());
+    			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray());
     		}
     		makeAS(item.asObject().getString("type", null));
     	}	

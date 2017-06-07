@@ -25,6 +25,26 @@ public class CharactersCard extends RealCard implements Serializable {
 	public List<PermanentEffect> getPermanentEffects() {
 		return permanentEffect;
 	}
+	
+	@Override
+	public String toString(){
+		String str = "";
+		str +=this.type+"\n";
+		str +="id:"+this.id+" "+this.name+"\n";
+		if(resourceRequirement!=resourcePrice)
+			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+			str +="resource price-> "+this.resourcePrice+ "\n";	
+		if(resourcePrice!=null)
+		if(pointRequirement!=pointPrice)
+			str +="point requirement-> "+this.pointRequirement+ "\n";
+		if(pointPrice!=null)
+			str +="point price-> "+this.pointPrice+ "\n";
+		if(this.istantEffect!=null)
+			str +="istant effect-> "+this.istantEffect+ "\n";		
+		if(this.permanentEffect!=null)
+			str +="Action effect-> "+this.permanentEffect+ "\n";		
+		return str;
+	}
 
 	
 }

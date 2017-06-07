@@ -5,12 +5,6 @@ import java.util.*;
 import gamemodel.actionSpace.*;
 import gamemodel.card.*;
 
-/*
-  	-->Improving the Canals venture card con effetto immendiato non implementato
-	-->repire the cathedral stesso come sopra
-	-->improving roads stesso come sopra
-*/
-
 public class App{
 	
     public static void main( String[] args )
@@ -18,7 +12,7 @@ public class App{
     	//testAS();
     	//testBCard();
     	//testTCard();
-    	testCCard();
+    	//testCCard();
     	//testVCard();
     	//test();
     } 
