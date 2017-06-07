@@ -9,11 +9,11 @@ import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 
 public class RealBoard implements Board,Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<ActionSpace> actionSpaces;
-	private List<Player> players;
 	private transient List<Card> territoriesCards;
 	private transient List<Card> buildingsCards;
 	private transient List<Card> charactersCards; 
@@ -23,12 +23,10 @@ public class RealBoard implements Board,Serializable {
 	
 	public RealBoard() {
 		this.actionSpaces = new ArrayList<ActionSpace>();
-		this.players = new ArrayList<Player>();
 		this.cards = new ArrayList<Card>();
 	}
 	
 	public RealBoard(List<Card> cards, List<ActionSpace> actionSpaces) {
-		this.players = new ArrayList<Player>();
 		this.actionSpaces = actionSpaces;
 		this.dice=new Dice();
 		this.cards = cards;
@@ -69,9 +67,6 @@ public class RealBoard implements Board,Serializable {
 			}
 		}
 		dice.rollDice();
-		for (Player p : players) {
-			p.prepareForNewRound();
-		}
 	}
 
 	private Card popCard(CardType color) {
@@ -117,12 +112,8 @@ public class RealBoard implements Board,Serializable {
 		}
 		return null;
 	}
-
-	@Override
-	public void addPlayer(Player player) {
-		players.add(player);
-	}
 	
+	@Override
 	public String toString() {
 		String str = "";
 		str += "Action Spaces\n";
@@ -132,7 +123,8 @@ public class RealBoard implements Board,Serializable {
 		}
 		return str;
 	}
-
+	
+	@Override
 	public Dice getDice() {
 		return dice;
 	}

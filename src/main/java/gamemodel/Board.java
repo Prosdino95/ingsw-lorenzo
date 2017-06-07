@@ -11,7 +11,6 @@ public interface Board extends Serializable{
 	void setupRound();
 	void addActionSpace(RealActionSpace a);
 	RealActionSpace getActionSpace(int id);
-	void addPlayer(Player player);
 	String toString();
 	List<ActionSpace> getActionSpaces();
 	Dice getDice();

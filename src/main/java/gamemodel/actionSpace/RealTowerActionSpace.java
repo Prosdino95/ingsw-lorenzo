@@ -1,13 +1,14 @@
 package gamemodel.actionSpace;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import gamemodel.FamilyMember;
 import gamemodel.Tower;
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
 
@@ -19,12 +20,12 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		return card;
 	}
 
-	public RealTowerActionSpace(int actionCost, List<Effect> effects, Tower tower,ActionSpaceType type) {
+	public RealTowerActionSpace(int actionCost, List<IstantEffect> effects, Tower tower,ActionSpaceType type) {
 		super(actionCost, effects,type);
 		this.tower = tower;
 	}
 	
-	public RealTowerActionSpace(int actionCost, Effect effects, Tower tower,ActionSpaceType type) {
+	public RealTowerActionSpace(int actionCost, IstantEffect effects, Tower tower,ActionSpaceType type) {
 		super(actionCost, effects,type);
 		this.tower = tower;
 	}

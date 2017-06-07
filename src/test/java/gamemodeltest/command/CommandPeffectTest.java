@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import gamemodel.Action;
 import gamemodel.Board;
-import gamemodel.CardType;
 import gamemodel.Color;
 import gamemodel.Player;
 import gamemodel.RealBoard;
@@ -25,6 +24,7 @@ import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;

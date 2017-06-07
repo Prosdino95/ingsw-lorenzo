@@ -5,7 +5,7 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Point;
 
-public class PointModify implements Effect,EffectRollBack,Serializable
+public class PointModify implements IstantEffect,EffectRollBack,Serializable
 {
 	/**
 	 * 

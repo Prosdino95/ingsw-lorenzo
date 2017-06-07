@@ -8,7 +8,7 @@ import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 
-public class CouncilPrivileges implements Effect,Serializable
+public class CouncilPrivileges implements IstantEffect,Serializable
 {
 
 	private static final long serialVersionUID = 1L;

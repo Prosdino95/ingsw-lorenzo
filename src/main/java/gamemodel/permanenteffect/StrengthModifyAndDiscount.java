@@ -1,9 +1,9 @@
 package gamemodel.permanenteffect;
 
-import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.card.CardType;
 
 public class StrengthModifyAndDiscount extends PermanentEffect {
 	
@@ -44,12 +44,6 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 
 	public CardType getCtype() {
 		return ctype;
-	}
-
-	@Override
-	public void activate(Player player) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

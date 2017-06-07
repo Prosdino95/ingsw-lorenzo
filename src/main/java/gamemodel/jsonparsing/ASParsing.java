@@ -15,7 +15,7 @@ import gamemodel.effects.*;
 public class ASParsing {
 	
 	private List<ActionSpace> AS=new ArrayList<>();
-	private List<Effect> effects;
+	private List<IstantEffect> effects;
 	private ActionSpaceType type;
 	private int cost;
 		

@@ -3,12 +3,12 @@ package gamemodel.effects;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 
-import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.card.CardType;
 
-public class ResourceForResource implements Effect,Serializable
+public class ResourceForResource implements IstantEffect,Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private CardType cardType;
@@ -18,9 +18,9 @@ public class ResourceForResource implements Effect,Serializable
 	private Point pointsOut;
 	private int forEach;
 	
-	public static Effect constructor(String typeIn,Resource resourcesIn,Point pointsIn,Resource resourcesOut,Point pointsOut,int forEach)
+	public static IstantEffect constructor(String typeIn,Resource resourcesIn,Point pointsIn,Resource resourcesOut,Point pointsOut,int forEach)
 	{
-		Effect effect=null;
+		IstantEffect effect=null;
 		CardType[] cardTypeArray=CardType.values();
 		int length=Array.getLength(cardTypeArray);
 		String[] cTypeArray=new String[length];

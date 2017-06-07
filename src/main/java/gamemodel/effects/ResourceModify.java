@@ -5,7 +5,7 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Resource;
 
-public class ResourceModify implements Effect,EffectRollBack,Serializable
+public class ResourceModify implements IstantEffect,EffectRollBack,Serializable
 {
 
 	private static final long serialVersionUID = 1L;

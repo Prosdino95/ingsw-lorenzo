@@ -2,13 +2,12 @@ package gamemodel;
 
 import java.util.ArrayList;
 
+
 import java.util.Collections;
 import java.util.List;
 
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
-import gamemodel.effects.Effect;
-import gamemodel.effects.TestEffects;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
@@ -59,7 +58,7 @@ public class RealGame {
 		board.setupRound();
 	}
 
-	public RealGame initializeGame(int num) {
+	public void initializeGame(int num) {
 
 
 		List<Card> developmentCards = new ArrayList<Card>();
@@ -83,17 +82,12 @@ public class RealGame {
 		if(num>=3)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
 		if(num==4)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
 		
-		for (Player p : players) {
-			board.addPlayer(p);
-		}
-
+		
 		turnOrder = new ArrayList<Player>();
 		for (Player p: players) {
 			turnOrder.add(p);
 		}
 		Collections.shuffle(turnOrder);
-		//TODO remove this return (creato per provare CLIView)
-		return this;
 
 	}
 

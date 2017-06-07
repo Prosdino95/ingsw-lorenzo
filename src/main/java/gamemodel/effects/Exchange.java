@@ -8,7 +8,7 @@ import gamemodel.Resource;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
-public class Exchange implements Effect,Serializable 
+public class Exchange implements IstantEffect,Serializable 
 {
 
 	private static final long serialVersionUID = 1L;
@@ -16,9 +16,9 @@ public class Exchange implements Effect,Serializable
 	private Point pointsOut;
 	private Resource resourcesIn;
 	private Resource resourcesOut;
-	private Effect councilPrivilegesIn;
+	private IstantEffect councilPrivilegesIn;
 	
-	public Exchange(Point pointsIn,Point pointsOut,Resource resourcesIn,Resource resourcesOut,Effect councilPrivilegesIn)
+	public Exchange(Point pointsIn,Point pointsOut,Resource resourcesIn,Resource resourcesOut,IstantEffect councilPrivilegesIn)
 	{
 		this.resourcesIn=resourcesIn;
 		this.resourcesOut=resourcesOut;

@@ -9,13 +9,14 @@ import com.eclipsesource.json.JsonValue;
 
 import gamemodel.*;
 import gamemodel.actionSpace.*;
+import gamemodel.card.CardType;
 import gamemodel.effects.*;
 
 public class TowerASParsing {
 	
 	private int cost;
 	private List<TowerActionSpace> AS=new ArrayList<>();
-	private List<Effect> effects;
+	private List<IstantEffect> effects;
 	private final ActionSpaceType TYPE=ActionSpaceType.TOWER;
 	private Tower territories=new Tower(CardType.TERRITORIES);
 	private Tower buildings=new Tower(CardType.BUILDINGS);

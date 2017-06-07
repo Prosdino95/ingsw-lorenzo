@@ -6,13 +6,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
-import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.RealBoard;
 import gamemodel.RealPlayer;
 import gamemodel.Resource;
 import gamemodel.Team;
+import gamemodel.card.CardType;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 import gamemodel.effects.ResourceForResource;

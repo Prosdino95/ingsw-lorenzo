@@ -13,14 +13,14 @@ import gamemodel.*;
 
 public class EffectParsing {
 	
-	private List<Effect> istantEffect;
+	private List<IstantEffect> istantEffect;
 	
 	public EffectParsing(){
 		istantEffect=new ArrayList<>();
 	}
 
 	
-	public List<Effect> parsing(JsonArray effects) {
+	public List<IstantEffect> parsing(JsonArray effects) {
 		String type;
 		for (JsonValue item : effects){		
 			type=item.asObject().getString("type", null);
@@ -42,7 +42,7 @@ public class EffectParsing {
 		return istantEffect;
 	}
 	
-	private Effect resourceForResource(JsonValue item) {
+	private IstantEffect resourceForResource(JsonValue item) {
 		JsonValue forWhat,receive;
 		String type=null;
 		int forEach=0;
@@ -75,11 +75,11 @@ public class EffectParsing {
 	
 	
 
-	private Effect exchange(JsonValue item) {
+	private IstantEffect exchange(JsonValue item) {
 		JsonValue give,receive;
 		Resource rin=null,rout=null;
 		Point pin=null,pout=null;
-		Effect councilPrivilege=null;
+		IstantEffect councilPrivilege=null;
 		give=item.asObject().get("give");
 		if(give.asObject().get("resource")!=null)
 			rout=resourceMod(give.asObject().get("resource"));
@@ -102,7 +102,7 @@ public class EffectParsing {
 	}
 	
 
-	private Effect councilPrivileges(JsonValue item) {
+	private IstantEffect councilPrivileges(JsonValue item) {
 		int quantity=item.asObject().getInt("quantity", 0);
 		return new CouncilPrivileges(quantity);
 	}

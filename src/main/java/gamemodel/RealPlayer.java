@@ -10,6 +10,7 @@ import java.util.Map;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 import gamemodel.command.*;
 import gamemodel.effects.Effect;
 import gamemodel.permanenteffect.Debuff;

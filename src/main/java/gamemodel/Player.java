@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.PermanentEffect;
 

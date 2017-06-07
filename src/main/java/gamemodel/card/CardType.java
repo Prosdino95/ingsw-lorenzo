@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.io.Serializable;
 

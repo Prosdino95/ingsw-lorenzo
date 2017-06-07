@@ -1,17 +1,16 @@
 package gamemodel.card;
 
 import java.io.Serializable;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 
 public class RealCard implements Card,Serializable {
 	
@@ -22,15 +21,14 @@ public class RealCard implements Card,Serializable {
 	protected Resource resourcePrice;
 	protected Point pointRequirement;
 	protected Point pointPrice;
-	protected List<Effect> istantEffect;
-	protected List<Effect> permanentEffect;
+	protected List<IstantEffect> istantEffect;
 	protected CardType type;
 	protected final int id;
 	private static int identifier=0;
 	protected Map<CardType,Integer> requirementCard=new HashMap<>();
 	
 	public RealCard(String name,int period,Resource resourceRequirement, Resource resourcePrice, Point point, 
-			Point pointPrice, List<Effect> istantEffects,List<Effect> permanentEffect, CardType type,
+			Point pointPrice, List<IstantEffect> istantEffects, CardType type,
 			Map<CardType, Integer> requirementCard) {	
 		this.name=name;
 		this.period=period;
@@ -43,7 +41,6 @@ public class RealCard implements Card,Serializable {
 		this.type = type;
 		this.requirementCard = requirementCard;
 		this.istantEffect=istantEffects;
-		this.permanentEffect=permanentEffect;
 	}
 		
 
@@ -125,31 +122,17 @@ public class RealCard implements Card,Serializable {
 
 	@Override
 	public void activeIstantEffect(Player p) throws GameException {
-		for(Effect e:this.istantEffect)
+		for(IstantEffect e:this.istantEffect)
 			e.activate(p);		
 	}
 	
+	@Override
 	public String toString() {
 		return "RealCard [name=" + name + ", resourceRequirement=" + resourceRequirement + ", resourcePrice="
 				+ resourcePrice + ", pointRequirement=" + pointRequirement + ", pointPrice=" + pointPrice
-				+ ", istantEffect=" + istantEffect + ", permanentEffect=" + permanentEffect + ", type=" + type + ", id="
+				+ ", istantEffect=" + istantEffect +", type=" + type + ", id="
 				+ id + ", requirementCard=" + requirementCard + "]";
 	}
-
-
-	@Override
-	public void activePermanentEffect(Player p) throws GameException {
-		for(Effect e:this.permanentEffect)
-			e.activate(p);	
-	}
-
-
-	@Override
-	public Collection<Effect> getPermanentEffects() {
-		return this.permanentEffect;
-	}
-
-
 
 
 }
