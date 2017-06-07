@@ -1,5 +1,6 @@
 package gamemodel.card;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +13,9 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
-public class RealCard implements Card {
+public class RealCard implements Card,Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	protected String name;
 	private int period;
 	protected Resource resourceRequirement;
@@ -99,25 +101,26 @@ public class RealCard implements Card {
 	}
 
 	
-	@Override
-	public String toString(){
-		String str = "";
-		str +="id:"+this.id+" "+this.type+"\n"+this.name+"\n";
-		if(this.resourceRequirement!=resourcePrice)
-			str +="resource requirement-> "+this.resourceRequirement+ "\n";
-		if(this.resourcePrice!=null)
-			str +="resource price-> "+this.resourcePrice+ "\n";	
-		if(this.pointRequirement!=pointPrice)
-			str +="point requirement-> "+this.pointRequirement+ "\n";
-		if(this.pointPrice!=null)
-			str +="point price-> "+this.pointPrice+ "\n";
-		if(this.istantEffect!=null)
-			str +="istant effect-> "+this.istantEffect+ "\n";
-		if(this.permanentEffect!=null)
-			str +="permanent effect-> "+this.permanentEffect+ "\n";
-		str+="\n";
-		return str;
-	}
+//	@Override
+//	public String toString(){
+//		String str = "RealCard [\n";
+//		str +="id:"+this.id+" "+this.type+"\n"+this.name+"\n";
+//		if(this.resourceRequirement!=resourcePrice)
+//			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+//		if(this.resourcePrice!=null)
+//			str +="resource price-> "+this.resourcePrice+ "\n";	
+//		if(this.pointRequirement!=pointPrice)
+//			str +="point requirement-> "+this.pointRequirement+ "\n";
+//		if(this.pointPrice!=null)
+//			str +="point price-> "+this.pointPrice+ "\n";
+//		if(this.istantEffect!=null)
+//			str +="istant effect-> "+this.istantEffect+ "\n";
+//		if(this.permanentEffect!=null)
+//			str +="permanent effect-> "+this.permanentEffect+ "\n";
+//		str+="\n";
+//		str+="]";
+//		return str;
+//	}
 
 
 	@Override
@@ -125,13 +128,19 @@ public class RealCard implements Card {
 		for(Effect e:this.istantEffect)
 			e.activate(p);		
 	}
+	
+	public String toString() {
+		return "RealCard [name=" + name + ", resourceRequirement=" + resourceRequirement + ", resourcePrice="
+				+ resourcePrice + ", pointRequirement=" + pointRequirement + ", pointPrice=" + pointPrice
+				+ ", istantEffect=" + istantEffect + ", permanentEffect=" + permanentEffect + ", type=" + type + ", id="
+				+ id + ", requirementCard=" + requirementCard + "]";
+	}
 
 
 	@Override
 	public void activePermanentEffect(Player p) throws GameException {
 		for(Effect e:this.permanentEffect)
 			e.activate(p);	
-		
 	}
 
 

@@ -1,5 +1,6 @@
 package gamemodel.actionSpace;
 
+import java.io.Serializable;
 import java.util.List;
 
 import gamemodel.FamilyMember;
@@ -8,8 +9,9 @@ import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
-public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace {
+public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Tower tower;
 	private Card card;
 
@@ -37,22 +39,27 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		this.card = card;
 	}
 	
-	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += "tower";
-		str +=this.getTower();
-		str += " ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects()+"\n";	
-		if(!(card==null)){	
-			str += card.toString();
-		}	
-		str+="\n";
-		return str;
-	}
+//	public String toString() {
+//		String str = "TowerAS [\n";
+//		str += this.getId();
+//		str += "-> ";
+//		str += "tower";
+//		str += this.getTower();
+//		str += " ";
+//		if(this.getEffects()!=null)
+//			str +=this.getEffects() +"\n";
+//		str += "\n";
+//		if(!(card==null)){	
+//			str += card.toString();
+//		}	
+//		str+="\n";
+//		str += "]";
+//		return str;
+//	}
 
+	
+	
+	
 	@Override
 	public void giveCard(FamilyMember f) throws GameException {
 		f.getPlayer().giveCard(this.card);
@@ -64,5 +71,10 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	{
 		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
 			super.activateEffect(f);
+	}
+
+	@Override
+	public String toString() {
+		return "RealTowerActionSpace [tower=" + tower + ", card=" + card + ", getEffects()=" + getEffects() + "]";
 	}
 }

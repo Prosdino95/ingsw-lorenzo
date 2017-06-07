@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -16,19 +17,20 @@ import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
-public class RealPlayer implements Player {
+public class RealPlayer implements Player,Serializable {
+	private static final long serialVersionUID = 1L;
 	private Resource resource;
 	private Map<Color,FamilyMember> familyMembers;
 	private Point point;
-	private Command command;
+	private transient Command command;
 	private Board board;
 	private Team team;
 	private List<Card> buildings=new ArrayList<>();
 	private List<Card> territories=new ArrayList<>();	
 	private List<Card> ventures=new ArrayList<>();
 	private List<Card> characters=new ArrayList<>();
-	private List<PermanentEffect> permanentEffects=new ArrayList<>();
-	private Action currentAction = new Action();
+	private transient List<PermanentEffect> permanentEffects=new ArrayList<>();
+	private transient Action currentAction = new Action();
 	
 	public RealPlayer(Resource resource, Board board,Team team) 
 	{

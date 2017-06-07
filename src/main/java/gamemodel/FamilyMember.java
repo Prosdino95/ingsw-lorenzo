@@ -1,6 +1,17 @@
 package gamemodel;
 
-public class FamilyMember {
+import java.io.Serializable;
+
+public class FamilyMember implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "FamilyMember [player=" + player + ", actionPoint=" + actionPoint + ", color=" + color + ", used=" + used
+				+ "]";
+	}
+
 	private RealPlayer player;
 	private int actionPoint=0;
 	private Color color;

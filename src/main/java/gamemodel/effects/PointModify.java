@@ -1,10 +1,16 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
+
 import gamemodel.Player;
 import gamemodel.Point;
 
-public class PointModify implements Effect,EffectRollBack
+public class PointModify implements Effect,EffectRollBack,Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Point points;
 	
 	public PointModify(Point points)
@@ -25,8 +31,13 @@ public class PointModify implements Effect,EffectRollBack
 
 	@Override
 	public String toString() {
-		return "" + points;
+		return "PointModify [points=" + points + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "" + points;
+//	}
 	
 	
 

@@ -1,5 +1,6 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,10 @@ import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 
-public class CouncilPrivileges implements Effect 
+public class CouncilPrivileges implements Effect,Serializable
 {
+
+	private static final long serialVersionUID = 1L;
 	private int numberOfCouncilPrivileges;
 	private List<Object> choice;
 	

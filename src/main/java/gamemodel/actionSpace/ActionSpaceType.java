@@ -1,6 +1,8 @@
 package gamemodel.actionSpace;
 
-public enum ActionSpaceType {
+import java.io.Serializable;
+
+public enum ActionSpaceType implements Serializable {
 	
 		TOWER,
 		MARKET,

@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,15 +10,16 @@ import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 
-public class RealBoard implements Board {
+public class RealBoard implements Board,Serializable {
+	private static final long serialVersionUID = 1L;
 	private List<ActionSpace> actionSpaces;
 	private List<Player> players;
-	private List<Card> territoriesCards;
-	private List<Card> buildingsCards;
-	private List<Card> charactersCards; 
-	private List<Card> venturesCards;
-	private List<Card> cards;
-	private Dice dice;
+	private transient List<Card> territoriesCards;
+	private transient List<Card> buildingsCards;
+	private transient List<Card> charactersCards; 
+	private transient List<Card> venturesCards;
+	private transient List<Card> cards;
+	private transient Dice dice;
 	
 	public RealBoard() {
 		this.actionSpaces = new ArrayList<ActionSpace>();

@@ -1,5 +1,6 @@
 package gamemodel.actionSpace;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gamemodel.Action;
@@ -8,7 +9,9 @@ import gamemodel.command.GameException;
 import gamemodel.effects.*;
 import gamemodel.permanenteffect.*;
 
-public class RealActionSpace implements ActionSpace {
+public class RealActionSpace implements ActionSpace,Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private final int id;
 	private static int identifier=0;
 	private boolean free=true;
@@ -94,23 +97,29 @@ public class RealActionSpace implements ActionSpace {
 		return type;
 	}
 
-
+	@Override
 	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += this.getType();
-		str+=" ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects();
-		str+=", ";
-		if(this.free)
-			str+="free";
-		else
-			str+="occupy";
-		str+="\n";
-		return str;
+		return "RealActionSpace [id=" + id + ", free=" + free + ", actionCost=" + actionCost + ", type=" + type
+				+ ", getEffects()=" + getEffects() + "]";
 	}
+
+
+//	public String toString() {
+//		String str = "";
+//		str += this.getId();
+//		str += "-> ";
+//		str += this.getType();
+//		str+=" ";
+//		if(this.getEffects()!=null)
+//			str +=this.getEffects();
+//		str+=", ";
+//		if(this.free)
+//			str+="free";
+//		else
+//			str+="occupy";
+//		str+="\n";
+//		return str;
+//	}
 	
 	
 }

@@ -1,8 +1,12 @@
 package gamemodel;
 
+import java.io.Serializable;
+
 import gamemodel.actionSpace.ActionSpace;
 
-public class Action {
+public class Action implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	Player player;
 	ActionSpace spaceAction;
 	FamilyMember fm;

@@ -1,5 +1,6 @@
 package gamemodel.card;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.Effect;
 
-public interface Card {
+public interface Card extends Serializable {
 	public boolean controlResource(Player p,Resource discount);
 	public Resource getResourceRequirement();
 	public Resource getResourcePrice();

@@ -1,6 +1,10 @@
 package gamemodel;
 
-public class Resource {
+import java.io.Serializable;
+
+public class Resource implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int gold;
 	private int stone;
 	private int wood;
@@ -32,7 +36,7 @@ public class Resource {
 	
 	public boolean isEnought(Resource r){
 		if(r!=null)
-		return(this.gold>=r.gold &&
+			return(this.gold>=r.gold &&
 			this.stone>=r.stone &&
 			this.wood>=r.wood &&
 			this.servant>=r.servant);

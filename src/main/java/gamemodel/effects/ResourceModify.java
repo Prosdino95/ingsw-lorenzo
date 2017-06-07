@@ -1,10 +1,14 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
+
 import gamemodel.Player;
 import gamemodel.Resource;
 
-public class ResourceModify implements Effect,EffectRollBack 
+public class ResourceModify implements Effect,EffectRollBack,Serializable
 {
+
+	private static final long serialVersionUID = 1L;
 	private Resource resources;
 	
 	public ResourceModify(Resource resources)
@@ -25,8 +29,13 @@ public class ResourceModify implements Effect,EffectRollBack
 
 	@Override
 	public String toString() {
-		return  ""+resources;
+		return "ResourceModify [resources=" + resources + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return  ""+resources;
+//	}
 	
 	
 	
