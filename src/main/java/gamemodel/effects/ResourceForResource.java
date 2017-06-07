@@ -185,8 +185,8 @@ public class ResourceForResource implements Effect,Serializable
 		}
 	}
 	
-	@Override
-	public String toString() {
+	
+	/*public String toString() {
 		String str ="\n"+ "Reasource for Resource: "+"\n";
 		str+="receve --> ";
 		if(this.pointsOut!=null)
@@ -202,6 +202,6 @@ public class ResourceForResource implements Effect,Serializable
 			str+=cardType;
 		return str;
 		
-	}
+	}*/
 }
 

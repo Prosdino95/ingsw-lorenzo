@@ -22,6 +22,7 @@ public class HandlerServer {
 	public ServerResponse send(ClientRequest request) throws IOException {
 		out.writeObject(request);
 		out.flush();
+		out.reset();
 		System.out.println("send to server"+request);
 		ServerResponse response = null;
 		try {

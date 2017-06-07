@@ -53,7 +53,8 @@ public class HandlerView implements Runnable{
 					sr=controller.doRequest(request,player);
 					System.out.println("send to client"+sr);
 					out.writeObject(sr);
-					out.flush();				
+					out.flush();
+					out.reset();
 				}
 			catch (ClassNotFoundException | IOException e) {
 				try {
