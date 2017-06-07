@@ -1,6 +1,7 @@
 package gamemodel.card;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,10 @@ public class CharactersCard extends RealCard implements Serializable {
 		this.permanentEffect=permanentEffect;
 	}
 
-	public List<PermanentEffect> getPermanentEffect() {
+
+	public List<PermanentEffect> getPermanentEffects() {
 		return permanentEffect;
 	}
+
 	
 }

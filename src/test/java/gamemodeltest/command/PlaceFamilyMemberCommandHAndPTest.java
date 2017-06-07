@@ -1,6 +1,7 @@
 package gamemodeltest.command;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import gamemodel.*;
@@ -8,7 +9,7 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 
 public class PlaceFamilyMemberCommandHAndPTest {
@@ -16,7 +17,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 	Board b;
 	Player p1,p2;
 	MemoryActionSpace a0,a1;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1;
 	
@@ -32,6 +33,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		a1=new MemoryActionSpace(0, e, ActionSpaceType.PRODUCTION);
 		id1=a1.getId();
 		p1.prepareForNewRound();
+		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
 	}

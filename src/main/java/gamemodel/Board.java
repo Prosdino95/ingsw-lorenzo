@@ -9,6 +9,7 @@ import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,7 @@ public class Board implements Serializable {
 	public Board() {
 		this.actionSpaces = new ArrayList<ActionSpace>();
 		this.cards = new ArrayList<Card>();
+		this.dice=new Dice();
 	}
 	
 	public Board(List<Card> cards, List<ActionSpace> actionSpaces) {

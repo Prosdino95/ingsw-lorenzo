@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,7 +9,6 @@ import java.net.Socket;
 import gamemodel.Player;
 import gamemodel.RealGame;
 import gamemodel.Team;
-import gamemodel.command.GameException;
 import gameview.ClientRequest;
 import gameview.ServerResponse;
 

@@ -2,6 +2,7 @@ package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 
 
@@ -19,7 +20,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 	Board b;
 	Player p1;
 	RealActionSpace a0,a1;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1;
 

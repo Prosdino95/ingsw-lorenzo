@@ -2,14 +2,14 @@ package gamemodel.actionSpace;
 
 import java.io.Serializable;
 
+
 import java.util.ArrayList;
 
 import java.util.List;
 
 import gamemodel.FamilyMember;
 import gamemodel.Player;
-import gamemodel.Player;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
 	

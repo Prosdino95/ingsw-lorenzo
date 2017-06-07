@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -10,9 +11,11 @@ import java.util.Map;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
+import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.VentureCard;
 import gamemodel.command.*;
-import gamemodel.effects.Effect;
 import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
