@@ -8,13 +8,13 @@ import java.util.List;
 
 import gamemodel.FamilyMember;
 import gamemodel.Player;
-import gamemodel.RealPlayer;
-import gamemodel.effects.IstantEffect;
+import gamemodel.Player;
+import gamemodel.effects.Effect;
 
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private List<RealPlayer> players=new ArrayList<RealPlayer>();
+	private List<Player> players=new ArrayList<Player>();
 
 	public MemoryActionSpace(int actionCost, IstantEffect effect, ActionSpaceType type) {
 		super(actionCost, effect, type);
@@ -24,7 +24,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		super(actionCost, effect, type);
 	}
 	
-	public List<RealPlayer> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 

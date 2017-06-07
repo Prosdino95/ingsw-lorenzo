@@ -13,8 +13,8 @@ import gamemodel.Action;
 import gamemodel.Board;
 import gamemodel.Color;
 import gamemodel.Player;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
+import gamemodel.Board;
+import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.Tower;
@@ -34,7 +34,7 @@ import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 public class CommandPeffectTest {
-	 RealPlayer p;
+	 Player p;
 	 GameError s;
 	 PermanentEffect e,e1,e2,e3;
 	 Action action, action1,action2;
@@ -56,17 +56,16 @@ public class CommandPeffectTest {
 		Card c2=new RealCard(null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<Effect>(), le2,CardType.BUILDINGS, null);
 		Tower t=new Tower(CardType.BUILDINGS);
 		Tower t2=new Tower(CardType.BUILDINGS);
-		Board b=new RealBoard();
-		p=new RealPlayer(new Resource(1,1,1,5), b, Team.RED);
+		Board b=new Board();
+		b.setDice(2, 1, 9);
+		p=new Player(new Resource(1,1,1,5), b, Team.RED);
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);
 		RealTowerActionSpace a=new RealTowerActionSpace(3, e, t, ActionSpaceType.TOWER);
 		MemoryActionSpace a1=new MemoryActionSpace(3, e, ActionSpaceType.HARVEST);
 		RealTowerActionSpace a2=new RealTowerActionSpace(3, e, t2, ActionSpaceType.TOWER);
-		p.setFamilyMember(Color.BLACK, 2);
-		p.setFamilyMember(Color.WHITE, 1);
-		p.setFamilyMember(Color.ORANGE, 9);
+		p.prepareForNewRound();
 		a.attachDevelopmentCard(c);
 		a2.attachDevelopmentCard(c2);
 		

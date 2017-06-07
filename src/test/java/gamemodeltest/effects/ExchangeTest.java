@@ -8,8 +8,8 @@ import org.junit.Test;
 import gamemodel.Board;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
+import gamemodel.Board;
+import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.command.GameException;
@@ -30,13 +30,13 @@ public class ExchangeTest
 	@Before
 	public void setUp() throws Exception 
 	{
-		b=new RealBoard();
+		b=new Board();
 		councilPrivileges=new CouncilPrivileges(1);
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p3=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p4=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p5=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p2=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p3=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p4=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p5=new Player(new Resource(5,5,5,5), b, Team.RED);
 		
 	}
 

@@ -23,16 +23,15 @@ public class PlaceFamilyMemberCommandHAndPTest {
 	@Before
 	public void setUp(){
 		e=new TestEffects();
-		b=new RealBoard();
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
+		b=new Board();
+		b.setDice(1, 7, 7);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new MemoryActionSpace(5, e, ActionSpaceType.HARVEST);
 		id0=a0.getId();
 		a1=new MemoryActionSpace(0, e, ActionSpaceType.PRODUCTION);
 		id1=a1.getId();
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
-		p2.setFamilyMember(Color.WHITE,7);
+		p1.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
 	}

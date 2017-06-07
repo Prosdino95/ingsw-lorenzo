@@ -12,12 +12,12 @@ public class FamilyMember implements Serializable {
 				+ "]";
 	}
 
-	private RealPlayer player;
+	private Player player;
 	private int actionPoint=0;
 	private Color color;
 	private boolean used=false;
 	
-	public FamilyMember(RealPlayer player, Color color) {
+	public FamilyMember(Player player, Color color) {
 		this.player = player;
 		this.color = color;
 	}
@@ -46,7 +46,7 @@ public class FamilyMember implements Serializable {
 		this.used=false;
 	}
 
-	public RealPlayer getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 
