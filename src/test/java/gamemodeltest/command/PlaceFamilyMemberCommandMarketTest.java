@@ -26,12 +26,12 @@ public class PlaceFamilyMemberCommandMarketTest {
 	@Before
 	public void setUp(){
 		e=new TestEffects();
-		b=new RealBoard();
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
+		b=new Board();
+		b.setDice(1, 7, 0);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
 		a0=new RealActionSpace(5, e, ActionSpaceType.MARKET);
 		a1=new RealActionSpace(0, e, ActionSpaceType.MARKET);
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
+		p1.prepareForNewRound();
 	}
 		
 	@Test

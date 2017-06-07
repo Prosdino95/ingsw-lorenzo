@@ -18,7 +18,8 @@ public class RealGame {
 	private List<Player> players;
 	private Board board;
 	private Integer roundNumber;
-	private List<Player> turnOrder;
+
+	private List<Player> turnOrder; // This should go away, create a turnKeeper?
 	
 	public RealGame(int num){
 		initializeGame(num);
@@ -30,8 +31,6 @@ public class RealGame {
 	}
 	
 	public void start() {
-		
-		
 		for (roundNumber = 1; roundNumber < 7; roundNumber++) {
 			System.out.println("Round number " + roundNumber);
 			setupRound();
@@ -74,19 +73,15 @@ public class RealGame {
 		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse());
 		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());				
 		
-		board = new RealBoard(developmentCards, actionSpaces);
+		board = new Board(developmentCards, actionSpaces);
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.RED));
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.BLUE));
-		if(num>=3)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
-		if(num==4)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.RED));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.BLUE));
+		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN));
+		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW));
 		
-		for (Player p : players) {
-			board.addPlayer(p);
-		}
-
 		turnOrder = new ArrayList<Player>();
 		for (Player p: players) {
 			turnOrder.add(p);
@@ -101,12 +96,14 @@ public class RealGame {
 		return board;
 	}
 	
-	public Player getPlayer() {
-		return players.get(1);
-	}
-	
 	public List<Player> getPlayers() {
 		return this.players;
 	}
-	
+
+	public Player getPlayer(Team blue) {
+		for (Player p : players) {
+			if (p.getTeam() == blue) return p;
+		}
+		throw new RuntimeException();
+	}
 }

@@ -9,8 +9,8 @@ import gamemodel.Board;
 import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
+import gamemodel.Board;
+import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.command.GameException;
@@ -30,13 +30,13 @@ public class ResourceForResourceTest
 	@Before
 	public void setUp() throws Exception 
 	{
-		b=new RealBoard();
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(7,0,4,13), b, Team.RED);
-		p3=new RealPlayer(new Resource(2,3,4,5), b, Team.RED);
-		p4=new RealPlayer(new Resource(150,7,8,9), b, Team.RED);
-		p5=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p6=new RealPlayer(new Resource(0,0,0,0), b, Team.RED);
+		b=new Board();
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p2=new Player(new Resource(7,0,4,13), b, Team.RED);
+		p3=new Player(new Resource(2,3,4,5), b, Team.RED);
+		p4=new Player(new Resource(150,7,8,9), b, Team.RED);
+		p5=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p6=new Player(new Resource(0,0,0,0), b, Team.RED);
 	}
 	
 	@Test
