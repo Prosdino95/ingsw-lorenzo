@@ -2,12 +2,14 @@ package gamemodel.jsonparsing;
 
 import java.util.*;
 
+
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 import gamemodel.card.*;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
+import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.*;
 
 public class CardParsing {
@@ -19,8 +21,8 @@ public class CardParsing {
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
 	private Map<CardType, Integer> rCard;
-	private List<Effect> istantEffects;
-	private List<Effect> permanentEffects;
+	private List<IstantEffect> istantEffects,activateEffects;
+	private List<PermanentEffect> permanentEffects;
 	private CardType type;
 	
 	public List<Card> parsing(String json){
@@ -30,15 +32,17 @@ public class CardParsing {
 			period=item.asObject().getInt("period", 0);
     		name=item.asObject().getString("name", null);
     		cardCostParsing(item);
-    		istantEffects=null;
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
-    			istantEffects=new EffectParsing().parsing(item.asObject().get("istant-effect").asArray());
+    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray());
     		}
-    		permanentEffects=null;
+    		if(item.asObject().get("activate-effect")!=null){
+    			activateEffects=new ArrayList<>();
+    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
+    		}
     		if(item.asObject().get("permanent-effect")!=null){
     			permanentEffects=new ArrayList<>();
-    			permanentEffects=new EffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
+    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
     		}
     		makeCard();  		
     	}	
@@ -49,13 +53,13 @@ public class CardParsing {
 	
 	private void makeCard() {
 		switch(type){
-		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
+		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
 			break;
-		case CHARACTERS:cards.add(new RealCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
+		case CHARACTERS:cards.add(new CharactersCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
 			break;
-		case TERRITORIES:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard, actionCost));
+		case TERRITORIES:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
 			break;
-		case VENTURES:cards.add(new RealCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
+		case VENTURES:cards.add(new VentureCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard));
 			break;
 		}
 	}

@@ -2,19 +2,17 @@ package gamemodeltest.effects;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
-import gamemodel.CardType;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.Board;
-import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.ResourceForResource;
 
 public class ResourceForResourceTest 
@@ -43,7 +41,7 @@ public class ResourceForResourceTest
 	public void testActivatePperP() throws GameException 
 	{
 		p1.addPoint(new Point(0,7,0));
-		Effect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),null,new Point(0,0,5),2);
+		IstantEffect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),null,new Point(0,0,5),2);
 		effect.activate(p1);
 		assertEquals(new Point(0,7,15),p1.getPoint());
 	}
@@ -51,7 +49,7 @@ public class ResourceForResourceTest
 	@Test
 	public void testActivateRperR() throws GameException
 	{
-		Effect effect=ResourceForResource.constructor("Resource",new Resource(0,0,1,0),null,new Resource(0,5,0,0),null,3);
+		IstantEffect effect=ResourceForResource.constructor("Resource",new Resource(0,0,1,0),null,new Resource(0,5,0,0),null,3);
 		effect.activate(p2);
 		assertEquals(new Resource(7,5,4,13),p2.getResource());
 	}
@@ -60,7 +58,7 @@ public class ResourceForResourceTest
 	public void testActivatePperR() throws GameException 
 	{
 		p3.addPoint(new Point(0,10,0));
-		Effect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),new Resource(0,40,3,0),null,3);
+		IstantEffect effect=ResourceForResource.constructor("Point",null,new Point(0,1,0),new Resource(0,40,3,0),null,3);
 		effect.activate(p3);
 		assertEquals(new Resource(2,123,13,5),p3.getResource());
 	}
@@ -68,7 +66,7 @@ public class ResourceForResourceTest
 	@Test
 	public void testActivateRperP() throws GameException 
 	{
-		Effect effect=ResourceForResource.constructor("Resource",new Resource(1,0,0,0),null,null,new Point(10,3,4),5);
+		IstantEffect effect=ResourceForResource.constructor("Resource",new Resource(1,0,0,0),null,null,new Point(10,3,4),5);
 		effect.activate(p4);
 		assertEquals(new Point(300,90,120),p4.getPoint());
 	}
@@ -78,7 +76,7 @@ public class ResourceForResourceTest
 	{
 		for(int c=0;c<372;c++)
 			p5.getTerritories().add(null);
-		Effect effect=ResourceForResource.constructor("TERRITORIES",null,null,null,new Point(10,3,4),52);
+		IstantEffect effect=ResourceForResource.constructor("TERRITORIES",null,null,null,new Point(10,3,4),52);
 		effect.activate(p5);
 		assertEquals(new Point(70,21,28),p5.getPoint());
 	}
@@ -88,7 +86,7 @@ public class ResourceForResourceTest
 	{
 		for(int c=0;c<19;c++)
 			p6.getVentures().add(null);
-		Effect effect=ResourceForResource.constructor("VENTURES",null,null,new Resource(0,9,27,89),null,10);
+		IstantEffect effect=ResourceForResource.constructor("VENTURES",null,null,new Resource(0,9,27,89),null,10);
 		effect.activate(p6);
 		assertEquals(new Resource(0,9,27,89),p6.getResource());
 	}

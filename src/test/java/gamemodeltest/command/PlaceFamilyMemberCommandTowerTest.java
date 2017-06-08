@@ -2,6 +2,7 @@ package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import gamemodel.card.Card;
 import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.ResourceModify;
 
 public class PlaceFamilyMemberCommandTowerTest {
@@ -24,37 +25,33 @@ public class PlaceFamilyMemberCommandTowerTest {
 	Board b;
 	Player p1,p2,p3;
 	RealTowerActionSpace a0,a1,a2;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1,id2;
 	Card c0,c1;
-	List<Effect> effects=new ArrayList<>();
+	List<IstantEffect> effects=new ArrayList<>();
 
 	@Before
 	public void setUp(){
 		e=new ResourceModify(new Resource(2,2,2,0));
 		t=new Tower();
 		b=new Board();
-		c0=new RealCard(null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, effects, null, null);
-		c1=new RealCard(null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, effects, null, null);
+		b.setDice(1, 7, 7);
+		c0=new RealCard(null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, null, null);
+		c1=new RealCard(null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, null, null);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED);
 		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new RealTowerActionSpace(5, e, t, ActionSpaceType.TOWER);
 		a1=new RealTowerActionSpace(0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
 		a2=new RealTowerActionSpace(5, e, t1, ActionSpaceType.TOWER);
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
-		p2.setFamilyMember(Color.BLACK, 7);
+		p1.prepareForNewRound();
+		p2.prepareForNewRound();
 		a0.attachDevelopmentCard(c0);
 		a1.attachDevelopmentCard(c1);
 		a2.attachDevelopmentCard(c1);
-		
-		
-		
-		
-		
 	}
+	
 	@Test
 	public void testZeroServant(){
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),0));}
@@ -125,16 +122,17 @@ public class PlaceFamilyMemberCommandTowerTest {
 	
 	@Test
 	public void testCard2(){
-		try{p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.BLACK),0));}
+		try{p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
-		assertEquals(new Resource(4,4,4,5),p2.getResource());				
+		assertEquals(new Resource(4,4,4,0),p2.getResource());				
 	}
 	
 	@Test
 	public void TestCard3(){
 		p3=new Player(new Resource(0,0,0,5), b, Team.GREEN);
-		p3.setFamilyMember(Color.BLACK, 7);
+		b.setDice(7, 0, 0);
+		p3.prepareForNewRound();
 		try{p3.placeFamilyMember(new Action(p3,a0,p3.getFamilyMember(Color.BLACK),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.RESOURCE_ERR_CARD,s);

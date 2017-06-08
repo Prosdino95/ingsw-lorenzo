@@ -2,7 +2,7 @@ package gamemodel.effects;
 
 import gamemodel.Player;
 
-public class TestEffects implements Effect {
+public class TestEffects implements IstantEffect {
 
 	@Override
 	public String toString() {

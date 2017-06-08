@@ -1,25 +1,26 @@
 package gamemodel.actionSpace;
 
 import java.io.Serializable;
+
+
 import java.util.ArrayList;
 
 import java.util.List;
 
 import gamemodel.FamilyMember;
 import gamemodel.Player;
-import gamemodel.Player;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private List<Player> players=new ArrayList<Player>();
 
-	public MemoryActionSpace(int actionCost, Effect effect, ActionSpaceType type) {
+	public MemoryActionSpace(int actionCost, IstantEffect effect, ActionSpaceType type) {
 		super(actionCost, effect, type);
 	}
 	
-	public MemoryActionSpace(int actionCost, List<Effect> effect, ActionSpaceType type) {
+	public MemoryActionSpace(int actionCost, List<IstantEffect> effect, ActionSpaceType type) {
 		super(actionCost, effect, type);
 	}
 	
@@ -38,29 +39,29 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		players.add(f.getPlayer());
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "MemoryActionSpace [players=" + players + ", getPlayers()=" + getPlayers() + ", getEffects()="
 				+ getEffects() + "]";
-	}
+	}*/
 
-//	public String toString() {
-//		String str = "";
-//		str += this.getId();
-//		str += "-> ";
-//		str += this.getType();
-//		str+=" ";
-//		if(this.getEffects()!=null)
-//			str +=this.getEffects();
-//		if(!this.players.isEmpty()){
-//			str+=", players:[";
-//			for(RealPlayer p:players)
-//			str +=p.getTeam()+" ";
-//			str+="] ";
-//		}	
-//		str+="\n";
-//		return str;
-//	}
+	public String toString() {
+		String str = "";
+		str += this.getId();
+		str += "-> ";
+		str += this.getType();
+		str+=" ";
+		if(this.getEffects()!=null)
+			str +=this.getEffects();
+		if(!this.players.isEmpty()){
+			str+=", players:[";
+			for(Player p:players)
+			str +=p.getTeam()+" ";
+			str+="] ";
+		}	
+		str+="\n";
+		return str;
+	}
 	
 	
 }

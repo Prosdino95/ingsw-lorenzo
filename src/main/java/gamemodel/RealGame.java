@@ -2,6 +2,7 @@ package gamemodel;
 
 import java.util.ArrayList;
 
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +10,6 @@ import java.util.Map;
 
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
-import gamemodel.effects.Effect;
-import gamemodel.effects.TestEffects;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
@@ -20,7 +19,7 @@ public class RealGame {
 	private List<Player> players;
 	private Board board;
 	private Integer roundNumber;
-	private List<Player> turnOrder;
+	private List<Player> turnOrder; // This should go away, create a turnKeeper?
 	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
 	
@@ -34,8 +33,6 @@ public class RealGame {
 	}
 	
 	public void start() {
-		
-		
 		for (roundNumber = 1; roundNumber < 7; roundNumber++) {
 			System.out.println("Round number " + roundNumber);
 			setupRound();
@@ -83,7 +80,7 @@ public class RealGame {
 		victoryPointsBoundedTofaithPointsRequirement.put(15,30);
 	}
 
-	public RealGame initializeGame(int num) {
+	public void initializeGame(int num) {
 
 
 		List<Card> developmentCards = new ArrayList<Card>();
@@ -107,31 +104,16 @@ public class RealGame {
 		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN));
 		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW));
 		
-		for (Player p : players) {
-			board.addPlayer(p);
-		}
-		
-		
-
 		List<Integer> faithRequirement; //inizializzazione tramite jason
 		faithPointsRequirement.put(1,faithRequirement.get(0));
 		faithPointsRequirement.put(2,faithRequirement.get(1));
 		faithPointsRequirement.put(3,faithRequirement.get(2));
-		
-		
-		
-		
 		this.victoryPointsBoundedTofaithPointsRequirementInitialize();
-		
-		
-		
 		turnOrder = new ArrayList<Player>();
 		for (Player p: players) {
 			turnOrder.add(p);
 		} 
 		Collections.shuffle(turnOrder);
-		//TODO remove this return (creato per provare CLIView)
-		return this;
 
 	}
 
@@ -139,12 +121,14 @@ public class RealGame {
 		return board;
 	}
 	
-	public Player getPlayer() {
-		return players.get(1);
-	}
-	
 	public List<Player> getPlayers() {
 		return this.players;
 	}
-	
+
+	public Player getPlayer(Team blue) {
+		for (Player p : players) {
+			if (p.getTeam() == blue) return p;
+		}
+		throw new RuntimeException();
+	}
 }

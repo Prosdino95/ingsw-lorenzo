@@ -2,6 +2,7 @@ package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import gamemodel.*;
 import gamemodel.actionSpace.*;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 
 public class PlaceFamilyMemberCommandCouncilPlaceTest {
@@ -21,7 +22,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	Player p1,p2;
 	MemoryActionSpace a0;
 	RealActionSpace a1;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1;
 	
@@ -29,15 +30,15 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	public void setUp(){
 		e=new TestEffects();
 		b=new Board();
+		b.setDice(1, 7, 7);
 		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
 		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new MemoryActionSpace(5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
 		a1=new MemoryActionSpace(0, e, ActionSpaceType.COUNCIL_PALACE);
 		id1=a1.getId();
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
-		p2.setFamilyMember(Color.WHITE,7);
+		p1.prepareForNewRound();
+		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
 	}

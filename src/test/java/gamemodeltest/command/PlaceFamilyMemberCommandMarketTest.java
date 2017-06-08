@@ -2,6 +2,7 @@ package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 
 
@@ -19,7 +20,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 	Board b;
 	Player p1;
 	RealActionSpace a0,a1;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1;
 
@@ -27,11 +28,11 @@ public class PlaceFamilyMemberCommandMarketTest {
 	public void setUp(){
 		e=new TestEffects();
 		b=new Board();
+		b.setDice(1, 7, 0);
 		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
 		a0=new RealActionSpace(5, e, ActionSpaceType.MARKET);
 		a1=new RealActionSpace(0, e, ActionSpaceType.MARKET);
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
+		p1.prepareForNewRound();
 	}
 		
 	@Test

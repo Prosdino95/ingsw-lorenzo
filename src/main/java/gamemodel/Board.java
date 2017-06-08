@@ -9,30 +9,31 @@ import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
-import gamemodel.card.Excommunication;
-import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.card.CardType;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	private List<ActionSpace> actionSpaces;
-	private List<Player> players;
+	
 	private transient List<Card> territoriesCards;
 	private transient List<Card> buildingsCards;
 	private transient List<Card> charactersCards; 
 	private transient List<Card> venturesCards;
+	
 	private transient List<Card> cards;
+	
 	private transient Dice dice;
 	private Excommunication[]excommunicationCards=new Excommunication[3];
 
-
+	
 	public Board() {
 		this.actionSpaces = new ArrayList<ActionSpace>();
-		this.players = new ArrayList<Player>();
 		this.cards = new ArrayList<Card>();
+		this.dice=new Dice();
 	}
 	
 	public Board(List<Card> cards, List<ActionSpace> actionSpaces) {
-		this.players = new ArrayList<Player>();
 		this.actionSpaces = actionSpaces;
 		this.dice=new Dice();
 		this.cards = cards;
@@ -58,7 +59,6 @@ public class Board implements Serializable {
 				break;
 			}
 		}
-		// TODO inizializzazione 3 carte scomunica
 	}
 
 	public void setupRound() {
@@ -73,14 +73,11 @@ public class Board implements Serializable {
 			}
 		}
 		dice.rollDice();
-		for (Player p : players) {
-			p.prepareForNewRound();
-		}
 	}
 
 	private Card popCard(CardType color) {
 		switch (color) {
-			case BUILDINGS:
+		case BUILDINGS:
 				return buildingsCards.remove(0);
 		case CHARACTERS:
 				return charactersCards.remove(0);
@@ -100,24 +97,9 @@ public class Board implements Serializable {
 		return null;
 	}
 
-	private Card getCard(CardType type) {
-		for (Card c : cards) {
-			if (c.getType().equals(type)) {
-				return c;
-			}
-		}
-		return null;
-	}
-	
-	public Excommunication[] getExcommunicationCards() 
-	{
-		return excommunicationCards;
-	}
-
 	public void addActionSpace(RealActionSpace a) {
 		this.actionSpaces.add(a);
 	}
-
 
 	public RealActionSpace getActionSpace(int id) {
 		for (ActionSpace as : this.actionSpaces) {
@@ -126,10 +108,6 @@ public class Board implements Serializable {
 		return null;
 	}
 
-	public void addPlayer(Player player) {
-		players.add(player);
-	}
-	
 	public String toString() {
 		String str = "";
 		str += "Action Spaces\n";
@@ -144,9 +122,18 @@ public class Board implements Serializable {
 		return dice;
 	}
 
-
 	public List<ActionSpace> getActionSpaces() {
 		return this.actionSpaces;
+	}
+
+	public void setDice(int black, int white, int orange) {
+		dice.setValue(Color.BLACK, black);
+		dice.setValue(Color.WHITE, white);
+		dice.setValue(Color.ORANGE, orange);
+	}
+	public Excommunication[] getExcommunicationCards() 
+	{
+		return excommunicationCards;
 	}
 
 }

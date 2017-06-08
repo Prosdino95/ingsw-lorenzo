@@ -22,7 +22,7 @@ public class Controller {
 	public ServerResponse doRequest(ClientRequest request, Player player){
 		sr=new ServerResponse();
 		switch(request.getType()){
-		case IWANTAMODEL:sr.setModel(new ModelShell(game.getBoard(),game.getPlayer()));
+		case IWANTAMODEL:sr.setModel(new ModelShell(game.getBoard(),player));
 		break;
 		case PLACEFAMILYMEMBER: return PlaceFM(request,player);
 		default:

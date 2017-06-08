@@ -2,8 +2,9 @@
 	"territory-cards":[
 					{
 						"name":"Commercial Hub",
+						"period":1,
 						"action-cost":1,
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"resource-mod",
       										"gold":1
@@ -13,6 +14,7 @@
 					
 					{
 						"name":"Woods",
+						"period":1,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -20,7 +22,7 @@
       										"wood":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"resource-mod",
       										"wood":1
@@ -30,8 +32,9 @@
 					
 					{
 						"name":"Village",
+						"period":1,
 						"action-cost":3,
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"resource-mod",
       										"gold":1,
@@ -42,6 +45,7 @@
 					
 					{
 						"name":"Gravel Pit",
+						"period":1,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -49,7 +53,7 @@
       										"stone":2
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"resource-mod",
       										"stone":2
@@ -59,6 +63,7 @@
 					
 					{
 						"name":"Forest",
+						"period":1,
 						"action-cost":5,
 						"istant-effect": [
       										{
@@ -66,7 +71,7 @@
       										"wood":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"resource-mod",
       										"wood":3
@@ -76,6 +81,7 @@
 					
 					{
 						"name":"Monastery",
+						"period":1,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -87,7 +93,7 @@
       										"military":2
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":1
@@ -101,9 +107,10 @@
 					
 					{
 						"name":"Citadel",
+						"period":1,
 						"action-cost":5,
 						"istant-effect": [],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":1
@@ -117,6 +124,7 @@
 					
 					{
 						"name":"City",
+						"period":1,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -124,7 +132,7 @@
       										"gold":3
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
       										"type":"council-privileges",
       										"quantity":1
@@ -134,6 +142,7 @@
 					
 					{
 						"name":"Gold Mine",
+						"period":2,
 						"action-cost":1,
 						"istant-effect": [
 											{
@@ -141,7 +150,7 @@
       										"gold":1
       										}
 										 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"gold":2
@@ -151,6 +160,7 @@
 					
 					{
 						"name":"Mountain Town",
+						"period":2,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -158,7 +168,7 @@
       										"servants":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"wood":2
@@ -172,6 +182,7 @@
 					
 					{
 						"name":"Mining Town",
+						"period":2,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -180,7 +191,7 @@
       										"stone":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":2,
@@ -191,6 +202,7 @@
 					
 					{
 						"name":"Rock Pit",
+						"period":2,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -198,7 +210,7 @@
       										"wood":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":3
@@ -208,6 +220,7 @@
 					
 					{
 						"name":"Estate",
+						"period":2,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -216,7 +229,7 @@
       										"servants":2
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"wood":2,
@@ -227,6 +240,7 @@
 					
 					{
 						"name":"Hermitage",
+						"period":2,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -234,7 +248,7 @@
       										"faith":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"point-mod",
       										"faith":1
@@ -244,9 +258,10 @@
 					
 					{
 						"name":"Manor House",
+						"period":2,
 						"action-cost":5,
 						"istant-effect": [],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"servants":2
@@ -260,6 +275,7 @@
 					
 					{
 						"name":"Dukedom",
+						"period":2,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -267,7 +283,7 @@
       										"gold":4
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"wood":2,
@@ -279,6 +295,7 @@
 					
 					{
 						"name":"Trading Town",
+						"period":3,
 						"action-cost":1,
 						"istant-effect": [
       										{
@@ -287,7 +304,7 @@
       										"servants":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"gold":3
@@ -297,6 +314,7 @@
 					
 					{
 						"name":"Farm",
+						"period":3,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -308,7 +326,7 @@
       										"victory":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"wood":2
@@ -322,6 +340,7 @@
 					
 					{
 						"name":"Colony",
+						"period":3,
 						"action-cost":5,
 						"istant-effect": [
       										{
@@ -329,7 +348,7 @@
       										"military":2
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"wood":1
@@ -343,6 +362,7 @@
 					
 					{
 						"name":"Marble Pit",
+						"period":3,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -350,7 +370,7 @@
       										"victory":3
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":2
@@ -364,6 +384,7 @@
 					
 					{
 						"name":"Province",
+						"period":3,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -375,7 +396,7 @@
       										"stone":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"stone":1
@@ -389,6 +410,7 @@
 					
 					{
 						"name":"Sanctuary",
+						"period":3,
 						"action-cost":1,
 						"istant-effect": [
       										{
@@ -396,7 +418,7 @@
       										"faith":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"gold":1
@@ -410,6 +432,7 @@
 					
 					{
 						"name":"Castle",
+						"period":3,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -421,7 +444,7 @@
       										"gold":2
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"servants":1
@@ -435,6 +458,7 @@
 					{
 					
 						"name":"Fortified Town",
+						"period":3,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -446,7 +470,7 @@
       										"servants":1
       										}
       									 ],
-						"permanent-effect":[
+						"activate-effect":[
 											{
 											"type":"resource-mod",
       										"servants":2

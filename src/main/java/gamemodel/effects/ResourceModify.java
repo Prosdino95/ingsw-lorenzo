@@ -5,7 +5,7 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Resource;
 
-public class ResourceModify implements Effect,EffectRollBack,Serializable
+public class ResourceModify implements IstantEffect,EffectRollBack,Serializable
 {
 
 	private static final long serialVersionUID = 1L;
@@ -27,15 +27,15 @@ public class ResourceModify implements Effect,EffectRollBack,Serializable
 		player.subResources(resources);
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "ResourceModify [resources=" + resources + "]";
-	}
+	}*/
 
-//	@Override
-//	public String toString() {
-//		return  ""+resources;
-//	}
+	@Override
+	public String toString() {
+		return  ""+resources;
+	}
 	
 	
 	

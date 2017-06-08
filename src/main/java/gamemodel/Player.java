@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -10,8 +11,11 @@ import java.util.Map;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
+import gamemodel.card.CharactersCard;
+import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.VentureCard;
 import gamemodel.command.*;
-import gamemodel.effects.Effect;
 import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
@@ -19,17 +23,23 @@ import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 public class Player implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Resource resource;
-	private Map<Color,FamilyMember> familyMembers;
-	private Point point;
-	private transient Command command;
-	private Board board;
+
 	private Team team;
-	private List<Card> buildings=new ArrayList<>();
-	private List<Card> territories=new ArrayList<>();	
-	private List<Card> ventures=new ArrayList<>();
-	private List<Card> characters=new ArrayList<>();
-	private transient List<PermanentEffect> permanentEffects=new ArrayList<>();
+
+	private Resource resource;
+	private Point point;
+	private List<HarvesterAndBuildings> buildings=new ArrayList<>();
+	private List<HarvesterAndBuildings> territories=new ArrayList<>();	
+	private List<VentureCard> ventures=new ArrayList<>();
+	private List<CharactersCard> characters=new ArrayList<>();
+	private Map<Color,FamilyMember> familyMembers;
+
+	private Board board;
+	
+
+	
+	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();
+	
 	private transient Action currentAction = new Action();
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -49,37 +59,34 @@ public class Player implements Serializable {
 		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));		
 	}
 	
-	public void setFamilyMember(Color color,int actionPoint){
-		FamilyMember f= familyMembers.get(color);
+	private void setFamilyMember(Color color,int actionPoint){
+		FamilyMember f = familyMembers.get(color);
 		f.setActionpoint(actionPoint);		
 	}
 	
-	 public void subResources(Resource r){ 
+	 public void subResources(Resource r) {
+		if (r == null) return;  
 	    this.resource.subResources(r); 
 	 } 
 	
 	public void addResources(Resource r)
-	 { 
-		if(r==null)
-			return; 
-		if(!(r.isEnought(new Resource(0,0,0,0))))
-		{
-			int a=2;
-			a=a/0;
-		}
-		 
+	{ 
+		if(r==null) return;
+		
+		if(!r.isEnought(new Resource(0,0,0,0)))
+			throw new RuntimeException();
+		
 		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
 		 {
 			r.subResources(((Debuff)permanentEffect).getResources());
 			r.normalize();
-			
 		 }	
 		 this.resource.addResources(r);
-	 } 
+	} 
 	
 	public boolean isEnoughtResource(Resource r){ 
 		return this.resource.isEnought(r); 
-		  }
+	}
 	
 	public FamilyMember getFamilyMember(Color c){
 		return familyMembers.get(c);
@@ -88,6 +95,7 @@ public class Player implements Serializable {
 	public void placeFamilyMember(Action action) throws GameException {
 		currentAction = action;
 		increasePower();
+		Command command;
 		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(action);
 		command.isLegal();
 	}
@@ -105,22 +113,6 @@ public class Player implements Serializable {
 		
 	}
 
-	public void vaticanReport(int period,int requirement,int victoryPoints)
-	{
-		int a=0;
-		if(this.point.getFaith()<requirement)
-			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
-		if(this.point.getFaith()>=requirement)
-		{
-			if(a==0)
-				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
-			if(a==1)
-			{
-				this.subPoint(new Point(0,this.point.getFaith(),0));
-				this.addPoint(new Point(0,0,victoryPoints));
-			}
-		}
-	}
 
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
@@ -169,26 +161,27 @@ public class Player implements Serializable {
 		return point;
 	}
 	
-	public List<Card> getBuildings() {
+
+	public List<HarvesterAndBuildings> getBuildings() {
 		return buildings;
 	}
-	
-	public List<Card> getTerritories() {
+
+	public List<HarvesterAndBuildings> getTerritories() {
 		return territories;
 	}
 
-	public List<Card> getVentures() {
+	public List<VentureCard> getVentures() {
 		return ventures;
 	}
 
-	public List<Card> getCharacters() {
+	public List<CharactersCard> getCharacters() {
 		return characters;
 	}
 
 	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
-		for(Effect e:card.getPermanentEffects())
-			if(e instanceof PermanentEffect)				
+		if (card instanceof CharactersCard)
+			for(PermanentEffect e : ((CharactersCard) card).getPermanentEffects())
 				this.permanentEffects.add((PermanentEffect) e);
 		
 	}
@@ -244,7 +237,6 @@ public class Player implements Serializable {
 		return temp;
 	}
 	
-	
 	public boolean controlResourceAndPay(Card card)
 	{
 		Resource discount=new Resource(0,0,0,0);
@@ -262,4 +254,21 @@ public class Player implements Serializable {
 			
 		else return false;			
 	}
+		public void vaticanReport(int period,int requirement,int victoryPoints)
+	{
+		int a=0;
+		if(this.point.getFaith()<requirement)
+			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+		if(this.point.getFaith()>=requirement)
+		{
+			if(a==0)
+				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+			if(a==1)
+			{
+				this.subPoint(new Point(0,this.point.getFaith(),0));
+				this.addPoint(new Point(0,0,victoryPoints));
+			}
+		}
+	}
+
 }

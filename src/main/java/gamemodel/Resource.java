@@ -35,14 +35,14 @@ public class Resource implements Serializable {
 	}
 	
 	public boolean isEnought(Resource r){
-		if(r!=null)
-			return(this.gold>=r.gold &&
+		if(r == null) return true;
+		
+		return(this.gold>=r.gold &&
 			this.stone>=r.stone &&
 			this.wood>=r.wood &&
 			this.servant>=r.servant);
-		return true;
-			
 	}
+	
 	public int getGold() {
 		return gold;
 	}
@@ -56,9 +56,13 @@ public class Resource implements Serializable {
 		return servant;
 	}
 	
-	public Resource minus(Resource resources)
+	public Resource minus(Resource r)
 	{
-		return new Resource(this.gold-resources.gold,this.stone-resources.stone,this.wood-resources.wood,this.servant-resources.servant);
+		if (r == null) return this;
+		return new Resource(this.gold-r.gold,
+				this.stone-r.stone,
+				this.wood-r.wood,
+				this.servant-r.servant);
 	}
 	
 	public void normalize() {

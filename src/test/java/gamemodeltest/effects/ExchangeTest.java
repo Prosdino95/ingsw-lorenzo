@@ -2,20 +2,19 @@ package gamemodeltest.effects;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.Board;
-import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
-import gamemodel.effects.Effect;
 import gamemodel.effects.Exchange;
+import gamemodel.effects.IstantEffect;
 
 public class ExchangeTest 
 {
@@ -25,7 +24,7 @@ public class ExchangeTest
 	Player p3;
 	Player p4;
 	Player p5;
-	Effect councilPrivileges;
+	IstantEffect councilPrivileges;
 	
 	@Before
 	public void setUp() throws Exception 

@@ -1,6 +1,5 @@
 package gamemodel.card;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -11,24 +10,15 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 
-public class HarvesterAndBuildings extends RealCard implements Serializable
-{
+public class VentureCard extends RealCard {
 
 	private static final long serialVersionUID = 1L;
-	private int actionCost;
 	private List<IstantEffect> activateEffect;
-	
-	public HarvesterAndBuildings(String name,int period, Resource resourceRequirement, Resource resourcePrice, 
-			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffect, 
-			CardType type,Map<CardType, Integer> requirementCard,int actionCost)
-	{
-		super(name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type,requirementCard);
-		this.actionCost=actionCost;
-		this.activateEffect=activateEffect;
-	}
-	
-	public int getActionCost(){
-		return this.actionCost;
+
+	public VentureCard(String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
+			Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffects, CardType type, Map<CardType, Integer> requirementCard) {
+		super(name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type, requirementCard);
+		this.activateEffect=activateEffects;
 	}
 	
 	public void activePermanentEffect(Player p) throws GameException {
@@ -40,14 +30,6 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 	public Collection<IstantEffect> getActivateEffects() {
 		return this.activateEffect;
 	}
-
-	/*@Override
-	public String toString() {
-		return "HarvesterAndBuildings [actionCost=" + actionCost + ", name=" + name + ", resourceRequirement="
-				+ resourceRequirement + ", resourcePrice=" + resourcePrice + ", pointRequirement=" + pointRequirement
-				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", requirementCard=" + requirementCard + "]";
-	}*/
-	
 	
 	@Override
 	public String toString(){
@@ -57,17 +39,23 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 		if(resourceRequirement!=resourcePrice)
 			str +="resource requirement-> "+this.resourceRequirement+ "\n";
 		if(resourcePrice!=null)
-			str +="resource price-> "+this.resourcePrice+ "\n";			
+			str +="resource price-> "+this.resourcePrice+ "\n";	
 		if(pointRequirement!=pointPrice)
 			str +="point requirement-> "+this.pointRequirement+ "\n";
 		if(pointPrice!=null)
 			str +="point price-> "+this.pointPrice+ "\n";
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";		
-		str +="Action Cost-> "+this.actionCost+ "\n";
 		if(this.activateEffect!=null)
 			str +="Action effect-> "+this.activateEffect+ "\n";		
 		return str;
 	}
+
+	/*@Override
+	public String toString() {
+		return "HarvesterAndBuildings [name=" + name + ", resourceRequirement="
+				+ resourceRequirement + ", resourcePrice=" + resourcePrice + ", pointRequirement=" + pointRequirement
+				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", requirementCard=" + requirementCard + "]";
+	}*/
 
 }

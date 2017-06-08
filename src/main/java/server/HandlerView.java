@@ -1,13 +1,14 @@
 package server;
 
 import java.io.IOException;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import gamemodel.Player;
 import gamemodel.RealGame;
-import gamemodel.command.GameException;
+import gamemodel.Team;
 import gameview.ClientRequest;
 import gameview.ServerResponse;
 
@@ -80,7 +81,7 @@ public class HandlerView implements Runnable{
 		s=ss.accept();
 		HandlerView ev=new HandlerView(s);
 		RealGame rg=new RealGame(4);
-		ev.setPlayer(rg.getPlayer());
+		ev.setPlayer(rg.getPlayer(Team.BLUE));
 		Controller c=new Controller(rg);
 		ev.setController(c);
 		ev.run();
