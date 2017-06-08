@@ -2,6 +2,7 @@
 	"character-cards":[
 						{
 						"name":"Warlord",
+						"period":1,
 						"resource-requirement":{
 												"gold":2				
 												},
@@ -16,6 +17,7 @@
 					
 					{
 						"name":"Stonemason",
+						"period":1,
 						"resource-requirement":{
 												"gold":2				
 												},
@@ -24,6 +26,7 @@
 					
 					{
 						"name":"Dame",
+						"period":1,
 						"resource-requirement":{
 												"gold":4				
 												},
@@ -32,6 +35,7 @@
 					
 					{
 						"name":"Warlord",
+						"period":1,
 						"resource-requirement":{
 												"gold":2				
 												},
@@ -46,6 +50,7 @@
 					
 					{
 						"name":"Farmer",
+						"period":1,
 						"resource-requirement":{
 												"gold":3				
 												},
@@ -54,6 +59,7 @@
 
 					{
 						"name":"Artisan",
+						"period":1,
 						"resource-requirement":{
 												"gold":3				
 												},
@@ -62,6 +68,7 @@
 					
 					{
 						"name":"Preacher",
+						"period":1,
 						"resource-requirement":{
 												"gold":2				
 												},
@@ -76,6 +83,7 @@
 					
 					{
 						"name":"Abbess",
+						"period":1,
 						"resource-requirement":{
 												"gold":3				
 												},
@@ -89,6 +97,7 @@
 					
 					{
 						"name":"Capitan",
+						"period":2,
 						"resource-requirement":{
 												"gold":4			
 												},
@@ -102,6 +111,7 @@
 					
 					{
 						"name":"Architet",
+						"period":2,
 						"resource-requirement":{
 												"gold":4			
 												},
@@ -112,6 +122,7 @@
 					
 					{
 						"name":"Patron",
+						"period":2,
 						"resource-requirement":{
 												"gold":3			
 												},
@@ -122,6 +133,7 @@
 					
 					{
 						"name":"Hero",
+						"period":2,
 						"resource-requirement":{
 												"gold":4		
 												},
@@ -136,6 +148,7 @@
 					
 					{
 						"name":"Paesant",
+						"period":2,
 						"resource-requirement":{
 												"gold":4			
 												},
@@ -144,6 +157,7 @@
 					
 					{
 						"name":"Scholar",
+						"period":2,
 						"resource-requirement":{
 												"gold":4			
 												},
@@ -152,6 +166,7 @@
 					
 					{
 						"name":"Papal Messenger",
+						"period":2,
 						"resource-requirement":{
 												"gold":5			
 												},
@@ -165,6 +180,7 @@
 					
 					{
 						"name":"Royal Messenger",
+						"period":2,
 						"resource-requirement":{
 												"gold":5		
 												},
@@ -179,6 +195,7 @@
 					
 					{
 						"name":"Noble",
+						"period":3,
 						"resource-requirement":{
 												"gold":6		
 												},
@@ -199,6 +216,7 @@
 					
 					{
 						"name":"Governator",
+						"period":3,
 						"resource-requirement":{
 												"gold":6		
 												},
@@ -219,6 +237,7 @@
 					
 					{
 						"name":"Paramour",
+						"period":3,
 						"resource-requirement":{
 												"gold":7		
 												},
@@ -239,6 +258,7 @@
 					
 					{
 						"name":"Herald",
+						"period":3,
 						"resource-requirement":{
 												"gold":6		
 												},
@@ -258,6 +278,7 @@
 					
 					{
 						"name":"Cardinal",
+						"period":3,
 						"resource-requirement":{
 												"gold":4			
 												},
@@ -271,6 +292,7 @@
 					
 					{
 						"name":"Bihop",
+						"period":3,
 						"resource-requirement":{
 												"gold":5		
 												},
@@ -284,6 +306,7 @@
 					
 					{
 						"name":"General",
+						"period":3,
 						"resource-requirement":{
 												"gold":5		
 												},
@@ -308,6 +331,7 @@
 					
 					{
 						"name":"Ambassador",
+						"period":3,
 						"resource-requirement":{
 												"gold":6		
 												},

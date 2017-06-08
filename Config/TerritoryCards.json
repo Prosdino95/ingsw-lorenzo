@@ -2,6 +2,7 @@
 	"territory-cards":[
 					{
 						"name":"Commercial Hub",
+						"period":1,
 						"action-cost":1,
 						"activate-effect":[
 											{
@@ -13,6 +14,7 @@
 					
 					{
 						"name":"Woods",
+						"period":1,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -30,6 +32,7 @@
 					
 					{
 						"name":"Village",
+						"period":1,
 						"action-cost":3,
 						"activate-effect":[
 											{
@@ -42,6 +45,7 @@
 					
 					{
 						"name":"Gravel Pit",
+						"period":1,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -59,6 +63,7 @@
 					
 					{
 						"name":"Forest",
+						"period":1,
 						"action-cost":5,
 						"istant-effect": [
       										{
@@ -76,6 +81,7 @@
 					
 					{
 						"name":"Monastery",
+						"period":1,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -101,6 +107,7 @@
 					
 					{
 						"name":"Citadel",
+						"period":1,
 						"action-cost":5,
 						"istant-effect": [],
 						"activate-effect":[
@@ -117,6 +124,7 @@
 					
 					{
 						"name":"City",
+						"period":1,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -134,6 +142,7 @@
 					
 					{
 						"name":"Gold Mine",
+						"period":2,
 						"action-cost":1,
 						"istant-effect": [
 											{
@@ -151,6 +160,7 @@
 					
 					{
 						"name":"Mountain Town",
+						"period":2,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -172,6 +182,7 @@
 					
 					{
 						"name":"Mining Town",
+						"period":2,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -191,6 +202,7 @@
 					
 					{
 						"name":"Rock Pit",
+						"period":2,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -208,6 +220,7 @@
 					
 					{
 						"name":"Estate",
+						"period":2,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -227,6 +240,7 @@
 					
 					{
 						"name":"Hermitage",
+						"period":2,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -244,6 +258,7 @@
 					
 					{
 						"name":"Manor House",
+						"period":2,
 						"action-cost":5,
 						"istant-effect": [],
 						"activate-effect":[
@@ -260,6 +275,7 @@
 					
 					{
 						"name":"Dukedom",
+						"period":2,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -279,6 +295,7 @@
 					
 					{
 						"name":"Trading Town",
+						"period":3,
 						"action-cost":1,
 						"istant-effect": [
       										{
@@ -297,6 +314,7 @@
 					
 					{
 						"name":"Farm",
+						"period":3,
 						"action-cost":3,
 						"istant-effect": [
       										{
@@ -322,6 +340,7 @@
 					
 					{
 						"name":"Colony",
+						"period":3,
 						"action-cost":5,
 						"istant-effect": [
       										{
@@ -343,6 +362,7 @@
 					
 					{
 						"name":"Marble Pit",
+						"period":3,
 						"action-cost":2,
 						"istant-effect": [
       										{
@@ -364,6 +384,7 @@
 					
 					{
 						"name":"Province",
+						"period":3,
 						"action-cost":6,
 						"istant-effect": [
       										{
@@ -389,6 +410,7 @@
 					
 					{
 						"name":"Sanctuary",
+						"period":3,
 						"action-cost":1,
 						"istant-effect": [
       										{
@@ -410,6 +432,7 @@
 					
 					{
 						"name":"Castle",
+						"period":3,
 						"action-cost":4,
 						"istant-effect": [
       										{
@@ -435,6 +458,7 @@
 					{
 					
 						"name":"Fortified Town",
+						"period":3,
 						"action-cost":2,
 						"istant-effect": [
       										{
