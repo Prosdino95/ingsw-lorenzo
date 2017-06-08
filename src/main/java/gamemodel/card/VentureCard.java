@@ -38,8 +38,8 @@ public class VentureCard extends RealCard {
 		str +="id:"+this.id+" "+this.name+"\n";
 		if(resourceRequirement!=resourcePrice)
 			str +="resource requirement-> "+this.resourceRequirement+ "\n";
-			str +="resource price-> "+this.resourcePrice+ "\n";	
 		if(resourcePrice!=null)
+			str +="resource price-> "+this.resourcePrice+ "\n";	
 		if(pointRequirement!=pointPrice)
 			str +="point requirement-> "+this.pointRequirement+ "\n";
 		if(pointPrice!=null)

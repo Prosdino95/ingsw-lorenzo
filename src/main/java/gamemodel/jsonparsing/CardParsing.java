@@ -32,7 +32,6 @@ public class CardParsing {
 			period=item.asObject().getInt("period", 0);
     		name=item.asObject().getString("name", null);
     		cardCostParsing(item);
-    		istantEffects=null;
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
     			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray());

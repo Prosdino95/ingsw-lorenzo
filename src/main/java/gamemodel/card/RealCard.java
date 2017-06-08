@@ -16,7 +16,7 @@ public class RealCard implements Card,Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	protected String name;
-	private int period;
+	protected int period;
 	protected Resource resourceRequirement;
 	protected Resource resourcePrice;
 	protected Point pointRequirement;
