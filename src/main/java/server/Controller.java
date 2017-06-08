@@ -1,8 +1,10 @@
 package server;
 
+import java.util.Map;
+
 import gamemodel.Action;
 import gamemodel.Player;
-import gamemodel.RealGame;
+import gamemodel.Model;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
 import gameview.ModelShell;
@@ -10,10 +12,12 @@ import gameview.ServerResponse;
 
 public class Controller {
 	
-	RealGame game;
+	Model game;
 	private ServerResponse sr;
+	private Map<Player, HandlerView> playerToHV;
 	
-	public Controller(RealGame game){
+	
+	public Controller(Model game){
 		this.game=game;
 	}
 	
@@ -40,5 +44,19 @@ public class Controller {
 			sr.setError(e.getType());
 			return sr;
 		}
+	}
+
+
+
+	public void sendMessage(String string, Player player) 
+	{
+		playerToHV.get(player).sendMessage(string);
+				
+	}
+
+
+
+	public void setPlayerToHV(Map<Player, HandlerView> playerToHV) {
+		this.playerToHV = playerToHV;
 	}
 }

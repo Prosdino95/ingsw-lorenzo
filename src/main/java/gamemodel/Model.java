@@ -14,47 +14,33 @@ import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.TowerASParsing;
+import server.Controller;
 
-public class RealGame {
+public class Model {
 	private List<Player> players;
 	private Board board;
 	private Integer roundNumber;
-	private List<Player> turnOrder; // This should go away, create a turnKeeper?
+	private TurnOrder turnOrder;
 	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
+	private Controller controller;
+	Player currentPlayer;
 	
-	public RealGame(int num){
-		initializeGame(num);
-	}
-
-	public static void main(String[] args) {
-		RealGame game = new RealGame(4);
-		game.start();
+	public Model(int num){
+		initializeGame(num);	
 	}
 	
-	public void start() {
-		for (roundNumber = 1; roundNumber < 7; roundNumber++) {
-			System.out.println("Round number " + roundNumber);
-			setupRound();
-			System.out.println(board);
-			
-			for (int familiare = 0; familiare < 4; familiare++) 
-			{
-				for (Player p : turnOrder) 
-					p.playRound();
-				
-				if (roundNumber % 2 == 0) 
-				{
-					for (Player p : players) 
-						p.vaticanReport(roundNumber/2,faithPointsRequirement.get(roundNumber/2),victoryPointsBoundedTofaithPointsRequirement.get(faithPointsRequirement.get(roundNumber/2)));
-				}
-			}
-		}
+	public void setController(Controller c){
+		this.controller=c;
 	}
-
-	public void setTurnOrder(List<Player> turnOrder) {
-		this.turnOrder = turnOrder; 
+	
+	public void notifyTurn(){
+		turnOrder=new TurnOrder(players);
+		currentPlayer=turnOrder.getNextPlayer();
+		controller.sendMessage("It's your turn",currentPlayer);
 	}
+	
+	
 
 	private void setupRound() {
 		board.setupRound();
@@ -104,16 +90,11 @@ public class RealGame {
 		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN));
 		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW));
 		
-		List<Integer> faithRequirement; //inizializzazione tramite jason
-		faithPointsRequirement.put(1,faithRequirement.get(0));
-		faithPointsRequirement.put(2,faithRequirement.get(1));
-		faithPointsRequirement.put(3,faithRequirement.get(2));
+		List<Integer> faithRequirement=new ArrayList<>(); //inizializzazione tramite jason
+		//faithPointsRequirement.put(1,faithRequirement.get(0));
+		//faithPointsRequirement.put(2,faithRequirement.get(1));
+		//faithPointsRequirement.put(3,faithRequirement.get(2));
 		this.victoryPointsBoundedTofaithPointsRequirementInitialize();
-		turnOrder = new ArrayList<Player>();
-		for (Player p: players) {
-			turnOrder.add(p);
-		} 
-		Collections.shuffle(turnOrder);
 
 	}
 

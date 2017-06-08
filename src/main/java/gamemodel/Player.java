@@ -256,7 +256,7 @@ public class Player implements Serializable {
 	}
 		public void vaticanReport(int period,int requirement,int victoryPoints)
 	{
-		int a=0;
+		int a=0; //TODO implementare scelta utente
 		if(this.point.getFaith()<requirement)
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 		if(this.point.getFaith()>=requirement)

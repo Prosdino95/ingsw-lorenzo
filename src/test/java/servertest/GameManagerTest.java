@@ -19,7 +19,7 @@ public class GameManagerTest {
 		gm=new GameManager();
 	}
 
-	@Test
+	@Test 
 	public void test() throws IOException 
 	{
 		new Thread(gm).start();
@@ -31,7 +31,7 @@ public class GameManagerTest {
 			gm.addHV(new HandlerView());		
 	}
 	
-	@Test
+	@Test 
 	public void test2() throws IOException, InterruptedException 
 	{
 		new Thread(gm).start();
@@ -42,7 +42,7 @@ public class GameManagerTest {
 			gm.addHV(new HandlerView());		
 	}
 
-	@Test
+	@Test 
 	public void test3() throws IOException, InterruptedException 
 	{
 		new Thread(gm).start();

@@ -4,12 +4,14 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import gamemodel.RealGame;
+import gamemodel.Model;
+import gamemodel.Player;
 
 public class GameManager implements Runnable 
 {
 	private ExecutorService pool = Executors.newCachedThreadPool();
-	List<HandlerView> hw=new ArrayList<>();
+	Map<Player,HandlerView> playerToHV=new HashMap<>();
+	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
 	final int delay=5000;
@@ -17,15 +19,21 @@ public class GameManager implements Runnable
 	
 	private void setupGame()
 	{
-		System.out.println("creazione partita");
-		RealGame rl=new RealGame(hw.size());
+		System.out.println("creazione partita");      
+		Model rl=new Model(hw.size());
 		Controller c=new Controller(rl);
-		for(int i=0;i<hw.size();i++){
-			hw.get(i).setPlayer(rl.getPlayers().get(i));
-			hw.get(i).setController(c);
-			pool.execute(hw.get(i));
+		rl.setController(c);
+		for(int i=0;i<rl.getPlayers().size();i++){
+			Player p = rl.getPlayers().get(i);
+			HandlerView hv = hw.get(i);
+			playerToHV.put(p, hv);    //TODO get random player
+			hv.setController(c);
+			pool.execute(hv);
 		}
+		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
+		//rl.notifyTurn();
+		
 	}
 	
 	private synchronized void checkWait()

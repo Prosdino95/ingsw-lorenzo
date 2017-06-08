@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import gamemodel.Player;
-import gamemodel.RealGame;
+import gamemodel.Model;
 import gamemodel.Team;
 import gameview.ClientRequest;
 import gameview.ServerResponse;
@@ -45,6 +45,8 @@ public class HandlerView implements Runnable{
 		this.controller=c;
 	}
 	
+	
+	
 	public void run(){
 		while(live){
 			try {					
@@ -53,14 +55,11 @@ public class HandlerView implements Runnable{
 					ServerResponse sr;
 					sr=controller.doRequest(request,player);
 					System.out.println("send to client"+sr);
-					out.writeObject(sr);
-					out.flush();
-					out.reset();
+					sendObject(sr);
 				}
 			catch (ClassNotFoundException | IOException e) {
 				try {
 					in.close();
-					out.close();
 					live=false;
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -71,8 +70,28 @@ public class HandlerView implements Runnable{
 		}
 	}
 	
+	public void sendMessage(String string) {
+		ServerResponse sr = new ServerResponse();
+		sr.setMessage(string);
+		sendObject(sr);
+	}
 	
 	
+	
+	
+	private void sendObject(Object o) {
+		try {
+			out.writeObject(o);
+			out.flush();
+			out.reset();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	public static void main(String[]args) throws IOException, ClassNotFoundException
 	{
 		ServerSocket ss=new ServerSocket(3017);
@@ -80,7 +99,7 @@ public class HandlerView implements Runnable{
 		System.out.println("server ready");
 		s=ss.accept();
 		HandlerView ev=new HandlerView(s);
-		RealGame rg=new RealGame(4);
+		Model rg=new Model(4);
 		ev.setPlayer(rg.getPlayer(Team.BLUE));
 		Controller c=new Controller(rg);
 		ev.setController(c);
@@ -88,6 +107,7 @@ public class HandlerView implements Runnable{
 		System.out.println(rg.getBoard().getActionSpace(0));
 		
 	}
-	
+
+
 
 }

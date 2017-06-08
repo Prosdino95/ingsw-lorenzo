@@ -11,6 +11,7 @@ public class ServerResponse implements Serializable {
 	private GameError error;
 	private String type;
 	private ModelShell ms;
+	private String message;
 	
 	public ModelShell getModel() {
 		return ms;
@@ -56,6 +57,20 @@ public class ServerResponse implements Serializable {
 		error = err;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String mess) {
+		type = "MESS";
+		message = mess;
+	}
+
+	public boolean isThereAMessage() {
+		return type.equals("MESS");
+	}
+
+	
 	public boolean isThereAnError() {
 		return type.equals("E");
 	}

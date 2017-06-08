@@ -10,6 +10,7 @@ import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.Excommunication;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
