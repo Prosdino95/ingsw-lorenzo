@@ -113,10 +113,21 @@ public class RealPlayer implements Player,Serializable {
 		
 	}
 
-	@Override
-	public void vaticanReport() {
-		// TODO Auto-generated method stub
-		
+	public void vaticanReport(int period,int requirement,int victoryPoints)
+	{
+		int a=0;
+		if(this.point.getFaith()<requirement)
+			this.permanentEffects.add(board.getExcommunicationCards[period-1]);
+		if(this.point.getFaith()>=requirement)
+		{
+			if(a==0)
+				this.permanentEffects.add(board.getExcommunicationCards[period-1]);
+			if(a==1)
+			{
+				this.subPoint(new Point(0,this.point.getFaith(),0));
+				this.addPoint(new Point(0,0,victoryPoints));
+			}
+		}
 	}
 
 	@Override

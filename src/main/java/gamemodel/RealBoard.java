@@ -9,6 +9,8 @@ import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.Excommunication;
+import gamemodel.permanenteffect.PermanentEffect;
 
 public class RealBoard implements Board,Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +22,9 @@ public class RealBoard implements Board,Serializable {
 	private transient List<Card> venturesCards;
 	private transient List<Card> cards;
 	private transient Dice dice;
-	
+	private Excommunication[]excommunicationCards=new Excommunication[3];
+
+
 	public RealBoard() {
 		this.actionSpaces = new ArrayList<ActionSpace>();
 		this.players = new ArrayList<Player>();
@@ -54,6 +58,7 @@ public class RealBoard implements Board,Serializable {
 				break;
 			}
 		}
+		// TODO inizializzazione 3 carte scomunica
 	}
 
 	@Override
@@ -103,6 +108,11 @@ public class RealBoard implements Board,Serializable {
 			}
 		}
 		return null;
+	}
+	
+	public Excommunication[] getExcommunicationCards() 
+	{
+		return excommunicationCards;
 	}
 
 	@Override

@@ -3,7 +3,9 @@ package gamemodel;
 import java.util.ArrayList;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
@@ -19,6 +21,8 @@ public class RealGame {
 	private Board board;
 	private Integer roundNumber;
 	private List<Player> turnOrder;
+	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
+	private Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
 	
 	public RealGame(int num){
 		initializeGame(num);
@@ -37,15 +41,15 @@ public class RealGame {
 			setupRound();
 			System.out.println(board);
 			
-			for (int familiare = 0; familiare < 4; familiare++) {
-				for (Player p : turnOrder) {
+			for (int familiare = 0; familiare < 4; familiare++) 
+			{
+				for (Player p : turnOrder) 
 					p.playRound();
-				}
 				
-				if (roundNumber % 2 == 0) {
-					for (Player p : players) {
-						p.vaticanReport();
-					}
+				if (roundNumber % 2 == 0) 
+				{
+					for (Player p : players) 
+						p.vaticanReport(roundNumber/2,faithPointsRequirement.get(roundNumber/2),victoryPointsBoundedTofaithPointsRequirement.get(faithPointsRequirement.get(roundNumber/2)));
 				}
 			}
 		}
@@ -57,6 +61,26 @@ public class RealGame {
 
 	private void setupRound() {
 		board.setupRound();
+	}
+	
+	private void victoryPointsBoundedTofaithPointsRequirementInitialize()
+	{
+		victoryPointsBoundedTofaithPointsRequirement.put(0,0);
+		victoryPointsBoundedTofaithPointsRequirement.put(1,1);
+		victoryPointsBoundedTofaithPointsRequirement.put(2,2);
+		victoryPointsBoundedTofaithPointsRequirement.put(3,3);
+		victoryPointsBoundedTofaithPointsRequirement.put(4,4);
+		victoryPointsBoundedTofaithPointsRequirement.put(5,5);
+		victoryPointsBoundedTofaithPointsRequirement.put(6,7);
+		victoryPointsBoundedTofaithPointsRequirement.put(7,9);
+		victoryPointsBoundedTofaithPointsRequirement.put(8,11);
+		victoryPointsBoundedTofaithPointsRequirement.put(9,13);
+		victoryPointsBoundedTofaithPointsRequirement.put(10,15);
+		victoryPointsBoundedTofaithPointsRequirement.put(11,17);
+		victoryPointsBoundedTofaithPointsRequirement.put(12,19);
+		victoryPointsBoundedTofaithPointsRequirement.put(13,22);
+		victoryPointsBoundedTofaithPointsRequirement.put(14,35);
+		victoryPointsBoundedTofaithPointsRequirement.put(15,30);
 	}
 
 	public RealGame initializeGame(int num) {
@@ -86,11 +110,25 @@ public class RealGame {
 		for (Player p : players) {
 			board.addPlayer(p);
 		}
+		
+		
 
+		List<Integer> faithRequirement; //inizializzazione tramite jason
+		faithPointsRequirement.put(1,faithRequirement.get(0));
+		faithPointsRequirement.put(2,faithRequirement.get(1));
+		faithPointsRequirement.put(3,faithRequirement.get(2));
+		
+		
+		
+		
+		this.victoryPointsBoundedTofaithPointsRequirementInitialize();
+		
+		
+		
 		turnOrder = new ArrayList<Player>();
 		for (Player p: players) {
 			turnOrder.add(p);
-		}
+		} 
 		Collections.shuffle(turnOrder);
 		//TODO remove this return (creato per provare CLIView)
 		return this;
