@@ -28,9 +28,9 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	@Before
 	public void setUp(){
 		e=new TestEffects();
-		b=new RealBoard();
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
+		b=new Board();
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new MemoryActionSpace(5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
 		a1=new MemoryActionSpace(0, e, ActionSpaceType.COUNCIL_PALACE);
@@ -84,9 +84,9 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	@Test
 	public void testDoublePlaceSamePostDifferentPlayer() throws GameException{
-		List<RealPlayer> testplayers=new ArrayList<RealPlayer>();
-		testplayers.add((RealPlayer) p1);
-		testplayers.add((RealPlayer) p2);
+		List<Player> testplayers=new ArrayList<Player>();
+		testplayers.add((Player) p1);
+		testplayers.add((Player) p2);
 		p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));
 		p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0));
 		assertEquals(a0.getPlayers(),testplayers);		

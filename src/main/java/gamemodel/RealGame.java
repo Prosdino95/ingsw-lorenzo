@@ -98,14 +98,14 @@ public class RealGame {
 		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse());
 		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());				
 		
-		board = new RealBoard(developmentCards, actionSpaces);
+		board = new Board(developmentCards, actionSpaces);
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.RED));
-		players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.BLUE));
-		if(num>=3)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.GREEN));
-		if(num==4)players.add(new RealPlayer(new Resource(5,5,5,5), board, Team.YELLOW));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.RED));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.BLUE));
+		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN));
+		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW));
 		
 		for (Player p : players) {
 			board.addPlayer(p);

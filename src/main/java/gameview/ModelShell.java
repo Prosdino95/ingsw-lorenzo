@@ -6,8 +6,8 @@ import java.util.List;
 import gamemodel.Board;
 import gamemodel.FamilyMember;
 import gamemodel.Player;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
+import gamemodel.Board;
+import gamemodel.Player;
 import gamemodel.actionSpace.ActionSpace;
 
 public class ModelShell implements Serializable {
@@ -27,13 +27,13 @@ public class ModelShell implements Serializable {
 	public Board getBoard() {
 		return board;
 	}
-	public void setBoard(RealBoard board) {
+	public void setBoard(Board board) {
 		this.board = board;
 	}
 	public Player getPlayer() {
 		return player;
 	}
-	public void setPlayer(RealPlayer player) {
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
 

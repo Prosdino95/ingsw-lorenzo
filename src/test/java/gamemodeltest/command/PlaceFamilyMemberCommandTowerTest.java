@@ -34,11 +34,11 @@ public class PlaceFamilyMemberCommandTowerTest {
 	public void setUp(){
 		e=new ResourceModify(new Resource(2,2,2,0));
 		t=new Tower();
-		b=new RealBoard();
+		b=new Board();
 		c0=new RealCard(null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, effects, null, null);
 		c1=new RealCard(null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, effects, null, null);
-		p1=new RealPlayer(new Resource(1,1,1,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
+		p1=new Player(new Resource(1,1,1,5), b, Team.RED);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
 		a0=new RealTowerActionSpace(5, e, t, ActionSpaceType.TOWER);
 		a1=new RealTowerActionSpace(0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
@@ -133,7 +133,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	
 	@Test
 	public void TestCard3(){
-		p3=new RealPlayer(new Resource(0,0,0,5), b, Team.GREEN);
+		p3=new Player(new Resource(0,0,0,5), b, Team.GREEN);
 		p3.setFamilyMember(Color.BLACK, 7);
 		try{p3.placeFamilyMember(new Action(p3,a0,p3.getFamilyMember(Color.BLACK),0));}
 		catch(GameException e){s=e.getType();}

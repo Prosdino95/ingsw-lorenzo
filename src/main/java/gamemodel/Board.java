@@ -12,7 +12,7 @@ import gamemodel.card.Card;
 import gamemodel.card.Excommunication;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class RealBoard implements Board,Serializable {
+public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<ActionSpace> actionSpaces;
 	private List<Player> players;
@@ -25,13 +25,13 @@ public class RealBoard implements Board,Serializable {
 	private Excommunication[]excommunicationCards=new Excommunication[3];
 
 
-	public RealBoard() {
+	public Board() {
 		this.actionSpaces = new ArrayList<ActionSpace>();
 		this.players = new ArrayList<Player>();
 		this.cards = new ArrayList<Card>();
 	}
 	
-	public RealBoard(List<Card> cards, List<ActionSpace> actionSpaces) {
+	public Board(List<Card> cards, List<ActionSpace> actionSpaces) {
 		this.players = new ArrayList<Player>();
 		this.actionSpaces = actionSpaces;
 		this.dice=new Dice();
@@ -61,7 +61,6 @@ public class RealBoard implements Board,Serializable {
 		// TODO inizializzazione 3 carte scomunica
 	}
 
-	@Override
 	public void setupRound() {
 		for (ActionSpace as : actionSpaces) {
 			if (as instanceof TowerActionSpace) {
@@ -115,12 +114,11 @@ public class RealBoard implements Board,Serializable {
 		return excommunicationCards;
 	}
 
-	@Override
 	public void addActionSpace(RealActionSpace a) {
 		this.actionSpaces.add(a);
 	}
 
-	@Override
+
 	public RealActionSpace getActionSpace(int id) {
 		for (ActionSpace as : this.actionSpaces) {
 			if (as.getId() == id) return (RealActionSpace) as;
@@ -128,7 +126,6 @@ public class RealBoard implements Board,Serializable {
 		return null;
 	}
 
-	@Override
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
@@ -148,7 +145,6 @@ public class RealBoard implements Board,Serializable {
 	}
 
 
-	@Override
 	public List<ActionSpace> getActionSpaces() {
 		return this.actionSpaces;
 	}

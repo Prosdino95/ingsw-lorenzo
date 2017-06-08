@@ -8,7 +8,7 @@ public class Tower implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean towerFree=true;
 	private CardType type;
-	private List<RealPlayer> playersInTower=new ArrayList<RealPlayer>();
+	private List<Player> playersInTower=new ArrayList<Player>();
 
 	public Tower() {
 	}

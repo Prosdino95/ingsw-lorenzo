@@ -17,7 +17,7 @@ import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
-public class RealPlayer implements Player,Serializable {
+public class Player implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Resource resource;
 	private Map<Color,FamilyMember> familyMembers;
@@ -32,7 +32,7 @@ public class RealPlayer implements Player,Serializable {
 	private transient List<PermanentEffect> permanentEffects=new ArrayList<>();
 	private transient Action currentAction = new Action();
 	
-	public RealPlayer(Resource resource, Board board,Team team) 
+	public Player(Resource resource, Board board,Team team) 
 	{
 		this.team=team;
 		this.resource = resource;
@@ -49,18 +49,15 @@ public class RealPlayer implements Player,Serializable {
 		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));		
 	}
 	
-	@Override
 	public void setFamilyMember(Color color,int actionPoint){
 		FamilyMember f= familyMembers.get(color);
 		f.setActionpoint(actionPoint);		
 	}
 	
-	@Override
 	 public void subResources(Resource r){ 
 	    this.resource.subResources(r); 
 	 } 
 	
-	 @Override
 	public void addResources(Resource r)
 	 { 
 		if(r==null)
@@ -80,12 +77,10 @@ public class RealPlayer implements Player,Serializable {
 		 this.resource.addResources(r);
 	 } 
 	
-	@Override
 	public boolean isEnoughtResource(Resource r){ 
 		return this.resource.isEnought(r); 
 		  }
 	
-	@Override
 	public FamilyMember getFamilyMember(Color c){
 		return familyMembers.get(c);
 	}
@@ -97,17 +92,14 @@ public class RealPlayer implements Player,Serializable {
 		command.isLegal();
 	}
 	
-	@Override
 	public Team getTeam() {
 		return team;
 	}
 	
-	@Override
 	public Resource getResource() {
 		return resource;
 	}
 
-	@Override
 	public void playRound() {
 		// TODO Auto-generated method stub
 		
@@ -117,11 +109,11 @@ public class RealPlayer implements Player,Serializable {
 	{
 		int a=0;
 		if(this.point.getFaith()<requirement)
-			this.permanentEffects.add(board.getExcommunicationCards[period-1]);
+			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 		if(this.point.getFaith()>=requirement)
 		{
 			if(a==0)
-				this.permanentEffects.add(board.getExcommunicationCards[period-1]);
+				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 			if(a==1)
 			{
 				this.subPoint(new Point(0,this.point.getFaith(),0));
@@ -130,7 +122,6 @@ public class RealPlayer implements Player,Serializable {
 		}
 	}
 
-	@Override
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
 		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
@@ -139,13 +130,11 @@ public class RealPlayer implements Player,Serializable {
 		
 	}
 
-	@Override
 	public void subPoint(Point point) {
 		this.point.subPoint(point);
 		
 	}
 
-	@Override
 	public void addPoint(Point point) {
 		this.point.addPoint(point);
 		for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_POINT"))
@@ -155,12 +144,10 @@ public class RealPlayer implements Player,Serializable {
 		
 	}
 	
-	@Override
 	public boolean isEnoughtPoint(Point point){ 
 		return this.point.isEnought(point); 
 		  }
 	
-	@Override
 	public int contCard(CardType type)
 	{
 		if(type==CardType.BUILDINGS)
@@ -174,7 +161,6 @@ public class RealPlayer implements Player,Serializable {
 		return 0;
 	}
 
-	@Override
 	public List<FamilyMember> getFamilyMembers() {
 		return  new ArrayList<>(familyMembers.values());
 	}
@@ -183,19 +169,18 @@ public class RealPlayer implements Player,Serializable {
 		return point;
 	}
 	
-	@Override
 	public List<Card> getBuildings() {
 		return buildings;
 	}
-	@Override
+	
 	public List<Card> getTerritories() {
 		return territories;
 	}
-	@Override
+
 	public List<Card> getVentures() {
 		return ventures;
 	}
-	@Override
+
 	public List<Card> getCharacters() {
 		return characters;
 	}
@@ -260,9 +245,6 @@ public class RealPlayer implements Player,Serializable {
 	}
 	
 	
-	
-	
-	@Override
 	public boolean controlResourceAndPay(Card card)
 	{
 		Resource discount=new Resource(0,0,0,0);
@@ -280,15 +262,4 @@ public class RealPlayer implements Player,Serializable {
 			
 		else return false;			
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

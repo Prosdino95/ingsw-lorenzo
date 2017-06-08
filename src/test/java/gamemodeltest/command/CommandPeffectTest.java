@@ -14,8 +14,8 @@ import gamemodel.Board;
 import gamemodel.CardType;
 import gamemodel.Color;
 import gamemodel.Player;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
+import gamemodel.Board;
+import gamemodel.Player;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.Tower;
@@ -34,7 +34,7 @@ import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 public class CommandPeffectTest {
-	 RealPlayer p;
+	 Player p;
 	 GameError s;
 	 PermanentEffect e,e1,e2,e3;
 	 Action action, action1,action2;
@@ -56,8 +56,8 @@ public class CommandPeffectTest {
 		Card c2=new RealCard(null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<Effect>(), le2,CardType.BUILDINGS, null);
 		Tower t=new Tower(CardType.BUILDINGS);
 		Tower t2=new Tower(CardType.BUILDINGS);
-		Board b=new RealBoard();
-		p=new RealPlayer(new Resource(1,1,1,5), b, Team.RED);
+		Board b=new Board();
+		p=new Player(new Resource(1,1,1,5), b, Team.RED);
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);
