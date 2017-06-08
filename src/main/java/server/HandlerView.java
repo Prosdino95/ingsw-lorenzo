@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 import gamemodel.Player;
+import gamemodel.Question;
 import gamemodel.Model;
 import gamemodel.Team;
 import gameview.ClientRequest;
@@ -48,25 +50,12 @@ public class HandlerView implements Runnable{
 	
 	
 	public void run(){
-		while(live){
-			try {					
-					request=(ClientRequest) in.readObject();
-					System.out.println("receive from client"+request);
+		while(live){				
+					readRequest();
 					ServerResponse sr;
 					sr=controller.doRequest(request,player);
 					System.out.println("send to client"+sr);
-					sendObject(sr);
-				}
-			catch (ClassNotFoundException | IOException e) {
-				try {
-					in.close();
-					live=false;
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			
+					sendObject(sr);			
 		}
 	}
 	
@@ -76,8 +65,29 @@ public class HandlerView implements Runnable{
 		sendObject(sr);
 	}
 	
+	public Object answerToQuestion(Question gq) {
+		ServerResponse sr = new ServerResponse(gq);
+		sendObject(sr);
+		readRequest();
+		return request.getAnswer();
+		
+	}	
 	
-	
+	private void readRequest(){
+		try {
+			request=(ClientRequest) in.readObject();
+			System.out.println("receive from client"+request);
+		} catch (ClassNotFoundException | IOException e) {
+			try {
+				in.close();
+				live=false;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
+			System.out.println("Client disconnected");
+		}
+	}
 	
 	private void sendObject(Object o) {
 		try {
@@ -107,7 +117,5 @@ public class HandlerView implements Runnable{
 		System.out.println(rg.getBoard().getActionSpace(0));
 		
 	}
-
-
 
 }

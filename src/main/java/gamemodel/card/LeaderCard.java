@@ -19,12 +19,14 @@ public class LeaderCard extends RealCard  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private boolean useEffect=false;
 	private boolean playCard=false;
+	private Map<CardType,Integer> requirementCard=new HashMap<>();
 	
-	public LeaderCard(String name, int period, Resource resourceRequirement, Point point,
+	public LeaderCard(int id,String name, int period, Resource resourceRequirement, Point point,
 			 Map<CardType, Integer> requirementCard,List<IstantEffect> activateEffect,List<PermanentEffect> permanentEffect) {
-		super(name, period, resourceRequirement, null, point, null, null, null, requirementCard);
+		super(id,name, period, resourceRequirement, null, point, null, null, null);
 		this.permanentEffect=permanentEffect;
 		this.activateEffect=activateEffect;
+		this.requirementCard=requirementCard;
 	}	
 	
 	public void useEffect(){

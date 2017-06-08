@@ -18,11 +18,13 @@ public class ASParsing {
 	private List<IstantEffect> effects;
 	private ActionSpaceType type;
 	private int cost;
+	private int id;
 		
 
 	public List<ActionSpace> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("ActionSpace").asArray();
 		for (JsonValue item : items) {
+			id=item.asObject().getInt("id", -1);
     		cost=item.asObject().getInt("action-cost", 1);
     		effects=null;
     		if(item.asObject().get("effect")!=null){
@@ -30,6 +32,7 @@ public class ASParsing {
     			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray());
     		}
     		makeAS(item.asObject().getString("type", null));
+    		
     	}	
 		return AS;
 	}
@@ -50,13 +53,13 @@ public class ASParsing {
     
     private void memoryAS(ActionSpaceType type) {
 		this.type=type;
-		AS.add(new MemoryActionSpace(cost, effects, type));   	
+		AS.add(new MemoryActionSpace(id,cost, effects, type));   	
 		
 	}
 
 	private void marketAS(){
     	this.type=ActionSpaceType.MARKET;
-    	AS.add(new RealActionSpace(cost, effects, type));   	
+    	AS.add(new RealActionSpace(id,cost, effects, type));   	
     }
 
 }

@@ -24,6 +24,7 @@ public class CardParsing {
 	private List<IstantEffect> istantEffects,activateEffects;
 	private List<PermanentEffect> permanentEffects;
 	private CardType type;
+	private int id=0;
 	
 	public List<Card> parsing(String json){
 		JsonArray items = arrayBuild(json); 
@@ -44,7 +45,8 @@ public class CardParsing {
     			permanentEffects=new ArrayList<>();
     			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
     		}
-    		makeCard();  		
+    		makeCard(); 
+    		id++;
     	}	
 		return cards;
 	}
@@ -53,13 +55,13 @@ public class CardParsing {
 	
 	private void makeCard() {
 		switch(type){
-		case BUILDINGS:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
+		case BUILDINGS:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
 			break;
-		case CHARACTERS:cards.add(new CharactersCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type, rCard));
+		case CHARACTERS:cards.add(new CharactersCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type));
 			break;
-		case TERRITORIES:cards.add(new HarvesterAndBuildings(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard, actionCost));
+		case TERRITORIES:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
 			break;
-		case VENTURES:cards.add(new VentureCard(name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type, rCard));
+		case VENTURES:cards.add(new VentureCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type));
 			break;
 		}
 	}

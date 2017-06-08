@@ -33,9 +33,9 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		b.setDice(1, 7, 7);
 		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
 		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
-		a0=new MemoryActionSpace(5, e, ActionSpaceType.COUNCIL_PALACE);
+		a0=new MemoryActionSpace(0,5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
-		a1=new MemoryActionSpace(0, e, ActionSpaceType.COUNCIL_PALACE);
+		a1=new MemoryActionSpace(1,0, e, ActionSpaceType.COUNCIL_PALACE);
 		id1=a1.getId();
 		p1.prepareForNewRound();
 		p2.prepareForNewRound();

@@ -1,9 +1,11 @@
 package server;
 
+import java.util.List;
 import java.util.Map;
 
 import gamemodel.Action;
 import gamemodel.Player;
+import gamemodel.Question;
 import gamemodel.Model;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
@@ -58,5 +60,11 @@ public class Controller {
 
 	public void setPlayerToHV(Map<Player, HandlerView> playerToHV) {
 		this.playerToHV = playerToHV;
+	}
+
+
+
+	public String answerToQuestion(Question gq, Player player) {
+		return (String)(playerToHV.get(player).answerToQuestion(gq));
 	}
 }

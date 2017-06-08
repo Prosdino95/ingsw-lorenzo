@@ -16,12 +16,12 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	private static final long serialVersionUID = 1L;
 	private List<Player> players=new ArrayList<Player>();
 
-	public MemoryActionSpace(int actionCost, IstantEffect effect, ActionSpaceType type) {
-		super(actionCost, effect, type);
+	public MemoryActionSpace(int id,int actionCost, IstantEffect effect, ActionSpaceType type) {
+		super(id,actionCost, effect, type);
 	}
 	
-	public MemoryActionSpace(int actionCost, List<IstantEffect> effect, ActionSpaceType type) {
-		super(actionCost, effect, type);
+	public MemoryActionSpace(int id,int actionCost, List<IstantEffect> effect, ActionSpaceType type) {
+		super(id,actionCost, effect, type);
 	}
 	
 	public List<Player> getPlayers() {

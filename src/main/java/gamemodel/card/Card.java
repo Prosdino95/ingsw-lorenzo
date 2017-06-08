@@ -18,7 +18,6 @@ public interface Card extends Serializable {
 	public Point getPointPrice();
 	public CardType getType();
 	public int getId(); 
-	public Map<CardType, Integer> getRequirementCard(); 
 	public void activeIstantEffect(Player p) throws GameException;
 	void pay(Player p, Resource discount);
 

@@ -30,8 +30,8 @@ public class PlaceFamilyMemberCommandMarketTest {
 		b=new Board();
 		b.setDice(1, 7, 0);
 		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
-		a0=new RealActionSpace(5, e, ActionSpaceType.MARKET);
-		a1=new RealActionSpace(0, e, ActionSpaceType.MARKET);
+		a0=new RealActionSpace(0,5, e, ActionSpaceType.MARKET);
+		a1=new RealActionSpace(1,0, e, ActionSpaceType.MARKET);
 		p1.prepareForNewRound();
 	}
 		

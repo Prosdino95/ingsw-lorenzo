@@ -15,9 +15,9 @@ public class VentureCard extends RealCard {
 	private static final long serialVersionUID = 1L;
 	private List<IstantEffect> activateEffect;
 
-	public VentureCard(String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
-			Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffects, CardType type, Map<CardType, Integer> requirementCard) {
-		super(name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type, requirementCard);
+	public VentureCard(int id,String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
+			Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffects, CardType type) {
+		super(id,name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type);
 		this.activateEffect=activateEffects;
 	}
 	

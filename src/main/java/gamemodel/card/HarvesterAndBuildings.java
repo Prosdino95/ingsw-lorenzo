@@ -18,11 +18,11 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 	private int actionCost;
 	private List<IstantEffect> activateEffect;
 	
-	public HarvesterAndBuildings(String name,int period, Resource resourceRequirement, Resource resourcePrice, 
+	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
 			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffect, 
-			CardType type,Map<CardType, Integer> requirementCard,int actionCost)
+			CardType type,int actionCost)
 	{
-		super(name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type,requirementCard);
+		super(id,name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type);
 		this.actionCost=actionCost;
 		this.activateEffect=activateEffect;
 	}

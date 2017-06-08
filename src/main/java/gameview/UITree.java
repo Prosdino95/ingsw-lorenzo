@@ -41,29 +41,30 @@ public class UITree {
 		UINode talkToServer = new UINode("Waiting for server response...", this) {
 			@Override
 			public void run() throws IOException {
-				ServerResponse response = tree.sendRequestToServer();
-
-				while (!response.isItOk()) {
-
+				ServerResponse response=tree.sendRequestToServer();
+				
+				do {
+					
+					
 					System.out.println("Client -- Received response:");
 					System.out.println(response);
 					System.out.println();
 					
 					if (response.isThereAQuestion()) {
-						ServerQuestion serverQuestion = response.getQuestion();
-						System.out.println(serverQuestion.getQuestion());
-						serverQuestion.setAnswer(CLIView.getString());
-						request = serverQuestion.getRequest();
-						tree.sendRequestToServer();
+						Question question = response.getQuestion();
+						System.out.println(question);
+						question.setAnswer(CLIView.getString());
+						request = question.createRequest();
+						response=tree.sendRequestToServer();
 					} else if (response.isThereAnError()) {
 						System.out.print("You can't do that because: ");
 						print(response.getError());
-						response=new ServerResponse();
 					} else if(response.isThereANewModel()) {
 						ms.update(response.getModel());
-						response=new ServerResponse();
 					}
-				}
+				} while (!(response.isItOk() ||
+						response.isThereAnError() ||
+						response.isThereANewModel()));
 				
 				System.out.println("Client -- Received ok from server");
 				System.out.println();

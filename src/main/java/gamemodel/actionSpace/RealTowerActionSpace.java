@@ -20,13 +20,13 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		return card;
 	}
 
-	public RealTowerActionSpace(int actionCost, List<IstantEffect> effects, Tower tower,ActionSpaceType type) {
-		super(actionCost, effects,type);
+	public RealTowerActionSpace(int id,int actionCost, List<IstantEffect> effects, Tower tower,ActionSpaceType type) {
+		super(id,actionCost, effects,type);
 		this.tower = tower;
 	}
 	
-	public RealTowerActionSpace(int actionCost, IstantEffect effects, Tower tower,ActionSpaceType type) {
-		super(actionCost, effects,type);
+	public RealTowerActionSpace(int id,int actionCost, IstantEffect effects, Tower tower,ActionSpaceType type) {
+		super(id,actionCost, effects,type);
 		this.tower = tower;
 	}
 

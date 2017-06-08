@@ -28,6 +28,7 @@ public class GameManager implements Runnable
 			HandlerView hv = hw.get(i);
 			playerToHV.put(p, hv);    //TODO get random player
 			hv.setController(c);
+			hv.setPlayer(p);
 			pool.execute(hv);
 		}
 		c.setPlayerToHV(playerToHV);

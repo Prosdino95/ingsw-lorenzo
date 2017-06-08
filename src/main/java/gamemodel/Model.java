@@ -15,6 +15,7 @@ import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.TowerASParsing;
 import server.Controller;
+import server.GameQuestion;
 
 public class Model {
 	private List<Player> players;
@@ -85,10 +86,10 @@ public class Model {
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new Player(new Resource(5,5,5,5), board, Team.RED));
-		players.add(new Player(new Resource(5,5,5,5), board, Team.BLUE));
-		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN));
-		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.RED,this));
+		players.add(new Player(new Resource(5,5,5,5), board, Team.BLUE,this));
+		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN,this));
+		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW,this));
 		
 		List<Integer> faithRequirement=new ArrayList<>(); //inizializzazione tramite jason
 		//faithPointsRequirement.put(1,faithRequirement.get(0));
@@ -106,10 +107,15 @@ public class Model {
 		return this.players;
 	}
 
-	public Player getPlayer(Team blue) {
+	public Player getPlayer(Team team) {
 		for (Player p : players) {
-			if (p.getTeam() == blue) return p;
+			if (p.getTeam() == team) return p;
 		}
 		throw new RuntimeException();
 	}
+
+	public String answerToQuestion(Question gq, Player player) {
+		return controller.answerToQuestion(gq, player);
+	}
+
 }

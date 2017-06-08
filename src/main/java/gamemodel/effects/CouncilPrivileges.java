@@ -6,7 +6,9 @@ import java.util.List;
 
 import gamemodel.Player;
 import gamemodel.Point;
+import gamemodel.Question;
 import gamemodel.Resource;
+import server.GameQuestion;
 
 public class CouncilPrivileges implements IstantEffect,Serializable
 {
@@ -34,7 +36,9 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
-			int selection=3;
+			int selection=
+			Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice)));
+			System.out.println("selezionato:"+selection);
 			switch (selection)
 			{
 				case 0: player.addResources((Resource) this.choice.get(0));

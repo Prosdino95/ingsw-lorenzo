@@ -42,9 +42,9 @@ public class CommandPeffectTest {
 		le.add(e1);
 		le2.add(e2);
 		le2.add(e3);
-		Card c1 = new CharactersCard(null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),le, CardType.CHARACTERS, null);
-		Card c=new CharactersCard(null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), le,CardType.CHARACTERS, null);
-		Card c2=new CharactersCard(null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), le2,CardType.CHARACTERS, null);
+		Card c1 = new CharactersCard(0,null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),le, CardType.CHARACTERS);
+		Card c=new CharactersCard(1,null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), le,CardType.CHARACTERS);
+		Card c2=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), le2,CardType.CHARACTERS);
 		Tower t=new Tower(CardType.BUILDINGS);
 		Tower t2=new Tower(CardType.BUILDINGS);
 		Board b=new Board();
@@ -53,9 +53,9 @@ public class CommandPeffectTest {
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);
-		RealTowerActionSpace a=new RealTowerActionSpace(3, is, t, ActionSpaceType.TOWER);
-		MemoryActionSpace a1=new MemoryActionSpace(3, is, ActionSpaceType.HARVEST);
-		RealTowerActionSpace a2=new RealTowerActionSpace(3, is, t2, ActionSpaceType.TOWER);
+		RealTowerActionSpace a=new RealTowerActionSpace(0,3, is, t, ActionSpaceType.TOWER);
+		MemoryActionSpace a1=new MemoryActionSpace(1,3, is, ActionSpaceType.HARVEST);
+		RealTowerActionSpace a2=new RealTowerActionSpace(2,3, is, t2, ActionSpaceType.TOWER);
 		p.prepareForNewRound();
 		a.attachDevelopmentCard(c);
 		a2.attachDevelopmentCard(c2);
@@ -109,7 +109,7 @@ public class CommandPeffectTest {
 	@Test
 	public void test4()
 	{
-		try{p.placeFamilyMember(new Action(p,new RealActionSpace(0,is,ActionSpaceType.MARKET),p.getFamilyMember(Color.ORANGE),0));}
+		try{p.placeFamilyMember(new Action(p,new RealActionSpace(3,0,is,ActionSpaceType.MARKET),p.getFamilyMember(Color.ORANGE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR,s);
 	}

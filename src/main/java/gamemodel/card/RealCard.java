@@ -24,22 +24,17 @@ public class RealCard implements Card,Serializable {
 	protected List<IstantEffect> istantEffect;
 	protected CardType type;
 	protected final int id;
-	private static int identifier=0;
-	protected Map<CardType,Integer> requirementCard=new HashMap<>();
 	
-	public RealCard(String name,int period,Resource resourceRequirement, Resource resourcePrice, Point point, 
-			Point pointPrice, List<IstantEffect> istantEffects, CardType type,
-			Map<CardType, Integer> requirementCard) {	
+	public RealCard(int id,String name,int period,Resource resourceRequirement, Resource resourcePrice, 
+			Point point,Point pointPrice, List<IstantEffect> istantEffects, CardType type) {
 		this.name=name;
 		this.period=period;
-		this.id=identifier;
-		identifier++;
+		this.id=id;
 		this.resourceRequirement = resourceRequirement;
 		this.resourcePrice = resourcePrice;
 		this.pointRequirement = point;
 		this.pointPrice = pointPrice;
 		this.type = type;
-		this.requirementCard = requirementCard;
 		this.istantEffect=istantEffects;
 	}
 		
@@ -49,12 +44,7 @@ public class RealCard implements Card,Serializable {
 			return p.isEnoughtResource(resourceRequirement.minus(discount));
 		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
-		if(!requirementCard.isEmpty())
-			return(requirementCard.get(CardType.BUILDINGS)>=p.contCard(CardType.BUILDINGS)) 
-					&&(requirementCard.get(CardType.CHARACTERS)>=p.contCard(CardType.CHARACTERS))
-					&&(requirementCard.get(CardType.VENTURES)>=p.contCard(CardType.VENTURES))
-					&&(requirementCard.get(CardType.TERRITORIES)>=p.contCard(CardType.TERRITORIES));
-		return true;		
+		return false;				
 	}
 
 	@Override
@@ -93,9 +83,6 @@ public class RealCard implements Card,Serializable {
 		return id;
 	}
 
-	public Map<CardType, Integer> getRequirementCard() {
-		return requirementCard;
-	}
 
 
 	@Override
@@ -109,7 +96,7 @@ public class RealCard implements Card,Serializable {
 		return "RealCard [name=" + name + ", resourceRequirement=" + resourceRequirement + ", resourcePrice="
 				+ resourcePrice + ", pointRequirement=" + pointRequirement + ", pointPrice=" + pointPrice
 				+ ", istantEffect=" + istantEffect +", type=" + type + ", id="
-				+ id + ", requirementCard=" + requirementCard + "]";
+				+ id + ", requirementCard=" +"]";
 	}
 
 

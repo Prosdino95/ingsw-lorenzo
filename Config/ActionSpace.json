@@ -2,6 +2,7 @@
   "ActionSpace": [
 
     {
+      "id":0,
       "action-cost": 1,
       "type": "harvest" 
     },
@@ -49,6 +50,7 @@
     },  
 
     {
+      "id":63,
       "action-cost": 1,
       "type": "market",
       "effect": [

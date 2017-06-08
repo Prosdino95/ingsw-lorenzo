@@ -19,13 +19,12 @@ import gamemodel.command.*;
 import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
+import server.GameQuestion;
 
 
 public class Player implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private Team team;
-
 	private Resource resource;
 	private Point point;
 	private List<HarvesterAndBuildings> buildings=new ArrayList<>();
@@ -33,17 +32,22 @@ public class Player implements Serializable {
 	private List<VentureCard> ventures=new ArrayList<>();
 	private List<CharactersCard> characters=new ArrayList<>();
 	private Map<Color,FamilyMember> familyMembers;
-
-	private Board board;
-	
-
-	
-	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();
-	
+	private Board board;	
+	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
+	private transient Model model;
 	
 	public Player(Resource resource, Board board,Team team) 
 	{
+		this.team=team;
+		this.resource = resource;
+		this.board = board;
+		this.point=new Point(0,0,0);
+		generateFamilyMember();
+	}
+	
+	public Player(Resource resource, Board board,Team team,Model model){
+		this.model=model;
 		this.team=team;
 		this.resource = resource;
 		this.board = board;
@@ -270,5 +274,9 @@ public class Player implements Serializable {
 			}
 		}
 	}
+
+		public String answerToQuestion(Question question) {
+			return model.answerToQuestion(question, this);
+		}
 
 }

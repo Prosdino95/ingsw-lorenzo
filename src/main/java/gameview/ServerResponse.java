@@ -2,12 +2,14 @@ package gameview;
 
 import java.io.Serializable;
 
+import gamemodel.Question;
 import gamemodel.command.GameError;
+import server.GameQuestion;
 
 public class ServerResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private ServerQuestion question;
+	private Question question;
 	private GameError error;
 	private String type;
 	private ModelShell ms;
@@ -31,11 +33,11 @@ public class ServerResponse implements Serializable {
 		return "ServerResponse [question=" + question + ", error=" + error + ", type=" + type + "]";
 	}
 
-	public ServerResponse(ServerQuestion question) {
+	public ServerResponse(Question question) {
 		type = "Q";
 		this.question = question;
 	}
-	
+
 	public boolean isItOk() {
 		return type.equals("O");
 	}
@@ -44,7 +46,7 @@ public class ServerResponse implements Serializable {
 		return type.equals("Q");
 	}
 
-	public ServerQuestion getQuestion() {
+	public Question getQuestion() {
 		return question;
 	}
 
