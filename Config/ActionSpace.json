@@ -3,16 +3,19 @@
 
         {
             "action-cost": 1,
+            "id": 16,
             "type": "harvest" 
         },
 
         {
             "action-cost": 1,
+            "id": 17,
             "type": "production"  
         },
 
         {
             "action-cost": 1,
+            "id": 18,
             "type": "market",
             "effect": [
       		{
@@ -24,6 +27,7 @@
 
         {
             "action-cost": 1,
+            "id": 19,
             "type": "market",
             "effect": [
       		{
@@ -35,6 +39,7 @@
         
         {
             "action-cost": 1,
+            "id": 20,
             "type": "market",
             "effect": [
       		{
@@ -50,6 +55,7 @@
 
         {
             "action-cost": 1,
+            "id": 21,
             "type": "market",
             "effect": [
       		{
@@ -61,6 +67,7 @@
 
         {
             "action-cost": 1,
+            "id": 22,
             "type": "council-place",
             "effect": [
       		{
