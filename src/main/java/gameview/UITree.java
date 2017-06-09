@@ -7,7 +7,7 @@ import gamemodel.actionSpace.ActionSpace;
 import gamemodel.command.GameError;
 
 public class UITree {
-	private UINodeChooseUI root;
+	private UINode root;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
 	private HandlerServer serverEndler;
@@ -72,19 +72,19 @@ public class UITree {
 				return;
 			}
 		};
-		root= new UINodeChooseUI("Root", this)
-				.addSon(placeFM
-						.addSon(where
-								.addSon(which
-										.addSon(servants
-											.addSon(talkToServer)))))
-				.addSon(new UINodeChooseUI("state", this))
-				.addSon(new UINodeSetRequestType("model", 
-						request::setType,
-						RequestType.IWANTAMODEL,
-						this)
-					.addSon(talkToServer));
-//				.addSon(new UINodeChoose("Chat"));
+		
+		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this);
+		UINodeLog log = new UINodeLog("", this, serverEndler);
+		root= log.addSon(
+				menu.addSon(
+					placeFM.addSon(
+						where.addSon(
+							which.addSon(
+								servants.addSon(
+									talkToServer))))));
+				//	.addSon(
+					//new UINodeChooseUI("state", this)));
+				//				.addSon(new UINodeChoose("Chat"));
 		
 		reset();
 

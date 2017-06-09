@@ -33,7 +33,7 @@ public class GameManager implements Runnable
 		}
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
-		//rl.notifyTurn();
+		rl.notifyTurn();
 		
 	}
 	

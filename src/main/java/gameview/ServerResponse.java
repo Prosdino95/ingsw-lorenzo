@@ -38,6 +38,11 @@ public class ServerResponse implements Serializable {
 		this.question = question;
 	}
 
+	public ServerResponse(String question) {
+		type = "MESS";
+		this.message = question;
+	}
+
 	public boolean isItOk() {
 		return type.equals("O");
 	}

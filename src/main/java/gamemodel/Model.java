@@ -37,7 +37,7 @@ public class Model {
 	
 	public void notifyTurn(){
 		turnOrder=new TurnOrder(players);
-		currentPlayer=turnOrder.getNextPlayer();
+		currentPlayer=turnOrder.getNextPlayer();        
 		controller.sendMessage("It's your turn",currentPlayer);
 	}
 	
