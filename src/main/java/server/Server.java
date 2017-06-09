@@ -17,7 +17,7 @@ public class Server {
 		
 		Server server=new Server();
 		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server.serverSocket)));		
-		server.serverSocket=new ServerSocket(3001);
+		server.serverSocket=new ServerSocket(3003);
 		server.start();
 	}
 

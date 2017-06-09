@@ -20,10 +20,17 @@ public class UINodeLog extends UINode
 		ServerResponse sr=null;
 		while(run)
 		{
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(hs.hasMessage()) {		
 				sr=hs.getMessage();
-//				if(sr.isThereANewModel())
-	//				ms.update(response.getModel());
+				System.out.println(sr);
+				if(sr.isThereANewModel())
+					tree.updateShell(sr.getModel());
 				if(sr.isThereAMessage())
 					System.out.println(sr.getMessage());
 			}

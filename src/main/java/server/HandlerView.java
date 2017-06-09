@@ -11,22 +11,26 @@ import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Model;
 import gamemodel.Team;
+import gamemodel.command.GameException;
 import gameview.ClientRequest;
+import gameview.ModelShell;
 import gameview.ServerResponse;
 
 public class HandlerView implements Runnable{
-	
+
 	private Controller controller;
 	private ObjectOutputStream out; 
 	private ObjectInputStream in; 
-	private ClientRequest request;
 	private Player player;
 	private boolean live=true;
+	private boolean newModel=false;
+	private Socket socket;
 	
 	
 	public HandlerView(Socket s) throws IOException{	
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
+		this.socket=s;
 	}
 	
 	public HandlerView()
@@ -47,71 +51,44 @@ public class HandlerView implements Runnable{
 		this.controller=c;
 	}
 	
-	
-	
 	public void run(){
+		ClientRequest request=null;
 		while(live){				
-					readRequest();
-					ServerResponse sr;
-					try{sr=controller.doRequest(request,player);
-						System.out.println("send to client"+sr);
-						sendObject(sr);	
-					}
-					catch(NullPointerException e){live=false;}
-					
-							
-		}
-	}
-	
-	public void sendMessage(String string) {
-		ServerResponse sr = new ServerResponse();
-		sr.setMessage(string);
-		sendObject(sr);
-	}
-	
-	public Object answerToQuestion(Question gq) {
-		ServerResponse sr = new ServerResponse(gq);
-		sendObject(sr);
-		readRequest();
-		return request.getAnswer();
-		
-	}	
-	
-	private void readRequest(){
-		try {
-			request=(ClientRequest) in.readObject();
-			System.out.println("receive from client"+request);
-		} catch (ClassNotFoundException | IOException e) {
 			try {
-				in.close();
-				out.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}			
-			System.out.println("Client disconnected");
+				if (socket.getInputStream().available() > 0) {
+					request=readRequest();
+					System.out.println("Server received: " + request);
+					controller.doRequest(request,player);
+				} else if (newModel) {
+					sendResponse(new ServerResponse(new ModelShell(controller.game.getBoard(),player)));
+					newModel=false;
+				}
+				Thread.sleep(2000);
+			} catch (ClassNotFoundException | IOException | InterruptedException e) {
+				try {
+					in.close();
+					out.close();
+					live=false;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
+			}							
 		}
 	}
 	
-	private void sendObject(Object o) {
-		try {
-			out.writeObject(o);
+	 void sendResponse(ServerResponse sr) throws IOException {
+			out.writeObject(sr);
 			out.flush();
 			out.reset();
-			
-		} catch (IOException e) {
-			try {
-				in.close();
-				out.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
-		}
-		
 	}
+	
+	ClientRequest readRequest() throws ClassNotFoundException, IOException{
+		ClientRequest request=null;			
+		request=(ClientRequest) in.readObject();				
+		return request;
+	}
+	
 
 	public static void main(String[]args) throws IOException, ClassNotFoundException
 	{
@@ -128,5 +105,12 @@ public class HandlerView implements Runnable{
 		System.out.println(rg.getBoard().getActionSpace(0));
 		
 	}
+
+	public void setNewModel() {
+		newModel=true;
+		
+	}
+
+
 
 }

@@ -36,6 +36,7 @@ public class Player implements Serializable {
 	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
 	private transient Model model;
+	private transient Player currentPlayer;
 	
 	public Player(Resource resource, Board board,Team team) 
 	{
@@ -97,6 +98,9 @@ public class Player implements Serializable {
 	}
 	
 	public void placeFamilyMember(Action action) throws GameException {
+		System.out.println(this+" : "+currentPlayer);
+		if(!this.equals(currentPlayer))
+			throw new GameException(GameError.ERR_NOT_TURN);
 		currentAction = action;
 		increasePower();
 		Command command;
@@ -275,8 +279,43 @@ public class Player implements Serializable {
 		}
 	}
 
-		public String answerToQuestion(Question question) {
+		public String answerToQuestion(Question question) throws GameException {
 			return model.answerToQuestion(question, this);
 		}
+
+		public void setCurrentPlayer(Player nextPlayer) {
+			this.currentPlayer=nextPlayer;			
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((team == null) ? 0 : team.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Player other = (Player) obj;
+			if (team != other.team)
+				return false;
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "Player [team=" + team + "]";
+		}
+		
+		
+		
+		
 
 }

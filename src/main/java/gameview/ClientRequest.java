@@ -70,4 +70,5 @@ public class ClientRequest  implements Serializable{
 	public String getAnswer() {
 		return answer;
 	}
+
 }

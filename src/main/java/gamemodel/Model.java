@@ -10,6 +10,7 @@ import java.util.Map;
 
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
+import gamemodel.command.GameException;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
@@ -20,12 +21,16 @@ import server.GameQuestion;
 public class Model {
 	private List<Player> players;
 	private Board board;
-	private Integer roundNumber;
+	private Integer actionNumber=1;
 	private TurnOrder turnOrder;
 	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
 	private Controller controller;
-	Player currentPlayer;
+	
+	public static void main(String arg[]){
+		Model m=new Model(4);
+		m.nextTurn();
+	}
 	
 	public Model(int num){
 		initializeGame(num);	
@@ -35,16 +40,22 @@ public class Model {
 		this.controller=c;
 	}
 	
-	public void notifyTurn(){
-		turnOrder=new TurnOrder(players);
-		currentPlayer=turnOrder.getNextPlayer();        
-		controller.sendMessage("It's your turn",currentPlayer);
+	public void nextTurn(){
+		Player currentp=turnOrder.getNextPlayer();
+		for(Player p:players)
+			p.setCurrentPlayer(currentp);        
 	}
 	
-	
+	public void finishAction() throws GameException{
+		if(actionNumber==16)
+			setupRound();
+		nextTurn();
+	}
 
 	private void setupRound() {
 		board.setupRound();
+		for(Player p:players)
+			p.prepareForNewRound();
 	}
 	
 	private void victoryPointsBoundedTofaithPointsRequirementInitialize()
@@ -96,7 +107,9 @@ public class Model {
 		//faithPointsRequirement.put(2,faithRequirement.get(1));
 		//faithPointsRequirement.put(3,faithRequirement.get(2));
 		this.victoryPointsBoundedTofaithPointsRequirementInitialize();
-
+		setupRound();
+		turnOrder=new TurnOrder(players);
+		nextTurn();
 	}
 
 	public Board getBoard() {
@@ -114,7 +127,7 @@ public class Model {
 		throw new RuntimeException();
 	}
 
-	public String answerToQuestion(Question gq, Player player) {
+	public String answerToQuestion(Question gq, Player player) throws GameException {
 		return controller.answerToQuestion(gq, player);
 	}
 

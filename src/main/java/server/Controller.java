@@ -1,5 +1,7 @@
 package server;
 
+import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -7,15 +9,15 @@ import gamemodel.Action;
 import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Model;
+import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
 import gameview.ModelShell;
 import gameview.ServerResponse;
 
-public class Controller {
+public class Controller  {
 	
 	Model game;
-	private ServerResponse sr;
 	private Map<Player, HandlerView> playerToHV;
 	
 	
@@ -23,37 +25,61 @@ public class Controller {
 		this.game=game;
 	}
 	
-
-
-	public ServerResponse doRequest(ClientRequest request, Player player){
-		sr=new ServerResponse();
+	public void doRequest(ClientRequest request, Player player) throws IOException {
+		ServerResponse sr;
+		HandlerView hv=playerToHV.get(player);
 		switch(request.getType()){
-		case IWANTAMODEL:sr.setModel(new ModelShell(game.getBoard(),player));
-		break;
-		case PLACEFAMILYMEMBER: return PlaceFM(request,player);
-		default:
+		case FINISHACTION:
+			finishAction();
 			break;
+		case PLACEFAMILYMEMBER: 
+			sr=placeFM(request,player);
+			System.out.println("Doing action: " + sr);
+			hv.sendResponse(sr);
+			break;	
+		default:
+			break;		
 		}
-		return sr;	
 	}
 	
-	private ServerResponse PlaceFM(ClientRequest request, Player player){
+	public void notifyNewModel()
+	{
+		Collection<HandlerView> hw=playerToHV.values();
+		for(HandlerView h:hw)
+			h.setNewModel();	
+	}
+	
+	private void finishAction() throws IOException {
+		try {
+			game.finishAction();
+			notifyNewModel();
+		} catch (GameException e) {
+			throw new IOException();
+		}
+	}
+	private ServerResponse placeFM(ClientRequest request, Player player) throws IOException{
 		Action a =new Action(player,game.getBoard().getActionSpace(request.getWhere()),player.getFamilyMember(request.getWhich()),request.getServants());
 		try {
 			player.placeFamilyMember(a);
-			return sr;
+			return new ServerResponse();
 		} catch (GameException e) {
-			sr.setError(e.getType());
-			return sr;
+			if(e.getType()==GameError.PLAYER_DEAD)
+				throw new IOException();
+			return new ServerResponse(e.getType());
 		}
 	}
 
 
 
-	public void sendMessage(String string, Player player) 
+	public void sendMessage(String string, Player player) throws GameException
 	{
-		playerToHV.get(player).sendMessage(string);
-				
+		HandlerView hv=playerToHV.get(player);
+		ServerResponse sr = new ServerResponse(string);	
+		try {
+			hv.sendResponse(sr);
+		} catch (IOException e) {
+			throw new GameException(GameError.PLAYER_DEAD);
+		}				
 	}
 
 
@@ -64,7 +90,14 @@ public class Controller {
 
 
 
-	public String answerToQuestion(Question gq, Player player) {
-		return (String)(playerToHV.get(player).answerToQuestion(gq));
+	public String answerToQuestion(Question gq, Player player) throws GameException {
+		HandlerView hv=playerToHV.get(player);
+		ServerResponse sr = new ServerResponse(gq);
+		try {
+			hv.sendResponse(sr);
+			return (String)hv.readRequest().getAnswer();
+		} catch (IOException |ClassNotFoundException e) {
+			throw new GameException(GameError.PLAYER_DEAD);
+		}		
 	}
 }

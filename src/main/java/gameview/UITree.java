@@ -100,7 +100,20 @@ public class UITree {
 	}
 
 	protected ServerResponse sendRequestToServer() throws IOException {
-		return serverEndler.send(request);
+		int a;
+		if (request == null)  a = 1/0;
+		serverEndler.setCROut(request);
+		ServerResponse srr = null;
+		while (true) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			srr = serverEndler.getSRIn();
+			if (srr != null) return srr;
+		}
 	}
 
 	public void run() throws IOException {
@@ -119,8 +132,7 @@ public class UITree {
 	}
 
 
-	public void setModelShell(ModelShell modelShell) {
-		// TODO Auto-generated method stub
-		ms = modelShell;
+	public void updateShell(ModelShell modelShell) {
+		ms.update(modelShell);
 	}
 }

@@ -43,6 +43,16 @@ public class ServerResponse implements Serializable {
 		this.message = question;
 	}
 
+	public ServerResponse(GameError error) {
+		type="E";
+		this.error=error;
+	}
+
+	public ServerResponse(ModelShell modelShell) {
+		type = "NM";
+		this.ms = modelShell;
+	}
+
 	public boolean isItOk() {
 		return type.equals("O");
 	}

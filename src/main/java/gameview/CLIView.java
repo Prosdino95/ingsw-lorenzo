@@ -13,7 +13,9 @@ public class CLIView {
 	
 	public static void main(String[] arg) throws IOException, InterruptedException {		
 		CLIView view = new CLIView();
-		view.uiTree = new UITree(new ModelShell(),new HandlerServer());
+		HandlerServer hs=new HandlerServer();
+		new Thread(hs).start();
+		view.uiTree = new UITree(new ModelShell(),hs);
 		view.uiTree.run();
 	}
 	

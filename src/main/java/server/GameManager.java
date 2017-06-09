@@ -14,7 +14,7 @@ public class GameManager implements Runnable
 	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
-	final int delay=5000;
+	final int delay=1000;
 	
 	
 	private void setupGame()
@@ -33,8 +33,7 @@ public class GameManager implements Runnable
 		}
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
-		rl.notifyTurn();
-		
+		c.notifyNewModel();
 	}
 	
 	private synchronized void checkWait()

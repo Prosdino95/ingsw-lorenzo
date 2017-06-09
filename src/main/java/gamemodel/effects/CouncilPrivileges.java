@@ -8,6 +8,8 @@ import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Question;
 import gamemodel.Resource;
+import gamemodel.command.GameError;
+import gamemodel.command.GameException;
 import server.GameQuestion;
 
 public class CouncilPrivileges implements IstantEffect,Serializable
@@ -29,29 +31,41 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 	}
 	
 	@Override
-	public void activate(Player player)
+	public void activate(Player player) throws GameException
 	{
 		
 		// TODO modificare la questione della scelta, ora decisa dalla variabile selection
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
-			int selection=
-			Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice)));
-			System.out.println("selezionato:"+selection);
-			switch (selection)
-			{
-				case 0: player.addResources((Resource) this.choice.get(0));
-						break;
-				case 1: player.addResources((Resource) this.choice.get(1));
-						break;		
-				case 2: player.addResources((Resource) this.choice.get(2));
-						break;
-				case 3: player.addPoint((Point) this.choice.get(3));
-						break;
-				case 4: player.addPoint((Point) this.choice.get(4));
-						break;
-			}		
+			int selection;
+			
+			try {
+				selection = Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice)));
+				effect(selection,player);
+			} catch (NumberFormatException | GameException e) {
+				effect(0,player);
+				throw new GameException(GameError.PLAYER_DEAD);				
+			}
+			
+					
+		}
+	}
+	
+	private void effect(int selection,Player player){
+		System.out.println("selezionato:"+selection);
+		switch (selection)
+		{
+			case 0: player.addResources((Resource) this.choice.get(0));
+					break;
+			case 1: player.addResources((Resource) this.choice.get(1));
+					break;		
+			case 2: player.addResources((Resource) this.choice.get(2));
+					break;
+			case 3: player.addPoint((Point) this.choice.get(3));
+					break;
+			case 4: player.addPoint((Point) this.choice.get(4));
+					break;
 		}	
 	}
 
