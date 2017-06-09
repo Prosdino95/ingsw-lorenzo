@@ -14,6 +14,7 @@ public class UITree {
 	private ModelShell ms;
 	
 		
+
 	public UITree(ModelShell modelShell, HandlerServer serverEndler) {
 		ms = modelShell;
 		this.serverEndler=serverEndler;
@@ -46,15 +47,14 @@ public class UITree {
 				do {
 					
 					
-					System.out.println("Client -- Received response:");
-					System.out.println(response);
-					System.out.println();
+					// System.out.println("Client -- Received response:");
+					// System.out.println(response);
 					
 					if (response.isThereAQuestion()) {
 						Question question = response.getQuestion();
 						System.out.println(question);
-						question.setAnswer(CLIView.getString());
-						request = question.createRequest();
+						String answer = CLIView.getString();
+						request.setAnswer(answer);
 						response=tree.sendRequestToServer();
 					} else if (response.isThereAnError()) {
 						System.out.print("You can't do that because: ");

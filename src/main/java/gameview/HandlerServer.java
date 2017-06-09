@@ -23,11 +23,11 @@ public class HandlerServer {
 		out.writeObject(request);
 		out.flush();
 		out.reset();
-		System.out.println("send to server"+request);
+		// System.out.println("Sent to server: " + request);
 		ServerResponse response = null;
 		try {
 			response = (ServerResponse) in.readObject();
-			System.out.println("receive from server"+response);
+			// System.out.println("receive from server"+response);
 		} catch (ClassNotFoundException | IOException e) {
 			in.close();
 			out.close();

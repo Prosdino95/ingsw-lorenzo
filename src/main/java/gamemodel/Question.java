@@ -10,34 +10,45 @@ import server.GameQuestion;
 public class Question implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String answer;
 	private GameQuestion gq; 
 	private List<Object> choose;
 	
-	public Question(GameQuestion gq,List<Object> choose) {
+	public Question(GameQuestion gq, List<Object> choose) {
 		this.gq=gq;
 		this.choose=choose;
 	}
 
-
-	public String getAnswer() {
-		return answer;
+	public GameQuestion getGq() {
+		return gq;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setGq(GameQuestion gq) {
+		this.gq = gq;
 	}
 
-	public ClientRequest createRequest() {
-		ClientRequest req = new ClientRequest();
-		req.setType(RequestType.ANSWER);
-		req.setAnswer(answer);
-		return req;
+	public List<Object> getChoose() {
+		return choose;
 	}
 
+	public void setChoose(List<Object> choose) {
+		this.choose = choose;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public String toString() {
-		return "Question [gq=" + gq + ", choose=" + choose + "]";
+		String s = gq + "?";
+		int i = 0;
+		for (Object o : choose) {
+			s += "\n";
+			s += i;
+			s += ": ";
+			s += o.toString();
+			i++;
+		}
+		return s;
 	}
 }

@@ -63,6 +63,7 @@ public class ClientRequest  implements Serializable{
 	}
 
 	public void setAnswer(String answer) {
+		this.type = RequestType.ANSWER;
 		this.answer = answer;
 	}
 
