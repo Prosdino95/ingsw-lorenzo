@@ -30,12 +30,12 @@ public class TowerASParsing {
 		for (JsonValue item : items) {
     		cost=item.asObject().getInt("action-cost", 1);
     		effects=null;
+    		id=item.asObject().getInt("id", -1);
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
     			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray());
     		}
     		makeAS(item.asObject().getString("card-tower", null));
-    		id++;
     	}	
 		return AS;
 	}

@@ -276,7 +276,7 @@
 	
 	{
 	    "name":"Marketplace",
-            "id": 8,
+        "id": 8,
 	    "action-cost":3,
 	    "period":2,
 	    "resource-requirement":{

@@ -10,8 +10,8 @@ public class App{
 	
     public static void main( String[] args )
     {	
-    	//testAS();
-    	testBCard();
+    	testAS();
+    	//testBCard();
     	//testTCard();
     	//testCCard();
     	//testVCard();
