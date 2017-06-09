@@ -53,9 +53,13 @@ public class HandlerView implements Runnable{
 		while(live){				
 					readRequest();
 					ServerResponse sr;
-					sr=controller.doRequest(request,player);
-					System.out.println("send to client"+sr);
-					sendObject(sr);			
+					try{sr=controller.doRequest(request,player);
+						System.out.println("send to client"+sr);
+						sendObject(sr);	
+					}
+					catch(NullPointerException e){live=false;}
+					
+							
 		}
 	}
 	
@@ -80,7 +84,7 @@ public class HandlerView implements Runnable{
 		} catch (ClassNotFoundException | IOException e) {
 			try {
 				in.close();
-				live=false;
+				out.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -96,8 +100,15 @@ public class HandlerView implements Runnable{
 			out.reset();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				in.close();
+				out.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
 		}
 		
 	}
