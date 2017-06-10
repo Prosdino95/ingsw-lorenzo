@@ -58,17 +58,18 @@ public class HandlerServer implements Runnable {
 		try {
 			while(true)
 			{
-				Thread.sleep(2000);
+				Thread.sleep(100);
 				if(s.getInputStream().available()>1)       
 				{
-					ServerResponse sr=(ServerResponse)in.readObject();
+					ServerResponse sr=(ServerResponse)(in.readObject());
 					if(sr.isThereAMessage())
 						serverMessages.add(sr);
+					else if(sr.assignedPlayer())
+						serverMessages.add(sr);
 					else if(sr.isThereANewModel())
-						serverMessages.add(sr); 
-					
-					System.out.println(sr);
-					
+						serverMessages.add(sr);
+					else
+						System.out.println("Something strange got here!!!");
 				}
 				
 				if(this.getCROut()!=null)

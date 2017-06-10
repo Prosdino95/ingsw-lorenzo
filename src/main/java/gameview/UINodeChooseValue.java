@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import gamemodel.actionSpace.ActionSpace;
+
 public class UINodeChooseValue<E extends Object> extends UINode {
 	Consumer<E> setter;
 	Supplier<List<E>> getterList;

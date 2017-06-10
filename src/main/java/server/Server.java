@@ -11,7 +11,6 @@ public class Server {
 	private ServerSocket serverSocket;
 	private GameManager gm;
 	
-	
 	public static void main(String[]args) throws IOException, ClassNotFoundException{
 		
 		
@@ -20,7 +19,6 @@ public class Server {
 		server.serverSocket=new ServerSocket(3003);
 		server.start();
 	}
-
 
 	private void start() throws IOException {
 		System.out.println("server start");

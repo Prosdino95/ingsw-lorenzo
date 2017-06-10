@@ -4,117 +4,88 @@ import java.io.IOException;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.command.GameError;
 
 public class UITree {
 	private UINode root;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
-	private HandlerServer serverEndler;
-	private ModelShell ms;
+	private HandlerServer serverHandler;
+//	private ModelShell ms;
+	private Model model;
+	private Player player;
+	boolean hasModel = false;
+	boolean hasPlayer = false;
 	
 		
-
 	public UITree(ModelShell modelShell, HandlerServer serverEndler) {
-		ms = modelShell;
-		this.serverEndler=serverEndler;
+//		ms = modelShell;
+		this.serverHandler=serverEndler;
+
+// 		// Riusciremo a infilarlo nell'albero un giorno?
+//		UINodeSetResponseType sendMessage = 
+//		new UINode("Chat", 
+//				response::setType, 
+//				ResponseType.CHAT);
+
+		UINodeLog log = new UINodeLog("", this, serverEndler);
+		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this); 
 		UINodeSetRequestType placeFM = 
 				new UINodeSetRequestType("Place family member", 
-						request::setType,
+						request::setType, 
 						RequestType.PLACEFAMILYMEMBER, this);
-//		UINodeSetResponseType sendMessage = 
-//			new UINode("Chat", 
-//					response::setType, 
-//					ResponseType.CHAT);
 
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
-					request::setWhere,
-					ms::getActionSpaces, this);
-		UINodeChooseValue<FamilyMember> which = 
+						request::setWhere,
+						() -> this.getModel().getBoard().getActionSpaces(),
+						this);
+		UINodeChooseValue<FamilyMember> which =
 				new UINodeChooseValue<FamilyMember>("Which?",
 						request::setWhich,
-						ms::getFamilyMembers, this);		
+						() -> this.getPlayer().getFamilyMembers(),
+						this);
 		UINodeGetInput servants= 
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
-		
-		UINode talkToServer = new UINode("Waiting for server response...", this) {
-			@Override
-			public void run() throws IOException {
-				ServerResponse response=tree.sendRequestToServer();
-				
-				do {
-					
-					
-					// System.out.println("Client -- Received response:");
-					// System.out.println(response);
-					
-					if (response.isThereAQuestion()) {
-						Question question = response.getQuestion();
-						System.out.println(question);
-						String answer = CLIView.getString();
-						request.setAnswer(answer);
-						response=tree.sendRequestToServer();
-					} else if (response.isThereAnError()) {
-						System.out.print("You can't do that because: ");
-						print(response.getError());
-					} else if(response.isThereANewModel()) {
-						ms.update(response.getModel());
-					}
-				} while (!(response.isItOk() ||
-						response.isThereAnError() ||
-						response.isThereANewModel()));
-				
-				System.out.println("Client -- Received ok from server");
-				System.out.println();
-				
-				return;
-			}
-		};
-		
-		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this);
-		UINodeLog log = new UINodeLog("", this, serverEndler);
+		UINode talkToServer = new UINodeTalkToServer("Waiting for server response...", this);
+
 		root= log.addSon(
 				menu.addSon(
-					placeFM.addSon(
-						where.addSon(
-							which.addSon(
-								servants.addSon(
-									talkToServer))))));
-				//	.addSon(
-					//new UINodeChooseUI("state", this)));
-				//				.addSon(new UINodeChoose("Chat"));
+				  placeFM.addSon(
+	                where.addSon(
+	                  which.addSon(
+	                	servants.addSon(
+	                	  talkToServer)))))); 
 		
 		reset();
-
 		System.out.println("Hi, this is Lorenzo!");
-		
-}
-
-
-
-
-	protected void print(Object error) {
-		System.out.println(error);
 	}
 
-	protected ServerResponse sendRequestToServer() throws IOException {
-		int a;
-		if (request == null)  a = 1/0;
-		serverEndler.setCROut(request);
-		ServerResponse srr = null;
-		while (true) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			srr = serverEndler.getSRIn();
-			if (srr != null) return srr;
-		}
+	Player getPlayer() {
+		return player;
 	}
+
+	Model getModel() {
+		return model;
+	}
+	
+	ServerResponse sendRequestToServer() throws IOException {
+		return sendRequestToServer(request);
+	}
+
+	public ServerResponse sendRequestToServer(ClientRequest request) throws IOException { 
+		serverHandler.setCROut(request);
+	    ServerResponse srr = null; 
+	    while (true) { 
+	    	try {
+	    		Thread.sleep(100); 
+	    	} catch (InterruptedException e) {
+	    		e.printStackTrace(); 
+	    	} 
+	    	srr = serverHandler.getSRIn(); 
+	    	if (srr != null) return srr; 
+	    } 
+	} 
 
 	public void run() throws IOException {
 		while (true) {
@@ -126,13 +97,27 @@ public class UITree {
 		}
 	}
 
-	public void reset() {
+	private void reset() {
 		next = root;
 		request.cleanUp();
 	}
 
+//	public void setModelShell(ModelShell modelShell) {
+//		 TODO Auto-generated method stub
+//		ms = modelShell;
+//	}
 
-	public void updateShell(ModelShell modelShell) {
-		ms.update(modelShell);
+	public ClientRequest getRequest() {
+		return request;
+	}
+
+	public void setModel(Model model2) {
+		model = model2;
+		hasModel = true;
+	}
+
+	public void setPlayer(Team playerTeam) {
+		player = model.getPlayer(playerTeam);
+		hasPlayer = true;
 	}
 }

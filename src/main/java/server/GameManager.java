@@ -34,6 +34,7 @@ public class GameManager implements Runnable
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
 		c.notifyNewModel();
+		c.notifySendPlayer();
 	}
 	
 	private synchronized void checkWait()

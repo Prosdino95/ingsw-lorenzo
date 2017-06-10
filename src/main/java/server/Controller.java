@@ -100,4 +100,14 @@ public class Controller  {
 			throw new GameException(GameError.PLAYER_DEAD);
 		}		
 	}
+
+	public Model getModel() {
+		return game;
+	}
+
+	public void notifySendPlayer() {
+		Collection<HandlerView> hw=playerToHV.values();
+		for(HandlerView h:hw)
+			h.setSendPlayer();	
+	}
 }

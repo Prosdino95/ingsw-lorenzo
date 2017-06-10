@@ -12,6 +12,7 @@ import gamemodel.actionSpace.ActionSpace;
 
 public class ModelShell implements Serializable {
 
+	/*
 	private static final long serialVersionUID = 1L;
 	private Board board;
 	private Player player;
@@ -49,4 +50,5 @@ public class ModelShell implements Serializable {
 		this.player=model.player;
 		
 	}
+	*/
 }

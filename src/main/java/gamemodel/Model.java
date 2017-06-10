@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -18,14 +19,14 @@ import gamemodel.jsonparsing.TowerASParsing;
 import server.Controller;
 import server.GameQuestion;
 
-public class Model {
+public class Model implements Serializable {
 	private List<Player> players;
 	private Board board;
 	private Integer actionNumber=1;
-	private TurnOrder turnOrder;
-	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
-	private Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
-	private Controller controller;
+	private transient TurnOrder turnOrder;
+	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
+	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
+	private transient Controller controller;
 	
 	public static void main(String arg[]){
 		Model m=new Model(4);
@@ -43,7 +44,7 @@ public class Model {
 	public void nextTurn(){
 		Player currentp=turnOrder.getNextPlayer();
 		for(Player p:players)
-			p.setCurrentPlayer(currentp);        
+			p.setCurrentPlayer(currentp);       
 	}
 	
 	public void finishAction() throws GameException{
@@ -130,5 +131,4 @@ public class Model {
 	public String answerToQuestion(Question gq, Player player) throws GameException {
 		return controller.answerToQuestion(gq, player);
 	}
-
 }

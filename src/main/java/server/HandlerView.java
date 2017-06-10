@@ -24,6 +24,7 @@ public class HandlerView implements Runnable{
 	private Player player;
 	private boolean live=true;
 	private boolean newModel=false;
+	private boolean playerAssigned = false;
 	private Socket socket;
 	
 	
@@ -60,10 +61,13 @@ public class HandlerView implements Runnable{
 					System.out.println("Server received: " + request);
 					controller.doRequest(request,player);
 				} else if (newModel) {
-					sendResponse(new ServerResponse(new ModelShell(controller.game.getBoard(),player)));
+					sendResponse(new ServerResponse(controller.getModel()));
 					newModel=false;
+				} else if (!playerAssigned && player != null && newModel == false) {
+					sendResponse(new ServerResponse(player));
+					playerAssigned = true;
 				}
-				Thread.sleep(2000);
+				Thread.sleep(100);
 			} catch (ClassNotFoundException | IOException | InterruptedException e) {
 				try {
 					in.close();
@@ -111,6 +115,7 @@ public class HandlerView implements Runnable{
 		
 	}
 
-
-
+	public void setSendPlayer() {
+		playerAssigned = false;
+	}
 }

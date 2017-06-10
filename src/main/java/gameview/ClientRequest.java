@@ -19,6 +19,15 @@ public class ClientRequest  implements Serializable{
 	private Color which;
 	private String answer;
 	
+	public ClientRequest(String string) {
+		type = RequestType.ANSWER;
+		answer = string;
+	}
+
+	public ClientRequest() {
+		super();
+	}
+	
 	public void setType(RequestType type) {
 		this.type = type;
 	}
