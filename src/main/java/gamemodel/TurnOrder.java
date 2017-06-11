@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 public class TurnOrder{
 	
-	private PlayerMatrix actionOrder;
+	private ActionOrder actionOrder;
 	private List<Player> playerInGame;
-	private PlayerIterator iterator;
+	private Iterator<Player> iterator;
 	
 	public TurnOrder(List<Player> players){	
 		this.playerInGame=new ArrayList<>(players);
-		this.actionOrder=new PlayerMatrix(players);
-		this.iterator=new PlayerIterator(actionOrder);						
+		this.actionOrder=new ActionOrder(players);
+		this.iterator=actionOrder.iterator();
 	}
 	
 	public void setupRound(List<Player> list){
@@ -26,8 +26,8 @@ public class TurnOrder{
 	}
 	
 	private void generateActionOrder(List<Player> list) {
-		this.actionOrder=new PlayerMatrix(list);
-		this.iterator=new PlayerIterator(actionOrder);
+		this.actionOrder=new ActionOrder(list);
+		this.iterator=actionOrder.iterator();
 	}
 	
 	public Player getNextPlayer(){
@@ -78,71 +78,39 @@ public class TurnOrder{
 		System.out.println("secondo "+to.getNextPlayer());
 		System.out.println("terzo "+to.getNextPlayer());
 		System.out.println("... ");
+		System.out.println("test effetto giocatore Red");
+		System.out.println("turni: "+to);
+		System.out.println();
+		to.actionOrder.slide(p);
+		System.out.println("turni: "+to);
 	}
 }
 
 
-
-
-class PlayerMatrix implements Iterable<Player> {
+class ActionOrder {
 	
-	private List<List<Player>> playerMatrix;
+	private LinkedList<Player> playerActionOrder;
 	
-	public PlayerMatrix(List<Player> playerInGame) {
-		this.playerMatrix=new ArrayList<>(new ArrayList<>());
+	public ActionOrder(List<Player> playerInGame) {
+		this.playerActionOrder=new LinkedList<>();
 		for(int i=0;i<playerInGame.size();i++)
-			this.playerMatrix.add(playerInGame);
+			this.playerActionOrder.addAll(playerInGame);
 	}
 	
-	public Player getPlayer(int r,int c){
-		return this.playerMatrix.get(r).get(c);
+	public void slide(Player p){
+		this.playerActionOrder.removeFirstOccurrence(p);
+		this.playerActionOrder.addLast(p);
+		
 	}
 	
-	public int rows(){
-		return this.playerMatrix.size();
+	public Iterator<Player> iterator(){
+		return this.playerActionOrder.iterator();
 	}
 	
-	public int columns(){
-		return this.playerMatrix.get(0).size();
-	}
-
-	@Override
-	public Iterator<Player> iterator() {
-		return new PlayerIterator(this);
-	}
-
 	@Override
 	public String toString() {
-		return "" + playerMatrix + "";
+		return "" + playerActionOrder + "";
 	}	
 }
-
-
-
-class PlayerIterator implements Iterator<Player>{
 	
-	private PlayerMatrix playerMatrix;
-	private int currentRow=0,currentColumns=0;
-	
-	public PlayerIterator(PlayerMatrix m){
-		this.playerMatrix=m;
-	}
-
-	@Override
-	public boolean hasNext() {
-		return currentRow<=playerMatrix.rows();
-	}
-	
-	@Override
-	public Player next() {
-		Player p=playerMatrix.getPlayer(currentRow, currentColumns);
-		currentColumns++;
-		if(currentColumns>playerMatrix.columns()){
-			currentColumns=0;
-			currentRow++;
-		}		
-		return p;
-	}
-	
-}
 
