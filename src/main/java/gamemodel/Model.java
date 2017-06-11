@@ -12,6 +12,7 @@ import java.util.Map;
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
+import gamemodel.command.PlaceFMCommandFactory;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
@@ -29,6 +30,7 @@ public class Model implements Serializable {
 	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPointsRequirement=new HashMap<>();
 	private transient Controller controller;
+	private transient PlaceFMCommandFactory commandFactory;
 	
 	public static void main(String arg[]){
 		Model m=new Model(4);
@@ -39,6 +41,7 @@ public class Model implements Serializable {
 		initializeGame(num);	
 	}
 	
+	
 	public void setController(Controller c){
 		this.controller=c;
 	}
@@ -46,7 +49,7 @@ public class Model implements Serializable {
 	public void nextTurn(){
 		Player currentp=turnOrder.getNextPlayer();
 		for(Player p:players)
-			p.setCurrentPlayer(currentp);       
+			p.setCurrentPlayer(currentp);     
 	}
 	
 	public void finishAction() throws GameException{
@@ -112,8 +115,9 @@ public class Model implements Serializable {
 		//faithPointsRequirement.put(2,faithRequirement.get(1));
 		//faithPointsRequirement.put(3,faithRequirement.get(2));
 		this.victoryPointsBoundedTofaithPointsRequirementInitialize();
-		setupRound();
+		this.commandFactory=PlaceFMCommandFactory.GenerateCommandFactory(players.size());
 		turnOrder=new TurnOrder(players);
+		setupRound();	
 		nextTurn();
 	}
 
@@ -130,6 +134,11 @@ public class Model implements Serializable {
 			if (p.getTeam() == team) return p;
 		}
 		throw new RuntimeException();
+	}
+	
+
+	public PlaceFMCommandFactory getCommandFactory() {
+		return commandFactory;
 	}
 
 	public String answerToQuestion(Question gq, Player player) throws GameException {

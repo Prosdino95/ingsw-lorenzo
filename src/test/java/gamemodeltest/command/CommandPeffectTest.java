@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import gamemodel.*;
 import gamemodel.actionSpace.*;
@@ -27,7 +28,13 @@ public class CommandPeffectTest {
 	 GameError s;
 	 PermanentEffect e,e1,e2,e3;
 	 IstantEffect is;
-	 Action action, action1,action2;
+	 Action action, action1,action2;	 
+	 static Model model;
+		
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 
 	@Before
 	public void setUpBeforeClass() throws GameException{
@@ -49,7 +56,7 @@ public class CommandPeffectTest {
 		Tower t2=new Tower(CardType.BUILDINGS);
 		Board b=new Board();
 		b.setDice(2, 1, 9);
-		p=new Player(new Resource(1,1,1,5), b, Team.RED);
+		p=new Player(new Resource(1,1,1,5), b, Team.RED,model);
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);

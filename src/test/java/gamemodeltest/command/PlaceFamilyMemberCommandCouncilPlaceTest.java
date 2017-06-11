@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.*;
@@ -25,14 +26,20 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	IstantEffect e;
 	GameError s;
 	int id0,id1;
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 	
 	@Before
 	public void setUp(){
 		e=new TestEffects();
 		b=new Board();
 		b.setDice(1, 7, 7);
-		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
-		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE,model);
 		a0=new MemoryActionSpace(0,5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
 		a1=new MemoryActionSpace(1,0, e, ActionSpaceType.COUNCIL_PALACE);

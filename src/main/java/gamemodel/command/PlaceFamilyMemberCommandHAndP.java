@@ -8,10 +8,10 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {
-	private FamilyMember f;
+	protected FamilyMember f;
 	private int servant;
-	private MemoryActionSpace h;
-	private Action action;
+	MemoryActionSpace h;
+	protected Action action;
 	
 	public PlaceFamilyMemberCommandHAndP(Board board,int id,FamilyMember f, int servant) {
 		this.f=f;
@@ -26,11 +26,11 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 		this.action=action;
 	}
 	
-	private boolean IsEnoughtStrong(){
+	protected boolean IsEnoughtStrong(){
 		return(f.getActionpoint()>=h.getActionCost());
 	}
 
-	private boolean controlServant() throws GameException{
+	protected boolean controlServant() throws GameException{
 		if(servant>=0)
 			if(f.getPlayer().isEnoughtResource(new Resource(0,0,0,servant))){
 				f.getPlayer().subResources(new Resource(0,0,0,servant));
@@ -63,7 +63,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 			else throw new GameException(GameError.FM_ERR_USE);
 		}
 
-	private void cardEffect(ActionSpaceType type) throws GameException {
+	protected void cardEffect(ActionSpaceType type) throws GameException {
 		
 		if(type==ActionSpaceType.HARVEST){			
 			for(int i=0;i<f.getPlayer().getTerritories().size();i++){

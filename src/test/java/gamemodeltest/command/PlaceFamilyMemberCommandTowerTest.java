@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.*;
@@ -30,6 +31,12 @@ public class PlaceFamilyMemberCommandTowerTest {
 	int id0,id1,id2;
 	Card c0,c1;
 	List<IstantEffect> effects=new ArrayList<>();
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 
 	@Before
 	public void setUp(){
@@ -39,8 +46,8 @@ public class PlaceFamilyMemberCommandTowerTest {
 		b.setDice(1, 7, 7);
 		c0=new RealCard(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, null);
 		c1=new RealCard(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, null);
-		p1=new Player(new Resource(1,1,1,5), b, Team.RED);
-		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE);
+		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE,model);
 		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
 		a1=new RealTowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
@@ -130,7 +137,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	
 	@Test
 	public void TestCard3(){
-		p3=new Player(new Resource(0,0,0,5), b, Team.GREEN);
+		p3=new Player(new Resource(0,0,0,5), b, Team.GREEN,model);
 		b.setDice(7, 0, 0);
 		p3.prepareForNewRound();
 		try{p3.placeFamilyMember(new Action(p3,a0,p3.getFamilyMember(Color.BLACK),0));}

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.*;
@@ -22,14 +23,20 @@ public class PlaceFamilyMemberCommandMarketTest {
 	RealActionSpace a0,a1;
 	IstantEffect e;
 	GameError s;
-	int id0,id1;
+	int id0,id1;	
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 
 	@Before
 	public void setUp(){
 		e=new TestEffects();
 		b=new Board();
 		b.setDice(1, 7, 0);
-		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
 		a0=new RealActionSpace(0,5, e, ActionSpaceType.MARKET);
 		a1=new RealActionSpace(1,0, e, ActionSpaceType.MARKET);
 		p1.prepareForNewRound();

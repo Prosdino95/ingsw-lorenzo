@@ -38,6 +38,7 @@ public class Player implements Serializable{
 	private transient Model model;
 	private transient Player currentPlayer;
 	
+	
 	public Player(Resource resource, Board board,Team team) 
 	{
 		this.team=team;
@@ -99,12 +100,12 @@ public class Player implements Serializable{
 	
 	public void placeFamilyMember(Action action) throws GameException {
 		System.out.println(this+" : "+currentPlayer);
-		if(!this.equals(currentPlayer))
+		if(!this.equals(currentPlayer) && currentPlayer!=null )
 			throw new GameException(GameError.ERR_NOT_TURN);
 		currentAction = action;
 		increasePower();
 		Command command;
-		command=PlaceFMCommandFactory.getSingleton().placeFMCommandFactory(action);
+		command=model.getCommandFactory().placeFMCommandFactory(action);
 		command.isLegal();
 	}
 	
@@ -313,6 +314,7 @@ public class Player implements Serializable{
 		public String toString() {
 			return "" + team + "";
 		}
+		
 		
 		
 		
