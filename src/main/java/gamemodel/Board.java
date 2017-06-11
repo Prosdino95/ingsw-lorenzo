@@ -1,10 +1,13 @@
 package gamemodel;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
@@ -135,6 +138,14 @@ public class Board implements Serializable {
 	public Excommunication[] getExcommunicationCards() 
 	{
 		return excommunicationCards;
+	}
+
+	public List<Player> getTurnOrder() {
+		for(ActionSpace a:actionSpaces)
+		 	if(a.getType()==ActionSpaceType.COUNCIL_PALACE)
+		 		return ((MemoryActionSpace) a).getPlayers();
+		return null;
+		 	
 	}
 
 }

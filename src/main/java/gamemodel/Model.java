@@ -20,6 +20,8 @@ import server.Controller;
 import server.GameQuestion;
 
 public class Model implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private List<Player> players;
 	private Board board;
 	private Integer actionNumber=1;
@@ -55,9 +57,11 @@ public class Model implements Serializable {
 
 	private void setupRound() {
 		board.setupRound();
+		this.turnOrder.setupRound(board.getTurnOrder());
 		for(Player p:players)
 			p.prepareForNewRound();
 	}
+	
 	
 	private void victoryPointsBoundedTofaithPointsRequirementInitialize()
 	{
