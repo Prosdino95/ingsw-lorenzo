@@ -33,23 +33,29 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 	@Override
 	public void activate(Player player) throws GameException
 	{
+		List<Integer>selectionHistory=new ArrayList<>();
 		
-		// TODO modificare la questione della scelta, ora decisa dalla variabile selection
+		
+		
+		//TODO  fare un test apena socket torna a funzionare
+		
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
 			int selection;
-			
 			try {
 				selection = Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice)));
+				if(selectionHistory.contains(selection))
+					selection = Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice)));
 				effect(selection,player);
+				selectionHistory.add(selection);
+				
 			} catch (NumberFormatException | GameException e) {
 				effect(0,player);
 				throw new GameException(GameError.PLAYER_DEAD);				
 			}
-			
-					
 		}
+		selectionHistory.clear();
 	}
 	
 	private void effect(int selection,Player player){

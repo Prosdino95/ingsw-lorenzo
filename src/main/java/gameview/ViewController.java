@@ -18,10 +18,13 @@ public class ViewController {
 	private Queue<ServerResponse> serverMessages=new ArrayDeque<>();
 	private ClientRequest crOut;
 	private ServerResponse srIn = null;
+	private HandlerServer hs;
 
 	
 	public ViewController() throws IOException, InterruptedException{
 		super();
+		hs=new HandlerSocket(this);
+		new Thread((Runnable) hs).start();
 	}
 	
 	public boolean hasMessage()
@@ -29,16 +32,25 @@ public class ViewController {
 		return !serverMessages.isEmpty();
 	}
 	
-	public void receve(ServerResponse sr) throws IOException{
+	public void placeResponse(ServerResponse sr) throws IOException{
 		
-		if(sr.isThereAMessage())
-			serverMessages.add(sr);
-		else if(sr.assignedPlayer())
-			serverMessages.add(sr);
-		else if(sr.isThereANewModel())
-			serverMessages.add(sr);
-		else
-			System.out.println("Something strange got here!!!");	
+		switch(sr.getType())
+		{
+		case OK:
+		case ERROR:	
+		case QUESTION:  
+					this.setSRIn(sr);
+					break;
+						
+		case MESSAGE:
+		case NEW_MODEL:
+		case PLAYER_ASSIGNED:
+					this.serverMessages.add(sr);
+					break;
+		default:
+			System.out.println("What is going on ???");
+			break;
+		}	
 	}
 
 
@@ -47,27 +59,19 @@ public class ViewController {
 		return serverMessages.remove();
 	}
 	
-	public void setCROut(ClientRequest request) {
-		this.crOut=request;
-		
-	}
 	
-	public synchronized ClientRequest getCROut() {
-		return this.crOut;		
-	}
-	
-	public void setSRIn(ServerResponse response){
+	private void setSRIn(ServerResponse response){
 		this.srIn=response;
 		this.crOut=null;
 	}
 
 
-	public synchronized ServerResponse getSRIn() {
+	private synchronized ServerResponse getSRIn() {
 		return srIn;
 	}
 
 	public ServerResponse syncSend(ClientRequest request) {
-		setCROut(request);
+		hs.doRequest(request);
 		ServerResponse srr;
 		while (true) { 
 	    	try {
@@ -78,9 +82,7 @@ public class ViewController {
 	    	srr =getSRIn(); 
 	    	if (srr != null) return srr; 
 	    } 
-	}
-	
-	
+	}	
 }
 
 

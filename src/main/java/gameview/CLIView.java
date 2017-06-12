@@ -14,7 +14,6 @@ public class CLIView {
 	public static void main(String[] arg) throws IOException, InterruptedException {		
 		CLIView view = new CLIView();
 		ViewController hs=new ViewController();
-		new Thread(hs).start();
 		view.uiTree = new UITree(new ModelShell(),hs);
 		view.uiTree.run();
 	}
