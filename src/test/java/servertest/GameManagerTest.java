@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import server.GameManager;
-import server.HandlerView;
+import server.HandlerViewSocket;
 
 public class GameManagerTest {
 	GameManager gm;
@@ -23,34 +23,34 @@ public class GameManagerTest {
 	public void test() throws IOException 
 	{
 		new Thread(gm).start();
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
 		if(!gm.getIsFull())
-			gm.addHV(new HandlerView());		
+			gm.addHV(new HandlerViewSocket());		
 	}
 	
 	@Test 
 	public void test2() throws IOException, InterruptedException 
 	{
 		new Thread(gm).start();
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
 		Thread.sleep(6000);
 		if(!gm.getIsFull())
-			gm.addHV(new HandlerView());		
+			gm.addHV(new HandlerViewSocket());		
 	}
 
 	@Test 
 	public void test3() throws IOException, InterruptedException 
 	{
 		new Thread(gm).start();
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
 		Thread.sleep(6000);
-		gm.addHV(new HandlerView());
-		gm.addHV(new HandlerView());
+		gm.addHV(new HandlerViewSocket());
+		gm.addHV(new HandlerViewSocket());
 	}
 	
 

@@ -6,9 +6,9 @@ import gamemodel.Team;
 
 public class UINodeLog extends UINode 
 {
-	HandlerServer hs;
+	ViewController hs;
 	
-	public UINodeLog(String desc, UITree tree,HandlerServer hs) 
+	public UINodeLog(String desc, UITree tree,ViewController hs) 
 	{
 		super(desc, tree);
 		this.hs=hs;

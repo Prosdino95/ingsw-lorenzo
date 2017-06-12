@@ -18,7 +18,7 @@ import gameview.ServerResponse;
 public class Controller  {
 	
 	Model game;
-	private Map<Player, HandlerView> playerToHV;
+	private Map<Player, HandlerViewSocket> playerToHV;
 	
 	
 	public Controller(Model game){
@@ -27,7 +27,7 @@ public class Controller  {
 	
 	public void doRequest(ClientRequest request, Player player) throws IOException {
 		ServerResponse sr;
-		HandlerView hv=playerToHV.get(player);
+		HandlerViewSocket hv=playerToHV.get(player);
 		switch(request.getType()){
 		case FINISHACTION:
 			finishAction();
@@ -44,8 +44,8 @@ public class Controller  {
 	
 	public void notifyNewModel()
 	{
-		Collection<HandlerView> hw=playerToHV.values();
-		for(HandlerView h:hw)
+		Collection<HandlerViewSocket> hw=playerToHV.values();
+		for(HandlerViewSocket h:hw)
 			h.setNewModel();	
 	}
 	
@@ -73,7 +73,7 @@ public class Controller  {
 
 	public void sendMessage(String string, Player player) throws GameException
 	{
-		HandlerView hv=playerToHV.get(player);
+		HandlerViewSocket hv=playerToHV.get(player);
 		ServerResponse sr = new ServerResponse(string);	
 		try {
 			hv.sendResponse(sr);
@@ -84,14 +84,14 @@ public class Controller  {
 
 
 
-	public void setPlayerToHV(Map<Player, HandlerView> playerToHV) {
+	public void setPlayerToHV(Map<Player, HandlerViewSocket> playerToHV) {
 		this.playerToHV = playerToHV;
 	}
 
 
 
 	public String answerToQuestion(Question gq, Player player) throws GameException {
-		HandlerView hv=playerToHV.get(player);
+		HandlerViewSocket hv=playerToHV.get(player);
 		ServerResponse sr = new ServerResponse(gq);
 		try {
 			hv.sendResponse(sr);
@@ -106,8 +106,8 @@ public class Controller  {
 	}
 
 	public void notifySendPlayer() {
-		Collection<HandlerView> hw=playerToHV.values();
-		for(HandlerView h:hw)
+		Collection<HandlerViewSocket> hw=playerToHV.values();
+		for(HandlerViewSocket h:hw)
 			h.setSendPlayer();	
 	}
 }

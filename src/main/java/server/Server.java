@@ -29,7 +29,7 @@ public class Server {
 				pool.execute(gm);
 			}
 			System.out.println("ricevuta nuova connessione");
-			HandlerView hv =new HandlerView(s);		
+			HandlerViewSocket hv =new HandlerViewSocket(s);		
 			gm.addHV(hv);			
 		}
 		

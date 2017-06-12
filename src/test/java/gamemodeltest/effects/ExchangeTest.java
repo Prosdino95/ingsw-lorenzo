@@ -4,9 +4,11 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.Board;
+import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
@@ -25,17 +27,23 @@ public class ExchangeTest
 	Player p4;
 	Player p5;
 	IstantEffect councilPrivileges;
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 	
 	@Before
 	public void setUp() throws Exception 
 	{
 		b=new Board();
 		councilPrivileges=new CouncilPrivileges(1);
-		p1=new Player(new Resource(5,5,5,5), b, Team.RED);
-		p2=new Player(new Resource(5,5,5,5), b, Team.RED);
-		p3=new Player(new Resource(5,5,5,5), b, Team.RED);
-		p4=new Player(new Resource(5,5,5,5), b, Team.RED);
-		p5=new Player(new Resource(5,5,5,5), b, Team.RED);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p2=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p3=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p4=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p5=new Player(new Resource(5,5,5,5), b, Team.RED,model);
 		
 	}
 

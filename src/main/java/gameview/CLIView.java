@@ -13,7 +13,7 @@ public class CLIView {
 	
 	public static void main(String[] arg) throws IOException, InterruptedException {		
 		CLIView view = new CLIView();
-		HandlerServer hs=new HandlerServer();
+		ViewController hs=new ViewController();
 		new Thread(hs).start();
 		view.uiTree = new UITree(new ModelShell(),hs);
 		view.uiTree.run();

@@ -10,8 +10,8 @@ import gamemodel.Player;
 public class GameManager implements Runnable 
 {
 	private ExecutorService pool = Executors.newCachedThreadPool();
-	Map<Player,HandlerView> playerToHV=new HashMap<>();
-	List<HandlerView> hw = new ArrayList<>();
+	Map<Player,HandlerViewSocket> playerToHV=new HashMap<>();
+	List<HandlerViewSocket> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
 	final int delay=1000;
@@ -25,7 +25,7 @@ public class GameManager implements Runnable
 		rl.setController(c);
 		for(int i=0;i<rl.getPlayers().size();i++){
 			Player p = rl.getPlayers().get(i);
-			HandlerView hv = hw.get(i);
+			HandlerViewSocket hv = hw.get(i);
 			playerToHV.put(p, hv);    //TODO get random player
 			hv.setController(c);
 			hv.setPlayer(p);
@@ -49,7 +49,7 @@ public class GameManager implements Runnable
 		}
 	}
 	
-	public synchronized void addHV(HandlerView hv)
+	public synchronized void addHV(HandlerViewSocket hv)
 	{
 		hw.add(hv);
 		System.out.println("aggiunto in"+this);

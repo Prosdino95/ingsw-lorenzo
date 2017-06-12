@@ -9,7 +9,7 @@ public class UITree {
 	private UINode root;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
-	private HandlerServer serverHandler;
+	private ViewController serverHandler;
 //	private ModelShell ms;
 	private Model model;
 	private Player player;
@@ -17,7 +17,7 @@ public class UITree {
 	boolean hasPlayer = false;
 	
 		
-	public UITree(ModelShell modelShell, HandlerServer serverEndler) {
+	public UITree(ModelShell modelShell, ViewController serverEndler) {
 //		ms = modelShell;
 		this.serverHandler=serverEndler;
 
@@ -73,18 +73,9 @@ public class UITree {
 		return sendRequestToServer(request);
 	}
 
-	public ServerResponse sendRequestToServer(ClientRequest request) throws IOException { 
-		serverHandler.setCROut(request);
-	    ServerResponse srr = null; 
-	    while (true) { 
-	    	try {
-	    		Thread.sleep(100); 
-	    	} catch (InterruptedException e) {
-	    		e.printStackTrace(); 
-	    	} 
-	    	srr = serverHandler.getSRIn(); 
-	    	if (srr != null) return srr; 
-	    } 
+	public ServerResponse sendRequestToServer(ClientRequest request) throws IOException { 		
+	    ServerResponse srr = serverHandler.syncSend(request);; 
+	    return srr;
 	} 
 
 	public void run() throws IOException {
