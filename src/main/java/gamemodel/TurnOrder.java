@@ -17,6 +17,10 @@ public class TurnOrder{
 	}
 	
 	public void setupRound(List<Player> list){
+		if(list.isEmpty()){
+			this.iterator=actionOrder.iterator();
+			return;
+		}	
 		list.addAll(playerInGame);
 		List<Player>players=
 		list.stream()
@@ -71,6 +75,10 @@ public class TurnOrder{
 		System.out.println("... ");
 		place=new ArrayList<>();
 		place.add(p3);
+		System.out.println("palazzo del consiglio: "+place);
+		to.setupRound(place);
+		System.out.println("nuovi turni: "+to);
+		place=new ArrayList<>();
 		System.out.println("palazzo del consiglio: "+place);
 		to.setupRound(place);
 		System.out.println("nuovi turni: "+to);
