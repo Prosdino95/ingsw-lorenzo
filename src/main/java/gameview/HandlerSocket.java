@@ -25,9 +25,9 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	private void send(ClientRequest request) throws IOException {
 		ServerResponse response=null;
 		out.writeObject(request);
+		System.out.println("HSocket --- Sending request: " + request);
 		out.flush();
 		out.reset();
-		System.out.println("Sent to server: " + request);
 	}
 
 	public void doRequest(ClientRequest request) {
@@ -49,6 +49,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 				if(s.getInputStream().available()>1)       
 				{
 					ServerResponse sr=(ServerResponse)(in.readObject());
+					System.out.println("HSocket --- Got response " + sr);
 					vc.placeResponse(sr);
 				}	
 				if(crOut!=null)
@@ -70,5 +71,9 @@ public class HandlerSocket implements Runnable,HandlerServer{
 			
 		}
 		
+	}
+
+	@Override
+	public void sendResponse(ServerResponse sr) {		
 	}
 }

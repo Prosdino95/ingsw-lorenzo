@@ -18,6 +18,7 @@ public class ClientRequest  implements Serializable{
 	private int servants;
 	private Color which;
 	private String answer;
+	private Player player;
 	
 	public ClientRequest(String string) {
 		type = RequestType.ANSWER;
@@ -61,6 +62,10 @@ public class ClientRequest  implements Serializable{
 	public Color getWhich() {
 		return which;
 	}
+	
+	public void setPlayer(Player player){
+		this.player=player;
+	}
 
 	@Override
 	public String toString() {
@@ -78,6 +83,10 @@ public class ClientRequest  implements Serializable{
 
 	public String getAnswer() {
 		return answer;
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 }

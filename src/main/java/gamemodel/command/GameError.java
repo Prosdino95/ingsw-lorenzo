@@ -13,7 +13,8 @@ public enum GameError {
 	SA_ERR,//"spazio azione occupato"
 	SA_MAX_FM,//spazio azione palazzo ha già 4 giocatori
 	PLAYER_DEAD,//view disconnessa 
-	ERR_NOT_TURN;//azione fuori dal turno
+	ERR_NOT_TURN, 
+	VATICAN_NOOO;
 	
 	@Override
 	public String toString() {
@@ -28,6 +29,7 @@ public enum GameError {
 		case SA_ERR: return "spazio azione occupato";
 		case SA_MAX_FM: return "spazio azione palazzo ha già 4 giocatori";
 		case ERR_NOT_TURN: return "azione fuori dal turno";
+		case VATICAN_NOOO: return "pope is occupied now";
 		default: throw new IllegalArgumentException();
 		}
 	}

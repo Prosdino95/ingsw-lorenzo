@@ -62,7 +62,7 @@ public class ExchangeTest
 		assertEquals(new Resource(4,5,5,5),p2.getResource());
 		assertEquals(new Point(1,0,0),p2.getPoint());
 	}
-	@Test
+	@Test(expected=java.lang.NullPointerException.class)
 	public void testActivateRC() throws GameException 
 	{
 		Exchange effect=new Exchange(null,null,null,new Resource(1,0,0,0),councilPrivileges);

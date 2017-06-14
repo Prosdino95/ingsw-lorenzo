@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import gameview.ClientRequest;
@@ -37,13 +38,21 @@ public class Question implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	static List<Object> yesOrNo()
+	{
+		List<Object> list=new ArrayList<Object>();
+		list.add("Nope");
+		list.add("Yes");	
+		return list;
+	}
 
 	@Override
 	public String toString() {
 		String s = gq + "?";
 		int i = 0;
 		for (Object o : choose) {
-			s += "\n";
+			s += " ";
 			s += i;
 			s += ": ";
 			s += o.toString();

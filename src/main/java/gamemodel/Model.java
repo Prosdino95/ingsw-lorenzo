@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
+import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.command.PlaceFMCommandFactory;
 import gamemodel.jsonparsing.ASParsing;
@@ -52,7 +54,7 @@ public class Model implements Serializable {
 			p.setCurrentPlayer(currentp);     
 	}
 	
-	public void finishAction() throws GameException{
+	public void finishAction(){
 		if(actionNumber==16)
 			setupRound();
 		nextTurn();
@@ -105,10 +107,14 @@ public class Model implements Serializable {
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new Player(new Resource(5,5,5,5), board, Team.RED,this));
-		players.add(new Player(new Resource(5,5,5,5), board, Team.BLUE,this));
-		if(num>=3)players.add(new Player(new Resource(5,5,5,5), board, Team.GREEN,this));
-		if(num==4)players.add(new Player(new Resource(5,5,5,5), board, Team.YELLOW,this));
+		players.add(new Player(new Resource(5,2,2,3), board, Team.RED,this));
+		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
+		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
+		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
+		getPlayer(Team.BLUE).setvaticanTime(true);
+		
+		
+		
 		
 		List<Integer> faithRequirement=new ArrayList<>(); //inizializzazione tramite jason
 		//faithPointsRequirement.put(1,faithRequirement.get(0));
@@ -141,7 +147,7 @@ public class Model implements Serializable {
 		return commandFactory;
 	}
 
-	public String answerToQuestion(Question gq, Player player) throws GameException {
+	public Integer answerToQuestion(Question gq, Player player) throws GameException {
 		return controller.answerToQuestion(gq, player);
 	}
 }

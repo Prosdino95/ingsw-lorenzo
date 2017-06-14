@@ -6,12 +6,13 @@ import java.util.concurrent.Executors;
 
 import gamemodel.Model;
 import gamemodel.Player;
+import gameview.ServerResponse;
 
 public class GameManager implements Runnable 
 {
 	private ExecutorService pool = Executors.newCachedThreadPool();
-	Map<Player,HandlerViewSocket> playerToHV=new HashMap<>();
-	List<HandlerViewSocket> hw = new ArrayList<>();
+	Map<Player,HandlerView> playerToHV=new HashMap<>();
+	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
 	final int delay=1000;
@@ -25,16 +26,20 @@ public class GameManager implements Runnable
 		rl.setController(c);
 		for(int i=0;i<rl.getPlayers().size();i++){
 			Player p = rl.getPlayers().get(i);
-			HandlerViewSocket hv = hw.get(i);
+			HandlerView hv = hw.get(i);
 			playerToHV.put(p, hv);    //TODO get random player
 			hv.setController(c);
 			hv.setPlayer(p);
-			pool.execute(hv);
+			if(hv instanceof HandlerViewSocket)
+				pool.execute((Runnable) hv);
 		}
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
 		c.notifyNewModel();
-		c.notifySendPlayer();
+		for(HandlerView h: hw){
+			h.sendResponse(new ServerResponse(h.getPlayer()));
+		}
+		c.run();
 	}
 	
 	private synchronized void checkWait()
@@ -49,7 +54,7 @@ public class GameManager implements Runnable
 		}
 	}
 	
-	public synchronized void addHV(HandlerViewSocket hv)
+	public synchronized void addHV(HandlerView hv)
 	{
 		hw.add(hv);
 		System.out.println("aggiunto in"+this);
@@ -57,6 +62,7 @@ public class GameManager implements Runnable
 			isFull=true;
 		whoWokeMeUp="Add";
 		this.notify();
+		
 	}
 	
 	@Override
@@ -79,9 +85,7 @@ public class GameManager implements Runnable
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
 	public synchronized void timerFinishded() {		

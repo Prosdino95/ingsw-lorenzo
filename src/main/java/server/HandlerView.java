@@ -1,15 +1,18 @@
 package server;
 
 import java.io.IOException;
-import java.rmi.Remote;
+
 
 import gamemodel.Player;
 import gameview.ClientRequest;
 import gameview.ServerResponse;
 
-public interface HandlerView extends Remote {
+public interface HandlerView  {
 	
 	void doRequest(ClientRequest request) throws IOException;
-	 void sendResponse(ServerResponse sr) throws IOException;
+	void sendResponse(ServerResponse sr);
+	Player getPlayer();
+	void setController(Controller c);
+	void setPlayer(Player p);
 
 }

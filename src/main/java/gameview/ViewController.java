@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.NotBoundException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
@@ -21,9 +22,10 @@ public class ViewController {
 	private HandlerServer hs;
 
 	
-	public ViewController() throws IOException, InterruptedException{
+	public ViewController() throws IOException, InterruptedException, NotBoundException{
 		super();
 		hs=new HandlerSocket(this);
+		//hs=new HandlerServerRMIImpl(this);
 		new Thread((Runnable) hs).start();
 	}
 	
@@ -67,7 +69,9 @@ public class ViewController {
 
 
 	private synchronized ServerResponse getSRIn() {
-		return srIn;
+		ServerResponse temp=srIn;
+		srIn=null;
+		return temp;
 	}
 
 	public ServerResponse syncSend(ClientRequest request) {
@@ -79,7 +83,7 @@ public class ViewController {
 	    	} catch (InterruptedException e) {
 	    		e.printStackTrace(); 
 	    	}     	
-	    	srr =getSRIn(); 
+	    	srr = getSRIn(); 
 	    	if (srr != null) return srr; 
 	    } 
 	}	

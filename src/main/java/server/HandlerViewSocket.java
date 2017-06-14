@@ -2,10 +2,13 @@ package server;
 
 import java.io.IOException;
 
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayDeque;
 import java.util.List;
+import java.util.Queue;
 
 import gamemodel.Player;
 import gamemodel.Question;
@@ -13,7 +16,7 @@ import gamemodel.Model;
 import gamemodel.Team;
 import gamemodel.command.GameException;
 import gameview.ClientRequest;
-import gameview.ModelShell;
+
 import gameview.ServerResponse;
 
 public class HandlerViewSocket implements Runnable,HandlerView{
@@ -23,9 +26,8 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	private ObjectInputStream in; 
 	private Player player;
 	private boolean live=true;
-	private boolean newModel=false;
-	private boolean playerAssigned = false;
 	private Socket socket;
+	private Queue<ServerResponse> responseQueue=new ArrayDeque<>();
 	
 	
 	public HandlerViewSocket(Socket s) throws IOException{	
@@ -56,20 +58,18 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 		ClientRequest request=null;
 		while(live){				
 			try {
-				if (socket.getInputStream().available() > 0) {
+				if (socket.getInputStream().available() > 1) {
 					request=readRequest();
 					System.out.println("Server received: " + request);
-					controller.doRequest(request,player);
-				} else if (newModel) {
-					sendResponse(new ServerResponse(controller.getModel()));
-					newModel=false;
-				} else if (!playerAssigned && player != null && newModel == false) {
-					sendResponse(new ServerResponse(player));
-					playerAssigned = true;
-				}
+					doRequest(request);					
+				} 
 				Thread.sleep(100);
+				if(!responseQueue.isEmpty())
+					send(this.responseQueue.remove());
+					
 			} catch (ClassNotFoundException | IOException | InterruptedException e) {
 				try {
+					controller.imDead(this);
 					in.close();
 					out.close();
 					live=false;
@@ -81,7 +81,13 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 		}
 	}
 	
-	 public void sendResponse(ServerResponse sr) throws IOException {
+	@Override
+	public void sendResponse(ServerResponse sr){
+		this.responseQueue.add(sr);
+	}
+	
+	 private void send(ServerResponse sr) throws IOException {
+		 System.out.println("server sent response " + sr);
 			out.writeObject(sr);
 			out.flush();
 			out.reset();
@@ -90,36 +96,14 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	ClientRequest readRequest() throws ClassNotFoundException, IOException{
 		ClientRequest request=null;			
 		request=(ClientRequest) in.readObject();				
+		System.out.println("Server reading request " + request);
 		return request;
-	}
-	
-
-	public static void main(String[]args) throws IOException, ClassNotFoundException
-	{
-		ServerSocket ss=new ServerSocket(3017);
-		Socket s=null;
-		System.out.println("server ready");
-		s=ss.accept();
-		HandlerViewSocket ev=new HandlerViewSocket(s);
-		Model rg=new Model(4);
-		ev.setPlayer(rg.getPlayer(Team.BLUE));
-		Controller c=new Controller(rg);
-		ev.setController(c);
-		ev.run();
-		System.out.println(rg.getBoard().getActionSpace(0));
-		
-	}
-
-	public void setNewModel() {
-		newModel=true;
-		
-	}
-
-	public void setSendPlayer() {
-		playerAssigned = false;
 	}
 
 	@Override
 	public void doRequest(ClientRequest request) {
+		request.setPlayer(player);
+		controller.doRequest(request);
 	}
+
 }

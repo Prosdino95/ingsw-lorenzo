@@ -34,23 +34,21 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 	public void activate(Player player) throws GameException
 	{
 		List<Integer>selectionHistory=new ArrayList<>();
-		
-		
-		
-		//TODO  fare un test apena socket torna a funzionare
-		
 		int counter;
 		for(counter=0;counter<this.numberOfCouncilPrivileges;counter++)
 		{
+			System.out.println(counter);
+			System.out.println(numberOfCouncilPrivileges);
+			
 			int selection;
 			try {
-				selection = Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice)));
-				if(selectionHistory.contains(selection))
-					selection = Integer.parseInt(player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice)));
+				selection = player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				while(selectionHistory.contains(selection) || selection>4)
+					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
 				effect(selection,player);
 				selectionHistory.add(selection);
 				
-			} catch (NumberFormatException | GameException e) {
+			} catch (GameException e) {
 				effect(0,player);
 				throw new GameException(GameError.PLAYER_DEAD);				
 			}
@@ -59,7 +57,7 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 	}
 	
 	private void effect(int selection,Player player){
-		System.out.println("selezionato:"+selection);
+		System.out.println("Effetto: selezionato:"+selection);
 		switch (selection)
 		{
 			case 0: player.addResources((Resource) this.choice.get(0));

@@ -10,15 +10,13 @@ public class UITree {
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
 	private ViewController serverHandler;
-//	private ModelShell ms;
 	private Model model;
 	private Player player;
 	boolean hasModel = false;
 	boolean hasPlayer = false;
 	
 		
-	public UITree(ModelShell modelShell, ViewController serverEndler) {
-//		ms = modelShell;
+	public UITree(ViewController serverEndler) {
 		this.serverHandler=serverEndler;
 
 // 		// Riusciremo a infilarlo nell'albero un giorno?
@@ -33,7 +31,6 @@ public class UITree {
 				new UINodeSetRequestType("Place family member", 
 						request::setType, 
 						RequestType.PLACEFAMILYMEMBER, this);
-
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
 						request::setWhere,
@@ -48,14 +45,20 @@ public class UITree {
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
 		UINode talkToServer = new UINodeTalkToServer("Waiting for server response...", this);
-
+		UINodeSetRequestType vatican= new UINodeSetRequestType("Talk to the Pope", 
+										request::setType, 
+										RequestType.VATICAN_REPORT, this);
+		
 		root= log.addSon(
 				menu.addSon(
 				  placeFM.addSon(
 	                where.addSon(
 	                  which.addSon(
 	                	servants.addSon(
-	                	  talkToServer)))))); 
+	                	  talkToServer)))))
+				    .addSon(
+				  vatican.addSon(
+				    talkToServer))); 
 		
 		reset();
 		System.out.println("Hi, this is Lorenzo!");
@@ -74,7 +77,7 @@ public class UITree {
 	}
 
 	public ServerResponse sendRequestToServer(ClientRequest request) throws IOException { 		
-	    ServerResponse srr = serverHandler.syncSend(request);; 
+	    ServerResponse srr = serverHandler.syncSend(request);
 	    return srr;
 	} 
 
@@ -93,10 +96,6 @@ public class UITree {
 		request.cleanUp();
 	}
 
-//	public void setModelShell(ModelShell modelShell) {
-//		 TODO Auto-generated method stub
-//		ms = modelShell;
-//	}
 
 	public ClientRequest getRequest() {
 		return request;

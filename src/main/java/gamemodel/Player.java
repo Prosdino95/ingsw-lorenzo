@@ -37,6 +37,7 @@ public class Player implements Serializable{
 	private transient Action currentAction = new Action();
 	private transient Model model;
 	private transient Player currentPlayer;
+	private boolean vaticanTime=false;
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -69,6 +70,16 @@ public class Player implements Serializable{
 		FamilyMember f = familyMembers.get(color);
 		f.setActionpoint(actionPoint);		
 	}
+	
+	public boolean getvaticanTime()
+	{
+		return this.vaticanTime;
+	}
+	public void setvaticanTime(boolean b)
+	{
+		this.vaticanTime=b;
+	}
+	
 	
 	 public void subResources(Resource r) {
 		if (r == null) return;  
@@ -263,16 +274,29 @@ public class Player implements Serializable{
 			
 		else return false;			
 	}
-		public void vaticanReport(int period,int requirement,int victoryPoints)
+	
+	public void vaticanReport(int period,int requirement,int victoryPoints) throws GameException
 	{
-		int a=0; //TODO implementare scelta utente
+		if (!this.vaticanTime)
+			throw new GameException(GameError.VATICAN_NOOO);
+		
 		if(this.point.getFaith()<requirement)
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+		 // TODO da testare
 		if(this.point.getFaith()>=requirement)
 		{
-			if(a==0)
+			int selection=0;	
+			try 
+			{
+				selection = this.answerToQuestion(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()));
+			} 
+			catch (GameException e) 
+			{
+				selection =0;
+			}
+			if(selection==0)
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
-			if(a==1)
+			if(selection==1)
 			{
 				this.subPoint(new Point(0,this.point.getFaith(),0));
 				this.addPoint(new Point(0,0,victoryPoints));
@@ -280,7 +304,7 @@ public class Player implements Serializable{
 		}
 	}
 
-		public String answerToQuestion(Question question) throws GameException {
+		public Integer answerToQuestion(Question question) throws GameException {
 			return model.answerToQuestion(question, this);
 		}
 
