@@ -2,17 +2,19 @@ package gamemodeltest.command;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.*;
 import gamemodel.actionSpace.*;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gamemodel.effects.Effect;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 
 public class PlaceFamilyMemberCommandCouncilPlaceTest {
@@ -21,23 +23,29 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	Player p1,p2;
 	MemoryActionSpace a0;
 	RealActionSpace a1;
-	Effect e;
+	IstantEffect e;
 	GameError s;
 	int id0,id1;
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 	
 	@Before
 	public void setUp(){
 		e=new TestEffects();
-		b=new RealBoard();
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.BLUE);
-		a0=new MemoryActionSpace(5, e, ActionSpaceType.COUNCIL_PALACE);
+		b=new Board();
+		b.setDice(1, 7, 7);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE,model);
+		a0=new MemoryActionSpace(0,5, e, ActionSpaceType.COUNCIL_PALACE);
 		id0=a0.getId();
-		a1=new MemoryActionSpace(0, e, ActionSpaceType.COUNCIL_PALACE);
+		a1=new MemoryActionSpace(1,0, e, ActionSpaceType.COUNCIL_PALACE);
 		id1=a1.getId();
-		p1.setFamilyMember(Color.BLACK, 1);
-		p1.setFamilyMember(Color.WHITE, 7);
-		p2.setFamilyMember(Color.WHITE,7);
+		p1.prepareForNewRound();
+		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
 	}
@@ -84,9 +92,9 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	@Test
 	public void testDoublePlaceSamePostDifferentPlayer() throws GameException{
-		List<RealPlayer> testplayers=new ArrayList<RealPlayer>();
-		testplayers.add((RealPlayer) p1);
-		testplayers.add((RealPlayer) p2);
+		List<Player> testplayers=new ArrayList<Player>();
+		testplayers.add((Player) p1);
+		testplayers.add((Player) p2);
 		p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));
 		p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0));
 		assertEquals(a0.getPlayers(),testplayers);		

@@ -1,85 +1,85 @@
 {
-  "ActionSpace": [
+    "ActionSpace": [
 
-    {
-      "action-cost": 1,
-      "type": "harvest" 
-    },
+        {
+            "action-cost": 1,
+            "id": 16,
+            "type": "harvest" 
+        },
 
-    {
-      "action-cost": 1,
-      "type": "production"  
-    },
+        {
+            "action-cost": 1,
+            "id": 17,
+            "type": "production"  
+        },
 
-    {
-      "action-cost": 1,
-      "type": "market",
-      "effect": [
-      			{
-      				"type":"resource-mod",
-      				"gold":5
-      			}
-      			]     
-    },
+        {
+            "action-cost": 1,
+            "id": 18,
+            "type": "market",
+            "effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":5
+      		}
+      	    ]     
+        },
 
-    {
-      "action-cost": 1,
-      "type": "market",
-      "effect": [
-      			{
-      				"type":"resource-mod",
-      				"servants":5
-      			}
-      			]     
-    },
-    
-    {
-      "action-cost": 1,
-      "type": "market",
-      "effect": [
-      			{
-      				"type":"resource-mod",
-      				"gold":2
-      			},
-      			{
-      				"type":"point-mod",
-      				"military":3
-      			}
-      			]     
-    },  
+        {
+            "action-cost": 1,
+            "id": 19,
+            "type": "market",
+            "effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":5
+      		}
+      	    ]     
+        },
+        
+        {
+            "action-cost": 1,
+            "id": 20,
+            "type": "market",
+            "effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":2
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":3
+      		}
+      	    ]     
+        },  
 
-    {
-      "action-cost": 1,
-      "type": "market",
-      "effect": [
-      			{
-      				"type":"council-privileges",
-      				"quantity":2
-      			}
-      			]     
-    },   
+        {
+            "action-cost": 1,
+            "id": 21,
+            "type": "market",
+            "effect": [
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":2
+      		}
+      	    ]     
+        },   
 
-    {
-      "action-cost": 1,
-      "type": "council-place",
-      "effect": [
-      			{
-      				"type":"council-privileges",
-      				"quantity":1
-      			},
-      			{
-      				"type":"resource-mod",
-      				"gold":1
-      			}
-      			]     
-    }      
-  ]
+        {
+            "action-cost": 1,
+            "id": 22,
+            "type": "council-place",
+            "effect": [
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		},
+      		{
+      		    "type":"resource-mod",
+      		    "gold":1
+      		}
+      	    ]     
+        }      
+    ]
 
 }
-
-
-
-
-
-
-

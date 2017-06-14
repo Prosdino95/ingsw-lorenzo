@@ -2,20 +2,21 @@ package gamemodeltest.effects;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gamemodel.Board;
+import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.RealBoard;
-import gamemodel.RealPlayer;
 import gamemodel.Resource;
 import gamemodel.Team;
 import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
-import gamemodel.effects.Effect;
 import gamemodel.effects.Exchange;
+import gamemodel.effects.IstantEffect;
 
 public class ExchangeTest 
 {
@@ -25,18 +26,24 @@ public class ExchangeTest
 	Player p3;
 	Player p4;
 	Player p5;
-	Effect councilPrivileges;
+	IstantEffect councilPrivileges;
+	static Model model;
+	
+	@BeforeClass
+	public static void setUpClass(){
+		model=new Model(4);
+	}
 	
 	@Before
 	public void setUp() throws Exception 
 	{
-		b=new RealBoard();
+		b=new Board();
 		councilPrivileges=new CouncilPrivileges(1);
-		p1=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p2=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p3=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p4=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
-		p5=new RealPlayer(new Resource(5,5,5,5), b, Team.RED);
+		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p2=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p3=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p4=new Player(new Resource(5,5,5,5), b, Team.RED,model);
+		p5=new Player(new Resource(5,5,5,5), b, Team.RED,model);
 		
 	}
 
@@ -55,7 +62,7 @@ public class ExchangeTest
 		assertEquals(new Resource(4,5,5,5),p2.getResource());
 		assertEquals(new Point(1,0,0),p2.getPoint());
 	}
-	@Test
+	@Test(expected=java.lang.NullPointerException.class)
 	public void testActivateRC() throws GameException 
 	{
 		Exchange effect=new Exchange(null,null,null,new Resource(1,0,0,0),councilPrivileges);

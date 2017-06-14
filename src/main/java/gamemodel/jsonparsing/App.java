@@ -2,25 +2,21 @@ package gamemodel.jsonparsing;
 
 import java.util.*;
 
+
 import gamemodel.actionSpace.*;
 import gamemodel.card.*;
-
-/*
-  	-->Improving the Canals venture card con effetto immendiato non implementato
-	-->repire the cathedral stesso come sopra
-	-->improving roads stesso come sopra
-*/
 
 public class App{
 	
     public static void main( String[] args )
     {	
-    	//testAS();
+    	testAS();
     	//testBCard();
     	//testTCard();
-    	testCCard();
+    	//testCCard();
     	//testVCard();
     	//test();
+    	//testLCard();
     } 
     
     private static void test() {
@@ -53,6 +49,12 @@ public class App{
     	List<Card> Bcard= new CustomizationFileReader<Card>("Config/BuildingCards.json",new CardParsing()::parsing).parse();
     	for(Card a:Bcard)
     		System.out.println(a);
+	}
+    
+    private static void testLCard() {
+    	//List<LeaderCard> Bcard= new CustomizationFileReader<Card>("Config/LeaderCards.json",new CardParsing()::parsing).parse();
+    	//for(LeaderCard a:Bcard)
+    	//	System.out.println(a);
 	}
 
 

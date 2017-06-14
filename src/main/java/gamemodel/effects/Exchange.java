@@ -8,7 +8,7 @@ import gamemodel.Resource;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
-public class Exchange implements Effect,Serializable 
+public class Exchange implements IstantEffect,Serializable 
 {
 
 	private static final long serialVersionUID = 1L;
@@ -16,9 +16,9 @@ public class Exchange implements Effect,Serializable
 	private Point pointsOut;
 	private Resource resourcesIn;
 	private Resource resourcesOut;
-	private Effect councilPrivilegesIn;
+	private IstantEffect councilPrivilegesIn;
 	
-	public Exchange(Point pointsIn,Point pointsOut,Resource resourcesIn,Resource resourcesOut,Effect councilPrivilegesIn)
+	public Exchange(Point pointsIn,Point pointsOut,Resource resourcesIn,Resource resourcesOut,IstantEffect councilPrivilegesIn)
 	{
 		this.resourcesIn=resourcesIn;
 		this.resourcesOut=resourcesOut;
@@ -42,33 +42,33 @@ public class Exchange implements Effect,Serializable
 			councilPrivilegesIn.activate(player);
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "Exchange [pointsIn=" + pointsIn + ", pointsOut=" + pointsOut + ", resourcesIn=" + resourcesIn
 				+ ", resourcesOut=" + resourcesOut + ", councilPrivilegesIn=" + councilPrivilegesIn + "]";
-	}		
+	}	*/	
 	
-//	@Override
-//	public String toString() {
-//		String str =
-//				"\n"+ 
-//				"Exchange: "+"\n";
-//		str+="give --> ";
-//		if(this.pointsOut!=null)
-//			str+=pointsOut+"\n";
-//		if(this.resourcesOut!=null)
-//			str+=resourcesOut+"\n";
-//		str+="receive --> ";
-//		if(this.councilPrivilegesIn!=null)
-//			str+=councilPrivilegesIn;
-//		if(this.pointsIn!=null)
-//			str+=pointsIn;			
-//		if(this.resourcesIn!=null)		
-//			str+=resourcesIn;
-//			
-//		return str;
-//		
-//	}
+	@Override
+	public String toString() {
+		String str =
+				"\n"+ 
+				"Exchange: "+"\n";
+		str+="give --> ";
+		if(this.pointsOut!=null)
+			str+=pointsOut+"\n";
+		if(this.resourcesOut!=null)
+			str+=resourcesOut+"\n";
+		str+="receive --> ";
+		if(this.councilPrivilegesIn!=null)
+			str+=councilPrivilegesIn;
+		if(this.pointsIn!=null)
+			str+=pointsIn;			
+		if(this.resourcesIn!=null)		
+			str+=resourcesIn;
+			
+		return str;
+		
+	}
 	
 }
 

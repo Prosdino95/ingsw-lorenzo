@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class UINode {
+public class UINode {
 	protected List<UINode> descendants;
 	protected String intro;
 	protected ClientRequest response;

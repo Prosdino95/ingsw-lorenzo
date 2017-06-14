@@ -18,6 +18,16 @@ public class ClientRequest  implements Serializable{
 	private int servants;
 	private Color which;
 	private String answer;
+	private Player player;
+	
+	public ClientRequest(String string) {
+		type = RequestType.ANSWER;
+		answer = string;
+	}
+
+	public ClientRequest() {
+		super();
+	}
 	
 	public void setType(RequestType type) {
 		this.type = type;
@@ -52,6 +62,10 @@ public class ClientRequest  implements Serializable{
 	public Color getWhich() {
 		return which;
 	}
+	
+	public void setPlayer(Player player){
+		this.player=player;
+	}
 
 	@Override
 	public String toString() {
@@ -63,10 +77,16 @@ public class ClientRequest  implements Serializable{
 	}
 
 	public void setAnswer(String answer) {
+		this.type = RequestType.ANSWER;
 		this.answer = answer;
 	}
 
 	public String getAnswer() {
 		return answer;
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
 }

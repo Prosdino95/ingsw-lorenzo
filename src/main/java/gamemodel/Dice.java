@@ -15,9 +15,12 @@ public class Dice implements Serializable
 		dice.put(Color.ORANGE, 0);
 	}
 	
-
 	public int getValue(Color c) {
 		return dice.get(c);
+	}
+
+	public void setValue(Color color, Integer value) {
+		dice.put(color, value);
 	}
 	
 	public void setFMActionPoints(Map<Color,FamilyMember> familyMembers){

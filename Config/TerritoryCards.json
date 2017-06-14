@@ -1,463 +1,511 @@
 {
-	"territory-cards":[
-					{
-						"name":"Commercial Hub",
-						"action-cost":1,
-						"permanent-effect":[
-											{
-      										"type":"resource-mod",
-      										"gold":1
-      										}
-										   ]						
-					},
-					
-					{
-						"name":"Woods",
-						"action-cost":2,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-      										"type":"resource-mod",
-      										"wood":1
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Village",
-						"action-cost":3,
-						"permanent-effect":[
-											{
-      										"type":"resource-mod",
-      										"gold":1,
-      										"servants":1
-      										}
-										   ]						
-					},
-					
-					{
-						"name":"Gravel Pit",
-						"action-cost":4,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"stone":2
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-      										"type":"resource-mod",
-      										"stone":2
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Forest",
-						"action-cost":5,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-      										"type":"resource-mod",
-      										"wood":3
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Monastery",
-						"action-cost":6,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"servants":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"military":2
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Citadel",
-						"action-cost":5,
-						"istant-effect": [],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"military":2
-      										}
-										   ]
-					},
-					
-					{
-						"name":"City",
-						"action-cost":6,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":3
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-      										"type":"council-privileges",
-      										"quantity":1
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Gold Mine",
-						"action-cost":1,
-						"istant-effect": [
-											{
-      										"type":"resource-mod",
-      										"gold":1
-      										}
-										 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"gold":2
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Mountain Town",
-						"action-cost":3,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"servants":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"wood":2
-      										},
-      										{
-      										"type":"point-mod",
-      									    "military":1
-      										}
-      										]
-					},
-					
-					{
-						"name":"Mining Town",
-						"action-cost":4,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"servants":2,
-      										"stone":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":2,
-      										"servants":1
-      										}
-      										]
-					},
-					
-					{
-						"name":"Rock Pit",
-						"action-cost":3,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":3
-      										}
-      										]
-					},
-					
-					{
-						"name":"Estate",
-						"action-cost":4,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":1,
-      										"servants":2
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"wood":2,
-      										"gold":1
-      										}
-      										]
-					},
-					
-					{
-						"name":"Hermitage",
-						"action-cost":2,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"point-mod",
-      										"faith":1
-      										}
-      										]
-					},
-					
-					{
-						"name":"Manor House",
-						"action-cost":5,
-						"istant-effect": [],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"servants":2
-      										},
-											{
-											"type":"point-mod",
-      										"military":2
-      										}
-      										]
-					},
-					
-					{
-						"name":"Dukedom",
-						"action-cost":6,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":4
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"wood":2,
-      										"gold":1,
-      										"stone":1
-      										}
-      										]
-					},
-					
-					{
-						"name":"Trading Town",
-						"action-cost":1,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":1,
-      										"servants":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"gold":3
-      										}
-      										]
-					},
-					
-					{
-						"name":"Farm",
-						"action-cost":3,
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"victory":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"wood":2
-      										},
-      										{
-      										"type":"point-mod",
-      										"victory":2
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Colony",
-						"action-cost":5,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":2
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"wood":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"victory":4
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Marble Pit",
-						"action-cost":2,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"victory":3
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":2
-      										},
-      										{
-      										"type":"point-mod",
-      										"victory":1
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Province",
-						"action-cost":6,
-						"istant-effect": [
-      										{
-      										"type":"council-privileges",
-      										"quantity":1
-      										},   										
-      										{
-      										"type":"resource-mod",
-      										"stone":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"stone":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"victory":4
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Sanctuary",
-						"action-cost":1,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"gold":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-										   ]
-					},
-					
-					{
-						"name":"Castle",
-						"action-cost":4,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"victory":2
-      										},   										
-      										{
-      										"type":"resource-mod",
-      										"gold":2
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"servants":1
-      										},
-      										{
-      										"type":"point-mod",
-      										"military":3
-      										}
-										   ]
-					},
-					{
-					
-						"name":"Fortified Town",
-						"action-cost":2,
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":2
-      										},   										
-      										{
-      										"type":"resource-mod",
-      										"servants":1
-      										}
-      									 ],
-						"permanent-effect":[
-											{
-											"type":"resource-mod",
-      										"servants":2
-      										},
-      										{
-      										"type":"point-mod",
-      										"military":1
-      										}
-										   ]
-					}								   
-		]					   						
+    "territory-cards":[
+	{
+	    "name":"Commercial Hub",
+            "id": 48,
+	    "period":1,
+	    "action-cost":1,
+	    "activate-effect":[
+		{
+      		    "type":"resource-mod",
+      		    "gold":1
+      		}
+	    ]						
+	},
+	
+	{
+	    "name":"Woods",
+            "id": 49,
+	    "period":1,
+	    "action-cost":2,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+      		    "type":"resource-mod",
+      		    "wood":1
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Village",
+            "id": 50,
+	    "period":1,
+	    "action-cost":3,
+	    "activate-effect":[
+		{
+      		    "type":"resource-mod",
+      		    "gold":1,
+      		    "servants":1
+      		}
+	    ]						
+	},
+	
+	{
+	    "name":"Gravel Pit",
+            "id": 51,
+	    "period":1,
+	    "action-cost":4,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "stone":2
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+      		    "type":"resource-mod",
+      		    "stone":2
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Forest",
+            "id": 52,
+	    "period":1,
+	    "action-cost":5,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+      		    "type":"resource-mod",
+      		    "wood":3
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Monastery",
+            "id": 53,
+	    "period":1,
+	    "action-cost":6,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":2
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Citadel",
+            "id": 54,
+	    "period":1,
+	    "action-cost":5,
+	    "istant-effect": [],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":2
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"City",
+            "id": 55,
+	    "period":1,
+	    "action-cost":6,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":3
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Gold Mine",
+            "id": 56,
+	    "period":2,
+	    "action-cost":1,
+	    "istant-effect": [
+		{
+      		    "type":"resource-mod",
+      		    "gold":1
+      		}
+	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "gold":2
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Mountain Town",
+            "id": 57,
+	    "period":2,
+	    "action-cost":3,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "wood":2
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":1
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Mining Town",
+            "id": 58,
+	    "period":2,
+	    "action-cost":4,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":2,
+      		    "stone":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":2,
+      		    "servants":1
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Rock Pit",
+            "id": 59,
+	    "period":2,
+	    "action-cost":3,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":3
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Estate",
+            "id": 60,
+	    "period":2,
+	    "action-cost":4,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":1,
+      		    "servants":2
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "wood":2,
+      		    "gold":1
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Hermitage",
+            "id": 61,
+	    "period":2,
+	    "action-cost":2,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"point-mod",
+      		    "faith":1
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Manor House",
+            "id": 62,
+	    "period":2,
+	    "action-cost":5,
+	    "istant-effect": [],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "servants":2
+      		},
+		{
+		    "type":"point-mod",
+      		    "military":2
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Dukedom",
+            "id": 63,
+	    "period":2,
+	    "action-cost":6,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":4
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "wood":2,
+      		    "gold":1,
+      		    "stone":1
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Trading Town",
+            "id": 64,
+	    "period":3,
+	    "action-cost":1,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":1,
+      		    "servants":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "gold":3
+      		}
+      	    ]
+	},
+	
+	{
+	    "name":"Farm",
+            "id": 65,
+	    "period":3,
+	    "action-cost":3,
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "victory":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "wood":2
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "victory":2
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Colony",
+            "id": 66,
+	    "period":3,
+	    "action-cost":5,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":2
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "wood":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "victory":4
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Marble Pit",
+            "id": 67,
+	    "period":3,
+	    "action-cost":2,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "victory":3
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":2
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "victory":1
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Province",
+            "id": 68,
+	    "period":3,
+	    "action-cost":6,
+	    "istant-effect": [
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		},   										
+      		{
+      		    "type":"resource-mod",
+      		    "stone":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "stone":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "victory":4
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Sanctuary",
+            "id": 69,
+	    "period":3,
+	    "action-cost":1,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "gold":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+	    ]
+	},
+	
+	{
+	    "name":"Castle",
+            "id": 70,
+	    "period":3,
+	    "action-cost":4,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "victory":2
+      		},   										
+      		{
+      		    "type":"resource-mod",
+      		    "gold":2
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "servants":1
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":3
+      		}
+	    ]
+	},
+	{
+	    
+	    "name":"Fortified Town",
+            "id": 71,
+	    "period":3,
+	    "action-cost":2,
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":2
+      		},   										
+      		{
+      		    "type":"resource-mod",
+      		    "servants":1
+      		}
+      	    ],
+	    "activate-effect":[
+		{
+		    "type":"resource-mod",
+      		    "servants":2
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "military":1
+      		}
+	    ]
+	}								   
+    ]					   						
 }
-					
-					
+
+

@@ -2,48 +2,94 @@ package gameview;
 
 import java.io.Serializable;
 
+import gamemodel.*;
 import gamemodel.command.GameError;
+import server.GameQuestion;
+import server.ResponseType;
 
 public class ServerResponse implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	private ServerQuestion question;
+	private Question question;
 	private GameError error;
-	private String type;
-	private ModelShell ms;
-	
-	public ModelShell getModel() {
-		return ms;
-	}
-
-	public void setModel(ModelShell model) {
-		type = "NM";
-		this.ms = model;
-	}
+//	private String removeMeType;
+//	private ModelShell removeMems;
+	private String message;
+	private ResponseType type;
+	private Model model;
+	private Team playerTeam;
 
 	public ServerResponse() {
-		type = "O";
+		type = ResponseType.OK;
+//		removeMeType = "O";
 	}
+
+	public ServerResponse(Question question) {
+		type = ResponseType.QUESTION;
+//		removeMeType = "Q";
+		this.question = question;
+	}
+
+	public ServerResponse(Model model) {
+		type = ResponseType.NEW_MODEL;
+//		removeMeType = "Q";
+		this.model = model;
+	}
+
+	public ServerResponse(String message) {
+		type = ResponseType.MESSAGE;
+//		removeMeType = "MESS";
+		this.message = message;
+	}
+
+	public ServerResponse(GameError error) {
+		type = ResponseType.ERROR;
+//		removeMeType="E";
+		this.error=error;
+	}
+
+	public ServerResponse(Player player) {
+		type = ResponseType.PLAYER_ASSIGNED;
+//		removeMeType="E";
+		this.playerTeam = player.getTeam();
+	}
+
+//	public ServerResponse(ModelShell modelShell) {
+//		removeMeType = "NM";
+//		this.removeMems = modelShell;
+//	}
+	
+	public ResponseType getType() {
+		return type;
+	}
+
+	
+//	public ModelShell getModel() {
+//		return removeMems;
+//	}
+
+//	public void setModel(ModelShell model) {
+//		removeMeType = "NM";
+//		this.removeMems = model;
+//	}
+
 	
 	@Override
 	public String toString() {
-		return "ServerResponse [question=" + question + ", error=" + error + ", type=" + type + "]";
+		return "ServerResponse [question=" + question + ", error=" + error + ", message=" + message + ", type=" + type
+				+ ", model=" + model + "]";
 	}
 
-	public ServerResponse(ServerQuestion question) {
-		type = "Q";
-		this.question = question;
-	}
-	
 	public boolean isItOk() {
-		return type.equals("O");
+		return type == ResponseType.OK;
+//		return removeMeType.equals("O");
 	}
 
 	public boolean isThereAQuestion() {
-		return type.equals("Q");
+		return type == ResponseType.QUESTION;
+//		return removeMeType.equals("Q");
 	}
 
-	public ServerQuestion getQuestion() {
+	public Question getQuestion() {
 		return question;
 	}
 
@@ -52,16 +98,47 @@ public class ServerResponse implements Serializable {
 	}
 
 	public void setError(GameError err) {
-		type = "E";
+		type = ResponseType.ERROR;
+//		removeMeType = "E";
 		error = err;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String mess) {
+		type = ResponseType.MESSAGE;
+//		removeMeType = "MESS";
+		message = mess;
+	}
+
+	public boolean isThereAMessage() {
+		return type == ResponseType.MESSAGE;
+//		return removeMeType.equals("MESS");
+	}
+
+	
 	public boolean isThereAnError() {
-		return type.equals("E");
+		return type == ResponseType.ERROR;
+//		return removeMeType.equals("E");
 	}
 
 	public boolean isThereANewModel() {
-		return type.equals("NM");
+		return type == ResponseType.NEW_MODEL;
+//		return removeMeType.equals("NM");
 	}
 
+	public boolean assignedPlayer() {
+		// TODO Auto-generated method stub
+		return type == ResponseType.PLAYER_ASSIGNED;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public Team getPlayerTeam() {
+		return playerTeam;
+	}
 }

@@ -11,7 +11,10 @@ public enum GameError {
 	TWR_ERR_FM,//"torre occupata già da un tuo familiare"
 	SA_ERR_FM,//"spazio già occupato da un tuo familiare"
 	SA_ERR,//"spazio azione occupato"
-	SA_MAX_FM;//spazio azione palazzo ha già 4 giocatori
+	SA_MAX_FM,//spazio azione palazzo ha già 4 giocatori
+	PLAYER_DEAD,//view disconnessa 
+	ERR_NOT_TURN, 
+	VATICAN_NOOO;
 	
 	@Override
 	public String toString() {
@@ -25,6 +28,8 @@ public enum GameError {
 		case SA_ERR_FM: return "spazio già occupato da un tuo familiare";
 		case SA_ERR: return "spazio azione occupato";
 		case SA_MAX_FM: return "spazio azione palazzo ha già 4 giocatori";
+		case ERR_NOT_TURN: return "azione fuori dal turno";
+		case VATICAN_NOOO: return "pope is occupied now";
 		default: throw new IllegalArgumentException();
 		}
 	}

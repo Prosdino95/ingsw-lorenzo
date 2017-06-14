@@ -1,20 +1,14 @@
 package gamemodel.permanenteffect;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import gamemodel.Player;
-import gamemodel.effects.Effect;
-
-public class PermanentEffect implements Effect
+public class PermanentEffect
 {
 	
 	private List<String> tag= new ArrayList<>();
 	
-	@Override
-	public void activate(Player p){
-		
-	}
 
 	public PermanentEffect(String tag) 
 	{

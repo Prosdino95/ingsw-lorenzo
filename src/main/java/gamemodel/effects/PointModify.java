@@ -5,7 +5,7 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Point;
 
-public class PointModify implements Effect,EffectRollBack,Serializable
+public class PointModify implements IstantEffect,EffectRollBack,Serializable
 {
 	/**
 	 * 
@@ -29,15 +29,15 @@ public class PointModify implements Effect,EffectRollBack,Serializable
 		player.subPoint(points);
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "PointModify [points=" + points + "]";
-	}
+	}*/
 
-//	@Override
-//	public String toString() {
-//		return "" + points;
-//	}
+	@Override
+	public String toString() {
+		return "" + points;
+	}
 	
 	
 

@@ -12,7 +12,6 @@ public class UINodeChooseUI extends UINode {
 	@Override
 	public void run() {
 		print();
-		this.nextNode=this.nextNode();
 	}
 
 	@Override
@@ -33,7 +32,8 @@ public class UINodeChooseUI extends UINode {
 		}
 	}
 
-	private UINode nextNode() {
+	@Override
+	public UINode getNextNode() {
 		choose=CLIView.getInt();	
 		try{
 			return descendants.get(choose);					

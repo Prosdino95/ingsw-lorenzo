@@ -1,415 +1,463 @@
 {
-	"venture-cards":[
-					{
-						"name":"Hiring Recruits",
-						"resource-requirement":{
-											"gold":4				
-											},
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":5
-      										}
-      								],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Repairing the Church",
-						"resource-requirement":{
-											"gold":1,
-											"wood":1,
-											"stone":1				
-											},
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-      								],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Building the Walls",
-						"resource-requirement":{
-											"stone":3				
-											},
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":2
-      										},
-      										{
-      										"type":"council-privileges",
-      										"quantity":1
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Raising a Statue",
-						"resource-requirement":{
-											"stone":3,
-											"wood":2				
-											},
-						"istant-effect": [
-      										{
-      										"type":"council-privileges",
-      										"quantity":2
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Military Campaign",
-						"point-requirement":{
-											"military":3				
-											},
-						"point-price":{
-											"military":2				
-											},					
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":3
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Hosting Panhandlers",
-						"resource-requirement":{
-											"wood":3				
-											},
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"servants":4
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Fighting Heresies",
-						"point-requirement":{
-											"military":5				
-											},
-						"point-price":{
-											"military":3				
-											},					
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":2
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Support to the Bishop",
-						"point-requirement":{
-											"military":4				
-											},
-						"point-price":{
-											"military":2				
-											},
-						"resource-requirement":{
-											"stone":1,
-											"gold":2,
-											"wood":1				
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":3
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Hiring Soldiers",
-						"resource-requirement":{
-											"gold":6															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":6
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Repairing the Abbey",
-						"resource-requirement":{
-											"gold":2,
-											"wood":2,
-											"stone":2															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":2
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Building the Bastions",
-						"resource-requirement":{
-											"stone":4															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":3
-      										},
-      										{
-      										"type":"council-privileges",
-      										"quantity":1
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Support to the King",
-						"point-requirement":{
-											"military":6				
-											},
-						"point-price":{
-											"military":3				
-											},					
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":5
-      										},
-      										{
-      										"type":"council-privileges",
-      										"quantity":1
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Improving the Canals",
-						"resource-requirement":{
-											"servants":2,
-											"gold":3															
-											},														
-						"istant-effect": [
-											{
-											"type":"testeffect"
-											}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Hosting Foreigners",
-						"resource-requirement":{
-											"wood":2														
-											},														
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"servants":5
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Crusade",
-						"point-requirement":{
-											"military":8														
-											},
-						"point-price":{
-											"military":4				
-											},																			
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"gold":5
-      										},
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Support to the Cardinal",
-						"point-requirement":{
-											"military":7				
-											},
-						"point-price":{
-											"military":4				
-											},
-						"resource-requirement":{
-											"stone":2,
-											"gold":3,
-											"wood":2				
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":3
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Hiring Mercenaries",
-						"resource-requirement":{
-											"gold":8															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":7
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Repairing the Cathedral",
-						"resource-requirement":{
-											"gold":3,
-											"wood":3,
-											"stone":3															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":1
-      										},
-      										{
-      										"type":"testeffect"
-      										
+    "venture-cards":[
+	{
+	    "name":"Hiring Recruits",
+            "id": 72,
+	    "period":1,
+	    "resource-requirement":{
+		"gold":4				
+	    },
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":5
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Repairing the Church",
+            "id": 73,
+	    "period":1,
+	    "resource-requirement":{
+		"gold":1,
+		"wood":1,
+		"stone":1				
+	    },
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Building the Walls",
+            "id": 74,
+	    "period":1,
+	    "resource-requirement":{
+		"stone":3				
+	    },
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":2
+      		},
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Raising a Statue",
+            "id": 75,
+	    "period":1,
+	    "resource-requirement":{
+		"stone":3,
+		"wood":2				
+	    },
+	    "istant-effect": [
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":2
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Military Campaign",
+            "id": 76,
+	    "period":1,
+	    "point-requirement":{
+		"military":3				
+	    },
+	    "point-price":{
+		"military":2				
+	    },					
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":3
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Hosting Panhandlers",
+            "id": 77,
+	    "period":1,
+	    "resource-requirement":{
+		"wood":3				
+	    },
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":4
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Fighting Heresies",
+            "id": 78,
+	    "period":1,
+	    "point-requirement":{
+		"military":5				
+	    },
+	    "point-price":{
+		"military":3				
+	    },					
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":2
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Support to the Bishop",
+            "id": 79,
+	    "period":1,
+	    "point-requirement":{
+		"military":4				
+	    },
+	    "point-price":{
+		"military":2				
+	    },
+	    "resource-requirement":{
+		"stone":1,
+		"gold":2,
+		"wood":1				
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":3
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Hiring Soldiers",
+            "id": 80,
+	    "period":2,
+	    "resource-requirement":{
+		"gold":6															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":6
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Repairing the Abbey",
+            "id": 81,
+	    "period":2,
+	    "resource-requirement":{
+		"gold":2,
+		"wood":2,
+		"stone":2															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":2
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Building the Bastions",
+            "id": 82,
+	    "period":2,
+	    "resource-requirement":{
+		"stone":4															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":3
+      		},
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Support to the King",
+            "id": 83,
+	    "period":2,
+	    "point-requirement":{
+		"military":6				
+	    },
+	    "point-price":{
+		"military":3				
+	    },					
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":5
+      		},
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Improving the Canals",
+            "id": 84,
+	    "period":2,
+	    "resource-requirement":{
+		"servants":2,
+		"gold":3															
+	    },														
+	    "istant-effect": [
+		{
+		    "type":"testeffect"
+		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Hosting Foreigners",
+            "id": 85,
+	    "period":2,
+	    "resource-requirement":{
+		"wood":2														
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "servants":5
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Crusade",
+            "id": 86,
+	    "period":2,
+	    "point-requirement":{
+		"military":8														
+	    },
+	    "point-price":{
+		"military":4				
+	    },																			
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "gold":5
+      		},
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Support to the Cardinal",
+            "id": 87,
+	    "period":2,
+	    "point-requirement":{
+		"military":7				
+	    },
+	    "point-price":{
+		"military":4				
+	    },
+	    "resource-requirement":{
+		"stone":2,
+		"gold":3,
+		"wood":2				
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":3
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Hiring Mercenaries",
+            "id": 88,
+	    "period":3,
+	    "resource-requirement":{
+		"gold":8															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":7
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Repairing the Cathedral",
+            "id": 89,
+	    "period":3,
+	    "resource-requirement":{
+		"gold":3,
+		"wood":3,
+		"stone":3															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":1
+      		},
+      		{
+      		    "type":"testeffect"
+      		    
 
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Building the Towers",
-						"resource-requirement":{
-											"stone":6															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"military":4
-      										},
-      										{
-      										"type":"council-privileges",
-      										"quantity":1
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Promoting Sacred Art",
-						"resource-requirement":{
-											"wood":6															
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":4
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Military Conquest",
-						"point-requirement":{
-											"military":12				
-											},
-						"point-price":{
-											"military":6				
-											},														
-						"istant-effect": [
-      										{
-      										"type":"resource-mod",
-      										"wood":3,
-      										"stone":3,
-      										"gold":3    										
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Improving the Roads",
-						"resource-requirement":{
-											"servants":3,
-											"gold":4			
-											},														
-						"istant-effect": [
-      										{
-      										"type":"testeffect"    										
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Sacred War",
-						"point-requirement":{
-											"military":15				
-											},
-						"point-price":{
-											"military":8				
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":3   										
-      										}
-      									],
-						"permanent-effect":[]						
-					},
-					
-					{
-						"name":"Support to the Pope",
-						"point-requirement":{
-											"military":10				
-											},
-						"point-price":{
-											"military":5				
-											},
-						"resource-requirement":{
-											"stone":3,
-											"gold":4,
-											"wood":3				
-											},														
-						"istant-effect": [
-      										{
-      										"type":"point-mod",
-      										"faith":2
-      										}
-      									],
-						"permanent-effect":[]						
-					}	
-	]
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Building the Towers",
+            "id": 90,
+	    "period":3,
+	    "resource-requirement":{
+		"stone":6															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "military":4
+      		},
+      		{
+      		    "type":"council-privileges",
+      		    "quantity":1
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Promoting Sacred Art",
+            "id": 91,
+	    "period":3,
+	    "resource-requirement":{
+		"wood":6															
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":4
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Military Conquest",
+            "id": 92,
+	    "period":3,
+	    "point-requirement":{
+		"military":12				
+	    },
+	    "point-price":{
+		"military":6				
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"resource-mod",
+      		    "wood":3,
+      		    "stone":3,
+      		    "gold":3    										
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Improving the Roads",
+            "id": 93,
+	    "period":3,
+	    "resource-requirement":{
+		"servants":3,
+		"gold":4			
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"testeffect"    										
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Sacred War",
+            "id": 94,
+	    "period":3,
+	    "point-requirement":{
+		"military":15				
+	    },
+	    "point-price":{
+		"military":8				
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":3   										
+      		}
+      	    ],
+	    "activate-effect":[]						
+	},
+	
+	{
+	    "name":"Support to the Pope",
+            "id": 95,
+	    "period":3,
+	    "point-requirement":{
+		"military":10				
+	    },
+	    "point-price":{
+		"military":5				
+	    },
+	    "resource-requirement":{
+		"stone":3,
+		"gold":4,
+		"wood":3				
+	    },														
+	    "istant-effect": [
+      		{
+      		    "type":"point-mod",
+      		    "faith":2
+      		}
+      	    ],
+	    "activate-effect":[]						
+	}	
+    ]
 }	

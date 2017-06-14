@@ -1,8 +1,13 @@
 package gamemodel.effects;
 
+import java.io.Serializable;
+
 import gamemodel.Player;
 
-public class TestEffects implements Effect {
+public class TestEffects implements IstantEffect,Serializable {
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
