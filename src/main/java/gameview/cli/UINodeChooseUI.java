@@ -1,4 +1,4 @@
-package gameview;
+package gameview.cli;
 
 
 public class UINodeChooseUI extends UINode {

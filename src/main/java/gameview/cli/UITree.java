@@ -1,9 +1,10 @@
-package gameview;
+package gameview.cli;
 
 import java.io.IOException;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
+import gameview.ViewController;
 import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.ControllerCard">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="134.0">
+         <image>
+            <Image url="@A.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="38.0" layoutY="15.0" prefHeight="15.0" prefWidth="56.0">
+         <children>
+            <TextField fx:id="userTextField" alignment="CENTER" prefHeight="10.0" prefWidth="53.0" style="-fx-background-color: #4C9141;">
+               <font>
+                  <Font size="7.0" />
+               </font>
+            </TextField>
+         </children>
+      </VBox>
+   </children>
+</Pane>

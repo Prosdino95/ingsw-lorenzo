@@ -1,4 +1,4 @@
-package gameview;
+package gameview.cli;
 
 import java.io.IOException;
 

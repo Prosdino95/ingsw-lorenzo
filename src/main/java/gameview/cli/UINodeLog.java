@@ -1,8 +1,9 @@
-package gameview;
+package gameview.cli;
 
 import java.io.IOException;
 
 import gamemodel.Team;
+import gameview.ViewController;
 import reti.ServerResponse;
 
 public class UINodeLog extends UINode 
