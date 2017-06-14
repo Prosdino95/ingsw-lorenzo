@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import gamemodel.GameQuestion;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Question;
 import gamemodel.Resource;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import server.GameQuestion;
 
 public class CouncilPrivileges implements IstantEffect,Serializable
 {

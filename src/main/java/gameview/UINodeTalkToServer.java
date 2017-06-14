@@ -4,6 +4,8 @@ import java.io.IOException;
 
 
 import gamemodel.Question;
+import reti.ClientRequest;
+import reti.ServerResponse;
 
 public class UINodeTalkToServer extends UINode {
 

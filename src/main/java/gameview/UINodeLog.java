@@ -3,6 +3,7 @@ package gameview;
 import java.io.IOException;
 
 import gamemodel.Team;
+import reti.ServerResponse;
 
 public class UINodeLog extends UINode 
 {

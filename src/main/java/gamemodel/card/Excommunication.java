@@ -1,10 +1,13 @@
 package gamemodel.card;
 
 
+import java.io.Serializable;
+
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class Excommunication
+public class Excommunication implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private int period;
 	private PermanentEffect permanentEffect;
 	

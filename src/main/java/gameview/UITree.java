@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
+import reti.ClientRequest;
+import reti.RequestType;
+import reti.ServerResponse;
 
 public class UITree {
 	private UINode root;

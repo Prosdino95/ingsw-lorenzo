@@ -19,8 +19,7 @@ import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.TowerASParsing;
-import server.Controller;
-import server.GameQuestion;
+import reti.server.Controller;
 
 public class Model implements Serializable {
 

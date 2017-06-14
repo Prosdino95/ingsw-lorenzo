@@ -1,4 +1,4 @@
-package server;
+package gamemodel;
 
 
 public enum GameQuestion {

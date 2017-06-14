@@ -1,10 +1,8 @@
-package server;
+package reti;
 
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
-import gameview.ClientRequest;
 
 public interface HandlerViewRMI extends Remote 
 {

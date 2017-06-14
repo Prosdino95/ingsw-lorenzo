@@ -19,7 +19,6 @@ import gamemodel.command.*;
 import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.*;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
-import server.GameQuestion;
 
 
 public class Player implements Serializable{
@@ -95,8 +94,8 @@ public class Player implements Serializable{
 		
 		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
 		 {
-			r.subResources(((Debuff)permanentEffect).getResources());
-			r.normalize();
+			 r.subResources(((Debuff)permanentEffect).getResources());
+			 r.normalize();
 		 }	
 		 this.resource.addResources(r);
 	} 

@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import gameview.ClientRequest;
-import gameview.RequestType;
-import server.GameQuestion;
+import reti.ClientRequest;
+import reti.RequestType;
 
 public class Question implements Serializable{
 

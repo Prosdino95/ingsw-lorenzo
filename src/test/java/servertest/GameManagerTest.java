@@ -7,9 +7,9 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import server.GameManager;
-import server.HandlerViewSocket;
-import server.Server;
+import reti.server.GameManager;
+import reti.server.HandlerViewSocket;
+import reti.server.Server;
 
 public class GameManagerTest {
 	Server s;

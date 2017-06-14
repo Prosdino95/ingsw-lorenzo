@@ -3,6 +3,8 @@ package gameview;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+import reti.RequestType;
+
 public class UINodeSetRequestType extends UINode {
 	
 	Consumer<RequestType> set;

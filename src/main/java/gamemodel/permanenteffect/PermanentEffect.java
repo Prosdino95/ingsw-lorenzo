@@ -1,12 +1,14 @@
 package gamemodel.permanenteffect;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.List;
 
-public class PermanentEffect
+public class PermanentEffect implements Serializable
 {
-	
+
+	private static final long serialVersionUID = 1L;
 	private List<String> tag= new ArrayList<>();
 	
 

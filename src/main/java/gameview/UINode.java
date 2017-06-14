@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import reti.ClientRequest;
+
 public class UINode {
 	protected List<UINode> descendants;
 	protected String intro;

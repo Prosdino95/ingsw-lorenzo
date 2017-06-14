@@ -14,6 +14,11 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import reti.ClientRequest;
+import reti.ServerResponse;
+import reti.client.HandlerServer;
+import reti.client.HandlerSocket;
+
 public class ViewController {
 		
 	private Queue<ServerResponse> serverMessages=new ArrayDeque<>();

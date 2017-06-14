@@ -1,4 +1,4 @@
-package gameview;
+package reti;
 
 import java.io.IOException;
 import java.rmi.Remote;

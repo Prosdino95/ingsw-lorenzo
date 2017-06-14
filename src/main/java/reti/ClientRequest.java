@@ -1,4 +1,4 @@
-package gameview;
+package reti;
 
 
 import gamemodel.actionSpace.ActionSpace;
