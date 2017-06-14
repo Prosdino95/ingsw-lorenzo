@@ -1,4 +1,4 @@
-package gameview;
+package reti;
 
 public enum RequestType{
 	CHAT,

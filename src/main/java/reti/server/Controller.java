@@ -1,4 +1,4 @@
-package server;
+package reti.server;
 
 import java.io.IOException;
 
@@ -16,8 +16,8 @@ import gamemodel.Question;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
-import gameview.ClientRequest;
-import gameview.ServerResponse;
+import reti.ClientRequest;
+import reti.ServerResponse;
 
 public class Controller{
 	

@@ -1,4 +1,4 @@
-package gameview;
+package reti.client;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -7,8 +7,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import server.HandlerViewRMI;
-import server.RMIAccept;
+import gameview.ViewController;
+import reti.ClientRequest;
+import reti.HandlerServerRMI;
+import reti.HandlerViewRMI;
+import reti.RMIAccept;
+import reti.ServerResponse;
 
 public class HandlerServerRMIImpl extends UnicastRemoteObject implements HandlerServerRMI, HandlerServer {
 	

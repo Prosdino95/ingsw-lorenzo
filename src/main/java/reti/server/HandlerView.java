@@ -1,11 +1,11 @@
-package server;
+package reti.server;
 
 import java.io.IOException;
 
 
 import gamemodel.Player;
-import gameview.ClientRequest;
-import gameview.ServerResponse;
+import reti.ClientRequest;
+import reti.ServerResponse;
 
 public interface HandlerView  {
 	

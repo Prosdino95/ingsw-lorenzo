@@ -1,9 +1,11 @@
-package server;
+package reti.server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import gameview.HandlerServerRMI;
+import reti.HandlerServerRMI;
+import reti.HandlerViewRMI;
+import reti.RMIAccept;
 
 public class RMIAcceptImpl extends UnicastRemoteObject implements RMIAccept {
 

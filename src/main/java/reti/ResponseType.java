@@ -1,4 +1,4 @@
-package server;
+package reti;
 
 public enum ResponseType {
 	QUESTION,

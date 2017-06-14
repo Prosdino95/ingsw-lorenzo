@@ -1,4 +1,4 @@
-package server;
+package reti.server;
 
 import java.io.IOException;
 

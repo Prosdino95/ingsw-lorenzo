@@ -1,4 +1,4 @@
-package server;
+package reti.server;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 
 import gamemodel.Model;
 import gamemodel.Player;
-import gameview.ServerResponse;
+import reti.ServerResponse;
 
 public class GameManager implements Runnable 
 {

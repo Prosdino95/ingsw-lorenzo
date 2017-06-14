@@ -1,9 +1,13 @@
-package gameview;
+package reti.client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import gameview.ViewController;
+import reti.ClientRequest;
+import reti.ServerResponse;
 
 public class HandlerSocket implements Runnable,HandlerServer{
 	

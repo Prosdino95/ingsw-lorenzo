@@ -1,13 +1,14 @@
-package server;
+package reti.server;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import gamemodel.Player;
-import gameview.ClientRequest;
-import gameview.HandlerServerRMI;
-import gameview.ServerResponse;
+import reti.ClientRequest;
+import reti.HandlerServerRMI;
+import reti.HandlerViewRMI;
+import reti.ServerResponse;
 
 public class HandlerViewRMIImpl extends UnicastRemoteObject implements HandlerView,HandlerViewRMI {
 	
