@@ -31,7 +31,15 @@ public class Dice implements Serializable
 			
 		}
 	}
-	
+
+	public void setFMActionPoints(List<FamilyMember> familyMembers){
+		for (FamilyMember fm : familyMembers) {
+			Color c = fm.getColor();
+			if(c !=Color.UNCOLORED)
+				fm.setActionpoint(dice.get(c));
+		}
+	}
+
 
 	public void rollDice()
 	{

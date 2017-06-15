@@ -14,7 +14,7 @@ public enum GameError {
 	SA_MAX_FM,//spazio azione palazzo ha già 4 giocatori
 	PLAYER_DEAD,//view disconnessa 
 	ERR_NOT_TURN, 
-	VATICAN_NOOO;
+	VATICAN_NOOO, LEADER_CARD_USED, LEADER_CARD_NOT_ENOUGH_MONEY;
 	
 	@Override
 	public String toString() {

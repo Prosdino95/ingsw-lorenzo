@@ -31,7 +31,7 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 	}
 	
 	@Override
-	public void activate(Player player) throws GameException
+	public void activate(Player player)
 	{
 		List<Integer>selectionHistory=new ArrayList<>();
 		int counter;
@@ -50,7 +50,8 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 				
 			} catch (GameException e) {
 				effect(0,player);
-				throw new GameException(GameError.PLAYER_DEAD);				
+				// Perche' la dovrebbe throware?
+				// throw new GameException(GameError.PLAYER_DEAD);				
 			}
 		}
 		selectionHistory.clear();

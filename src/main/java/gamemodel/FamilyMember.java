@@ -21,6 +21,12 @@ public class FamilyMember implements Serializable {
 		this.player = player;
 		this.color = color;
 	}
+
+	public FamilyMember(Player player, Color color, Integer strength) {
+		this.player = player;
+		this.color = color;
+		actionPoint = strength;
+	}
 	
 	public FamilyMember clone() {
 		FamilyMember fm = new FamilyMember(player, color);

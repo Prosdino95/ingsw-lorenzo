@@ -37,6 +37,8 @@ public class Player implements Serializable{
 	private transient Model model;
 	private transient Player currentPlayer;
 	private boolean vaticanTime=false;
+	private List<LeaderCard> lcs = new ArrayList<>();
+	private List<FamilyMember> familyMembersList; 
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -57,12 +59,24 @@ public class Player implements Serializable{
 		generateFamilyMember();
 	}
 
+	public Player(Resource resource2, Point point) {
+		resource = resource2;
+		this.point = point;
+		generateFamilyMember();
+	}
+
 	private void generateFamilyMember() {
 		familyMembers=new HashMap<>();
 		familyMembers.put(Color.BLACK,new FamilyMember(this,Color.BLACK));
 		familyMembers.put(Color.WHITE,new FamilyMember(this,Color.WHITE));
 		familyMembers.put(Color.ORANGE,new FamilyMember(this,Color.ORANGE));
-		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));		
+		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));
+		
+		familyMembersList = new ArrayList<>();
+		familyMembersList.add(new FamilyMember(this,Color.BLACK));
+		familyMembersList.add(new FamilyMember(this,Color.WHITE));
+		familyMembersList.add(new FamilyMember(this,Color.ORANGE));
+		familyMembersList.add(new FamilyMember(this,Color.UNCOLORED));
 	}
 	
 	private void setFamilyMember(Color color,int actionPoint){
@@ -135,8 +149,11 @@ public class Player implements Serializable{
 
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
+		board.getDice().setFMActionPoints(familyMembersList);
+		
 		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
 			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
+			((FamilyMemberModify)permanentEffect).modify(this.familyMembersList);
 		}
 		
 	}
@@ -174,6 +191,10 @@ public class Player implements Serializable{
 
 	public List<FamilyMember> getFamilyMembers() {
 		return  new ArrayList<>(familyMembers.values());
+	}
+
+	public List<FamilyMember> getFamilyMembersList() {
+		return familyMembersList;
 	}
 
 	public Point getPoint() {
@@ -337,10 +358,39 @@ public class Player implements Serializable{
 		public String toString() {
 			return "" + team + "";
 		}
-		
-		
-		
-		
-		
 
+		public List<LeaderCard> getLCList() {
+			return lcs;
+		}
+		
+		public void giveLeaderCard(LeaderCard lc) {
+			lc.setOwner(this);
+			lcs.add(lc);
+			
+			PermanentEffect pe = lc.getPermanentEffect(); 
+			if (pe != null)
+				permanentEffects.add(pe);
+		}
+		
+		public void play(LeaderCard lc) throws GameException {
+			lc.play();
+		}
+		
+		public void activateLC(LeaderCard lc) throws GameException {
+			lc.activateOPT();
+		}
+
+		public void discardLC(LeaderCard lc) {
+			lc.discard();
+			lcs.remove(lc);
+		}
+		
+		public void discardLC(Integer lcId) throws GameException {
+			LeaderCard lc = board.getLC(lcId);
+			discardLC(lc);
+		}
+
+		public void setBoard(Board b) {
+			board = b;
+		}
 }
