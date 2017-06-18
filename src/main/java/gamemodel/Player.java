@@ -176,15 +176,15 @@ public class Player implements Serializable{
 		return this.point.isEnought(point); 
 		  }
 	
-	public int contCard(CardType type)
+	public int countCard(CardType type)
 	{
-		if(type==CardType.BUILDINGS)
+		if(type==CardType.BUILDING)
 			return buildings.size();
-		if(type==CardType.CHARACTERS)
+		if(type==CardType.CHARACTER)
 			return characters.size();
-		if(type==CardType.TERRITORIES)
+		if(type==CardType.TERRITORY)
 			return territories.size();
-		if(type==CardType.VENTURES)
+		if(type==CardType.VENTURE)
 			return ventures.size();
 		return 0;
 	}
@@ -301,11 +301,15 @@ public class Player implements Serializable{
 			throw new GameException(GameError.VATICAN_NOOO);
 		
 		if(this.point.getFaith()<requirement)
-			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
-		 // TODO da testare
-		if(this.point.getFaith()>=requirement)
 		{
-			int selection=0;	
+			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+			if(period==3)
+				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+		}
+					 // TODO da testare
+		if(this.point.getFaith()>=requirement) //aggiornato con il caso del caloclo finale dei punti vittoria
+		{
+			int selection;	
 			try 
 			{
 				selection = this.answerToQuestion(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()));
@@ -315,7 +319,11 @@ public class Player implements Serializable{
 				selection =0;
 			}
 			if(selection==0)
+			{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+				if(period==3)
+					addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+			}
 			if(selection==1)
 			{
 				this.subPoint(new Point(0,this.point.getFaith(),0));

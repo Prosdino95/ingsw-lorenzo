@@ -146,12 +146,12 @@ public class ResourceForResource implements IstantEffect,Serializable
 			int c;
 			if(pointsOut!=null)
 			{
-				for(c=0;c<player.contCard(cardType)/forEach;c++)
+				for(c=0;c<player.countCard(cardType)/forEach;c++)
 					player.addPoint(pointsOut);
 			}
 			if(resourcesOut!=null)
 			{
-				for(c=0;c<player.contCard(cardType)/forEach;c++)
+				for(c=0;c<player.countCard(cardType)/forEach;c++)
 					player.addResources(resourcesOut);
 			}
 		}

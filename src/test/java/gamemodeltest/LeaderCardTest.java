@@ -55,7 +55,7 @@ public class LeaderCardTest {
 		Board b = new Board();
 		b.setDice(2, 4, 1);
 		Player p = new Player(new Resource(0, 0, 0, 0), new Point(0, 0, 0)) {
-			public int contCard(CardType type) {
+			public int countCard(CardType type) {
 				return 3;
 			}
 		};

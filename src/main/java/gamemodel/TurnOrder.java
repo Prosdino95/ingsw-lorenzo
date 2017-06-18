@@ -29,6 +29,11 @@ public class TurnOrder{
 		generateActionOrder(players);
 	}
 	
+	public List<Player> getPlayerInGame() 
+	{
+		return playerInGame;
+	}
+
 	private void generateActionOrder(List<Player> list) {
 		this.actionOrder=new ActionOrder(list);
 		this.iterator=actionOrder.iterator();

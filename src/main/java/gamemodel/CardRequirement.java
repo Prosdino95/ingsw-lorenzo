@@ -16,10 +16,10 @@ public class CardRequirement {
 	}
 	
 	public boolean isSatisfiedBy(Player p) {
-		return (p.contCard(CardType.TERRITORIES) >= tc &&
-				p.contCard(CardType.CHARACTERS) >= cc &&
-				p.contCard(CardType.BUILDINGS) >= bc &&
-				p.contCard(CardType.VENTURES) >= vc);
+		return (p.countCard(CardType.TERRITORY) >= tc &&
+				p.countCard(CardType.CHARACTER) >= cc &&
+				p.countCard(CardType.BUILDING) >= bc &&
+				p.countCard(CardType.VENTURE) >= vc);
 				
 	}
 

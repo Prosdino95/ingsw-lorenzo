@@ -39,9 +39,9 @@ public class CommandPeffectTest {
 	@Before
 	public void setUpBeforeClass() throws GameException{
 		is=new TestEffects();
-		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDINGS);
+		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDING);
 		e1=new StrengthModifyAndDiscount(3, ActionSpaceType.HARVEST, null);
-		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDINGS);
+		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDING);
 		e3=new NoActionSpace("NO_ACTION_SPACE",ActionSpaceType.MARKET);
 		List<PermanentEffect> le=new ArrayList<>();
 		List<PermanentEffect> le2=new ArrayList<>();
@@ -49,11 +49,11 @@ public class CommandPeffectTest {
 		le.add(e1);
 		le2.add(e2);
 		le2.add(e3);
-		Card c1 = new CharactersCard(0,null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),le, CardType.CHARACTERS);
-		Card c=new CharactersCard(1,null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), le,CardType.CHARACTERS);
-		Card c2=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), le2,CardType.CHARACTERS);
-		Tower t=new Tower(CardType.BUILDINGS);
-		Tower t2=new Tower(CardType.BUILDINGS);
+		Card c1 = new CharactersCard(0,null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),le, CardType.CHARACTER);
+		Card c=new CharactersCard(1,null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), le,CardType.CHARACTER);
+		Card c2=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), le2,CardType.CHARACTER);
+		Tower t=new Tower(CardType.BUILDING);
+		Tower t2=new Tower(CardType.BUILDING);
 		Board b=new Board();
 		b.setDice(2, 1, 9);
 		p=new Player(new Resource(1,1,1,5), b, Team.RED,model);

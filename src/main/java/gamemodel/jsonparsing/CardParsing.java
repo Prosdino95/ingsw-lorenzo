@@ -55,13 +55,13 @@ public class CardParsing {
 	
 	private void makeCard() {
 		switch(type){
-		case BUILDINGS:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
+		case BUILDING:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
 			break;
-		case CHARACTERS:cards.add(new CharactersCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type));
+		case CHARACTER:cards.add(new CharactersCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,permanentEffects, type));
 			break;
-		case TERRITORIES:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
+		case TERRITORY:cards.add(new HarvesterAndBuildings(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type,actionCost));
 			break;
-		case VENTURES:cards.add(new VentureCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type));
+		case VENTURE:cards.add(new VentureCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type));
 			break;
 		}
 	}
@@ -71,19 +71,19 @@ public class CardParsing {
 	private JsonArray arrayBuild(String json) {
 
 		if(Json.parse(json).asObject().get("building-cards")!=null){
-			type=CardType.BUILDINGS;
+			type=CardType.BUILDING;
 			return Json.parse(json).asObject().get("building-cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("character-cards")!=null){
-			type=CardType.CHARACTERS;
+			type=CardType.CHARACTER;
 			return Json.parse(json).asObject().get("character-cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("territory-cards")!=null){
-			type=CardType.TERRITORIES;
+			type=CardType.TERRITORY;
 			return Json.parse(json).asObject().get("territory-cards").asArray();
 		}
 		if(Json.parse(json).asObject().get("venture-cards")!=null){
-			type=CardType.VENTURES;
+			type=CardType.VENTURE;
 			return Json.parse(json).asObject().get("venture-cards").asArray();
 		}
 		return null;

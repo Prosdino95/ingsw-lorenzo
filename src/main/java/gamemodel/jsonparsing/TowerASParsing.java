@@ -19,10 +19,10 @@ public class TowerASParsing {
 	private List<IstantEffect> effects;
 	private int id=0;
 	private final ActionSpaceType TYPE=ActionSpaceType.TOWER;
-	private Tower territories=new Tower(CardType.TERRITORIES);
-	private Tower buildings=new Tower(CardType.BUILDINGS);
-	private Tower ventures=new Tower(CardType.VENTURES);
-	private Tower characters=new Tower(CardType.CHARACTERS);
+	private Tower territories=new Tower(CardType.TERRITORY);
+	private Tower buildings=new Tower(CardType.BUILDING);
+	private Tower ventures=new Tower(CardType.VENTURE);
+	private Tower characters=new Tower(CardType.CHARACTER);
 	
 	
 	public List<TowerActionSpace> parsing(String json){

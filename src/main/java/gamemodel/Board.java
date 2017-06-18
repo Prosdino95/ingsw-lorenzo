@@ -47,16 +47,16 @@ public class Board implements Serializable {
 		this.territoriesCards = new ArrayList<Card>();
 		for (Card c : cards) {
 			switch (c.getType()) {
-			case BUILDINGS:
+			case BUILDING:
 				buildingsCards.add(c);
 				break;
-			case CHARACTERS:
+			case CHARACTER:
 				charactersCards.add(c);
 				break;
-			case TERRITORIES:
+			case TERRITORY:
 				territoriesCards.add(c);
 				break;
-			case VENTURES:
+			case VENTURE:
 				venturesCards.add(c);
 				break;
 			default:
@@ -81,13 +81,13 @@ public class Board implements Serializable {
 
 	private Card popCard(CardType color) {
 		switch (color) {
-		case BUILDINGS:
+		case BUILDING:
 				return buildingsCards.remove(0);
-		case CHARACTERS:
+		case CHARACTER:
 				return charactersCards.remove(0);
-		case TERRITORIES:
+		case TERRITORY:
 				return territoriesCards.remove(0);
-		case VENTURES:
+		case VENTURE:
 				return venturesCards.remove(0);
 		default:
 				break;
