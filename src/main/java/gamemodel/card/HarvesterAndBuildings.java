@@ -15,7 +15,7 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
-	private int actionCost;
+	private Integer actionCost;
 	private List<IstantEffect> activateEffect;
 	
 	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
@@ -27,7 +27,7 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 		this.activateEffect=activateEffect;
 	}
 	
-	public int getActionCost(){
+	public Integer getActionCost(){
 		return this.actionCost;
 	}
 	

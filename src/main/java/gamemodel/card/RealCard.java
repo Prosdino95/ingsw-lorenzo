@@ -82,6 +82,10 @@ public class RealCard implements Card,Serializable {
 	public int getId() {
 		return id;
 	}
+	
+	public String getName(){
+		return name;
+	}
 
 
 

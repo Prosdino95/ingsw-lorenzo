@@ -76,7 +76,7 @@ public class ResourceForResourceTest
 	{
 		for(int c=0;c<372;c++)
 			p5.getTerritories().add(null);
-		IstantEffect effect=ResourceForResource.constructor("TERRITORIES",null,null,null,new Point(10,3,4),52);
+		IstantEffect effect=ResourceForResource.constructor("TERRITORY",null,null,null,new Point(10,3,4),52);
 		effect.activate(p5);
 		assertEquals(new Point(70,21,28),p5.getPoint());
 	}
@@ -86,7 +86,7 @@ public class ResourceForResourceTest
 	{
 		for(int c=0;c<19;c++)
 			p6.getVentures().add(null);
-		IstantEffect effect=ResourceForResource.constructor("VENTURES",null,null,new Resource(0,9,27,89),null,10);
+		IstantEffect effect=ResourceForResource.constructor("VENTURE",null,null,new Resource(0,9,27,89),null,10);
 		effect.activate(p6);
 		assertEquals(new Resource(0,9,27,89),p6.getResource());
 	}
