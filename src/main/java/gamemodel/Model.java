@@ -237,8 +237,13 @@ public class Model implements Serializable {
 		{
 			player.addPoint(new Point(0,0,victoryPointsBoundedToTerritoryCards.get(player.countCard(CardType.TERRITORY))));
 			player.addPoint(new Point(0,0,victoryPointsBoundedToCharacterCards.get(player.countCard(CardType.CHARACTER))));
-			/*for(VentureCard ventureCard:player.getVentures())
-				ventureCard.activePermanentEffect(player);*/
+			for(VentureCard ventureCard:player.getVentures())
+				try {
+					ventureCard.activePermanentEffect(player);
+				} catch (GameException e) {
+					// TODO Auto-generated catch block
+					throw new RuntimeException();
+				}
 			int resources=player.getResource().getGold();
 			resources+=player.getResource().getServant();
 			resources+=player.getResource().getStone();
@@ -268,7 +273,7 @@ public class Model implements Serializable {
 					break;
 				}
 		else
-			System.out.println("The winner is " + players.get(0));
+			System.out.println("The winner is " + players.get(0));  //TODO migliorare
 	}
 }
 
