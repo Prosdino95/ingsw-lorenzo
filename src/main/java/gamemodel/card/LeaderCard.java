@@ -14,6 +14,12 @@ import gamemodel.permanenteffect.PermanentEffect;
 
 public class LeaderCard extends RealCard  implements Serializable{
 
+	public LeaderCard(int id, String name, int period, Resource resourceRequirement, Resource resourcePrice,
+			Point point, Point pointPrice, IstantEffect istantEffects, CardType type) {
+		super(id, name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type);
+		// TODO Auto-generated constructor stub
+	}
+
 	private List<IstantEffect> activateEffect;
 	private List<PermanentEffect> permanentEffect;
 	private static final long serialVersionUID = 1L;
@@ -21,13 +27,13 @@ public class LeaderCard extends RealCard  implements Serializable{
 	private boolean playCard=false;
 	private Map<CardType,Integer> requirementCard=new HashMap<>();
 	
-	public LeaderCard(int id,String name, int period, Resource resourceRequirement, Point point,
+	/*public LeaderCard(int id,String name, int period, Resource resourceRequirement, Point point,
 			 Map<CardType, Integer> requirementCard,List<IstantEffect> activateEffect,List<PermanentEffect> permanentEffect) {
 		super(id,name, period, resourceRequirement, null, point, null, null, null);
 		this.permanentEffect=permanentEffect;
 		this.activateEffect=activateEffect;
 		this.requirementCard=requirementCard;
-	}	
+	}	*/
 	
 	public void useEffect(){
 		useEffect=true;

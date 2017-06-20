@@ -1,6 +1,7 @@
 package gamemodel.card;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 
 	private static final long serialVersionUID = 1L;
 	private Integer actionCost;
-	private List<IstantEffect> activateEffect;
+	private List<IstantEffect> activateEffect=new ArrayList<>();
 	
 	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
 			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffect, 
@@ -25,6 +26,15 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 		super(id,name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type);
 		this.actionCost=actionCost;
 		this.activateEffect=activateEffect;
+	}
+	
+	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
+			Point point,Point pointPrice, IstantEffect istantEffects,IstantEffect activateEffect, 
+			CardType type,int actionCost)
+	{
+		super(id,name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type);
+		this.actionCost=actionCost;
+		this.activateEffect.add(activateEffect);
 	}
 	
 	public Integer getActionCost(){
@@ -38,6 +48,10 @@ public class HarvesterAndBuildings extends RealCard implements Serializable
 
 
 	public Collection<IstantEffect> getActivateEffects() {
+		return this.activateEffect;
+	}
+	
+	public List<IstantEffect> getActivateEffect(){
 		return this.activateEffect;
 	}
 

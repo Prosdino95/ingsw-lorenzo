@@ -1,7 +1,7 @@
 package gamemodel.card;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class RealCard implements Card,Serializable {
 	protected Resource resourcePrice;
 	protected Point pointRequirement;
 	protected Point pointPrice;
-	protected List<IstantEffect> istantEffect;
+	protected List<IstantEffect> istantEffect=new ArrayList<>();
 	protected CardType type;
 	protected final int id;
 	
@@ -36,6 +36,19 @@ public class RealCard implements Card,Serializable {
 		this.pointPrice = pointPrice;
 		this.type = type;
 		this.istantEffect=istantEffects;
+	}
+	
+	public RealCard(int id,String name,int period,Resource resourceRequirement, Resource resourcePrice, 
+			Point point,Point pointPrice, IstantEffect istantEffects, CardType type) {
+		this.name=name;
+		this.period=period;
+		this.id=id;
+		this.resourceRequirement = resourceRequirement;
+		this.resourcePrice = resourcePrice;
+		this.pointRequirement = point;
+		this.pointPrice = pointPrice;
+		this.type = type;
+		this.istantEffect.add(istantEffects);
 	}
 		
 
