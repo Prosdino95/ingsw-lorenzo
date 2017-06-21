@@ -10,18 +10,18 @@ public class App{
 	
     public static void main( String[] args )
     {	
-    	testAS();
+    	//testAS();
     	//testBCard();
     	//testTCard();
     	//testCCard();
     	//testVCard();
-    	//test();
+    	testEx();
     	//testLCard();
     } 
     
-    private static void test() {
-    	List<Card> Bcard= new CustomizationFileReader<Card>("Config/test.json",new CardParsing()::parsing).parse();
-    	for(Card a:Bcard)
+    private static void testEx() {
+    	List<Excommunication> Bcard= new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
+    	for(Excommunication a:Bcard)
     		System.out.println(a);
 		
 	}

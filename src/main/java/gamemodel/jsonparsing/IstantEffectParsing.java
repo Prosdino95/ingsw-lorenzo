@@ -107,14 +107,14 @@ public class IstantEffectParsing {
 		return new CouncilPrivileges(quantity);
 	}
 
-	private Point pointMod(JsonValue item) {
+	Point pointMod(JsonValue item) {
 		int military=item.asObject().getInt("military", 0);
 		int faith=item.asObject().getInt("faith", 0);
 		int victory=item.asObject().getInt("victory", 0);
 		return new Point(military,faith,victory);
 	}
 
-	private Resource resourceMod(JsonValue item) {
+	Resource resourceMod(JsonValue item) {
 		int gold=item.asObject().getInt("gold", 0);
 		int wood=item.asObject().getInt("wood", 0);
 		int stone=item.asObject().getInt("stone", 0);

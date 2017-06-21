@@ -25,6 +25,10 @@ public class PermanentEffect implements Serializable
 	public boolean hasTag(PEffect tag){
 		return this.tag.contains(tag);
 	}
+
+	public void addTag(PEffect tag) {
+		this.tag.add(tag);		
+	}
 	
 
 }

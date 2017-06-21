@@ -1,6 +1,6 @@
 package gamemodel;
 
-import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Map;
 
 import gamemodel.actionSpace.*;
-import gamemodel.card.Card;
+import gamemodel.card.*;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
-import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.command.PlaceFMCommandFactory;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
+import gamemodel.jsonparsing.ExcommunicationParsing;
 import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
 import reti.server.Controller;
@@ -147,8 +147,8 @@ public class Model implements Serializable {
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
 		getPlayer(Team.BLUE).setvaticanTime(true);
 		
-		
-		
+		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
+		board.setEXCard(ex);
 		
 		List<Integer> faithRequirement=new ArrayList<>(); //inizializzazione tramite jason
 		//faithPointsRequirement.put(1,faithRequirement.get(0));
@@ -187,22 +187,7 @@ public class Model implements Serializable {
 	public Integer answerToQuestion(Question gq, Player player) throws GameException {
 		return controller.answerToQuestion(gq, player);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	private int occurrence(List<Player> players,String string,int points)
 	{
 		int number=0;

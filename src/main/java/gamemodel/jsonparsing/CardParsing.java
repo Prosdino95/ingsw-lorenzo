@@ -22,7 +22,7 @@ public class CardParsing {
 	private Point pRequirement,pPrice;
 	private Map<CardType, Integer> rCard;
 	private List<IstantEffect> istantEffects,activateEffects;
-	private List<PermanentEffect> permanentEffects;
+	private PermanentEffect permanentEffects;
 	private CardType type;
 	private int id=0;
 	
@@ -43,8 +43,7 @@ public class CardParsing {
     			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
     		}
     		if(item.asObject().get("permanent-effect")!=null){
-    			permanentEffects=new ArrayList<>();
-    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
+    			//permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect"));
     		}
     		makeCard(); 
     	}	

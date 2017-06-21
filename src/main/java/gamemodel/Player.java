@@ -220,8 +220,7 @@ public class Player implements Serializable{
 	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
 		if (card instanceof CharactersCard)
-			for(PermanentEffect e : ((CharactersCard) card).getPermanentEffects())
-				this.permanentEffects.add((PermanentEffect) e);
+				this.permanentEffects.add(((CharactersCard) card).getPermanentEffects());
 		
 	}
 

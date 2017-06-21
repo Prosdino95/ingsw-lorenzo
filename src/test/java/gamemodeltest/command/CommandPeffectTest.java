@@ -3,10 +3,8 @@ package gamemodeltest.command;
 import static org.junit.Assert.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,16 +41,11 @@ public class CommandPeffectTest {
 		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDING);
 		e1=new StrengthModifyAndDiscount(3, ActionSpaceType.HARVEST, null);
 		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDING);
-		e3=new NoActionSpace(PEffect.NO_ACTION_SPACE,ActionSpaceType.MARKET);
-		List<PermanentEffect> le=new ArrayList<>();
-		List<PermanentEffect> le2=new ArrayList<>();
-		le.add(e);
-		le.add(e1);
-		le2.add(e2);
-		le2.add(e3);
-		Card c1 = new CharactersCard(0,null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),le, CardType.CHARACTER);
-		Card c=new CharactersCard(1,null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), le,CardType.CHARACTER);
-		Card c2=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), le2,CardType.CHARACTER);
+		e3=new NoActionSpace(ActionSpaceType.MARKET);
+		Card c=new CharactersCard(1,null, 0, new Resource(0,0,0,0), null, null, null, new ArrayList<IstantEffect>(), e,CardType.CHARACTER);
+		Card c1 = new CharactersCard(0,null, 0, new Resource(0,0,0,0),null, null,null, new ArrayList<IstantEffect>(),e1, CardType.CHARACTER);		
+		Card c2=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), e2,CardType.CHARACTER);
+		Card c3=new CharactersCard(2,null, 0, new Resource(5,0,0,0), new Resource(5,0,0,0), null, null, new ArrayList<IstantEffect>(), e3,CardType.CHARACTER);
 		Tower t=new Tower(CardType.BUILDING);
 		Tower t2=new Tower(CardType.BUILDING);
 		Board b=new Board();
@@ -61,6 +54,7 @@ public class CommandPeffectTest {
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);
+		p.giveCard(c3);
 		RealTowerActionSpace a=new RealTowerActionSpace(0,3, is, t, ActionSpaceType.TOWER);
 		MemoryActionSpace a1=new MemoryActionSpace(1,3, is, ActionSpaceType.HARVEST);
 		RealTowerActionSpace a2=new RealTowerActionSpace(2,3, is, t2, ActionSpaceType.TOWER);

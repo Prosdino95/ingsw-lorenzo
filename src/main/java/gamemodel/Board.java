@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
@@ -147,6 +148,17 @@ public class Board implements Serializable {
 		 		return ((MemoryActionSpace) a).getPlayers();
 		return null;
 		 	
+	}
+	
+	public void setEXCard(List<Excommunication>ex){
+		int random=new Random().nextInt(7);
+		//TODO da fare meglio, ora si suppone una lsita orinata secondo il periodo
+		excommunicationCards[0]=ex.get(random);
+		excommunicationCards[1]=ex.get(random+7);
+		excommunicationCards[2]=ex.get(random+14);	
+		System.out.println(excommunicationCards[0]);
+		System.out.println(excommunicationCards[1]);
+		System.out.println(excommunicationCards[2]);
 	}
 
 	public LeaderCard getLC(Integer lcId) {

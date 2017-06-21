@@ -3,6 +3,8 @@ package gamemodel;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import gamemodel.permanenteffect.PEffect;
+
 
 public class TurnOrder{
 	
@@ -27,6 +29,9 @@ public class TurnOrder{
 		.distinct()
 		.collect(Collectors.toList());		
 		generateActionOrder(players);
+		for(Player p:players)
+			if(!p.getPEffects(PEffect.NO_FIRST_ACTION).isEmpty())
+				actionOrder.slide(p);
 	}
 	
 	public List<Player> getPlayerInGame() 

@@ -11,22 +11,30 @@ public class FamilyMemberModify extends PermanentEffect {
 	private static final long serialVersionUID = 1L;
 	public Consumer<Map<Color,FamilyMember>> f;
 	private Consumer<FamilyMember> g;
+	private int debuff=0;
+	private int set=0;
 	
 	public static FamilyMemberModify allMembersN(Integer n) {
-		return new FamilyMemberModify((f) -> f.setActionpoint(n));
+		return new FamilyMemberModify((f) -> f.setActionpoint(n),n,0);
+	}
+	
+	public static FamilyMemberModify allMembersDebuff(Integer n) {
+		return new FamilyMemberModify((f) -> f.setActionpoint(f.getActionpoint()-n),0,n);
 	}
 
-	// TODO: Perche' stiamo prendendo il tag?
-	public FamilyMemberModify(String tag,Consumer<Map<Color,FamilyMember>> f) {
+	// TODO: map to list
+	public FamilyMemberModify(Consumer<Map<Color,FamilyMember>> f) {
+		
 		super(PEffect.FM);
 		this.f=f;
 	}
 
-	public FamilyMemberModify(Consumer<FamilyMember> g) {
+	public FamilyMemberModify(Consumer<FamilyMember> g,int set,int debuff) {
 		super(PEffect.FM);
+		this.set=set;
+		this.debuff=debuff;
 		this.g=g;
 	}
-
 	
 	public void modify(Map<Color,FamilyMember> familyMembers){
 		if (f != null)
@@ -38,5 +46,12 @@ public class FamilyMemberModify extends PermanentEffect {
 			for (FamilyMember f : familyMembers)
 				g.accept(f);
 	}
+
+	@Override
+	public String toString() {
+		return "FamilyMemberModify [debuff=" + debuff + ", set=" + set + "]";
+	}
+	
+	
 
 }

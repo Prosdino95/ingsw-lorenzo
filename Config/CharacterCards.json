@@ -13,7 +13,7 @@
       		    "military":3
       		}
       	    ],
-	    "permanent-effect":[]						
+	    "permanent-effect":	{}				
 	},
 	
 	{
@@ -23,7 +23,7 @@
 	    "resource-requirement":{
 		"gold":2				
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":	{}					
 	},
 	
 	{
@@ -33,7 +33,7 @@
 	    "resource-requirement":{
 		"gold":4				
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":{}						
 	},
 	
 	{
@@ -49,7 +49,7 @@
       		    "quantity":1
       		}
       	    ],
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 	
 	{
@@ -59,7 +59,7 @@
 	    "resource-requirement":{
 		"gold":3				
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 
 	{
@@ -69,7 +69,7 @@
 	    "resource-requirement":{
 		"gold":3				
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 	
 	{
@@ -85,7 +85,7 @@
       		    "faith":4
       		}
       	    ],
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 	
 	{
@@ -165,7 +165,7 @@
 	    "resource-requirement":{
 		"gold":4			
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 	
 	{
@@ -175,7 +175,7 @@
 	    "resource-requirement":{
 		"gold":4			
 	    },
-	    "permanent-effect":[]						
+	    "permanent-effect":{}					
 	},
 	
 	{

@@ -8,9 +8,9 @@ public class NoActionSpace extends PermanentEffect
 	private static final long serialVersionUID = 1L;
 	private ActionSpaceType atype;
 
-	public NoActionSpace(PEffect s,ActionSpaceType atype)
+	public NoActionSpace(ActionSpaceType atype)
 	{
-		super(s);
+		super(PEffect.NO_ACTION_SPACE);
 		this.atype=atype;
 	}
 	
@@ -18,5 +18,12 @@ public class NoActionSpace extends PermanentEffect
 	{
 		return this.atype;
 	}
+
+	@Override
+	public String toString() {
+		return "NoActionSpace [atype=" + atype + "]";
+	}
+	
+	
 	
 }

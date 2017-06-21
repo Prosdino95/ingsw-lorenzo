@@ -1,6 +1,5 @@
 package gamemodel.permanenteffect;
 
-
 import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
@@ -13,6 +12,14 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 	private CardType ctype;
 	private Resource discount;
 
+	public StrengthModifyAndDiscount(int modForza,ActionSpaceType atype, CardType ctype,Resource resource){
+		super(PEffect.MOD_FORZA);
+		super.addTag(PEffect.DISCOUNT);
+		this.modForza = modForza;
+		this.atype = atype;
+		this.ctype = ctype;
+		this.discount=resource;
+	}
 
 	public Resource getDiscount() {
 		return discount;
@@ -46,5 +53,13 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 	public CardType getCtype() {
 		return ctype;
 	}
+
+	@Override
+	public String toString() {
+		return "StrengthModifyAndDiscount [modForza=" + modForza + ", atype=" + atype + ", ctype=" + ctype
+				+ ", discount=" + discount + "]";
+	}
+	
+	
 
 }

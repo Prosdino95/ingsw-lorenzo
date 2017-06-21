@@ -13,16 +13,16 @@ import gamemodel.permanenteffect.PermanentEffect;
 public class CharactersCard extends RealCard implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private List<PermanentEffect> permanentEffect;
+	private PermanentEffect permanentEffect;
 
 	public CharactersCard(int id,String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
-			Point pointPrice, List<IstantEffect> istantEffects,List<PermanentEffect> permanentEffect, CardType type) {
+			Point pointPrice, List<IstantEffect> istantEffects,PermanentEffect permanentEffect, CardType type) {
 		super(id,name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type);
 		this.permanentEffect=permanentEffect;
 	}
 
 
-	public List<PermanentEffect> getPermanentEffects() {
+	public PermanentEffect getPermanentEffects() {
 		return permanentEffect;
 	}
 	

@@ -26,7 +26,8 @@ public class Debuff extends PermanentEffect
 	public Point getPoints() {
 		return points;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Debuff [resources=" + resources + ", points=" + points + "]";
+	}	
 }
