@@ -9,6 +9,7 @@ import gamemodel.Tower;
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
+import gamemodel.permanenteffect.PEffect;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
 
@@ -69,7 +70,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException 
 	{
-		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
+		if(f.getPlayer().getPEffects(PEffect.NO_BONUS).isEmpty())
 			super.activateEffect(f);
 	}
 }

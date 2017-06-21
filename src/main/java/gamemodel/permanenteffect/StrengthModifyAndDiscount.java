@@ -1,12 +1,13 @@
 package gamemodel.permanenteffect;
 
-import gamemodel.Player;
+
 import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 
 public class StrengthModifyAndDiscount extends PermanentEffect {
 	
+	private static final long serialVersionUID = 1L;
 	private int modForza;
 	private ActionSpaceType atype;
 	private CardType ctype;
@@ -26,14 +27,14 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 	}
 
 	public StrengthModifyAndDiscount(int modForza, ActionSpaceType atype, CardType ctype) {
-		super("MOD_FORZA");
+		super(PEffect.MOD_FORZA);
 		this.modForza = modForza;
 		this.atype = atype;
 		this.ctype = ctype;
 	}
 
 	public StrengthModifyAndDiscount(Resource resource, CardType type) {
-		super("Discount");
+		super(PEffect.DISCOUNT);
 		this.ctype=type;
 		this.discount=resource;
 	}

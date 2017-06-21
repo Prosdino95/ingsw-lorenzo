@@ -17,9 +17,7 @@ import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.*;
-import gamemodel.permanenteffect.Debuff;
 import gamemodel.permanenteffect.*;
-import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
 public class Player implements Serializable{
@@ -107,7 +105,7 @@ public class Player implements Serializable{
 		if(!r.isEnought(new Resource(0,0,0,0)))
 			throw new RuntimeException();
 		
-		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
+		 for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
 		 {
 			 r.subResources(((Debuff)permanentEffect).getResources());
 			 r.normalize();
@@ -152,7 +150,7 @@ public class Player implements Serializable{
 		board.getDice().setFMActionPoints(familyMembers);
 		board.getDice().setFMActionPoints(familyMembersList);
 		
-		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.FM)){
 			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
 			((FamilyMemberModify)permanentEffect).modify(this.familyMembersList);
 		}
@@ -166,7 +164,7 @@ public class Player implements Serializable{
 
 	public void addPoint(Point point) {
 		this.point.addPoint(point);
-		for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_POINT"))
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_POINT))
 		{
 			this.subPoint(((Debuff)permanentEffect).getPoints());
 		}
@@ -227,7 +225,7 @@ public class Player implements Serializable{
 		
 	}
 
-	public PermanentEffect getPermanentEffect(String tag) {
+	public PermanentEffect getPermanentEffect(PEffect tag) {
 		for(PermanentEffect e:this.permanentEffects)
 			if(e.hasTag(tag))
 				return e;
@@ -239,7 +237,7 @@ public class Player implements Serializable{
 		FamilyMember fm = currentAction.getFm().clone();
 		for (PermanentEffect e : permanentEffects) 
 		{
-			if (e.hasTag("HALVE_SERVANTS"))
+			if (e.hasTag(PEffect.HALVE_SERVANTS))
 				fm.setActionpoint(fm.getActionpoint() + currentAction.getServants()/2);
 		}
 		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
@@ -248,7 +246,7 @@ public class Player implements Serializable{
 		//TODO enum....
 //		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
 		for (PermanentEffect e : permanentEffects) {
-			if (e.hasTag("MOD_FORZA")) {
+			if (e.hasTag(PEffect.MOD_FORZA)) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
 						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {
@@ -269,7 +267,7 @@ public class Player implements Serializable{
 		}
 	}
 	
-	public List<PermanentEffect> getPEffects(String tag)
+	public List<PermanentEffect> getPEffects(PEffect tag)
 	{
 		List<PermanentEffect> temp=new ArrayList<>();
 		for(PermanentEffect pEffect:this.permanentEffects)
@@ -282,7 +280,7 @@ public class Player implements Serializable{
 	{
 		Resource discount=new Resource(0,0,0,0);
 		for (PermanentEffect e : permanentEffects) 
-			if (e.hasTag("Discount")) 
+			if (e.hasTag(PEffect.DISCOUNT)) 
 			{
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 

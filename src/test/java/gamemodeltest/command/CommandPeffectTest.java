@@ -20,6 +20,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 import gamemodel.permanenteffect.NoActionSpace;
+import gamemodel.permanenteffect.PEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
@@ -42,7 +43,7 @@ public class CommandPeffectTest {
 		e=new StrengthModifyAndDiscount(2, ActionSpaceType.TOWER, CardType.BUILDING);
 		e1=new StrengthModifyAndDiscount(3, ActionSpaceType.HARVEST, null);
 		e2=new StrengthModifyAndDiscount(new Resource(4,0,0,0), CardType.BUILDING);
-		e3=new NoActionSpace("NO_ACTION_SPACE",ActionSpaceType.MARKET);
+		e3=new NoActionSpace(PEffect.NO_ACTION_SPACE,ActionSpaceType.MARKET);
 		List<PermanentEffect> le=new ArrayList<>();
 		List<PermanentEffect> le2=new ArrayList<>();
 		le.add(e);

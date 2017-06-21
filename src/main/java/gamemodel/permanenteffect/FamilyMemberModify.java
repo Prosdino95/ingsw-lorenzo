@@ -8,6 +8,7 @@ import gamemodel.Color;
 import gamemodel.FamilyMember;
 
 public class FamilyMemberModify extends PermanentEffect {
+	private static final long serialVersionUID = 1L;
 	public Consumer<Map<Color,FamilyMember>> f;
 	private Consumer<FamilyMember> g;
 	
@@ -17,12 +18,12 @@ public class FamilyMemberModify extends PermanentEffect {
 
 	// TODO: Perche' stiamo prendendo il tag?
 	public FamilyMemberModify(String tag,Consumer<Map<Color,FamilyMember>> f) {
-		super("FM");
+		super(PEffect.FM);
 		this.f=f;
 	}
 
 	public FamilyMemberModify(Consumer<FamilyMember> g) {
-		super("FM");
+		super(PEffect.FM);
 		this.g=g;
 	}
 

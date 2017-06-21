@@ -34,11 +34,11 @@ public class RealActionSpace implements ActionSpace,Serializable {
 	
 	public boolean isAccessible(Action action)
 	{
-		for(PermanentEffect pEffect : action.getPlayer().getPEffects("NO_ACTION_SPACE"))
+		for(PermanentEffect pEffect : action.getPlayer().getPEffects(PEffect.NO_ACTION_SPACE))
 			if(((NoActionSpace) pEffect).getAType()==this.type)
 				return false;
 		
-		if(!action.getPlayer().getPEffects("NO_MATTER_IF_OCCUPIED").isEmpty())
+		if(!action.getPlayer().getPEffects(PEffect.NO_MATTER_IF_OCCUPIED).isEmpty())
 			return true;
 		
 		if(this.free==false)
