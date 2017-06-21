@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="863.0" layoutY="11.0">
+         <children>
+            <ImageView fitHeight="278.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@raccolto_produzione.jpg" />
+               </image>
+            </ImageView>
+            <Pane fx:id="asProduzione" layoutY="30.0" prefHeight="107.0" prefWidth="346.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="863.0" layoutY="308.0">
+         <children>
+            <ImageView fitHeight="282.0" fitWidth="381.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mercato.jpg" />
+               </image>
+            </ImageView>
+            <Pane fx:id="asMercato1" layoutX="113.0" prefHeight="107.0" prefWidth="100.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="863.0" layoutY="608.0">
+         <children>
+            <ImageView fitHeight="216.0" fitWidth="381.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Turno.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane prefHeight="800.0" prefWidth="832.0">
+         <children>
+            <ImageView fitHeight="780.0" fitWidth="812.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gameboard_sporca.jpeg" />
+               </image>
+            </ImageView>
+            <Pane fx:id="cartaTorre3" layoutX="21.0" layoutY="49.0" prefHeight="162.0" prefWidth="100.0" />
+            <Pane fx:id="cartaTorre10" layoutX="425.0" layoutY="238.0" prefHeight="162.0" prefWidth="100.0" />
+            <Pane fx:id="cartaTorre6" layoutX="222.0" layoutY="238.0" prefHeight="162.0" prefWidth="100.0" />
+            <Pane fx:id="asTorre3" layoutX="123.0" layoutY="81.0" prefHeight="96.0" prefWidth="89.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
