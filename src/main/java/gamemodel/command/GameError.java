@@ -14,7 +14,11 @@ public enum GameError {
 	SA_MAX_FM,//spazio azione palazzo ha già 4 giocatori
 	PLAYER_DEAD,//view disconnessa 
 	ERR_NOT_TURN, 
-	VATICAN_NOOO, LEADER_CARD_USED, LEADER_CARD_NOT_ENOUGH_MONEY;
+	VATICAN_NOOO, 
+	LEADER_CARD_USED, 
+	LEADER_CARD_NOT_ENOUGH_MONEY, 
+	MILITARY_POINT, 
+	TOO_CARD;
 	
 	@Override
 	public String toString() {
@@ -30,6 +34,8 @@ public enum GameError {
 		case SA_MAX_FM: return "spazio azione palazzo ha già 4 giocatori";
 		case ERR_NOT_TURN: return "azione fuori dal turno";
 		case VATICAN_NOOO: return "pope is occupied now";
+		case MILITARY_POINT:return"punti militari insufficienti";
+		case TOO_CARD:return"possiedi gia troppe carte di questo tipo";
 		default: throw new IllegalArgumentException();
 		}
 	}

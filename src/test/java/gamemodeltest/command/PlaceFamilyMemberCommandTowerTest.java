@@ -14,6 +14,7 @@ import gamemodel.*;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.card.CardType;
 import gamemodel.card.RealCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
@@ -44,8 +45,8 @@ public class PlaceFamilyMemberCommandTowerTest {
 		t=new Tower();
 		b=new Board();
 		b.setDice(1, 7, 7);
-		c0=new RealCard(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, null);
-		c1=new RealCard(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, null);
+		c0=new RealCard(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, CardType.BUILDING);
+		c1=new RealCard(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, CardType.TERRITORY);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
 		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE,model);
 		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
