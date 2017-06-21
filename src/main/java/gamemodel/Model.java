@@ -13,6 +13,7 @@ import java.util.Map;
 import gamemodel.actionSpace.*;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
@@ -21,6 +22,7 @@ import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.TowerASParsing;
+import gamemodel.permanenteffect.PEffect;
 import reti.server.Controller;
 
 public class Model implements Serializable {
@@ -239,23 +241,52 @@ public class Model implements Serializable {
 	{
 		for(Player player:players)
 		{
-			player.addPoint(new Point(0,0,victoryPointsBoundedToTerritoryCards.get(player.countCard(CardType.TERRITORY))));
-			player.addPoint(new Point(0,0,victoryPointsBoundedToCharacterCards.get(player.countCard(CardType.CHARACTER))));
-			for(VentureCard ventureCard:player.getVentures())
-				try {
-					ventureCard.activePermanentEffect(player);
-				} catch (GameException e) {
-					// TODO Auto-generated catch block
-					throw new RuntimeException();
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_FIVE_VICTORY_POINT)!=null)
+				player.subPoint(new Point(0,0,player.getPoint().getVictory()/5));
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_TERRITORY_CARDS)==null)
+				player.addPoint(new Point(0,0,victoryPointsBoundedToTerritoryCards.get(player.countCard(CardType.TERRITORY))));
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_CHARACTER_CARDS)==null)
+				player.addPoint(new Point(0,0,victoryPointsBoundedToCharacterCards.get(player.countCard(CardType.CHARACTER))));
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_VENTURE_CARDS)==null)
+				for(VentureCard ventureCard:player.getVentures())
+				{
+					try 
+					{
+						ventureCard.activePermanentEffect(player);
+					}
+					catch (GameException e) 
+					{
+						// TODO Auto-generated catch block
+						throw new RuntimeException();
+					}
 				}
 			int resources=player.getResource().getGold();
 			resources+=player.getResource().getServant();
 			resources+=player.getResource().getStone();
 			resources+=player.getResource().getWood();
-			int victoryPoints=resources/5;
-			player.addPoint(new Point(0,0,victoryPoints));
+			player.addPoint(new Point(0,0,resources/5));
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_MILITARY_POINT)!=null)
+				player.subPoint(new Point(0,0,player.getPoint().getMilitary()));
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_WOOD_AND_STONE_ON_YOUR_BUILDINGS_CARDS_COST)!=null)
+			{
+				int stoneAndWood=0;
+				for(HarvesterAndBuildings harvesterAndBuildings:player.getBuildings())
+				{
+					stoneAndWood+=harvesterAndBuildings.getResourcePrice().getStone();
+					stoneAndWood+=harvesterAndBuildings.getResourcePrice().getWood();
+				}
+				player.subPoint(new Point(0,0,stoneAndWood));
+			}
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_RESOURCE)!=null)
+			{
+				int resource=player.getResource().getGold();
+				resource+=player.getResource().getServant();
+				resource+=player.getResource().getStone();
+				resource+=player.getResource().getWood();
+				player.subPoint(new Point(0,0,resource));
+			}
 		}
-		pointsVictoryBoundedToMilitaryPoints(players);
+		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
 	public void whoIsWinner(List<Player> players) //copia della lista per evitare modifiche
 	{
