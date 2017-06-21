@@ -78,8 +78,8 @@ public class PlaceFamilyMemberCommandTower implements Command {
 			throw new GameException(GameError.SA_ERR);
 		if(!t.getTower().controlPlayer(f))
 			throw new GameException(GameError.TWR_ERR_FM);
-		if(!t.getTower().isFree())
-			throw new GameException(GameError.TWR_ERR_OCCUPY);	
+		if(!t.getTower().isFree(f))	
+			throw new GameException(GameError.NOT_ENOUGH_MONEY);
 		if(!IsEnoughtStrong())
 			throw new GameException(GameError.FM_ERR_PA);
 		if(!militaryPointRequirement(t.getCard().getType()))

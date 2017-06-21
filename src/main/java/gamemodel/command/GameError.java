@@ -18,7 +18,8 @@ public enum GameError {
 	LEADER_CARD_USED, 
 	LEADER_CARD_NOT_ENOUGH_MONEY, 
 	MILITARY_POINT, 
-	TOO_CARD;
+	TOO_CARD, 
+	NOT_ENOUGH_MONEY;
 	
 	@Override
 	public String toString() {
@@ -36,6 +37,7 @@ public enum GameError {
 		case VATICAN_NOOO: return "pope is occupied now";
 		case MILITARY_POINT:return"punti militari insufficienti";
 		case TOO_CARD:return"possiedi gia troppe carte di questo tipo";
+		case NOT_ENOUGH_MONEY:return"Non hai abbastanza monete per occupare una torre";
 		default: throw new IllegalArgumentException();
 		}
 	}

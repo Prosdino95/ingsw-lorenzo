@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.card.CardType;
+import gamemodel.command.GameError;
+import gamemodel.command.GameException;
 
 public class Tower implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +21,14 @@ public class Tower implements Serializable {
 		this.type = type;
 	}
 	
-	public boolean isFree(){
-		return towerFree;
+	public boolean isFree(FamilyMember f){
+		if(towerFree)
+			return true;
+		else if(f.getPlayer().isEnoughtResource(new Resource(3,0,0,0))){
+			f.getPlayer().subResources(new Resource(3,0,0,0));
+			return true;
+		}
+		return false;		
 	}
 	
 	public void occupyTower(){
@@ -32,10 +40,13 @@ public class Tower implements Serializable {
 	}
 	
 	public void addPlayer(FamilyMember f){
-		playersInTower.add(f.getPlayer());
+		if(f.getColor()!=Color.UNCOLORED)
+			playersInTower.add(f.getPlayer());
 	}
 
 	public boolean controlPlayer(FamilyMember f) {
+		if(f.getColor()==Color.UNCOLORED)
+			return true;
 		for(Player p:playersInTower)
 			if(p.equals(f.getPlayer()))
 				return false;

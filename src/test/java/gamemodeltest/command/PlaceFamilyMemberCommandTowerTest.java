@@ -48,7 +48,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 		c0=new RealCard(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, CardType.BUILDING);
 		c1=new RealCard(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, CardType.TERRITORY);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
-		p2=new Player(new Resource(5,5,5,5), b, Team.BLUE,model);
+		p2=new Player(new Resource(2,5,5,5), b, Team.BLUE,model);
 		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
 		a1=new RealTowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
@@ -109,7 +109,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),5));
 			p2.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.BLACK),0));}
 		catch(GameException e){s=e.getType();}
-		assertEquals(GameError.TWR_ERR_OCCUPY,s);
+		assertEquals(GameError.NOT_ENOUGH_MONEY,s);
 	}
 	
 	@Test
@@ -133,7 +133,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 		try{p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
-		assertEquals(new Resource(4,4,4,0),p2.getResource());				
+		assertEquals(new Resource(1,4,4,0),p2.getResource());				
 	}
 	
 	@Test

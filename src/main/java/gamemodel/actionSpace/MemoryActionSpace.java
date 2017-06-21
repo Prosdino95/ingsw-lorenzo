@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import gamemodel.Color;
 import gamemodel.FamilyMember;
 import gamemodel.Player;
 import gamemodel.effects.IstantEffect;
@@ -29,6 +30,8 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	}
 
 	public boolean controlPlayer(FamilyMember f) {
+		if(f.getColor()==Color.UNCOLORED)
+			return true;
 		for(Player p:players)
 			if(p.equals(f.getPlayer()))
 				return false;
