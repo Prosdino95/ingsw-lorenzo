@@ -39,7 +39,8 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	}
 
 	public void addPlayer(FamilyMember f){
-		players.add(f.getPlayer());
+		if(f.getColor()!=Color.UNCOLORED || this.getType()==ActionSpaceType.COUNCIL_PALACE)
+			players.add(f.getPlayer());			
 	}
 
 	/*@Override

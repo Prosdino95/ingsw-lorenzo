@@ -10,5 +10,4 @@ public enum PEffect {
 	NO_ACTION_SPACE,
 	NO_MATTER_IF_OCCUPIED,
 	NO_BONUS;
-
 }
