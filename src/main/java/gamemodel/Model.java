@@ -30,8 +30,7 @@ public class Model implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private List<Player> players;
-	private Board board;
-	private Integer actionNumber=1;
+	private Board board;	
 	private transient TurnOrder turnOrder;
 	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
@@ -39,12 +38,14 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
+	private transient int turn=1;
 	private Player currentPlayer;
 	
 	
 	public static void main(String[] args){
 		Model m=new Model(4);
-		m.nextTurn();
+		System.out.println(m.getBoard().getActionSpaces());
+		//m.nextTurn();
 	}
 	
 	public Model(int num){
@@ -66,16 +67,25 @@ public class Model implements Serializable {
 	
 	public void finishAction(Player player) throws GameException{
 		if(player!=currentPlayer)
-			throw new GameException(GameError.ERR_NOT_TURN);
-		actionNumber++;
-		if(actionNumber==16)
+			throw new GameException(GameError.ERR_NOT_TURN);	
+		if(!turnOrder.hasNext()){
 			setupRound();
+			turn++;
+		}
+		if(turn%2==0){
+			vaticanReport();
+		}
 		nextTurn();
+	}
+
+	private void vaticanReport() {
+		
+		
 	}
 
 	private void setupRound() {		
 		this.turnOrder.setupRound(board.getTurnOrder());
-		board.setupRound();
+		board.setupRound(turn);
 		for(Player p:players)
 			p.prepareForNewRound();
 	}
@@ -152,6 +162,7 @@ public class Model implements Serializable {
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
+		//TODO remove
 		getPlayer(Team.BLUE).setvaticanTime(true);
 		
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
@@ -167,7 +178,7 @@ public class Model implements Serializable {
 		
 		this.commandFactory=PlaceFMCommandFactory.GenerateCommandFactory(players.size());
 		turnOrder=new TurnOrder(players);
-		board.setupRound();
+		board.setupRound(turn);
 		for(Player p:players)
 			p.prepareForNewRound();	
 		currentPlayer=turnOrder.getNextPlayer();

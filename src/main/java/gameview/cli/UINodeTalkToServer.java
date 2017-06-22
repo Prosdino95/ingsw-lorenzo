@@ -21,8 +21,8 @@ public class UINodeTalkToServer extends UINode {
 		
 		do {
 			response = tree.sendRequestToServer(request);
-			System.out.print("UINodeTalkToServer -- Received response: ");
-			System.out.println(response);
+			//System.out.print("UINodeTalkToServer -- Received response: ");
+			//System.out.println(response);
 
 			switch (response.getType()) {
 			case QUESTION:

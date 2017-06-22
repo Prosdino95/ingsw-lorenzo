@@ -59,7 +59,7 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 			try {
 				if (socket.getInputStream().available() > 1) {
 					request=readRequest();
-					System.out.println("Server received: " + request);
+					//System.out.println("Server received: " + request);
 					doRequest(request);					
 				} 
 				Thread.sleep(100);
@@ -86,7 +86,7 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	}
 	
 	 private void send(ServerResponse sr) throws IOException {
-		 System.out.println("server sent response " + sr);
+		// System.out.println("server sent response " + sr);
 			out.writeObject(sr);
 			out.flush();
 			out.reset();

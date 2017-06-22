@@ -16,16 +16,17 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
+import gamemodel.card.RealCard;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<ActionSpace> actionSpaces;
 	
-	private transient List<Card> territoriesCards;
-	private transient List<Card> buildingsCards;
-	private transient List<Card> charactersCards; 
-	private transient List<Card> venturesCards;
+	private transient List<Card> territoryCards;
+	private transient List<Card> buildingCards;
+	private transient List<Card> characterCards; 
+	private transient List<Card> ventureCards;
 	
 	private transient List<Card> cards;
 	
@@ -43,23 +44,23 @@ public class Board implements Serializable {
 		this.actionSpaces = actionSpaces;
 		this.dice=new Dice();
 		this.cards = cards;
-		this.venturesCards = new ArrayList<Card>();
-		this.buildingsCards = new ArrayList<Card>();
-		this.charactersCards = new ArrayList<Card>();
-		this.territoriesCards = new ArrayList<Card>();
+		this.ventureCards = new ArrayList<Card>();
+		this.buildingCards = new ArrayList<Card>();
+		this.characterCards = new ArrayList<Card>();
+		this.territoryCards = new ArrayList<Card>();
 		for (Card c : cards) {
 			switch (c.getType()) {
 			case BUILDING:
-				buildingsCards.add(c);
+				buildingCards.add(c);
 				break;
 			case CHARACTER:
-				charactersCards.add(c);
+				characterCards.add(c);
 				break;
 			case TERRITORY:
-				territoriesCards.add(c);
+				territoryCards.add(c);
 				break;
 			case VENTURE:
-				venturesCards.add(c);
+				ventureCards.add(c);
 				break;
 			default:
 				break;
@@ -67,15 +68,15 @@ public class Board implements Serializable {
 		}
 	}
 
-	public void setupRound() {
+	public void setupRound(int turn) {
 		for (ActionSpace as : actionSpaces) {
 			as.prepareForNewRound();
 			if (as instanceof MemoryActionSpace)
 				((MemoryActionSpace)as).prepareForNewRound();
 			if (as instanceof TowerActionSpace) {
-				((TowerActionSpace) as).getTower().prepareForNewRound();;
+				((TowerActionSpace) as).getTower().prepareForNewRound();
 				CardType color = ((TowerActionSpace) as).getTower().getType();
-				Card card = popCard(color);
+				Card card = popCard(color,turn);
 				if (card==null) {
 					System.err.println("Finished cards");
 				}
@@ -85,25 +86,26 @@ public class Board implements Serializable {
 		dice.rollDice();
 	}
 
-	private Card popCard(CardType color) {
+	private Card popCard(CardType color,int turn) {
 		switch (color) {
 		case BUILDING:
-				return buildingsCards.remove(0);
+				return getCard(turn,buildingCards);
 		case CHARACTER:
-				return charactersCards.remove(0);
+				return getCard(turn,characterCards);
 		case TERRITORY:
-				return territoriesCards.remove(0);
+				return getCard(turn,territoryCards);
 		case VENTURE:
-				return venturesCards.remove(0);
+				return getCard(turn,ventureCards);
 		default:
-				break;
+				return null;
 		}
+	}
 
-		for (Card c : cards) {
-			if (c.getType().equals(color)) {
-				return c;
-			}
-		}
+	private Card getCard(int turn,List<Card>card) {
+		int p;
+		for(Card c: card)
+			if(c.getPeriod()==((turn+1)/2))			
+				return card.remove(card.indexOf(c));				
 		return null;
 	}
 

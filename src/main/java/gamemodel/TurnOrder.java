@@ -44,6 +44,10 @@ public class TurnOrder{
 		this.iterator=actionOrder.iterator();
 	}
 	
+	public boolean hasNext(){
+		return iterator.hasNext();
+	}
+	
 	public Player getNextPlayer(){
 		if(iterator.hasNext())
 			return iterator.next();
@@ -59,12 +63,12 @@ public class TurnOrder{
 		List<Player> players=new ArrayList<>();
 		Player p=new Player(null, null, Team.BLUE);
 		Player p1=new Player(null, null, Team.RED);
-		Player p2=new Player(null, null, Team.GREEN);
-		Player p3=new Player(null, null, Team.YELLOW);
+		//Player p2=new Player(null, null, Team.GREEN);
+		//Player p3=new Player(null, null, Team.YELLOW);
 		players.add(p);
 		players.add(p1);	
-		players.add(p2);
-		players.add(p3);
+		//players.add(p2);
+		//players.add(p3);
 		TurnOrder to=new TurnOrder(players);
 		System.out.println("turni iniziali"+to);
 		System.out.println("primo "+to.getNextPlayer());
@@ -84,7 +88,7 @@ public class TurnOrder{
 		System.out.println("terzo "+to.getNextPlayer());
 		System.out.println("... ");
 		place=new ArrayList<>();
-		place.add(p3);
+		//place.add(p3);
 		System.out.println("palazzo del consiglio: "+place);
 		to.setupRound(place);
 		System.out.println("nuovi turni: "+to);
@@ -111,7 +115,7 @@ class ActionOrder {
 	
 	public ActionOrder(List<Player> playerInGame) {
 		this.playerActionOrder=new LinkedList<>();
-		for(int i=0;i<playerInGame.size();i++)
+		for(int i=0;i<4;i++)
 			this.playerActionOrder.addAll(playerInGame);
 	}
 	
