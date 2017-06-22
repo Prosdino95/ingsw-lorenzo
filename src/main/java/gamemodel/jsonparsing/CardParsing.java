@@ -20,7 +20,6 @@ public class CardParsing {
 	private int actionCost;
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
-	private Map<CardType, Integer> rCard;
 	private List<IstantEffect> istantEffects,activateEffects;
 	private PermanentEffect permanentEffects;
 	private CardType type;
@@ -29,6 +28,7 @@ public class CardParsing {
 	public List<Card> parsing(String json){
 		JsonArray items = arrayBuild(json); 
 		for (JsonValue item : items) {
+			permanentEffects=null;
 			actionCost=item.asObject().getInt("action-cost", 0);
 			period=item.asObject().getInt("period", 0);
     		name=item.asObject().getString("name", null);
@@ -43,7 +43,7 @@ public class CardParsing {
     			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
     		}
     		if(item.asObject().get("permanent-effect")!=null){
-    			//permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect"));
+    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect"));
     		}
     		makeCard(); 
     	}	
@@ -111,17 +111,7 @@ public class CardParsing {
 		else
 			pPrice=pointParsing(item.asObject().get("point-price").asObject());	
 		
-		if(item.asObject().get("card-requirement")!=null)
-			cardRequirementBuild(item);
 	}
-
-
-
-	private void cardRequirementBuild(JsonValue item) {
-		rCard=new HashMap<>();		
-	}
-
-
 
 	private Point pointParsing(JsonValue item) {
 		int military=item.asObject().getInt("military", 0);

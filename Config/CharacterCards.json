@@ -13,7 +13,15 @@
       		    "military":3
       		}
       	    ],
-	    "permanent-effect":	{}				
+	    "permanent-effect":
+	    	{
+            "type":"strength-mod",
+            "action-type":"tower",
+            "card-type":"territory",
+            "value":2 
+            }
+	    		
+	   			
 	},
 	
 	{
@@ -23,7 +31,17 @@
 	    "resource-requirement":{
 		"gold":2				
 	    },
-	    "permanent-effect":	{}					
+	    "permanent-effect":	
+	    	{
+            "type":"strength-mod",
+            "action-type":"tower",
+            "card-type":"building",
+            "value":2 , 
+            "discount":{
+            	"wood":1,
+            	"stone":1
+            }
+            }					
 	},
 	
 	{
@@ -33,7 +51,16 @@
 	    "resource-requirement":{
 		"gold":4				
 	    },
-	    "permanent-effect":{}						
+	    "permanent-effect":
+	    	{
+            "type":"strength-mod",
+            "action-type":"tower",
+            "card-type":"character",
+            "value":2 , 
+            "discount":{
+            	"gold":1
+            }
+            }						
 	},
 	
 	{
@@ -49,7 +76,13 @@
       		    "quantity":1
       		}
       	    ],
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+            "type":"strength-mod",
+            "action-type":"tower",
+            "card-type":"venture",
+            "value":2
+            }					
 	},
 	
 	{
@@ -59,7 +92,12 @@
 	    "resource-requirement":{
 		"gold":3				
 	    },
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+    		"type":"strength-mod",
+    		"action-type":"harvest",
+    		"value":2		
+    		}				
 	},
 
 	{
@@ -69,7 +107,12 @@
 	    "resource-requirement":{
 		"gold":3				
 	    },
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+    		"type":"strength-mod",
+    		"action-type":"production",
+    		"value":2   		
+    		}					
 	},
 	
 	{
@@ -85,7 +128,10 @@
       		    "faith":4
       		}
       	    ],
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+	    	"type":"no-bonus"
+	   		}					
 	},
 	
 	{
@@ -165,7 +211,12 @@
 	    "resource-requirement":{
 		"gold":4			
 	    },
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+    		"type":"strength-mod",
+    		"action-type":"harvest",
+    		"value":3  		
+    		}					
 	},
 	
 	{
@@ -175,7 +226,12 @@
 	    "resource-requirement":{
 		"gold":4			
 	    },
-	    "permanent-effect":{}					
+	    "permanent-effect":
+	    	{
+    		"type":"strength-mod",
+    		"action-type":"production",
+    		"value":3  		
+    		}					
 	},
 	
 	{

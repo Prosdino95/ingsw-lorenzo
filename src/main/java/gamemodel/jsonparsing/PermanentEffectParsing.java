@@ -3,6 +3,7 @@ package gamemodel.jsonparsing;
 
 import com.eclipsesource.json.JsonValue;
 
+import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.permanenteffect.*;
@@ -24,14 +25,20 @@ public class PermanentEffectParsing {
 		case"halve-servants":return new PermanentEffect(PEffect.HALVE_SERVANTS);
 		case"no-first-action":return new PermanentEffect(PEffect.NO_FIRST_ACTION);
 		case"victory-mod":return victoryEffect(item);
+		case"no-bonus":return new PermanentEffect(PEffect.NO_BONUS);
 		default: throw new RuntimeException("effetto sconosciuto");				
 		}
 	}
 
 	private PermanentEffect StrenfthModify(JsonValue item) {
+		Resource discount;
 		int modPower=item.asObject().getInt("value", 0);
 		ActionSpaceType asType=getActionSpaceType(item);
 		CardType cType=getCardType(item);
+		if(item.asObject().get("discount")!=null){
+			discount=helpParsing.resourceMod(item.asObject().get("discount"));
+			return new StrengthModifyAndDiscount(modPower,asType,cType,discount);
+		}
 		return new StrengthModifyAndDiscount(modPower,asType,cType);			 
 	}
 	

@@ -2,19 +2,19 @@ package gamemodel.jsonparsing;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
 
 public class CustomizationFileReader<T> {
-	
-	private Parser<T> pars;
+	private Function<String,List<T>>parser;
 	private String json;
 	
-	public CustomizationFileReader(String path,Parser<T> pars){
-		this.pars=pars;
+	public CustomizationFileReader(String path,Function<String,List<T>> parser){
+		this.parser=parser;
 		this.json=reedFile(new File(path));
 	}
 	
 	public List<T> parse(){
-		return pars.pars(json);
+		return parser.apply(json);
 	}
 		
 	private static String reedFile(File f){

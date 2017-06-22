@@ -42,7 +42,7 @@ public class CharactersCard extends RealCard implements Serializable {
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";		
 		if(this.permanentEffect!=null)
-			str +="Action effect-> "+this.permanentEffect+ "\n";		
+			str +="Permanent effect-> "+this.permanentEffect+ "\n";		
 		return str;
 	}
 
