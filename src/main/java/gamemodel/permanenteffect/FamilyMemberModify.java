@@ -9,8 +9,8 @@ import gamemodel.FamilyMember;
 
 public class FamilyMemberModify extends PermanentEffect {
 	private static final long serialVersionUID = 1L;
-	public Consumer<Map<Color,FamilyMember>> f;
-	private Consumer<FamilyMember> g;
+	public transient Consumer<Map<Color,FamilyMember>> f;
+	private transient Consumer<FamilyMember> g;
 	private int debuff=0;
 	private int set=0;
 	

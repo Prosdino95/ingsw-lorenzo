@@ -69,7 +69,11 @@ public class Board implements Serializable {
 
 	public void setupRound() {
 		for (ActionSpace as : actionSpaces) {
+			as.prepareForNewRound();
+			if (as instanceof MemoryActionSpace)
+				((MemoryActionSpace)as).prepareForNewRound();
 			if (as instanceof TowerActionSpace) {
+				((TowerActionSpace) as).getTower().prepareForNewRound();;
 				CardType color = ((TowerActionSpace) as).getTower().getType();
 				Card card = popCard(color);
 				if (card==null) {

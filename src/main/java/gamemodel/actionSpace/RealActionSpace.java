@@ -49,12 +49,14 @@ public class RealActionSpace implements ActionSpace,Serializable {
 
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException{
+		if(effects!=null)
 		for(IstantEffect e:effects)
 			e.activate(f.getPlayer());
 	}
 	
 	@Override
 	public void rollbackEffect(FamilyMember f){
+		if(effects!=null)
 		for(IstantEffect e:effects)
 			((EffectRollBack) e).rollBack(f.getPlayer());
 	}
@@ -116,6 +118,12 @@ public class RealActionSpace implements ActionSpace,Serializable {
 			str+="occupy";
 		str+="\n";
 		return str;
+	}
+
+	@Override
+	public void prepareForNewRound() {
+		this.free=true;
+		
 	}
 	
 	

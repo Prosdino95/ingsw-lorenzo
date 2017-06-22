@@ -36,6 +36,7 @@ public class UINodeLog extends UINode
 				case NEW_MODEL:
 					System.out.println("A new model has arrived...");
 					tree.setModel(sr.getModel());
+					System.out.println("turn :"+tree.getModel().getCurrentPlayer());
 					break;
 				case MESSAGE:
 					System.out.print("Someone sent you this message: ");

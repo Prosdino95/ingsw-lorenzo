@@ -58,6 +58,8 @@ public class PlaceFamilyMemberCommandTowerTest {
 		a0.attachDevelopmentCard(c0);
 		a1.attachDevelopmentCard(c1);
 		a2.attachDevelopmentCard(c1);
+		p1.setCurrentPlayer();
+		p2.setCurrentPlayer();
 	}
 	
 	@Test
@@ -139,6 +141,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	@Test
 	public void TestCard3(){
 		p3=new Player(new Resource(0,0,0,5), b, Team.GREEN,model);
+		p3.setCurrentPlayer();
 		b.setDice(7, 0, 0);
 		p3.prepareForNewRound();
 		try{p3.placeFamilyMember(new Action(p3,a0,p3.getFamilyMember(Color.BLACK),0));}

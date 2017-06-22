@@ -42,6 +42,12 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		if(f.getColor()!=Color.UNCOLORED || this.getType()==ActionSpaceType.COUNCIL_PALACE)
 			players.add(f.getPlayer());			
 	}
+	
+	@Override
+	public void prepareForNewRound(){
+		super.prepareForNewRound();
+		this.players.clear();
+	}
 
 	/*@Override
 	public String toString() {

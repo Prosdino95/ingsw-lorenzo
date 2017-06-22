@@ -44,7 +44,7 @@ public class RealCard implements Card,Serializable {
 			return p.isEnoughtResource(resourceRequirement.minus(discount));
 		if(pointRequirement!=null)
 			return p.isEnoughtPoint(pointRequirement);
-		return false;				
+		return true;				
 	}
 
 	@Override

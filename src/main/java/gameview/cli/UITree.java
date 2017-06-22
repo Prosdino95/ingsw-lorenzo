@@ -35,6 +35,13 @@ public class UITree {
 				new UINodeSetRequestType("Place family member", 
 						request::setType, 
 						RequestType.PLACEFAMILYMEMBER, this);
+		UINodeSetRequestType finishTurn = 
+				new UINodeSetRequestType("Notify finish action",
+						request::setType,
+						RequestType.FINISHACTION, this);
+				new UINodeSetRequestType("Place family member", 
+						request::setType, 
+						RequestType.PLACEFAMILYMEMBER, this);
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
 						request::setWhere,
@@ -62,7 +69,10 @@ public class UITree {
 	                	  talkToServer)))))
 				    .addSon(
 				  vatican.addSon(
-				    talkToServer))); 
+				    talkToServer))
+				    .addSon(
+				  finishTurn.addSon(
+					talkToServer))); 
 		
 		reset();
 		System.out.println("Hi, this is Lorenzo!");

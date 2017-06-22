@@ -40,6 +40,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 		a0=new RealActionSpace(0,5, e, ActionSpaceType.MARKET);
 		a1=new RealActionSpace(1,0, e, ActionSpaceType.MARKET);
 		p1.prepareForNewRound();
+		p1.setCurrentPlayer();
 	}
 		
 	@Test

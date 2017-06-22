@@ -43,6 +43,8 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
+		p1.setCurrentPlayer();
+		p2.setCurrentPlayer();
 	}
 
 	@Test

@@ -34,7 +34,7 @@ public class Player implements Serializable{
 	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
 	private transient Model model;
-	private transient Player currentPlayer;
+	private transient boolean currentPlayer=false;
 	private boolean vaticanTime=false;
 	private List<LeaderCard> lcs = new ArrayList<>();
 	private List<FamilyMember> familyMembersList; 
@@ -123,7 +123,8 @@ public class Player implements Serializable{
 	
 	public void placeFamilyMember(Action action) throws GameException {
 		System.out.println(this+" : "+currentPlayer);
-		if(!this.equals(currentPlayer) && currentPlayer!=null )
+		//if(!this.equals(currentPlayer) && currentPlayer!=null )
+		if(!this.currentPlayer)
 			throw new GameException(GameError.ERR_NOT_TURN);
 		currentAction = action;
 		increasePower();
@@ -334,8 +335,12 @@ public class Player implements Serializable{
 			return model.answerToQuestion(question, this);
 		}
 
-		public void setCurrentPlayer(Player nextPlayer) {
-			this.currentPlayer=nextPlayer;			
+		public void setCurrentPlayer() {
+			this.currentPlayer=true;			
+		}
+		
+		public void unsetCurrentPlayer(){
+			this.currentPlayer=false;
 		}
 
 		@Override

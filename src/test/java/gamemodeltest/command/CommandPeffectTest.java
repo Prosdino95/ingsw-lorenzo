@@ -51,6 +51,7 @@ public class CommandPeffectTest {
 		Board b=new Board();
 		b.setDice(2, 1, 9);
 		p=new Player(new Resource(1,1,1,5), b, Team.RED,model);
+		p.setCurrentPlayer();
 		p.giveCard(c);
 		p.giveCard(c1);
 		p.giveCard(c2);

@@ -52,7 +52,8 @@ public class Controller{
 		HandlerView hv=playerToHV.get(request.getPlayer());
 		switch(request.getType()){
 		case FINISHACTION:
-			finishAction();
+			System.out.println("inviata da: "+request.getPlayer());
+			finishAction(request.getPlayer(),hv);
 			break;
 		case PLACEFAMILYMEMBER: 
 			sr=placeFM(request,request.getPlayer());
@@ -96,9 +97,15 @@ public class Controller{
 		}
 	}
 	
-	private void finishAction() {
-			game.finishAction();
-			notifyNewModel();
+	private void finishAction(Player player, HandlerView hv) {
+			try{
+				game.finishAction(player);
+				hv.sendResponse(new ServerResponse());
+				notifyNewModel();				
+				}
+			catch(GameException e){
+				hv.sendResponse(new ServerResponse(e.getType()));
+			}			
 	}
 	private ServerResponse placeFM(ClientRequest request, Player player){
 		Action a =new Action(player,game.getBoard().getActionSpace(request.getWhere()),player.getFamilyMember(request.getWhich()),request.getServants());

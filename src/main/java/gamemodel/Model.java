@@ -15,6 +15,7 @@ import gamemodel.card.*;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
+import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.command.PlaceFMCommandFactory;
 import gamemodel.jsonparsing.ASParsing;
@@ -36,8 +37,9 @@ public class Model implements Serializable {
 	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
 	private transient Controller controller;
 	private transient PlaceFMCommandFactory commandFactory;
-	private Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
-	private Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
+	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
+	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
+	private Player currentPlayer;
 	
 	
 	public static void main(String[] args){
@@ -55,20 +57,25 @@ public class Model implements Serializable {
 	}
 	
 	public void nextTurn(){
-		Player currentp=turnOrder.getNextPlayer();
-		for(Player p:players)
-			p.setCurrentPlayer(currentp);     
+		this.currentPlayer.unsetCurrentPlayer();
+		currentPlayer=turnOrder.getNextPlayer();
+		currentPlayer.setCurrentPlayer();
 	}
 	
-	public void finishAction(){
+	
+	
+	public void finishAction(Player player) throws GameException{
+		if(player!=currentPlayer)
+			throw new GameException(GameError.ERR_NOT_TURN);
+		actionNumber++;
 		if(actionNumber==16)
 			setupRound();
 		nextTurn();
 	}
 
-	private void setupRound() {
-		board.setupRound();
+	private void setupRound() {		
 		this.turnOrder.setupRound(board.getTurnOrder());
+		board.setupRound();
 		for(Player p:players)
 			p.prepareForNewRound();
 	}
@@ -160,8 +167,12 @@ public class Model implements Serializable {
 		
 		this.commandFactory=PlaceFMCommandFactory.GenerateCommandFactory(players.size());
 		turnOrder=new TurnOrder(players);
-		setupRound();	
-		nextTurn();
+		board.setupRound();
+		for(Player p:players)
+			p.prepareForNewRound();	
+		currentPlayer=turnOrder.getNextPlayer();
+		currentPlayer.setCurrentPlayer();
+		System.out.println("turn"+currentPlayer);
 	}
 
 	public Board getBoard() {
@@ -296,6 +307,10 @@ public class Model implements Serializable {
 				}
 		else
 			System.out.println("The winner is " + players.get(0));  //TODO migliorare
+	}
+
+	public Player getCurrentPlayer() {
+		return this.currentPlayer;
 	}
 }
 

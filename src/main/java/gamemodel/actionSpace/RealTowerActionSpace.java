@@ -43,7 +43,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	
 	public String toString() {
 		String str = "";
-		str += this.getId();
+		str += this.getActionCost();
 		str += "-> ";
 		str += "tower";
 		str += this.getTower();
@@ -59,7 +59,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	@Override
 	public void giveCard(FamilyMember f) throws GameException {
 		f.getPlayer().giveCard(this.card);
-		
+		this.card=null;
 	}
 	
 	/*@Override
