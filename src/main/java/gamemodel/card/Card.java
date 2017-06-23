@@ -20,5 +20,6 @@ public interface Card extends Serializable {
 	public int getId(); 
 	public void activeIstantEffect(Player p) throws GameException;
 	void pay(Player p, Resource discount);
+	public String getName();
 
 }

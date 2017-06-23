@@ -34,6 +34,7 @@ public class ViewController {
 		new Thread((Runnable) hs).start();
 	}
 	
+
 	public boolean hasMessage()
 	{
 		return !serverMessages.isEmpty();

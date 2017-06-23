@@ -97,7 +97,7 @@ public class GUIBoard extends Region{
 		
 	
 		RealCard rc=new HarvesterAndBuildings(0, "test", 0, null, null, null, null, null, new ResourceModify(new Resource(1,1,1,1)),CardType.TERRITORY,5);
-		GuiCard card=new GuiCard(rc,0.12*w,0.12*(0.24/0.128)*h);
+		GUICard card=new GUICard(rc,0.12*w,0.12*(0.24/0.128)*h);
 		c.getChildren().add(card);
 	}
 

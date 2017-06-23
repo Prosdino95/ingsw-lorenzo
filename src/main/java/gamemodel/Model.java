@@ -40,7 +40,7 @@ public class Model implements Serializable {
 	
 	public static void main(String[] args){
 		Model m=new Model(4);
-		m.nextTurn();
+//		m.nextTurn();
 	}
 	
 	public Model(int num){
