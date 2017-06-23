@@ -2,6 +2,7 @@ package gamemodel;
 
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 
@@ -22,8 +23,10 @@ import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.ExcommunicationParsing;
+import gamemodel.jsonparsing.FaithRequirements;
 import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
+import reti.ServerResponse;
 import reti.server.Controller;
 
 public class Model implements Serializable {
@@ -44,7 +47,7 @@ public class Model implements Serializable {
 	
 	public static void main(String[] args){
 		Model m=new Model(4);
-		System.out.println(m.getBoard().getActionSpaces());
+		//System.out.println(m.getBoard().getActionSpaces());
 		//m.nextTurn();
 	}
 	
@@ -67,20 +70,34 @@ public class Model implements Serializable {
 	
 	public void finishAction(Player player) throws GameException{
 		if(player!=currentPlayer)
-			throw new GameException(GameError.ERR_NOT_TURN);	
+			throw new GameException(GameError.ERR_NOT_TURN);
+		controller.sendOK(currentPlayer);
 		if(!turnOrder.hasNext()){
-			setupRound();
+			if(turn%2==0){
+				vaticanReport();
+				controller.sendMessageToAll("riprendiamo");
+			}	
+			System.out.println("next turn");
 			turn++;
-		}
-		if(turn%2==0){
-			vaticanReport();
-		}
+			setupRound();					
+		}		
 		nextTurn();
 	}
 
-	private void vaticanReport() {
-		
-		
+	public void vaticanReport(){	
+		currentPlayer.unsetCurrentPlayer();
+		controller.sendMessageToAll("Now it's time to talk to the Pope");
+		Integer faithPoints=faithPointsRequirement.get(turn/2);
+		Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
+		for(Player p:players){
+			try{
+				p.vaticanReport(turn/2,faithPoints,victoryPoints);
+				}
+			catch(GameException e){
+				controller.sendMessage(e.getType().toString(),p);
+			}
+			controller.sendOK(p);
+		}
 	}
 
 	private void setupRound() {		
@@ -168,10 +185,11 @@ public class Model implements Serializable {
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);
 		
-		List<Integer> faithRequirement=new ArrayList<>(); //inizializzazione tramite jason
-		//faithPointsRequirement.put(1,faithRequirement.get(0));
-		//faithPointsRequirement.put(2,faithRequirement.get(1));
-		//faithPointsRequirement.put(3,faithRequirement.get(2));
+		List<Integer> faithRequirement=new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
+		faithPointsRequirement.put(1,faithRequirement.get(0));
+		faithPointsRequirement.put(2,faithRequirement.get(1));
+		faithPointsRequirement.put(3,faithRequirement.get(2));
+		System.out.println(faithPointsRequirement.values());
 		victoryPointsBoundedTofaithPointsInitialize();
 		victoryPointsBoundedToTerritoryCardsInitialize();
 		victoryPointsBoundedToCharacterCardsInitialize();
@@ -322,6 +340,11 @@ public class Model implements Serializable {
 
 	public Player getCurrentPlayer() {
 		return this.currentPlayer;
+	}
+
+	public int sendResponse(ServerResponse serverResponse) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 

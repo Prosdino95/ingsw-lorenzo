@@ -67,9 +67,9 @@ public class UITree {
 	                  which.addSon(
 	                	servants.addSon(
 	                	  talkToServer)))))
-				    .addSon(
-				  vatican.addSon(
-				    talkToServer))
+				   // .addSon(
+				  //vatican.addSon(
+				   // talkToServer))
 				    .addSon(
 				  finishTurn.addSon(
 					talkToServer))); 

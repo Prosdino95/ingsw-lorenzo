@@ -34,14 +34,14 @@ public class UINodeChooseUI extends UINode {
 
 	@Override
 	public UINode getNextNode() {
-		choose=CLIView.getInt();	
+		choose=CLIView.getInt();
 		try{
 			return descendants.get(choose);					
-		}
+			}
 		catch(IndexOutOfBoundsException e){
 			System.out.println("Invalin choise");
-			run();
-		}	
-		return descendants.get(choose);	
+			print();
+			return getNextNode();
+			}	
 	}	
 }

@@ -15,6 +15,11 @@ public class ServerResponse implements Serializable {
 	private ResponseType type;
 	private Model model;
 	private Team playerTeam;
+	
+	public ServerResponse(Question gq, ResponseType type) {
+		this.type=type;
+		this.question=gq;		
+	}
 
 	public ServerResponse() {
 		type = ResponseType.OK;
@@ -55,7 +60,7 @@ public class ServerResponse implements Serializable {
 //		removeMeType = "NM";
 //		this.removeMems = modelShell;
 //	}
-	
+
 	public ResponseType getType() {
 		return type;
 	}

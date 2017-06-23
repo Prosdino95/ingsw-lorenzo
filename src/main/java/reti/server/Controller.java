@@ -1,22 +1,23 @@
 package reti.server;
 
-import java.io.IOException;
+
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
 import gamemodel.Action;
+import gamemodel.GameQuestion;
 import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import reti.ClientRequest;
+import reti.ResponseType;
 import reti.ServerResponse;
 
 public class Controller{
@@ -52,7 +53,7 @@ public class Controller{
 		HandlerView hv=playerToHV.get(request.getPlayer());
 		switch(request.getType()){
 		case FINISHACTION:
-			System.out.println("inviata da: "+request.getPlayer());
+			//System.out.println("inviata da: "+request.getPlayer());
 			finishAction(request.getPlayer(),hv);
 			break;
 		case PLACEFAMILYMEMBER: 
@@ -67,26 +68,28 @@ public class Controller{
 			break;
 		case LEADERCARD:
 			break;
-		case VATICAN_REPORT:
-			sr=vativan(request,request.getPlayer());
-			System.out.println("Controller --- vticn " + sr);
-			hv.sendResponse(sr);
-			break;
+		//case VATICAN_REPORT:
+		//	sr=vativan(request,request.getPlayer());
+		//	System.out.println("Controller --- vticn " + sr);
+		//	hv.sendResponse(sr);
+		//	break;
 		default:
 			break;
 		}	
 		}
 	}
 	
-	private ServerResponse vativan(ClientRequest request, Player player){
+	/*public void vativan(Player player){
+		//for(HandlerView hv:playerToHV.values())
+		//		hv.sendResponse(new ServerResponse());
 			try{
 				player.vaticanReport(1, 0, 5);
-				return new ServerResponse();
+				//return new ServerResponse();
 			}
 			catch(GameException e){
-				return new ServerResponse(e.getType());
+				//return new ServerResponse(e.getType());
 			}
-	}
+	}*/
 	
 	public void notifyNewModel() 
 	{
@@ -100,8 +103,7 @@ public class Controller{
 	private void finishAction(Player player, HandlerView hv) {
 			try{
 				game.finishAction(player);
-				hv.sendResponse(new ServerResponse());
-				notifyNewModel();				
+				notifyNewModel();	
 				}
 			catch(GameException e){
 				hv.sendResponse(new ServerResponse(e.getType()));
@@ -116,8 +118,6 @@ public class Controller{
 			return new ServerResponse(e.getType());
 		}
 	}
-
-
 
 	public void sendMessage(String string, Player player)
 	{
@@ -136,20 +136,29 @@ public class Controller{
 
 	public Integer answerToQuestion(Question gq, Player player) throws GameException{
 		HandlerView hv=playerToHV.get(player);
-		ServerResponse sr = new ServerResponse(gq);
+		ServerResponse sr;
+		if(gq.getGq()==GameQuestion.VATICAN_SUPPORT)
+			sr = new ServerResponse(gq,ResponseType.VATICAN_SUPPORT);
+		else 
+			sr = new ServerResponse(gq);
 			hv.sendResponse(sr);
 			//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
 			while (!requestAvailable()) {
 				try {
 					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					
+				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}
 				if (deadHVs.contains(hv))
 					throw new GameException(GameError.PLAYER_DEAD);
 			}
-			return Integer.parseInt((String)(requestQueue.remove()).getAnswer());
+			try{
+				return Integer.parseInt((String)(requestQueue.remove()).getAnswer());
+			}
+			catch(NumberFormatException e){
+				answerToQuestion(gq,player);
+			}
+			return 0;
 	}
 
 	private boolean requestAvailable() {
@@ -163,4 +172,16 @@ public class Controller{
 	public void imDead(HandlerView hvs) {
 		deadHVs.add(hvs);
 	}
+
+	public void sendOK(Player player) {
+		playerToHV.get(player).sendResponse(new ServerResponse());
+		
+	}
+	
+	public void sendMessageToAll(String message){
+		for(HandlerView hv:playerToHV.values())
+			hv.sendResponse(new ServerResponse(message));
+	}
+
+
 }

@@ -13,13 +13,21 @@ public class App{
     	//testAS();
     	//testBCard();
     	//testTCard();
-    	testCCard();
+    	//testCCard();
     	//testVCard();
     	//testEx();
     	//testLCard();
+    	testpoints();
     } 
     
-    private static void testEx() {
+    private static void testpoints() {
+    	List<Integer> Bcard= new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
+    	for(Integer a:Bcard)
+    		System.out.println(a);
+		
+	}
+
+	private static void testEx() {
     	List<Excommunication> Bcard= new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
     	for(Excommunication a:Bcard)
     		System.out.println(a);

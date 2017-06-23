@@ -1,18 +1,12 @@
 package gameview;
 
-import java.io.BufferedReader;
+
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.NotBoundException;
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 import reti.ClientRequest;
 import reti.ServerResponse;
@@ -52,6 +46,7 @@ public class ViewController {
 		case MESSAGE:
 		case NEW_MODEL:
 		case PLAYER_ASSIGNED:
+		case VATICAN_SUPPORT:	
 					this.serverMessages.add(sr);
 					break;
 		default:

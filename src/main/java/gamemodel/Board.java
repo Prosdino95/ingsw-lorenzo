@@ -3,6 +3,7 @@ package gamemodel;
 import java.io.Serializable;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,6 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
-import gamemodel.card.RealCard;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;

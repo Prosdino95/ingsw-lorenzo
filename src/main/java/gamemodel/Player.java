@@ -141,12 +141,6 @@ public class Player implements Serializable{
 		return resource;
 	}
 
-	public void playRound() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
 		board.getDice().setFMActionPoints(familyMembersList);
@@ -243,8 +237,6 @@ public class Player implements Serializable{
 		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
 		currentAction.setFm(fm);
 	
-		//TODO enum....
-//		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
 		for (PermanentEffect e : permanentEffects) {
 			if (e.hasTag(PEffect.MOD_FORZA)) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
@@ -296,14 +288,15 @@ public class Player implements Serializable{
 	
 	public void vaticanReport(int period,int requirement,int victoryPoints) throws GameException
 	{
-		if (!this.vaticanTime)
-			throw new GameException(GameError.VATICAN_NOOO);
+		//if (!this.vaticanTime)
+		//	throw new GameException(GameError.VATICAN_NOOO);
 		
 		if(this.point.getFaith()<requirement)
 		{
-			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+				throw new GameException(GameError.VATICAN_FAIL);
 		}
 					 // TODO da testare
 		if(this.point.getFaith()>=requirement) //aggiornato con il caso del caloclo finale dei punti vittoria
@@ -322,6 +315,7 @@ public class Player implements Serializable{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 				if(period==3)
 					addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+				throw new GameException(GameError.VATICAN_NOOO);
 			}
 			if(selection==1)
 			{

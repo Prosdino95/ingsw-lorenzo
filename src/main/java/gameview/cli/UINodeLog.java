@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import gamemodel.Team;
 import gameview.ViewController;
+import reti.ClientRequest;
 import reti.ServerResponse;
 
 public class UINodeLog extends UINode 
@@ -51,6 +52,10 @@ public class UINodeLog extends UINode
 					System.out.println("Your player got assigned, you're team: " + team);
 					tree.setPlayer(team);
 					System.out.println("Now get out of this log and play!");
+					break;
+				case VATICAN_SUPPORT:
+					System.out.println(sr.getQuestion());
+					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));
 					break;
 				default:
 					System.out.println("Should this message get here? " + sr);
