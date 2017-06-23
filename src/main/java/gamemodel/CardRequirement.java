@@ -1,8 +1,12 @@
 package gamemodel;
 
+import java.io.Serializable;
+
 import gamemodel.card.CardType;
 
-public class CardRequirement {
+public class CardRequirement implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int tc;
 	private int cc;
 	private int bc;

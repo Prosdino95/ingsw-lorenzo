@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;
 import gamemodel.jsonparsing.ExcommunicationParsing;
 import gamemodel.jsonparsing.FaithRequirements;
+import gamemodel.jsonparsing.LeaderCardParsing;
 import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
 import reti.ServerResponse;
@@ -43,6 +45,7 @@ public class Model implements Serializable {
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
 	private transient int turn=1;
 	private Player currentPlayer;
+	private List<Object> leaderCard=new ArrayList<>();
 	
 	
 	public static void main(String[] args){
@@ -169,7 +172,7 @@ public class Model implements Serializable {
 		List<ActionSpace> actionSpaces = new ArrayList<ActionSpace>();
 		
 		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse());
-		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());				
+		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());
 		
 		board = new Board(developmentCards, actionSpaces);
 
@@ -185,11 +188,12 @@ public class Model implements Serializable {
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);
 		
+		leaderCard.addAll(new CustomizationFileReader<LeaderCard>("Config/LeaderCards.json",new LeaderCardParsing()::parsing).parse());
+		
 		List<Integer> faithRequirement=new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
 		faithPointsRequirement.put(1,faithRequirement.get(0));
 		faithPointsRequirement.put(2,faithRequirement.get(1));
 		faithPointsRequirement.put(3,faithRequirement.get(2));
-		System.out.println(faithPointsRequirement.values());
 		victoryPointsBoundedTofaithPointsInitialize();
 		victoryPointsBoundedToTerritoryCardsInitialize();
 		victoryPointsBoundedToCharacterCardsInitialize();
@@ -201,7 +205,23 @@ public class Model implements Serializable {
 			p.prepareForNewRound();	
 		currentPlayer=turnOrder.getNextPlayer();
 		currentPlayer.setCurrentPlayer();
-		System.out.println("turn"+currentPlayer);
+	
+	}
+
+	public void giveLeaderCard() {
+		int index;
+		for(int i=0;i<1;i++)
+			for(Player p:players){
+				try {
+					index=answerToQuestion(new Question(GameQuestion.LEADER,leaderCard), p);
+					p.giveLeaderCard((LeaderCard) leaderCard.remove(index));
+					controller.sendOK(p);
+				} catch (GameException e) {
+					p.giveLeaderCard((LeaderCard) leaderCard.remove(0));
+				}				
+			}
+		controller.sendMessageToAll("iniziamo a giocare");
+		
 	}
 
 	public Board getBoard() {
@@ -342,10 +362,6 @@ public class Model implements Serializable {
 		return this.currentPlayer;
 	}
 
-	public int sendResponse(ServerResponse serverResponse) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
 
 

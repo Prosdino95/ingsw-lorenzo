@@ -1,6 +1,10 @@
 package gamemodel;
 
-public class Requirement {
+import java.io.Serializable;
+
+public class Requirement implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Resource resource;
 	private CardRequirement cardReq;
 	private Point point;

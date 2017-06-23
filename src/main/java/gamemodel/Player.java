@@ -371,14 +371,13 @@ public class Player implements Serializable{
 		public void giveLeaderCard(LeaderCard lc) {
 			lc.setOwner(this);
 			lcs.add(lc);
-			
-			PermanentEffect pe = lc.getPermanentEffect(); 
-			if (pe != null)
-				permanentEffects.add(pe);
 		}
 		
 		public void play(LeaderCard lc) throws GameException {
 			lc.play();
+			PermanentEffect pe = lc.getPermanentEffect(); 
+			if (pe != null)
+				permanentEffects.add(pe);
 		}
 		
 		public void activateLC(LeaderCard lc) throws GameException {

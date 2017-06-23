@@ -62,11 +62,11 @@ public class IstantEffectParsing {
 		catch(UnsupportedOperationException e){		
 			forWhat=item.asObject().get("for");
 			if(forWhat.asObject().get("resource")!=null){
-				rin=ParsingHelper.resourceParsing(forWhat.asObject().get("Resource"));
+				rin=ParsingHelper.resourceParsing(forWhat.asObject().get("resource"));
 				type="Resource";
 			}		
 			else if(forWhat.asObject().get("point")!=null){
-				pin=ParsingHelper.pointParsing(forWhat.asObject().get("Point"));
+				pin=ParsingHelper.pointParsing(forWhat.asObject().get("point"));
 				type="Point";
 			}
 		}	

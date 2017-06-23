@@ -57,6 +57,10 @@ public class UINodeLog extends UINode
 					System.out.println(sr.getQuestion());
 					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));
 					break;
+				case LEADER:
+					System.out.println(sr.getQuestion());
+					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));
+					break;
 				default:
 					System.out.println("Should this message get here? " + sr);
 					break;

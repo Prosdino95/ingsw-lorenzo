@@ -39,6 +39,7 @@ public class GameManager implements Runnable
 		for(HandlerView h: hw){
 			h.sendResponse(new ServerResponse(h.getPlayer()));
 		}
+		rl.giveLeaderCard();
 		c.run();
 	}
 	

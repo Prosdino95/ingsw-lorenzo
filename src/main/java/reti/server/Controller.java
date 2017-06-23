@@ -139,6 +139,8 @@ public class Controller{
 		ServerResponse sr;
 		if(gq.getGq()==GameQuestion.VATICAN_SUPPORT)
 			sr = new ServerResponse(gq,ResponseType.VATICAN_SUPPORT);
+		if(gq.getGq()==GameQuestion.LEADER)
+			sr = new ServerResponse(gq,ResponseType.LEADER);
 		else 
 			sr = new ServerResponse(gq);
 			hv.sendResponse(sr);

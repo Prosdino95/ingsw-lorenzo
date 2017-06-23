@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,9 @@ import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class LeaderCard {
+public class LeaderCard implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Requirement requirement;
 	private PermanentEffect pe;
 	private List<IstantEffect> oncePerRound=new ArrayList<>();
