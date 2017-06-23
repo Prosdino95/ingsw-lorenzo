@@ -248,7 +248,7 @@ public class Model implements Serializable {
 		return controller.answerToQuestion(gq, player);
 	}
 
-	private int occurrence(List<Player> players,String string,int points)
+	private int occurrence(List<Player> players,String string,int points) //testato
 	{
 		int number=0;
 		if(string.equals("military"))
@@ -261,7 +261,7 @@ public class Model implements Serializable {
 					number++;
 		return number;
 	}
-	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players)
+	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players) //testato
 	{
 		Player temp;
 		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti miliatri
@@ -282,7 +282,7 @@ public class Model implements Serializable {
 				players.get(c).addPoint(new Point(0,0,2));
 		}
 	}
-	private void pointsVictoryAssignment(List<Player> players)
+	private void pointsVictoryAssignment(List<Player> players) //non testato
 	{
 		for(Player player:players)
 		{
@@ -333,7 +333,7 @@ public class Model implements Serializable {
 		}
 		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
-	public void whoIsWinner(List<Player> players) 
+	public void whoIsWinner(List<Player> players)  //testato
 	{
 		/*pointsVictoryAssignment(players);*/
 		Player temp;
