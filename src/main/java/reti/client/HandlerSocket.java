@@ -53,7 +53,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 				if(s.getInputStream().available()>1)       
 				{
 					ServerResponse sr=(ServerResponse)(in.readObject());
-					//System.out.println("HSocket --- Got response " + sr);
+					System.out.println("HSocket --- Got response " + sr);
 					vc.placeResponse(sr);
 				}	
 				if(crOut!=null)

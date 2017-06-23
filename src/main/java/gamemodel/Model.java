@@ -71,39 +71,33 @@ public class Model implements Serializable {
 	
 	
 	
-	public void finishAction(Player player) throws GameException{
-		if(player!=currentPlayer)
-			throw new GameException(GameError.ERR_NOT_TURN);
-		controller.sendOK(currentPlayer);
-		if(!turnOrder.hasNext()){
-			if(turn%2==0){
-				vaticanReport();
-				controller.sendMessageToAll("riprendiamo");
-			}	
+	public void finishAction(){
+		if(turn%2==0 )
+			vaticanReport(currentPlayer);
+		if(!turnOrder.hasNext() && turn%2==0 ){
+			
+			currentPlayer.unsetCurrentPlayer();
+			controller.sendMessageToAll("Now it's time to talk to the Pope");
+			controller.vaticanQuestion();
+		}
+		else if(!turnOrder.hasNext()){			
 			System.out.println("next turn");
 			turn++;
-			setupRound();					
+			setupRound();
+			nextTurn();
 		}		
-		nextTurn();
+		else 
+			nextTurn();
 	}
 
-	public void vaticanReport(){	
-		currentPlayer.unsetCurrentPlayer();
-		controller.sendMessageToAll("Now it's time to talk to the Pope");
+	public void vaticanReport(Player p) throws GameException{
 		Integer faithPoints=faithPointsRequirement.get(turn/2);
 		Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
-		for(Player p:players){
-			try{
-				p.vaticanReport(turn/2,faithPoints,victoryPoints);
-				}
-			catch(GameException e){
-				controller.sendMessage(e.getType().toString(),p);
-			}
-			controller.sendOK(p);
-		}
+		p.vaticanReport(turn/2,faithPoints,victoryPoints);
+		
 	}
 
-	private void setupRound() {		
+	public void setupRound() {		
 		this.turnOrder.setupRound(board.getTurnOrder());
 		board.setupRound(turn);
 		for(Player p:players)
@@ -207,22 +201,11 @@ public class Model implements Serializable {
 		currentPlayer.setCurrentPlayer();
 	
 	}
-
-	public void giveLeaderCard() {
-		int index;
-		for(int i=0;i<1;i++)
-			for(Player p:players){
-				try {
-					index=answerToQuestion(new Question(GameQuestion.LEADER,leaderCard), p);
-					p.giveLeaderCard((LeaderCard) leaderCard.remove(index));
-					controller.sendOK(p);
-				} catch (GameException e) {
-					p.giveLeaderCard((LeaderCard) leaderCard.remove(0));
-				}				
-			}
-		controller.sendMessageToAll("iniziamo a giocare");
-		
+	
+	public void giveLeaderCard(Player player, int index) {
+				player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
 	}
+
 
 	public Board getBoard() {
 		return board;
@@ -360,6 +343,10 @@ public class Model implements Serializable {
 
 	public Player getCurrentPlayer() {
 		return this.currentPlayer;
+	}
+
+	public List<Object> getLeaderCards() {
+		return this.leaderCard;
 	}
 
 }

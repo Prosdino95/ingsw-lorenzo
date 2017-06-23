@@ -11,6 +11,7 @@ import java.util.Queue;
 
 import gamemodel.Action;
 import gamemodel.GameQuestion;
+import gamemodel.LeaderCard;
 import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Model;
@@ -68,29 +69,28 @@ public class Controller{
 			break;
 		case LEADERCARD:
 			break;
-		//case VATICAN_REPORT:
-		//	sr=vativan(request,request.getPlayer());
-		//	System.out.println("Controller --- vticn " + sr);
-		//	hv.sendResponse(sr);
-		//	break;
 		default:
 			break;
 		}	
 		}
 	}
 	
-	/*public void vativan(Player player){
-		//for(HandlerView hv:playerToHV.values())
-		//		hv.sendResponse(new ServerResponse());
-			try{
-				player.vaticanReport(1, 0, 5);
-				//return new ServerResponse();
-			}
-			catch(GameException e){
-				//return new ServerResponse(e.getType());
-			}
-	}*/
-	
+	public void giveLeaderCard() {
+		//TODO ordine turno
+			int index;
+			for(int i=0;i<1;i++)
+				for(HandlerView hv:playerToHV.values()){
+					try {
+						index=answerToQuestion(new Question(GameQuestion.LEADER,game.getLeaderCards()),hv);
+						game.giveLeaderCard(hv.getPlayer(), index);
+						hv.sendResponse(new ServerResponse());
+					} catch (GameException e) {
+						game.giveLeaderCard(hv.getPlayer(), 0);
+					}				
+				}
+			sendMessageToAll("iniziamo a giocare");
+	}
+
 	public void notifyNewModel() 
 	{
 		Collection<HandlerView> hw=playerToHV.values();
@@ -102,8 +102,9 @@ public class Controller{
 	
 	private void finishAction(Player player, HandlerView hv) {
 			try{
-				game.finishAction(player);
-				notifyNewModel();	
+				player.finishAction();
+				notifyNewModel();
+				hv.sendResponse(new ServerResponse());
 				}
 			catch(GameException e){
 				hv.sendResponse(new ServerResponse(e.getType()));
@@ -132,17 +133,19 @@ public class Controller{
 		this.playerToHV = playerToHV;
 	}
 
-
-
-	public Integer answerToQuestion(Question gq, Player player) throws GameException{
+	
+	public Integer answerToQuestion(Question gq, Player player)throws GameException{
 		HandlerView hv=playerToHV.get(player);
+		return answerToQuestion(gq,hv);
+	}
+
+
+	public Integer answerToQuestion(Question gq, HandlerView hv) throws GameException{
 		ServerResponse sr;
-		if(gq.getGq()==GameQuestion.VATICAN_SUPPORT)
-			sr = new ServerResponse(gq,ResponseType.VATICAN_SUPPORT);
 		if(gq.getGq()==GameQuestion.LEADER)
 			sr = new ServerResponse(gq,ResponseType.LEADER);
-		else 
-			sr = new ServerResponse(gq);
+		else
+			sr = new ServerResponse(gq);			
 			hv.sendResponse(sr);
 			//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
 			while (!requestAvailable()) {
@@ -158,7 +161,7 @@ public class Controller{
 				return Integer.parseInt((String)(requestQueue.remove()).getAnswer());
 			}
 			catch(NumberFormatException e){
-				answerToQuestion(gq,player);
+				answerToQuestion(gq,hv);
 			}
 			return 0;
 	}
@@ -183,6 +186,11 @@ public class Controller{
 	public void sendMessageToAll(String message){
 		for(HandlerView hv:playerToHV.values())
 			hv.sendResponse(new ServerResponse(message));
+	}
+
+	public void vaticanQuestion() {		
+		for(HandlerView hv:playerToHV.values())				
+			hv.sendResponse(new ServerResponse(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()),ResponseType.VATICAN_SUPPORT));
 	}
 
 

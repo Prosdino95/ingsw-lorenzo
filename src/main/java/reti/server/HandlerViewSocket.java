@@ -86,7 +86,7 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	}
 	
 	 private void send(ServerResponse sr) throws IOException {
-		// System.out.println("server sent response " + sr);
+		 System.out.println("server sent response " + sr);
 			out.writeObject(sr);
 			out.flush();
 			out.reset();

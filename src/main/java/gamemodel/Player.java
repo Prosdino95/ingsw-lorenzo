@@ -330,7 +330,16 @@ public class Player implements Serializable{
 		}
 
 		public void setCurrentPlayer() {
-			this.currentPlayer=true;			
+			if(death==true)
+				model.finishAction();
+			this.currentPlayer=true;	
+			//TODO timer
+		}
+		
+		public void finishAction() throws GameException{
+			if(!currentPlayer)
+				throw new GameException(GameError.ERR_NOT_TURN);
+			model.finishAction();
 		}
 		
 		public void unsetCurrentPlayer(){

@@ -35,11 +35,11 @@ public class GameManager implements Runnable
 		}
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
+		c.giveLeaderCard();
 		c.notifyNewModel();
 		for(HandlerView h: hw){
 			h.sendResponse(new ServerResponse(h.getPlayer()));
 		}
-		rl.giveLeaderCard();
 		c.run();
 	}
 	
