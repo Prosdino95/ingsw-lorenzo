@@ -241,7 +241,7 @@ public class Model implements Serializable {
 					number++;
 		return number;
 	}
-	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players)//copia dell'ordine di turni
+	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players)
 	{
 		Player temp;
 		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti miliatri
@@ -313,7 +313,7 @@ public class Model implements Serializable {
 		}
 		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
-	public void whoIsWinner(List<Player> players) //copia della lista per evitare modifiche
+	public void whoIsWinner(List<Player> players) 
 	{
 		/*pointsVictoryAssignment(players);*/
 		Player temp;
@@ -326,7 +326,7 @@ public class Model implements Serializable {
 					players.set(c+1,temp);
 				}
 		if(occurrence(players,"victory",players.get(0).getPoint().getVictory())>1)
-			for(Player player:turnOrder.getPlayerInGame())
+			for(Player player:turnOrder.getListActionOrder())
 				if(player.getPoint().getVictory()==players.get(0).getPoint().getVictory())
 				{
 					
