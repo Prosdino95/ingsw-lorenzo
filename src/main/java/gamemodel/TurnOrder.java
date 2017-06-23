@@ -58,6 +58,10 @@ public class TurnOrder{
 	public String toString() {
 		return "" + actionOrder + "";
 	}
+	
+	public List<Player> getListActionOrder(){
+		return actionOrder.getList();
+	}
 	//TODO il mega main poi va via, lasciamolo ora lo usiamo per il debug
 	public static void main(String[] args){
 		List<Player> players=new ArrayList<>();
@@ -119,6 +123,10 @@ class ActionOrder {
 			this.playerActionOrder.addAll(playerInGame);
 	}
 	
+	public List<Player> getList() {
+		return playerActionOrder;
+	}
+
 	public void slide(Player p){
 		this.playerActionOrder.removeFirstOccurrence(p);
 		this.playerActionOrder.addLast(p);
