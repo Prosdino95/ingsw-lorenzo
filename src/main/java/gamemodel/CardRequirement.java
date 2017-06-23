@@ -23,4 +23,11 @@ public class CardRequirement {
 				
 	}
 
+	@Override
+	public String toString() {
+		return "CardRequirement [tc=" + tc + ", cc=" + cc + ", bc=" + bc + ", vc=" + vc + "]";
+	}
+	
+	
+
 }

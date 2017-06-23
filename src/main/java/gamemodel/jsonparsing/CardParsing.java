@@ -87,45 +87,27 @@ public class CardParsing {
 		}
 		return null;
 	}
-
-
-
+	
 	private void cardCostParsing(JsonValue item) {
 		rRequirement=null;
 		rPrice=null;
 		pRequirement=null;
 		pPrice=null;		
 		if(item.asObject().get("resource-requirement")!=null)
-			rRequirement=resourceParsing(item.asObject().get("resource-requirement").asObject());
+			rRequirement=ParsingHelper.resourceParsing(item.asObject().get("resource-requirement").asObject());
 		
 		if(item.asObject().get("resource-price")==null)
 			rPrice=rRequirement;
 		else
-			rPrice=resourceParsing(item.asObject().get("resource-price").asObject());
+			rPrice=ParsingHelper.resourceParsing(item.asObject().get("resource-price").asObject());
 		
 		if(item.asObject().get("point-requirement")!=null)
-			pRequirement=pointParsing(item.asObject().get("point-requirement").asObject());
+			pRequirement=ParsingHelper.pointParsing(item.asObject().get("point-requirement").asObject());
 		
 		if(item.asObject().get("point-price")==null)
 			pPrice=pRequirement;
 		else
-			pPrice=pointParsing(item.asObject().get("point-price").asObject());	
-		
-	}
-
-	private Point pointParsing(JsonValue item) {
-		int military=item.asObject().getInt("military", 0);
-		int faith=item.asObject().getInt("faith", 0);
-		int victory=item.asObject().getInt("victory", 0);
-		return new Point(military,faith,victory);
-	}
-
-	private Resource resourceParsing(JsonValue item) {
-		int gold=item.asObject().getInt("gold", 0);
-		int wood=item.asObject().getInt("wood", 0);
-		int stone=item.asObject().getInt("stone", 0);
-		int servants=item.asObject().getInt("servants", 0);
-		return new Resource(gold,stone,wood,servants);
+			pPrice=ParsingHelper.pointParsing(item.asObject().get("point-price").asObject());	
 		
 	}
 

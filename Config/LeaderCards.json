@@ -1,5 +1,24 @@
 {
     "leader-cards":[
-	
+		{
+			"id":1,
+			"name":"francesco sforza",
+			"requirements":{
+				"type":"card",
+				"venture":5
+			},
+			"activate-effect":[]
+		},
+		{
+			"id":1,
+			"name":"ludovico ariosto",
+			"requirements":{
+				"type":"card",
+				"character":5
+			},
+			"permanent-effect":{
+				"type":"no-matter.if.occupied"
+			}
+		}
     ]
 }					

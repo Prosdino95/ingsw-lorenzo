@@ -3,8 +3,10 @@ package gamemodel.jsonparsing;
 import java.util.*;
 
 
+
 import gamemodel.actionSpace.*;
 import gamemodel.card.*;
+import gamemodel.LeaderCard;
 
 public class App{
 	
@@ -16,8 +18,8 @@ public class App{
     	//testCCard();
     	//testVCard();
     	//testEx();
-    	//testLCard();
-    	testpoints();
+    	testLCard();
+    	//testpoints();
     } 
     
     private static void testpoints() {
@@ -60,11 +62,10 @@ public class App{
 	}
     
     private static void testLCard() {
-    	//List<LeaderCard> Bcard= new CustomizationFileReader<Card>("Config/LeaderCards.json",new CardParsing()::parsing).parse();
-    	//for(LeaderCard a:Bcard)
-    	//	System.out.println(a);
+    	List<LeaderCard> Bcard= new CustomizationFileReader<LeaderCard>("Config/LeaderCards.json",new LeaderCardParsing()::parsing).parse();
+    	for(LeaderCard a:Bcard)
+    		System.out.println(a);
 	}
-
 
 	private static void testAS(){
     	List<ActionSpace> AS= new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse();

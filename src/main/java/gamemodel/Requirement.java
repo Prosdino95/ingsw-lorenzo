@@ -3,9 +3,14 @@ package gamemodel;
 public class Requirement {
 	private Resource resource;
 	private CardRequirement cardReq;
+	private Point point;
 
 	public Requirement(Resource resource) {
 		this.resource = resource;
+	}
+	
+	public Requirement(Point point){
+		this.point=point;
 	}
 	
 	public Requirement(CardRequirement cr) {
@@ -25,4 +30,10 @@ public class Requirement {
 		
 		return satisfies;
 	}
+
+	@Override
+	public String toString() {
+		return "Requirement [resource=" + resource + ", cardReq=" + cardReq + ", point=" + point + "]";
+	}
+	
 }

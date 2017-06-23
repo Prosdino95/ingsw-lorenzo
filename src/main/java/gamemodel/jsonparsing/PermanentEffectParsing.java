@@ -11,14 +11,13 @@ import gamemodel.permanenteffect.*;
 public class PermanentEffectParsing {
 	
 	PermanentEffect effects;
-	IstantEffectParsing helpParsing=new IstantEffectParsing();
 
 	public PermanentEffect parsing(JsonValue item) {
 		String type;	
 		type=item.asObject().getString("type", null);
 		switch(type){
-		case "dubuff-point":return new Debuff(helpParsing.pointMod(item));
-		case "dubuff-resource":return new Debuff(helpParsing.resourceMod(item));
+		case "dubuff-point":return new Debuff(ParsingHelper.pointParsing(item));
+		case "dubuff-resource":return new Debuff(ParsingHelper.resourceParsing(item));
 		case"strength-mod":return StrenfthModify(item);
 		case"family-member-debuff":return FamilyMemberModify.allMembersDebuff(item.asObject().getInt("debuff", 0));
 		case"no-action-space":return new NoActionSpace(getActionSpaceType(item));
@@ -26,6 +25,7 @@ public class PermanentEffectParsing {
 		case"no-first-action":return new PermanentEffect(PEffect.NO_FIRST_ACTION);
 		case"victory-mod":return victoryEffect(item);
 		case"no-bonus":return new PermanentEffect(PEffect.NO_BONUS);
+		case"no-matter.if.occupied":return new PermanentEffect(PEffect.NO_MATTER_IF_OCCUPIED); 
 		default: throw new RuntimeException("effetto sconosciuto");				
 		}
 	}
@@ -34,9 +34,9 @@ public class PermanentEffectParsing {
 		Resource discount;
 		int modPower=item.asObject().getInt("value", 0);
 		ActionSpaceType asType=getActionSpaceType(item);
-		CardType cType=getCardType(item);
+		CardType cType=ParsingHelper.getCardType(item);
 		if(item.asObject().get("discount")!=null){
-			discount=helpParsing.resourceMod(item.asObject().get("discount"));
+			discount=ParsingHelper.resourceParsing(item.asObject().get("discount"));
 			return new StrengthModifyAndDiscount(modPower,asType,cType,discount);
 		}
 		return new StrengthModifyAndDiscount(modPower,asType,cType);			 
@@ -53,17 +53,7 @@ public class PermanentEffectParsing {
 		default: return null;	
 		}
 	}
-	
-	private CardType getCardType(JsonValue item){
-		String s=item.asObject().getString("card-type","");
-		switch(s){
-		case"building":return CardType.BUILDING;
-		case"territory":return CardType.TERRITORY;
-		case"venture":return CardType.VENTURE;
-		case"character":return CardType.CHARACTER;
-		default:return null;
-		}
-	}
+
 	
 	private PermanentEffect victoryEffect(JsonValue item){
 		String s=item.asObject().getString("mod","");

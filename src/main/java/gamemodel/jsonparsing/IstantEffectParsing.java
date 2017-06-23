@@ -27,9 +27,9 @@ public class IstantEffectParsing {
 			switch(type){
 				case "council-privileges":istantEffect.add(councilPrivileges(item));
 				break;
-				case "point-mod": istantEffect.add(new PointModify(pointMod(item)));
+				case "point-mod": istantEffect.add(new PointModify(ParsingHelper.pointParsing(item)));
 				break;	
-				case "resource-mod": istantEffect.add(new ResourceModify(resourceMod(item)));
+				case "resource-mod": istantEffect.add(new ResourceModify(ParsingHelper.resourceParsing(item)));
 				break;
 				case "testeffect": istantEffect.add(new TestEffects());
 				break;
@@ -52,21 +52,21 @@ public class IstantEffectParsing {
 		
 		receive=item.asObject().get("receive");
 		if(receive.asObject().get("resource")!=null)
-			rout=resourceMod(receive.asObject().get("resource"));
+			rout=ParsingHelper.resourceParsing(receive.asObject().get("resource"));
 		
 		if(receive.asObject().get("point")!=null)
-			pout=pointMod(receive.asObject().get("point"));
+			pout=ParsingHelper.pointParsing(receive.asObject().get("point"));
 		
 		try{type=item.asObject().getString("for",null);}
 		
 		catch(UnsupportedOperationException e){		
 			forWhat=item.asObject().get("for");
 			if(forWhat.asObject().get("resource")!=null){
-				rin=resourceMod(forWhat.asObject().get("resource"));
+				rin=ParsingHelper.resourceParsing(forWhat.asObject().get("Resource"));
 				type="Resource";
 			}		
 			else if(forWhat.asObject().get("point")!=null){
-				pin=pointMod(forWhat.asObject().get("point"));
+				pin=ParsingHelper.pointParsing(forWhat.asObject().get("Point"));
 				type="Point";
 			}
 		}	
@@ -82,17 +82,17 @@ public class IstantEffectParsing {
 		IstantEffect councilPrivilege=null;
 		give=item.asObject().get("give");
 		if(give.asObject().get("resource")!=null)
-			rout=resourceMod(give.asObject().get("resource"));
+			rout=ParsingHelper.resourceParsing(give.asObject().get("resource"));
 		
 		if(give.asObject().get("point")!=null)
-			pout=pointMod(give.asObject().get("point"));
+			pout=ParsingHelper.pointParsing(give.asObject().get("point"));
 		
 		receive=item.asObject().get("receive");
 		if(receive.asObject().get("resource")!=null)
-			rin=resourceMod(receive.asObject().get("resource"));
+			rin=ParsingHelper.resourceParsing(receive.asObject().get("resource"));
 		
 		if(receive.asObject().get("point")!=null)
-			pin=pointMod(receive.asObject().get("point"));
+			pin=ParsingHelper.pointParsing(receive.asObject().get("point"));
 				
 		if(receive.asObject().get("council-privileges")!=null)
 			councilPrivilege=councilPrivileges(receive.asObject().get("council-privileges"));
@@ -107,20 +107,6 @@ public class IstantEffectParsing {
 		return new CouncilPrivileges(quantity);
 	}
 
-	Point pointMod(JsonValue item) {
-		int military=item.asObject().getInt("military", 0);
-		int faith=item.asObject().getInt("faith", 0);
-		int victory=item.asObject().getInt("victory", 0);
-		return new Point(military,faith,victory);
-	}
-
-	Resource resourceMod(JsonValue item) {
-		int gold=item.asObject().getInt("gold", 0);
-		int wood=item.asObject().getInt("wood", 0);
-		int stone=item.asObject().getInt("stone", 0);
-		int servants=item.asObject().getInt("servants", 0);
-		return new Resource(gold,stone,wood,servants);
-		
-	}
+	
 	
 }

@@ -2,6 +2,9 @@ package gamemodeltest;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,16 +30,16 @@ public class LeaderCardTest {
 	@Before
 	public void setUp() throws Exception {
 		Requirement req;
-		IstantEffect ie;
+		List<IstantEffect> ie = new ArrayList<>();
 		PermanentEffect pe;
 		
 		req = new Requirement(new Resource(18, 0, 0, 0));
-		ie = new PointModify(new Point(0, 1, 0));
-		girolamo = new LeaderCard(req, ie);
+		ie.add(new PointModify(new Point(0, 1, 0)));
+		girolamo = new LeaderCard(0, null, req, ie);
 		
 		req = new Requirement(new CardRequirement(2, 2, 2, 2));
 		pe = FamilyMemberModify.allMembersN(5);
-		ludovico = new LeaderCard(req, pe);
+		ludovico = new LeaderCard(0, null, req, pe);
 		
 		
 	}
