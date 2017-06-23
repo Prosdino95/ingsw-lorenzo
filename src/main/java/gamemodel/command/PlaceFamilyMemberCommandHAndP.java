@@ -49,11 +49,13 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 								f.getPlayer().getFamilyMember(f.getColor()).use();
 								cardEffect(h.getType());
 								h.occupy();
+								f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());
 								h.addPlayer(f);
 							}
 							else{
 								f.getPlayer().getFamilyMember(f.getColor()).use();
 								f.setActionpoint(f.getActionpoint()-3);
+								f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());
 								cardEffect(h.getType());
 								h.addPlayer(f);
 							}

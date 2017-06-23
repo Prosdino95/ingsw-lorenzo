@@ -3,6 +3,7 @@ package gamemodel.command;
 import gamemodel.*;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.CardType;
+import gamemodel.permanenteffect.PEffect;
 
 public class PlaceFamilyMemberCommandTower implements Command {
 	
@@ -41,6 +42,8 @@ public class PlaceFamilyMemberCommandTower implements Command {
 	
 	private boolean militaryPointRequirement(CardType cardType){
 		if(cardType!=CardType.TERRITORY)
+			return true;
+		if(f.getPlayer().getPEffects(PEffect.NO_NEED_TO_SATISFY_MILITARY_POINTS_REQUIREMENT).size()>0)
 			return true;
 		int point=f.getPlayer().getPoint().getMilitary();
 		int card=f.getPlayer().getTerritories().size();

@@ -17,6 +17,7 @@ import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.*;
+import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.*;
 
 
@@ -38,6 +39,7 @@ public class Player implements Serializable{
 	private boolean vaticanTime=false;
 	private List<LeaderCard> lcs = new ArrayList<>();
 	private List<FamilyMember> familyMembersList; 
+	private PersonalBonusTile personalBonusTile;
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -47,6 +49,7 @@ public class Player implements Serializable{
 		this.board = board;
 		this.point=new Point(0,0,0);
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 	
 	public Player(Resource resource, Board board,Team team,Model model){
@@ -56,12 +59,14 @@ public class Player implements Serializable{
 		this.board = board;
 		this.point=new Point(0,0,0);
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 
 	public Player(Resource resource2, Point point) {
 		resource = resource2;
 		this.point = point;
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 
 	private void generateFamilyMember() {
@@ -92,6 +97,11 @@ public class Player implements Serializable{
 		this.vaticanTime=b;
 	}
 	
+	public PersonalBonusTile getPersonalBonusTile() 
+	{
+		return personalBonusTile;
+	}
+
 	
 	 public void subResources(Resource r) {
 		if (r == null) return;  
@@ -214,9 +224,11 @@ public class Player implements Serializable{
 
 	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
+		if(card.isInstanceOf(card.getIstantEffect()) && this.getPEffects(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT).size()>0)
+			for(IstantEffect ie:card.getResourceModifyInstantEffects(card.getIstantEffect()))
+				ie.activate(this);
 		if (card instanceof CharactersCard)
-				this.permanentEffects.add(((CharactersCard) card).getPermanentEffects());
-		
+			this.permanentEffects.add(((CharactersCard) card).getPermanentEffects());
 	}
 
 	public PermanentEffect getPermanentEffect(PEffect tag) {
@@ -299,7 +311,7 @@ public class Player implements Serializable{
 				throw new GameException(GameError.VATICAN_FAIL);
 		}
 					 // TODO da testare
-		if(this.point.getFaith()>=requirement) //aggiornato con il caso del caloclo finale dei punti vittoria
+		if(this.point.getFaith()>=requirement) 
 		{
 			int selection;	
 			try 
@@ -319,6 +331,8 @@ public class Player implements Serializable{
 			}
 			if(selection==1)
 			{
+				if(this.getPEffects(PEffect.FIVE_ADDITIONAL_VICTORY_POINTS_WHEN_SUPPORT_THE_CHURCH).size()>0)
+					this.addPoint(new Point(0,0,5));
 				this.subPoint(new Point(0,this.point.getFaith(),0));
 				this.addPoint(new Point(0,0,victoryPoints));
 			}

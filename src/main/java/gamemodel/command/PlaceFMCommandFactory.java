@@ -46,9 +46,9 @@ public class PlaceFMCommandFactory {
 			case MARKET:
 				return new PlaceFamilyMemberCommandMarket(action);
 			case HARVEST:
-				return new PlaceFamiliMemberCommandHandPLittle(action);
+				return new PlaceFamilyMemberCommandHandPLittle(action);
 			case PRODUCTION:
-				return new PlaceFamiliMemberCommandHandPLittle(action);
+				return new PlaceFamilyMemberCommandHandPLittle(action);
 			case COUNCIL_PALACE:
 				return new PlaceFamilyMemberCommandCouncilPlace(action);
 		}
