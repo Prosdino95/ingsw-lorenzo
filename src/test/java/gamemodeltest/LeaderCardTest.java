@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import gamemodel.Board;
 import gamemodel.CardRequirement;
+import gamemodel.Color;
 import gamemodel.card.CardType;
 import gamemodel.FamilyMember;
 import gamemodel.LeaderCard;
@@ -38,7 +39,7 @@ public class LeaderCardTest {
 		girolamo = new LeaderCard(0, null, req, ie);
 		
 		req = new Requirement(new CardRequirement(2, 2, 2, 2));
-		pe = FamilyMemberModify.allMembersN(5);
+		pe = FamilyMemberModify.coloredMembersSet(5);
 		ludovico = new LeaderCard(0, null, req, pe);
 		
 		
@@ -68,7 +69,8 @@ public class LeaderCardTest {
 		p.prepareForNewRound();
 
 		for (FamilyMember fm : p.getFamilyMembersList())
-			assertEquals(fm.getActionpoint(), 5);
+			if(fm.getColor()!= Color.UNCOLORED)
+				assertEquals(fm.getActionpoint(), 5);
 	}
 
 }

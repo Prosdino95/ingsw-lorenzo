@@ -21,11 +21,21 @@ public class Requirement implements Serializable{
 		this.cardReq = cr;
 	}
 
+	public Requirement(Point point, Resource resource, CardRequirement card) {
+		this.resource=resource;
+		this.point=point;
+		this.cardReq=card;
+	}
+
 	public boolean isSatisfiedBy(Player player) {
 		boolean satisfies = true;
 
 		if (resource != null) {
 			satisfies = player.getResource().isEnought(resource);
+		}
+		
+		if(point!= null){
+			satisfies = player.getPoint().isEnought(point);
 		}
 		
 		if (cardReq != null) {

@@ -277,7 +277,7 @@ public class Player implements Serializable{
 			if (e.hasTag(PEffect.DISCOUNT)) 
 			{
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
-				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
+				if (mf.getCtype()==CardType.ALL || mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
 					discount.addResources(mf.getDiscount());
 			}
 		if(card.controlResource(this, discount)){

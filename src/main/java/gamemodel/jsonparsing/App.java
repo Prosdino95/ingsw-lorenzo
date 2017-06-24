@@ -18,7 +18,7 @@ public class App{
     	//testCCard();
     	//testVCard();
     	//testEx();
-    	//testLCard();
+    	testLCard();
     	//testpoints();
     } 
     

@@ -11,6 +11,8 @@ public class CardRequirement implements Serializable {
 	private int cc;
 	private int bc;
 	private int vc;
+	private boolean all;
+	private int quantity;
 
 	public CardRequirement(int tc, int cc, int bc, int vc) {
 		this.tc = tc;
@@ -19,7 +21,17 @@ public class CardRequirement implements Serializable {
 		this.vc = vc;
 	}
 	
+	public CardRequirement(int quantity){
+		this.all=true;
+		this.quantity=quantity;
+	}
+	
 	public boolean isSatisfiedBy(Player p) {
+		if(all=true)
+			return(p.countCard(CardType.TERRITORY) >= quantity ||
+					p.countCard(CardType.CHARACTER) >= quantity ||
+					p.countCard(CardType.BUILDING) >= quantity ||
+					p.countCard(CardType.VENTURE) >= quantity);
 		return (p.countCard(CardType.TERRITORY) >= tc &&
 				p.countCard(CardType.CHARACTER) >= cc &&
 				p.countCard(CardType.BUILDING) >= bc &&

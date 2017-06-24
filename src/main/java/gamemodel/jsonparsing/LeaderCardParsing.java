@@ -51,11 +51,15 @@ public class LeaderCardParsing {
 		case"card":return new Requirement(cardParsing(item));
 		case"point":return new Requirement(ParsingHelper.pointParsing(item));
 		case"resource":return new Requirement(ParsingHelper.resourceParsing(item));
+		case"all":return new Requirement(ParsingHelper.pointParsing(item),ParsingHelper.resourceParsing(item),cardParsing(item));
 		}
 		return null;
 	}
 
 	private CardRequirement cardParsing(JsonValue item) {
+		int all=item.asObject().getInt("all", 0);
+		if(all!=0)
+			return new CardRequirement(all);
 		int vc=item.asObject().getInt("venture", 0);
 		int cc=item.asObject().getInt("character", 0);
 		int tc=item.asObject().getInt("territory", 0);

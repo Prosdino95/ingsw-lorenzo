@@ -67,7 +67,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
-		assertEquals(new Resource(5,5,5,0),p1.getResource());
+		assertEquals(new Resource(5,6,6,1),p1.getResource());
 	}
 	@Test 
 	public void testTooMatchServant(){

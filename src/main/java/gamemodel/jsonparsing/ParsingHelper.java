@@ -2,6 +2,7 @@ package gamemodel.jsonparsing;
 
 import com.eclipsesource.json.JsonValue;
 
+import gamemodel.Color;
 import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.card.CardType;
@@ -30,8 +31,19 @@ public class ParsingHelper {
 		case"territory":return CardType.TERRITORY;
 		case"venture":return CardType.VENTURE;
 		case"character":return CardType.CHARACTER;
+		case"all":return CardType.ALL;
 		default:return null;
 		}
+	}
+
+	public static Color getColor(String color) {
+		switch(color){
+		case"white":return Color.WHITE;
+		case"black":return Color.BLACK;
+		case"orange":return Color.ORANGE;
+		case"uncolored":return Color.UNCOLORED;
+		}
+		return null;
 	}
 
 }

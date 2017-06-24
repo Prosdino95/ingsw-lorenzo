@@ -16,21 +16,35 @@ public class PermanentEffectParsing {
 		String type;	
 		type=item.asObject().getString("type", null);
 		switch(type){
-		case "dubuff-point":return new Debuff(ParsingHelper.pointParsing(item));
-		case "dubuff-resource":return new Debuff(ParsingHelper.resourceParsing(item));
-		case"strength-mod":return StrenfthModify(item);
-		case"family-member-debuff":return FamilyMemberModify.allMembersDebuff(item.asObject().getInt("debuff", 0));
+		case"dubuff-point":return new Debuff(ParsingHelper.pointParsing(item));
+		case"dubuff-resource":return new Debuff(ParsingHelper.resourceParsing(item));
+		case"strength-mod":return strenfthModify(item);
+		case"discount":return discount(item);
+		case"family-member-set":return FamilyMemberModify.coloredMembersSet(item.asObject().getInt("set", 0));
+		case"family-member-debuff":return FamilyMemberModify.coloredMembersDebuff(item.asObject().getInt("debuff", 0));
+		case"family-member-buff":return familiMemberBuff(item);
 		case"no-action-space":return new NoActionSpace(getActionSpaceType(item));
 		case"halve-servants":return new PermanentEffect(PEffect.HALVE_SERVANTS);
 		case"no-first-action":return new PermanentEffect(PEffect.NO_FIRST_ACTION);
 		case"victory-mod":return victoryEffect(item);
 		case"no-bonus":return new PermanentEffect(PEffect.NO_BONUS);
-		case"no-matter.if.occupied":return new PermanentEffect(PEffect.NO_MATTER_IF_OCCUPIED); 
+		case"no-matter-if-occupied":return new PermanentEffect(PEffect.NO_MATTER_IF_OCCUPIED); 
+		case"no-need-to-pay-3-coins":return new PermanentEffect(PEffect.NO_NEED_TO_PAY_3_COINS);
+		case"five_addictional-victory-points-when-support-the-church":return new PermanentEffect(PEffect.FIVE_ADDITIONAL_VICTORY_POINTS_WHEN_SUPPORT_THE_CHURCH);
+		case"resoutce-twice-from-development-cards-istamt-effect":return new PermanentEffect(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT);
 		default: throw new RuntimeException("effetto sconosciuto");				
 		}
 	}
+	
+	private PermanentEffect familiMemberBuff(JsonValue item){
+		String type=item.asObject().getString("family-type", null);
+		if(type==null)
+			return FamilyMemberModify.coloredMembersBuff(item.asObject().getInt("buff", 0));
+		else 
+			return FamilyMemberModify.oneMembersBuff(item.asObject().getInt("buff", 0),ParsingHelper.getColor(type));
+	}
 
-	private PermanentEffect StrenfthModify(JsonValue item) {
+	private PermanentEffect strenfthModify(JsonValue item) {
 		Resource discount;
 		int modPower=item.asObject().getInt("value", 0);
 		ActionSpaceType asType=getActionSpaceType(item);
@@ -40,6 +54,12 @@ public class PermanentEffectParsing {
 			return new StrengthModifyAndDiscount(modPower,asType,cType,discount);
 		}
 		return new StrengthModifyAndDiscount(modPower,asType,cType);			 
+	}
+	
+	private PermanentEffect discount(JsonValue item){
+		CardType cType=ParsingHelper.getCardType(item);
+		Resource discount=ParsingHelper.resourceParsing(item);
+		return new StrengthModifyAndDiscount(discount,cType);
 	}
 	
 	private ActionSpaceType getActionSpaceType(JsonValue item){

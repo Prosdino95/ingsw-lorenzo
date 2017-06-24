@@ -77,8 +77,9 @@ public class Controller{
 	
 	public void giveLeaderCard() {
 		//TODO ordine turno
-			int index;
-			for(int i=0;i<1;i++)
+		int index;
+		sendMessageToAll("now it's time to choose your leaders, so wait your turn");	
+			for(int i=0;i<4;i++)
 				for(HandlerView hv:playerToHV.values()){
 					try {
 						index=answerToQuestion(new Question(GameQuestion.LEADER,game.getLeaderCards()),hv);
