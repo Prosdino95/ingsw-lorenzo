@@ -2,10 +2,10 @@ package gamemodel.command;
 
 import gamemodel.Action;
 
-public class PlaceFamiliMemberCommandHandPLittle extends PlaceFamilyMemberCommandHAndP{
+public class PlaceFamilyMemberCommandHandPLittle extends PlaceFamilyMemberCommandHAndP{
 	
 	
-	public PlaceFamiliMemberCommandHandPLittle(Action action){
+	public PlaceFamilyMemberCommandHandPLittle(Action action){
 		super(action);
 	}
 	
@@ -18,6 +18,7 @@ public class PlaceFamiliMemberCommandHandPLittle extends PlaceFamilyMemberComman
 						f.getPlayer().getFamilyMember(f.getColor()).use();
 						cardEffect(h.getType());
 						h.occupy();
+						f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());
 						h.addPlayer(f);
 					}
 					else throw new GameException(GameError.SA_ERR);

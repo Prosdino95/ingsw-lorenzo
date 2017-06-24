@@ -1,16 +1,15 @@
 package gamemodel.card;
 
 import java.io.Serializable;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
+import gamemodel.effects.ResourceModify;
 
 public class RealCard implements Card,Serializable {
 	
@@ -37,7 +36,26 @@ public class RealCard implements Card,Serializable {
 		this.type = type;
 		this.istantEffect=istantEffects;
 	}
-		
+	public List<IstantEffect> getIstantEffect()
+	{
+		return istantEffect;
+	}
+	public boolean isInstanceOf(List<IstantEffect> istantEffects)
+	{
+		for(IstantEffect istantEffect:istantEffects)
+			if(istantEffect instanceof ResourceModify)
+				return true;
+		return false;
+	}
+	public List<IstantEffect> getResourceModifyInstantEffects(List<IstantEffect> istantEffects)
+	{
+		List<IstantEffect> ResourceModifyInstantEffects=new ArrayList<>();
+		for(IstantEffect istantEffect:istantEffects)
+			if(istantEffect instanceof ResourceModify)
+				ResourceModifyInstantEffects.add(istantEffect);
+		return ResourceModifyInstantEffects;
+	}	
+	
 
 	public boolean controlResource(Player p,Resource discount){
 		if(resourceRequirement!=null)

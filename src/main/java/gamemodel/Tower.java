@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.card.CardType;
-import gamemodel.command.GameError;
-import gamemodel.command.GameException;
+import gamemodel.permanenteffect.PEffect;
 
 public class Tower implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,14 +20,21 @@ public class Tower implements Serializable {
 		this.type = type;
 	}
 	
-	public boolean isFree(FamilyMember f){
+	public boolean isFree(FamilyMember f)
+	{
 		if(towerFree)
 			return true;
-		else if(f.getPlayer().isEnoughtResource(new Resource(3,0,0,0))){
-			f.getPlayer().subResources(new Resource(3,0,0,0));
-			return true;
+		if(f.getPlayer().getPEffects(PEffect.NO_NEED_TO_PAY_3_COINS).isEmpty())
+		{
+			if(f.getPlayer().isEnoughtResource(new Resource(3,0,0,0)))
+			{
+				f.getPlayer().subResources(new Resource(3,0,0,0));
+				return true;
+			}
+			else
+				return false;		
 		}
-		return false;		
+		return true;
 	}
 	
 	public void occupyTower(){

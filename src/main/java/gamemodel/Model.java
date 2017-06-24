@@ -219,7 +219,7 @@ public class Model implements Serializable {
 		return controller.answerToQuestion(gq, player);
 	}
 
-	private int occurrence(List<Player> players,String string,int points)
+	private int occurrence(List<Player> players,String string,int points) //testato
 	{
 		int number=0;
 		if(string.equals("military"))
@@ -232,7 +232,7 @@ public class Model implements Serializable {
 					number++;
 		return number;
 	}
-	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players)
+	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players) //testato
 	{
 		Player temp;
 		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti miliatri
@@ -253,17 +253,17 @@ public class Model implements Serializable {
 				players.get(c).addPoint(new Point(0,0,2));
 		}
 	}
-	private void pointsVictoryAssignment(List<Player> players)
+	private void pointsVictoryAssignment(List<Player> players) //non testato
 	{
 		for(Player player:players)
 		{
-			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_FIVE_VICTORY_POINT)!=null)
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_FIVE_VICTORY_POINT).size()>0)
 				player.subPoint(new Point(0,0,player.getPoint().getVictory()/5));
-			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_TERRITORY_CARDS)==null)
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_TERRITORY_CARDS).isEmpty())
 				player.addPoint(new Point(0,0,victoryPointsBoundedToTerritoryCards.get(player.countCard(CardType.TERRITORY))));
-			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_CHARACTER_CARDS)==null)
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_CHARACTER_CARDS).isEmpty())
 				player.addPoint(new Point(0,0,victoryPointsBoundedToCharacterCards.get(player.countCard(CardType.CHARACTER))));
-			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_VENTURE_CARDS)==null)
+			if(player.getPEffects(PEffect.NO_VICTORY_POINTS_BOUNDED_TO_VENTURE_CARDS).isEmpty())
 				for(VentureCard ventureCard:player.getVentures())
 				{
 					try 
@@ -281,9 +281,9 @@ public class Model implements Serializable {
 			resources+=player.getResource().getStone();
 			resources+=player.getResource().getWood();
 			player.addPoint(new Point(0,0,resources/5));
-			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_MILITARY_POINT)!=null)
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_MILITARY_POINT).size()>0)
 				player.subPoint(new Point(0,0,player.getPoint().getMilitary()));
-			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_WOOD_AND_STONE_ON_YOUR_BUILDINGS_CARDS_COST)!=null)
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_WOOD_AND_STONE_ON_YOUR_BUILDINGS_CARDS_COST).size()>0)
 			{
 				int stoneAndWood=0;
 				for(HarvesterAndBuildings harvesterAndBuildings:player.getBuildings())
@@ -293,7 +293,7 @@ public class Model implements Serializable {
 				}
 				player.subPoint(new Point(0,0,stoneAndWood));
 			}
-			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_RESOURCE)!=null)
+			if(player.getPEffects(PEffect.LOSE_ONE_VICTORY_POINT_FOR_EVERY_RESOURCE).size()>0)
 			{
 				int resource=player.getResource().getGold();
 				resource+=player.getResource().getServant();
@@ -304,7 +304,7 @@ public class Model implements Serializable {
 		}
 		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
-	public void whoIsWinner(List<Player> players) 
+	public void whoIsWinner(List<Player> players)  //testato
 	{
 		/*pointsVictoryAssignment(players);*/
 		Player temp;
