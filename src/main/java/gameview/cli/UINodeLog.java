@@ -53,10 +53,6 @@ public class UINodeLog extends UINode
 					tree.setPlayer(team);
 					System.out.println("Now get out of this log and play!");
 					break;
-				case VATICAN_SUPPORT:
-					System.out.println(sr.getQuestion());
-					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));
-					break;
 				case LEADER:
 					System.out.println(sr.getQuestion());
 					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));

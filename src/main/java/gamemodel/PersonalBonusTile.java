@@ -1,13 +1,17 @@
 package gamemodel;
 
+import java.io.Serializable;
+
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.PointModify;
 import gamemodel.effects.ResourceModify;
 
-public class PersonalBonusTile 
+public class PersonalBonusTile  implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
 	IstantEffect harvest;
 	IstantEffect[] production=new IstantEffect[2];
 	
