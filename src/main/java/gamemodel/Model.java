@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,6 @@ import gamemodel.card.*;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
-import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.command.PlaceFMCommandFactory;
 import gamemodel.jsonparsing.ASParsing;
@@ -28,7 +26,6 @@ import gamemodel.jsonparsing.FaithRequirements;
 import gamemodel.jsonparsing.LeaderCardParsing;
 import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
-import reti.ServerResponse;
 import reti.server.Controller;
 
 public class Model implements Serializable {
@@ -43,9 +40,10 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	private transient int turn=1;
+	private transient int turn=2;
 	private Player currentPlayer;
 	private List<Object> leaderCard=new ArrayList<>();
+	private int actionCount;
 	
 	
 	public static void main(String[] args){
@@ -71,30 +69,22 @@ public class Model implements Serializable {
 	
 	
 	
-	public void finishAction(){
-		if(turn%2==0 )
-			vaticanReport(currentPlayer);
-		if(!turnOrder.hasNext() && turn%2==0 ){
-			
-			currentPlayer.unsetCurrentPlayer();
-			controller.sendMessageToAll("Now it's time to talk to the Pope");
-			controller.vaticanQuestion();
+	public void finishAction() throws GameException{
+		actionCount++;
+		if(turn%2==0 && actionCount>3*players.size()){
+			Integer faithPoints=faithPointsRequirement.get(turn/2);
+			Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
+			//TODO cambiare 0 con faithpoint
+			currentPlayer.vaticanReport(2/2,0,victoryPoints);
 		}
-		else if(!turnOrder.hasNext()){			
+		if(!turnOrder.hasNext()){			
 			System.out.println("next turn");
 			turn++;
+			actionCount=1;
 			setupRound();
 			nextTurn();
 		}		
-		else 
-			nextTurn();
-	}
-
-	public void vaticanReport(Player p) throws GameException{
-		Integer faithPoints=faithPointsRequirement.get(turn/2);
-		Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
-		p.vaticanReport(turn/2,faithPoints,victoryPoints);
-		
+		else nextTurn();
 	}
 
 	public void setupRound() {		
@@ -176,8 +166,6 @@ public class Model implements Serializable {
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
-		//TODO remove
-		getPlayer(Team.BLUE).setvaticanTime(true);
 		
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);
@@ -347,6 +335,10 @@ public class Model implements Serializable {
 
 	public List<Object> getLeaderCards() {
 		return this.leaderCard;
+	}
+
+	public void sendMessage(String string, Player player) {
+		controller.sendMessage(string, player);		
 	}
 
 }

@@ -35,7 +35,7 @@ public class Player implements Serializable{
 	private transient Action currentAction = new Action();
 	private transient Model model;
 	private transient boolean currentPlayer=false;
-	private boolean vaticanTime=false;
+	private boolean death=false;
 	private List<LeaderCard> lcs = new ArrayList<>();
 	private List<FamilyMember> familyMembersList; 
 	
@@ -82,16 +82,6 @@ public class Player implements Serializable{
 		FamilyMember f = familyMembers.get(color);
 		f.setActionpoint(actionPoint);		
 	}
-	
-	public boolean getvaticanTime()
-	{
-		return this.vaticanTime;
-	}
-	public void setvaticanTime(boolean b)
-	{
-		this.vaticanTime=b;
-	}
-	
 	
 	 public void subResources(Resource r) {
 		if (r == null) return;  
@@ -296,7 +286,7 @@ public class Player implements Serializable{
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-				throw new GameException(GameError.VATICAN_FAIL);
+				model.sendMessage("now it's time to talk to the Pope but you are excommunicated",this);
 		}
 					 // TODO da testare
 		if(this.point.getFaith()>=requirement) //aggiornato con il caso del caloclo finale dei punti vittoria
@@ -315,7 +305,7 @@ public class Player implements Serializable{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 				if(period==3)
 					addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-				throw new GameException(GameError.VATICAN_NOOO);
+				model.sendMessage("hai deciso di non supportare il papa", this);
 			}
 			if(selection==1)
 			{
@@ -329,11 +319,8 @@ public class Player implements Serializable{
 			return model.answerToQuestion(question, this);
 		}
 
-		public void setCurrentPlayer() {
-			if(death==true)
-				model.finishAction();
+		public void setCurrentPlayer(){
 			this.currentPlayer=true;	
-			//TODO timer
 		}
 		
 		public void finishAction() throws GameException{

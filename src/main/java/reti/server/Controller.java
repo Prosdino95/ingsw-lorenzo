@@ -188,10 +188,5 @@ public class Controller{
 			hv.sendResponse(new ServerResponse(message));
 	}
 
-	public void vaticanQuestion() {		
-		for(HandlerView hv:playerToHV.values())				
-			hv.sendResponse(new ServerResponse(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()),ResponseType.VATICAN_SUPPORT));
-	}
-
 
 }
