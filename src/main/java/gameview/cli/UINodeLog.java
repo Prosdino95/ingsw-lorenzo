@@ -27,6 +27,7 @@ public class UINodeLog extends UINode
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
 				e.printStackTrace();
 			}
 			

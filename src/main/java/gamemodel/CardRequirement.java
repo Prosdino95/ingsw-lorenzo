@@ -27,7 +27,7 @@ public class CardRequirement implements Serializable {
 	}
 	
 	public boolean isSatisfiedBy(Player p) {
-		if(all=true)
+		if(all==true)
 			return(p.countCard(CardType.TERRITORY) >= quantity ||
 					p.countCard(CardType.CHARACTER) >= quantity ||
 					p.countCard(CardType.BUILDING) >= quantity ||

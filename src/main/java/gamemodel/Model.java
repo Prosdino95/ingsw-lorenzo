@@ -40,9 +40,9 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	private transient int turn=2;
+	private transient int turn=1;
 	private Player currentPlayer;
-	private List<Object> leaderCard=new ArrayList<>();
+	private transient List<Object> leaderCard=new ArrayList<>();
 	private int actionCount;
 	
 	
@@ -75,7 +75,7 @@ public class Model implements Serializable {
 			Integer faithPoints=faithPointsRequirement.get(turn/2);
 			Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
 			//TODO cambiare 0 con faithpoint
-			currentPlayer.vaticanReport(2/2,0,victoryPoints);
+			currentPlayer.vaticanReport(turn,0,victoryPoints);
 		}
 		if(!turnOrder.hasNext()){			
 			System.out.println("next turn");

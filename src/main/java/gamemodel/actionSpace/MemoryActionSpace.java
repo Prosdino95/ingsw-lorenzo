@@ -66,7 +66,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		if(!this.players.isEmpty()){
 			str+=", players:[";
 			for(Player p:players)
-			str +=p.getTeam()+" ";
+				str +=p.getTeam()+" ";
 			str+="] ";
 		}	
 		str+="\n";

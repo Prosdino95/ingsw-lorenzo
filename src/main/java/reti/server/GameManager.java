@@ -43,7 +43,7 @@ public class GameManager implements Runnable
 		c.run();
 	}
 	
-	private synchronized void checkWait()
+	/*private synchronized void checkWait()
 	{
 		try 
 		{
@@ -52,8 +52,9 @@ public class GameManager implements Runnable
 		catch (InterruptedException e) 
 		{
 			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
-	}
+	}*/
 	
 	public synchronized void addHV(HandlerView hv)
 	{
@@ -77,8 +78,8 @@ public class GameManager implements Runnable
 				{
 					case 0: this.wait();break;
 					case 1: this.wait();break;
-					case 2: new Timer().schedule(new T(this),delay);this.checkWait();break;
-					case 3: new Timer().schedule(new T(this),delay);this.checkWait();break;
+					case 2: new Timer().schedule(new T(this),delay);this.wait();break;
+					case 3: new Timer().schedule(new T(this),delay);this.wait();break;
 				}
 			}
 			this.setupGame();
@@ -86,6 +87,7 @@ public class GameManager implements Runnable
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
+			Thread.currentThread().interrupt();
 		}		
 	}
 

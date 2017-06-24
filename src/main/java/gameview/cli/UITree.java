@@ -39,9 +39,6 @@ public class UITree {
 				new UINodeSetRequestType("Notify finish action",
 						request::setType,
 						RequestType.FINISHACTION, this);
-				new UINodeSetRequestType("Place family member", 
-						request::setType, 
-						RequestType.PLACEFAMILYMEMBER, this);
 		UINodeChooseValue<ActionSpace> where = 
 				new UINodeChooseValue<ActionSpace>("Where?",
 						request::setWhere,
@@ -56,9 +53,9 @@ public class UITree {
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
 		UINode talkToServer = new UINodeTalkToServer("Waiting for server response...", this);
-		UINodeSetRequestType vatican= new UINodeSetRequestType("Talk to the Pope", 
+		/*UINodeSetRequestType vatican= new UINodeSetRequestType("Talk to the Pope", 
 										request::setType, 
-										RequestType.VATICAN_REPORT, this);
+										RequestType.VATICAN_REPORT, this);*/
 		
 		root= log.addSon(
 				menu.addSon(

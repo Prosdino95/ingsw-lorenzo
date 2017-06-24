@@ -107,9 +107,9 @@ public class Player implements Serializable{
 		
 		 for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
 		 {
-			 r.subResources(((Debuff)permanentEffect).getResources());
-			 r.normalize();
-		 }	
+			r.subResources(((Debuff)permanentEffect).getResources());
+			r.normalize();
+		 }		 	
 		 this.resource.addResources(r);
 	} 
 	

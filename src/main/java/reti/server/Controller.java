@@ -46,6 +46,7 @@ public class Controller{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
 			continue;
 		}
@@ -147,13 +148,14 @@ public class Controller{
 			sr = new ServerResponse(gq,ResponseType.LEADER);
 		else
 			sr = new ServerResponse(gq);			
-			hv.sendResponse(sr);
-			//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
+		hv.sendResponse(sr);
+		//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
 			while (!requestAvailable()) {
 				try {
 					Thread.sleep(100);
-				} catch (InterruptedException e) {					
+				} catch (InterruptedException e) {						
 					e.printStackTrace();
+					Thread.currentThread().interrupt();
 				}
 				if (deadHVs.contains(hv))
 					throw new GameException(GameError.PLAYER_DEAD);

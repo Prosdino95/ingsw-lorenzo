@@ -22,9 +22,8 @@ public class PersonalBonusTile  implements Serializable
 		production[1]=new ResourceModify(resourceP);
 	}
 	
-	public void activate(Player player,ActionSpaceType type)
+	public void activate(Player player,ActionSpaceType type) throws GameException
 	{
-		try {
 			if(type==ActionSpaceType.HARVEST)
 				harvest.activate(player);
 			if(type==ActionSpaceType.PRODUCTION)
@@ -32,9 +31,5 @@ public class PersonalBonusTile  implements Serializable
 				production[0].activate(player);
 				production[1].activate(player);
 			}
-			
-		} catch (GameException e) {
-			e.printStackTrace();
-		}
-	}
+	}		
 }

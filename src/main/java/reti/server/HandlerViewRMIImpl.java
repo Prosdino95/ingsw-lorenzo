@@ -12,9 +12,9 @@ import reti.ServerResponse;
 
 public class HandlerViewRMIImpl extends UnicastRemoteObject implements HandlerView,HandlerViewRMI {
 	
-	private Controller controller;
+	private transient Controller controller;
 	private Player player;
-	private HandlerServerRMI hsr;
+	private transient HandlerServerRMI hsr;
 
 	private static final long serialVersionUID = 1L;
 

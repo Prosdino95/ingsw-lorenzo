@@ -17,10 +17,10 @@ import reti.ServerResponse;
 public class HandlerServerRMIImpl extends UnicastRemoteObject implements HandlerServerRMI, HandlerServer {
 	
 	private static final long serialVersionUID = 1L;
-	private ViewController vc;
-	private HandlerViewRMI hv;
+	private transient ViewController vc;
+	private transient HandlerViewRMI hv;
 	
-	protected HandlerServerRMIImpl(ViewController viewController) throws RemoteException, NotBoundException {
+	public HandlerServerRMIImpl(ViewController viewController) throws RemoteException, NotBoundException {
 		Registry r=LocateRegistry.getRegistry();
 		RMIAccept acc=(RMIAccept) r.lookup("rai");
 		this.hv=acc.accept(this);

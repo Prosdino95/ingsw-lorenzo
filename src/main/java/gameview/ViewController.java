@@ -11,6 +11,7 @@ import java.util.Queue;
 import reti.ClientRequest;
 import reti.ServerResponse;
 import reti.client.HandlerServer;
+import reti.client.HandlerServerRMIImpl;
 import reti.client.HandlerSocket;
 
 public class ViewController {
@@ -23,9 +24,9 @@ public class ViewController {
 	
 	public ViewController() throws IOException, InterruptedException, NotBoundException{
 		super();
-		hs=new HandlerSocket(this);
-		//hs=new HandlerServerRMIImpl(this);
-		new Thread((Runnable) hs).start();
+		//hs=new HandlerSocket(this);
+		hs=new HandlerServerRMIImpl(this);
+		//new Thread((Runnable) hs).start();
 	}
 	
 	public boolean hasMessage()
@@ -82,6 +83,7 @@ public class ViewController {
 	    	try {
 	    		Thread.sleep(100); 
 	    	} catch (InterruptedException e) {
+	    		Thread.currentThread().interrupt();
 	    		e.printStackTrace(); 
 	    	}     	
 	    	srr = getSRIn(); 

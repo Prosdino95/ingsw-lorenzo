@@ -35,8 +35,8 @@ public class Board implements Serializable {
 
 	
 	public Board() {
-		this.actionSpaces = new ArrayList<ActionSpace>();
-		this.cards = new ArrayList<Card>();
+		this.actionSpaces = new ArrayList<>();
+		this.cards = new ArrayList<>();
 		this.dice=new Dice();
 	}
 	
@@ -44,10 +44,10 @@ public class Board implements Serializable {
 		this.actionSpaces = actionSpaces;
 		this.dice=new Dice();
 		this.cards = cards;
-		this.ventureCards = new ArrayList<Card>();
-		this.buildingCards = new ArrayList<Card>();
-		this.characterCards = new ArrayList<Card>();
-		this.territoryCards = new ArrayList<Card>();
+		this.ventureCards = new ArrayList<>();
+		this.buildingCards = new ArrayList<>();
+		this.characterCards = new ArrayList<>();
+		this.territoryCards = new ArrayList<>();
 		for (Card c : cards) {
 			switch (c.getType()) {
 			case BUILDING:
