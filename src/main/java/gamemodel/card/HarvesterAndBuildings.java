@@ -1,45 +1,67 @@
 package gamemodel.card;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import gamemodel.GameQuestion;
 import gamemodel.Player;
 import gamemodel.Point;
+import gamemodel.Question;
 import gamemodel.Resource;
 import gamemodel.command.GameException;
+import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
+import gamemodel.effects.ResourceModify;
 
 public class HarvesterAndBuildings extends Card implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
 	private Integer actionCost;
-	private List<IstantEffect> activateEffect;
+	private List<IstantEffect> permanentEffects;
+	private List<Object> choice;
 	
 	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
-			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> activateEffect, 
+			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> permanentEffects, 
 			CardType type,int actionCost)
 	{
 		super(id,name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type);
 		this.actionCost=actionCost;
-		this.activateEffect=activateEffect;
+		this.permanentEffects=permanentEffects;
 	}
 	
 	public Integer getActionCost(){
 		return this.actionCost;
 	}
 	
-	public void activePermanentEffect(Player p) throws GameException {
-		for(IstantEffect e:this.activateEffect)
+	public void activePermanentEffect(Player p) throws GameException 
+	{
+		int selection;
+		if(getExchangeEffects(permanentEffects).size()>1)
+			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+		
+		
+		
+		for(IstantEffect e:this.permanentEffects)
 			e.activate(p);	
 	}
 
 
-	public Collection<IstantEffect> getActivateEffects() {
-		return this.activateEffect;
+	public List<IstantEffect> getPermanentEffects() {
+		return this.permanentEffects;
 	}
+	
+	public List<IstantEffect> getExchangeEffects (List<IstantEffect> permanenetEffects)
+	{
+		List<IstantEffect> exchangeEffects=new ArrayList<>();
+		for(IstantEffect permanentEffect:permanentEffects)
+			if(permanentEffect instanceof Exchange)
+				exchangeEffects.add(permanentEffect);
+		return exchangeEffects;
+	}	
 
 	/*@Override
 	public String toString() {
@@ -65,8 +87,8 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";		
 		str +="Action Cost-> "+this.actionCost+ "\n";
-		if(this.activateEffect!=null)
-			str +="Action effect-> "+this.activateEffect+ "\n";		
+		if(this.permanentEffects!=null)
+			str +="Action effect-> "+this.permanentEffects+ "\n";		
 		return str;
 	}
 

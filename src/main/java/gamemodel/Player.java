@@ -215,7 +215,7 @@ public class Player implements Serializable{
 
 	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
-		if(card.isInstanceOf(card.getIstantEffect()) && this.getPEffects(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT).size()>0)
+		if(card.isInstanceOfResourceModify(card.getIstantEffect()) && this.getPEffects(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT).size()>0)
 			for(IstantEffect ie:card.getResourceModifyInstantEffects(card.getIstantEffect()))
 				ie.activate(this);
 		if (card instanceof CharactersCard)

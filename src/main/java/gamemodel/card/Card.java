@@ -43,7 +43,7 @@ public class Card implements Serializable {
 	{
 		return istantEffect;
 	}
-	public boolean isInstanceOf(List<IstantEffect> istantEffects)
+	public boolean isInstanceOfResourceModify(List<IstantEffect> istantEffects)
 	{
 		for(IstantEffect istantEffect:istantEffects)
 			if(istantEffect instanceof ResourceModify)
