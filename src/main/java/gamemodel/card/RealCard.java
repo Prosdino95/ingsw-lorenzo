@@ -20,7 +20,7 @@ public class RealCard implements Card,Serializable {
 	protected Resource resourcePrice;
 	protected Point pointRequirement;
 	protected Point pointPrice;
-	protected List<IstantEffect> istantEffect;
+	protected List<IstantEffect> istantEffect = new ArrayList<>();
 	protected CardType type;
 	protected final int id;
 	

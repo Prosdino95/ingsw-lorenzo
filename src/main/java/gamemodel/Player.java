@@ -118,6 +118,7 @@ public class Player implements Serializable{
 	}
 	
 	public FamilyMember getFamilyMember(Color c){
+		if (c == Color.STRANGE) return new FamilyMember(null, null);
 		return familyMembers.get(c);
 	}
 	
@@ -333,6 +334,10 @@ public class Player implements Serializable{
 			return model.answerToQuestion(question, this);
 		}
 
+		public Integer answerToQuestion(int defaultChoice, Question question) throws GameException {
+			return model.answerToQuestion(defaultChoice, question, this);
+		}
+
 		public void setCurrentPlayer(){
 			this.currentPlayer=true;	
 		}
@@ -407,4 +412,17 @@ public class Player implements Serializable{
 		public void setBoard(Board b) {
 			board = b;
 		}
+
+		public void registerPermanentEffect(PermanentEffect tempEffect) {
+			permanentEffects.add(tempEffect);
+		}
+		
+		public void removePermanentEffect(PermanentEffect eff) {
+			if (permanentEffects.contains(eff))
+				permanentEffects.removeIf(e -> e.equals(eff));
+			else
+				throw new RuntimeException();
+		}
+
+
 }

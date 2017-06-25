@@ -172,4 +172,17 @@ public class Board implements Serializable {
 		return null;
 	}
 
+	public List<TowerActionSpace> getActionSpaces(CardType cardType) {
+		List<TowerActionSpace> lst = new ArrayList<>();
+		for (ActionSpace as : actionSpaces) {
+			if (as.getType() != ActionSpaceType.TOWER) continue;
+			TowerActionSpace tas = (TowerActionSpace) as;
+			Card card = tas.getCard();
+			if (card != null && 
+					(card.getType() == cardType || cardType == CardType.ALL)) 
+				lst.add(tas);
+		}
+		return lst;
+	}
+
 }

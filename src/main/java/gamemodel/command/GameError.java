@@ -19,7 +19,7 @@ public enum GameError {
 	MILITARY_POINT, 
 	TOO_CARD, 
 	NOT_ENOUGH_MONEY, 
-	VATICAN_FAIL, VATICAN_NOOO;
+	VATICAN_FAIL, VATICAN_NOOO, NOT_PLAYING_ONLINE;
 	
 	@Override
 	public String toString() {
@@ -39,7 +39,7 @@ public enum GameError {
 		case MILITARY_POINT:return"punti militari insufficienti";
 		case TOO_CARD:return"possiedi gia troppe carte di questo tipo";
 		case NOT_ENOUGH_MONEY:return"Non hai abbastanza monete per occupare una torre";
-		default: throw new IllegalArgumentException();
+		default: return this.name().toString();
 		}
 	}
 }
