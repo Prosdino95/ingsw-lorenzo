@@ -8,6 +8,7 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
+import gamemodel.Board;
 import gamemodel.CardRequirement;
 import gamemodel.LeaderCard;
 import gamemodel.Requirement;
@@ -23,7 +24,12 @@ public class LeaderCardParsing {
 	private List<IstantEffect> activateEffect;
 	private PermanentEffect permanentEffect;
 	private List<LeaderCard>leaderCard=new ArrayList<>();
+	private Board board;
 	
+	public LeaderCardParsing(Board board) {
+		this.board=board;
+	}
+
 	public List<LeaderCard> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("leader-cards").asArray();
 		for (JsonValue item : items) {
@@ -33,7 +39,7 @@ public class LeaderCardParsing {
 			requirements=requirementsParsing(item.asObject().get("requirements"));
 			if(item.asObject().get("activate-effect")!=null){
     			activateEffect=new ArrayList<>();
-    			activateEffect=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
+    			activateEffect=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray(),board);
     			leaderCard.add(new LeaderCard(id, name, requirements, activateEffect));
     		}
     		if(item.asObject().get("permanent-effect")!=null){

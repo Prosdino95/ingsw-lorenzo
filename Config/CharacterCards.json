@@ -145,6 +145,11 @@
       		{
       		    "type":"point-mod",
       		    "faith":4
+      		},
+      		{
+      			"type":"bonus-action",
+      			"action-value":4,
+      			"card-type":"all"
       		}
       	    ]				
 	},
@@ -160,6 +165,11 @@
       		{
       		    "type":"point-mod",
       		    "military":2
+      		},
+      		{
+      			"type":"bonus-action",
+      			"action-value":6,
+      			"card-type":"territory"
       		}
       	    ]						
 	},
@@ -172,6 +182,14 @@
 		"gold":4			
 	    },
 	    "istant-effect": [
+	    		{	
+      			"type":"bonus-action",
+      			"action-value":6,
+      			"card-type":"character",
+      			"discount":{
+      						"gold":2
+      						}
+      		}
       		
       	    ]						
 	},
@@ -184,6 +202,15 @@
 		"gold":3			
 	    },
 	    "istant-effect": [
+	    	{	
+      			"type":"bonus-action",
+      			"action-value":6,
+      			"card-type":"building",
+      			"discount":{
+      						"wood":1,
+      						"stone":1
+      						}
+      		}
       		
       	    ]						
 	},
@@ -196,9 +223,14 @@
 		"gold":4		
 	    },
 	    "istant-effect": [
-		{
+			{
       		    "type":"council-privileges",
       		    "quantity":1
+      		},
+      		{
+      			"type":"bonus-action",
+      			"action-value":6,
+      			"card-type":"venture"
       		}
       		
       	    ]						
@@ -280,7 +312,7 @@
 			    "victory":2
 			}
 		    },
-		    "for":"TERRITORIES",
+		    "for":"TERRITORY",
 		    "quantity":1		
 		}	
       		
@@ -302,7 +334,7 @@
 			    "victory":2
 			}
 		    },
-		    "for":"BUILDINGS",
+		    "for":"BUILDING",
 		    "quantity":1		
 		}	
       		
@@ -324,7 +356,7 @@
 			    "victory":2
 			}
 		    },
-		    "for":"CHARACTERS",
+		    "for":"CHARACTER",
 		    "quantity":1		
 		}	
       		
@@ -346,7 +378,7 @@
 			    "victory":2
 			}
 		    },
-		    "for":"VENTURES",
+		    "for":"VENTURE",
 		    "quantity":1		
 		}	      										
       	    ]						
@@ -416,9 +448,14 @@
 		"gold":6		
 	    },
 	    "istant-effect": [
-		{
+			{
       		    "type":"council-privileges",
       		    "quantity":1
+      		},
+      		{
+      			"type":"bonus-action",
+      			"action-value":7,
+      			"card-type":"all"
       		}
       		
       	    ]						

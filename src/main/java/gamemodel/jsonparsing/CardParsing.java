@@ -23,7 +23,12 @@ public class CardParsing {
 	private List<IstantEffect> istantEffects,activateEffects;
 	private PermanentEffect permanentEffects;
 	private CardType type;
-	private int id=0;
+	private int id=0;	
+	private Board board;
+	
+	public CardParsing(Board board){
+		this.board=board;
+	}
 	
 	public List<Card> parsing(String json){
 		JsonArray items = arrayBuild(json); 
@@ -36,11 +41,11 @@ public class CardParsing {
     		cardCostParsing(item);
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
-    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray());
+    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray(),board);
     		}
     		if(item.asObject().get("activate-effect")!=null){
     			activateEffects=new ArrayList<>();
-    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
+    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray(),board);
     		}
     		if(item.asObject().get("permanent-effect")!=null){
     			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect"));

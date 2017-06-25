@@ -42,9 +42,9 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 			
 			int selection;
 			try {
-				selection = player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				selection = player.answerToQuestion(0,new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
 				while(selectionHistory.contains(selection) || selection>4)
-					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
+					selection = player.answerToQuestion(0,new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
 				effect(selection,player);
 				selectionHistory.add(selection);
 				

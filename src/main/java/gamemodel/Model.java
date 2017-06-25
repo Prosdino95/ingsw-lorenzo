@@ -145,21 +145,21 @@ public class Model implements Serializable {
 		victoryPointsBoundedToCharacterCards.put(6,21);
 	}
 	public void initializeGame(int num) {
-
+		board = new Board();
 
 		List<Card> developmentCards = new ArrayList<Card>();
-		developmentCards.addAll(new CustomizationFileReader<Card>("Config/CharacterCards.json",new CardParsing()::parsing).parse());
-		developmentCards.addAll(new CustomizationFileReader<Card>("Config/VentureCards.json",new CardParsing()::parsing).parse());
-		developmentCards.addAll(new CustomizationFileReader<Card>("Config/TerritoryCards.json",new CardParsing()::parsing).parse());
-		developmentCards.addAll(new CustomizationFileReader<Card>("Config/BuildingCards.json",new CardParsing()::parsing).parse());				
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/CharacterCards.json",new CardParsing(board)::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/VentureCards.json",new CardParsing(board)::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/TerritoryCards.json",new CardParsing(board)::parsing).parse());
+		developmentCards.addAll(new CustomizationFileReader<Card>("Config/BuildingCards.json",new CardParsing(board)::parsing).parse());				
 		Collections.shuffle(developmentCards);
 
 		List<ActionSpace> actionSpaces = new ArrayList<ActionSpace>();
 		
-		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing()::parsing).parse());
-		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing()::parsing).parse());
+		actionSpaces.addAll(new CustomizationFileReader<ActionSpace>("Config/ActionSpace.json",new ASParsing(board)::parsing).parse());
+		actionSpaces.addAll(new CustomizationFileReader<TowerActionSpace>("Config/TowerActionSpace.json",new TowerASParsing(board)::parsing).parse());
 		
-		board = new Board(developmentCards, actionSpaces);
+		board.addBoard(developmentCards, actionSpaces);
 
 		// Initialize players
 		players = new ArrayList<Player>();
@@ -171,7 +171,7 @@ public class Model implements Serializable {
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);
 		
-		leaderCard.addAll(new CustomizationFileReader<LeaderCard>("Config/LeaderCards.json",new LeaderCardParsing()::parsing).parse());
+		leaderCard.addAll(new CustomizationFileReader<LeaderCard>("Config/LeaderCards.json",new LeaderCardParsing(board)::parsing).parse());
 		
 		List<Integer> faithRequirement=new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
 		faithPointsRequirement.put(1,faithRequirement.get(0));
@@ -199,6 +199,7 @@ public class Model implements Serializable {
 	public Board getBoard() {
 		return board;
 	}
+
 	
 	public List<Player> getPlayers() {
 		return this.players;

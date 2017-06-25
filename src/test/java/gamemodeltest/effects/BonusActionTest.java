@@ -1,11 +1,10 @@
 package gamemodeltest.effects;
 
-import static org.junit.Assert.*;
+
 
 import org.junit.Before;
 import org.junit.Test;
 
-import gamemodel.Board;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Resource;

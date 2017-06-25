@@ -335,10 +335,10 @@
       		    "type":"point-mod",
       		    "faith":1
       		},
-      		{
-      		    "type":"testeffect"
-      		    
-
+			{
+      			"type":"bonus-action",
+      			"action-value":7,
+      			"card-type":"all"
       		}
       	    ],
 	    "activate-effect":[]						

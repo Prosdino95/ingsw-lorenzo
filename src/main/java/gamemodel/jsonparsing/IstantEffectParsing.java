@@ -9,18 +9,20 @@ import com.eclipsesource.json.JsonValue;
 
 import gamemodel.effects.*;
 import gamemodel.*;
+import gamemodel.card.CardType;
 
 
 public class IstantEffectParsing {
 	
 	private List<IstantEffect> istantEffect;
 	
+	
 	public IstantEffectParsing(){
 		istantEffect=new ArrayList<>();
 	}
 
 	
-	public List<IstantEffect> parsing(JsonArray effects) {
+	public List<IstantEffect> parsing(JsonArray effects,Board board) {
 		String type;
 		for (JsonValue item : effects){		
 			type=item.asObject().getString("type", null);
@@ -37,11 +39,23 @@ public class IstantEffectParsing {
 				break;
 				case "resource-for-resource": istantEffect.add(resourceForResource(item));
 				break;	
+				case "bonus-action": istantEffect.add(bonusAction(item,board));
 			}	
 		}
 		return istantEffect;
 	}
 	
+	private IstantEffect bonusAction(JsonValue item,Board board) {
+		Resource resource;
+		CardType type=ParsingHelper.getCardType(item);
+		if(item.asObject().get("discount")==null)
+			resource=new Resource(0,0,0,0);
+		else resource=ParsingHelper.resourceParsing(item.asObject().get("discount"));
+		int actionValue=item.asObject().getInt("action-value", 0);
+		return new BonusAction(board, actionValue, type, resource);
+	}
+
+
 	private IstantEffect resourceForResource(JsonValue item) {
 		JsonValue forWhat,receive;
 		String type=null;

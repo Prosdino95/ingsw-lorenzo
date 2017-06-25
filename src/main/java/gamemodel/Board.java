@@ -27,27 +27,13 @@ public class Board implements Serializable {
 	private transient List<Card> buildingCards;
 	private transient List<Card> characterCards; 
 	private transient List<Card> ventureCards;
-	
-	private transient List<Card> cards;
-	
 	private transient Dice dice;
 	private Excommunication[]excommunicationCards=new Excommunication[3];
 
 	
-	public Board() {
-		this.actionSpaces = new ArrayList<>();
-		this.cards = new ArrayList<>();
-		this.dice=new Dice();
-	}
 	
-	public Board(List<Card> cards, List<ActionSpace> actionSpaces) {
+	public void addBoard(List<Card> cards, List<ActionSpace> actionSpaces) {
 		this.actionSpaces = actionSpaces;
-		this.dice=new Dice();
-		this.cards = cards;
-		this.ventureCards = new ArrayList<>();
-		this.buildingCards = new ArrayList<>();
-		this.characterCards = new ArrayList<>();
-		this.territoryCards = new ArrayList<>();
 		for (Card c : cards) {
 			switch (c.getType()) {
 			case BUILDING:
@@ -66,6 +52,14 @@ public class Board implements Serializable {
 				break;
 			}
 		}
+	}
+	
+	public Board() {		
+		this.dice=new Dice();
+		this.ventureCards = new ArrayList<>();
+		this.buildingCards = new ArrayList<>();
+		this.characterCards = new ArrayList<>();
+		this.territoryCards = new ArrayList<>();
 	}
 
 	public void setupRound(int turn) {
@@ -162,9 +156,6 @@ public class Board implements Serializable {
 		excommunicationCards[0]=ex.get(random);
 		excommunicationCards[1]=ex.get(random+7);
 		excommunicationCards[2]=ex.get(random+14);	
-		System.out.println(excommunicationCards[0]);
-		System.out.println(excommunicationCards[1]);
-		System.out.println(excommunicationCards[2]);
 	}
 
 	public LeaderCard getLC(Integer lcId) {
@@ -184,5 +175,6 @@ public class Board implements Serializable {
 		}
 		return lst;
 	}
+
 
 }
