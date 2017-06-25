@@ -11,7 +11,7 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 
-public class HarvesterAndBuildings extends RealCard implements Serializable
+public class HarvesterAndBuildings extends Card implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;

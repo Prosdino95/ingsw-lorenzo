@@ -10,7 +10,7 @@ import gamemodel.Resource;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class CharactersCard extends RealCard implements Serializable {
+public class CharactersCard extends Card implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private PermanentEffect permanentEffect;

@@ -60,6 +60,7 @@ public class Board implements Serializable {
 		this.buildingCards = new ArrayList<>();
 		this.characterCards = new ArrayList<>();
 		this.territoryCards = new ArrayList<>();
+		this.actionSpaces=new ArrayList<>();
 	}
 
 	public void setupRound(int turn) {

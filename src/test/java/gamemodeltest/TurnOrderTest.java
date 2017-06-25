@@ -14,7 +14,7 @@ import gamemodel.Team;
 import gamemodel.TurnOrder;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
-import gamemodel.card.RealCard;
+import gamemodel.card.Card;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.PEffect;
@@ -123,7 +123,7 @@ public class TurnOrderTest {
 	
 	@Test
 	public void sledeEffect() throws GameException {
-		RealCard c=new CharactersCard(0, null, 0, null, null, null, null, new ArrayList<>(), new PermanentEffect(PEffect.NO_FIRST_ACTION), CardType.CHARACTER);
+		Card c=new CharactersCard(0, null, 0, null, null, null, null, new ArrayList<>(), new PermanentEffect(PEffect.NO_FIRST_ACTION), CardType.CHARACTER);
 		for(int i=0;i<4;i++){
 			result.add(p1);
 			result.add(p2);

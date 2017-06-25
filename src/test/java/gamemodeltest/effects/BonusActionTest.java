@@ -40,7 +40,7 @@ public class BonusActionTest {
 		ba.activate(p);
 	}
 
-	@Test
+	@Test(expected =GameException.class)
 	public void abbess() throws GameException {
 		BonusAction ba = 
 				new BonusAction(m.getBoard(),

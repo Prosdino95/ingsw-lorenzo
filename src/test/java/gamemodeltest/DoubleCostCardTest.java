@@ -15,7 +15,7 @@ import gamemodel.Point;
 import gamemodel.Question;
 import gamemodel.Resource;
 import gamemodel.card.Card;
-import gamemodel.card.RealCard;
+import gamemodel.card.Card;
 import gamemodel.command.GameException;
 
 public class DoubleCostCardTest {
@@ -30,7 +30,7 @@ public class DoubleCostCardTest {
 		r=new Resource(1,1,1,1);
 	    point=new Point(1,1,1);
 		m=new Model(2);
-		c=new RealCard(0, null, 0, r, r, point, point, new ArrayList<>(), null);
+		c=new Card(0, null, 0, r, r, point, point, new ArrayList<>(), null);
 		p=new Player(new Resource(1,1,1,1), null,null, m);
 		p.addPoint(new Point(1,1,1));
 	}
