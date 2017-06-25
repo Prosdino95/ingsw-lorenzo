@@ -13,7 +13,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.ResourceModify;
 
-public class RealCard implements Card,Serializable {
+public class Card implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	protected String name;
@@ -27,7 +27,7 @@ public class RealCard implements Card,Serializable {
 	protected final int id;
 	private Integer choose=-1;
 	
-	public RealCard(int id,String name,int period,Resource resourceRequirement, Resource resourcePrice, 
+	public Card(int id,String name,int period,Resource resourceRequirement, Resource resourcePrice, 
 			Point point,Point pointPrice, List<IstantEffect> istantEffects, CardType type) {
 		this.name=name;
 		this.period=period;
@@ -61,7 +61,7 @@ public class RealCard implements Card,Serializable {
 	
 
 	public boolean controlResource(Player p,Resource discount){
-		if(resourceRequirement!=null && resourceRequirement!=null){
+		if(resourceRequirement!=null && pointRequirement!=null){
 			List<Object> prices=new ArrayList<>();
 			prices.add(resourceRequirement);
 			prices.add(pointRequirement);
@@ -82,16 +82,16 @@ public class RealCard implements Card,Serializable {
 		return true;				
 	}
 
-	@Override
 	public void pay(Player p,Resource discount){
-		if(choose==0)
-			p.subResources(resourcePrice.minus(discount));
-		if(choose==1)
-			p.subPoint(pointPrice);
 		if(resourcePrice!=null && choose==-1)
 			p.subResources(resourcePrice.minus(discount));	
 		if(pointPrice!=null && choose==-1)
 			p.subPoint(pointPrice);
+		if(choose==0)
+			p.subResources(resourcePrice.minus(discount));
+		if(choose==1)
+			p.subPoint(pointPrice);
+		
 	}
 	
 	public Resource getResourceRequirement() {
@@ -128,7 +128,6 @@ public class RealCard implements Card,Serializable {
 
 
 
-	@Override
 	public void activeIstantEffect(Player p) throws GameException {
 		for(IstantEffect e:this.istantEffect)
 			e.activate(p);		
