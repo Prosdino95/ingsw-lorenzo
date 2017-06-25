@@ -46,6 +46,10 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 		this.discount=resource;
 	}
 
+	public StrengthModifyAndDiscount(Resource resource) {
+		this(resource, CardType.ALL);
+	}
+
 	public ActionSpaceType getAtype() {
 		return atype;
 	}
