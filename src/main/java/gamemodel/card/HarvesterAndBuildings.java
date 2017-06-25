@@ -2,9 +2,7 @@ package gamemodel.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import gamemodel.GameQuestion;
 import gamemodel.Player;
@@ -14,7 +12,6 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
-import gamemodel.effects.ResourceModify;
 
 public class HarvesterAndBuildings extends Card implements Serializable
 {
@@ -22,7 +19,6 @@ public class HarvesterAndBuildings extends Card implements Serializable
 	private static final long serialVersionUID = 1L;
 	private Integer actionCost;
 	private List<IstantEffect> permanentEffects;
-	private List<Object> choice;
 	
 	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
 			Point point,Point pointPrice, List<IstantEffect> istantEffects,List<IstantEffect> permanentEffects, 
@@ -41,11 +37,12 @@ public class HarvesterAndBuildings extends Card implements Serializable
 	{
 		int selection;
 		if(getExchangeEffects(permanentEffects).size()>1)
-			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
-		
-		
-		
-		for(IstantEffect e:this.permanentEffects)
+		{
+			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_PERMANENT_EFFECT, getExchangeEffects(permanentEffects)));
+			((Exchange) getExchangeEffects(permanentEffects).get(selection)).activate(p);
+		}
+		else
+			for(IstantEffect e:this.permanentEffects)
 			e.activate(p);	
 	}
 
@@ -54,9 +51,9 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		return this.permanentEffects;
 	}
 	
-	public List<IstantEffect> getExchangeEffects (List<IstantEffect> permanenetEffects)
+	public List<Object> getExchangeEffects (List<IstantEffect> permanenetEffects)
 	{
-		List<IstantEffect> exchangeEffects=new ArrayList<>();
+		List<Object> exchangeEffects=new ArrayList<>();
 		for(IstantEffect permanentEffect:permanentEffects)
 			if(permanentEffect instanceof Exchange)
 				exchangeEffects.add(permanentEffect);
