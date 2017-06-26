@@ -178,6 +178,7 @@ public class GuiView extends Application {
 			// Non dovrei invertire show e hide? Lo scatto e' supervisibile
 			stage.hide();
 			stage.setScene(getCurrentScene());
+			stage.setFullScreen(true);
 			stage.show();
 		}
 	}
