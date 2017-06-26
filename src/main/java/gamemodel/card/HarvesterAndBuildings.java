@@ -38,7 +38,7 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		int selection;
 		if(getExchangeEffects(permanentEffects).size()>1)
 		{
-			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_PERMANENT_EFFECT, getExchangeEffects(permanentEffects)));
+			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_EXCHANGE,getExchangeEffects(permanentEffects)));
 			((Exchange) getExchangeEffects(permanentEffects).get(selection)).activate(p);
 		}
 		else
