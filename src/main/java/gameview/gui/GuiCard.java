@@ -3,6 +3,7 @@ package gameview.gui;
 
 
 
+import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.RealCard;
@@ -18,30 +19,35 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 
-public class GuiCard extends Region{
+public class GUICard extends Region{
 	
 	Image image;
-	RealCard card;
-	String actionCost;
+	Card card;
+	String actionCost = "";
 	Pane effectPane;
-	String tooltip;
+	String tooltip = "";
 
-	public GuiCard(RealCard card,double w,double h) {
-		
-		this.card=card;
+	public GUICard(Card card2,double w,double h) {
 		AnchorPane pane=new AnchorPane();
-		image = imageGen(card.getType());
 		ImageView iv1 = new ImageView();
-		effectPane=new Pane();
-		iv1.setImage(image); 
         iv1.setFitWidth(w);
         iv1.setFitHeight(h);
         pane.getChildren().add(iv1);
-        TextFlow cName=new TextFlow(new Text(card.getName()));
-        TextFlow cost=new TextFlow(new Text(actionCost));
+		effectPane=new Pane();
+
+        TextFlow cName=new TextFlow();
+        cName.setTextAlignment(TextAlignment.CENTER);
+        TextFlow cost=new TextFlow();
         TextFlow activateEffect=new TextFlow(new Text("G +1"));
         effectPane.getChildren().add(activateEffect);
-        cName.setTextAlignment(TextAlignment.CENTER);
+
+        if (card2 != null) {
+        	this.card=card2;
+        	image = imageGen(card2.getType());
+        	iv1.setImage(image); 
+        	cName = new TextFlow(new Text(card2.getName()));
+        	cost=new TextFlow(new Text(actionCost));
+        }
         GuiView.setAll(0.13, 4.0/200, 96.0/134, 11.0/200, cName,w,h);
         cost.setPrefSize(13.0/134*w, 17.0/200*h);
         cost.setLayoutX(28.0/134*w);
@@ -57,7 +63,7 @@ public class GuiCard extends Region{
         this.getChildren().add(pane);
        // Tooltip tt=new Tooltip();
        // Tooltip.install(effectPane, tt);
-        Tooltip.install(effectPane,new Tooltip(tooltip));        
+        Tooltip.install(effectPane,new Tooltip(tooltip));
 	}
 
 	private Image imageGen(CardType type) {
