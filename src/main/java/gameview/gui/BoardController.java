@@ -1,15 +1,19 @@
 package gameview.gui;
 
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.Model;
+import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.RealCard;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 public class BoardController {
@@ -38,7 +42,8 @@ public class BoardController {
 
 	}
 	
-	public void initialize(Model m, GuiView v) {
+	public void initialize(Model m, GuiView v) throws IOException {
+		
 		 asIdList = new ArrayList<>();
 		 cardPaneList = new ArrayList<>();
 		 asPaneList = new ArrayList<>();
@@ -97,13 +102,27 @@ public class BoardController {
 		 cardPaneList.add(cartaTorre15);
 		 asPaneList.add(asTorre15);
 		 
+		 Pane asRoot;
+		 NormalActionSpaceControll ascontroller;
+		 //List<ActionSpace> asList=m.getBoard().getActionSpaces();
+		 FXMLLoader loader;
+		 
+		 
 		 for (Integer id : asIdList) {
-			 Pane cp = cardPaneList.get(id);
-			 cp.setOnMouseClicked(e -> {
-				 RealActionSpace as = guiView.getModel().getBoard().getActionSpace(id);
-				 if (as instanceof RealTowerActionSpace) {
-						((RealTowerActionSpace) as).attachDevelopmentCard(null);
-				 }
+			 	loader=new FXMLLoader();
+			 	loader.setLocation(getClass().getResource("/NormalActionSpace.fxml"));	
+			 	asRoot = loader.load();
+			 	ascontroller=loader.getController();
+			 	Pane cp = cardPaneList.get(id);
+			 	Pane asp=asPaneList.get(id);
+			 	ActionSpace actionSpace=m.getBoard().getActionSpace(id);
+			 	ascontroller.initialize(actionSpace);
+			 	asp.getChildren().add(asRoot);
+			 	cp.setOnMouseClicked(e -> {
+			 		RealActionSpace as = guiView.getModel().getBoard().getActionSpace(id);
+			 		if (as instanceof RealTowerActionSpace) {
+			 			((RealTowerActionSpace) as).attachDevelopmentCard(null);
+			 		}
 //				 System.out.println("You clicked on " + id);
 				 this.guiView.updateModelAndGui(this.model);
 			 });

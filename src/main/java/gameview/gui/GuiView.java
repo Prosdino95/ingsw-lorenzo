@@ -51,6 +51,8 @@ public class GuiView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
+		Integer w = 1024;
+		Integer h = 800;
 		
 		FXMLLoader loader=new FXMLLoader();
 //		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));		
@@ -60,6 +62,7 @@ public class GuiView extends Application {
 		boardRoot = loader.load();
 		BoardController c=loader.getController();
 		boardController = c;
+		//boardRoot.setPrefSize(w, h);
 		boardRoot.setOnMouseClicked(e -> {
 			System.out.println("Heeeeeey");
 		});
@@ -83,8 +86,10 @@ public class GuiView extends Application {
 
 		
 		Pane p = new AnchorPane();
+		p.setPrefSize(w, h);
 		p.setStyle("-fx-background-color: #b22222");
 		bs = new Scene(p);
+		
 		addScene(bs);
 		bs.setOnKeyPressed(e -> {
 			System.out.println("You pressed key " + e.getCode());
@@ -100,6 +105,7 @@ public class GuiView extends Application {
 
 		
 		p = new AnchorPane();
+		p.setPrefSize(w, h);
 		p.setStyle("-fx-background-color: #cd6889");
 		bs = new Scene(p);
 		addScene(bs);
@@ -178,7 +184,6 @@ public class GuiView extends Application {
 			// Non dovrei invertire show e hide? Lo scatto e' supervisibile
 			stage.hide();
 			stage.setScene(getCurrentScene());
-			stage.setFullScreen(true);
 			stage.show();
 		}
 	}
