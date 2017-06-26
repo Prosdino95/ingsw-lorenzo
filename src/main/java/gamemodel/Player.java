@@ -122,6 +122,16 @@ public class Player implements Serializable{
 		return familyMembers.get(c);
 	}
 	
+	public FamilyMember getFamilyMemberList(Color c){
+		if (c == Color.STRANGE) return new FamilyMember(null, null);
+		for(FamilyMember fm:this.familyMembersList)
+			if(fm.getColor()==c){
+				//System.out.println(fm);
+				return familyMembersList.get(familyMembersList.indexOf(fm));
+			}
+		return null;
+	}
+	
 	public void placeFamilyMember(Action action) throws GameException {
 		System.out.println(this+" : "+currentPlayer);
 		//if(!this.equals(currentPlayer) && currentPlayer!=null )
