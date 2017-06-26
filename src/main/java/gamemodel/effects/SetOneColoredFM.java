@@ -8,6 +8,7 @@ import gamemodel.FamilyMember;
 import gamemodel.GameQuestion;
 import gamemodel.Player;
 import gamemodel.Question;
+import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
 public class SetOneColoredFM implements IstantEffect,Serializable {
@@ -21,10 +22,18 @@ public class SetOneColoredFM implements IstantEffect,Serializable {
 
 	@Override
 	public void activate(Player player) throws GameException {
-		Integer index;
+		Integer index = 0;
 		List<Object>list=new ArrayList<>();
-		list.addAll(player.getFamilyMembersList());
-		index=player.answerToQuestion(0, new Question(GameQuestion.CHOOSE_FAMILY_MEMBER,list));
+		list.addAll(player.getFamilyMembers());
+		try {
+			index=player.answerToQuestion(new Question(GameQuestion.CHOOSE_FAMILY_MEMBER,list));
+		} catch (GameException e) {
+			if (e.getType() == GameError.NOT_PLAYING_ONLINE)
+				index = 0;
+			else
+				throw e;
+		}
+		
 		FamilyMember fm=(FamilyMember)list.get(index);
 		fm.setActionpoint(actionPoint);
 	}

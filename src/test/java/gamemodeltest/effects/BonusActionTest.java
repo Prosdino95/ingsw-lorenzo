@@ -8,6 +8,7 @@ import org.junit.Test;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Resource;
+import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.command.GameException;
 import gamemodel.effects.BonusAction;
@@ -51,6 +52,14 @@ public class BonusActionTest {
 		ba.activate(p);
 	}
 
+	@Test
+	public void bishop() throws GameException {
+		BonusAction ba = 
+				new BonusAction(m.getBoard(),
+					4,
+					ActionSpaceType.PRODUCTION);
+		ba.activate(p);
+	}
 	
 
 }

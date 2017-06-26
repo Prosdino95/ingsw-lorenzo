@@ -1,6 +1,7 @@
 package gamemodel.command;
 
 import gamemodel.Action;
+import gamemodel.Color;
 
 public class PlaceFamilyMemberCommandHandPLittle extends PlaceFamilyMemberCommandHAndP{
 	
@@ -14,7 +15,11 @@ public class PlaceFamilyMemberCommandHandPLittle extends PlaceFamilyMemberComman
 		if(!f.isUsed())
 			if(IsEnoughtStrong())
 				if(controlServant())
-					if(h.isAccessible(action)){
+					if (f.getColor() == Color.STRANGE) {
+						f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());								
+						cardEffect(h.getType());
+					}
+					else if(h.isAccessible(action)){
 						f.getPlayer().getFamilyMember(f.getColor()).use();
 						cardEffect(h.getType());
 						h.occupy();

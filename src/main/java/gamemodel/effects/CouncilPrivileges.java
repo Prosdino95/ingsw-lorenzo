@@ -40,11 +40,16 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 			System.out.println(counter);
 			System.out.println(numberOfCouncilPrivileges);
 			
-			int selection;
+			int selection = 0;
 			try {
-				selection = player.answerToQuestion(0,new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				try {
+					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				} catch (GameException e) {
+					if (e.getType() == GameError.NOT_PLAYING_ONLINE)
+						selection = 0;
+				}
 				while(selectionHistory.contains(selection) || selection>4)
-					selection = player.answerToQuestion(0,new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
+					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
 				effect(selection,player);
 				selectionHistory.add(selection);
 				

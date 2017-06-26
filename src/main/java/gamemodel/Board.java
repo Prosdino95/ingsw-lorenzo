@@ -177,5 +177,14 @@ public class Board implements Serializable {
 		return lst;
 	}
 
+	public List<ActionSpace> getActionSpaces(ActionSpaceType asType) {
+		List<ActionSpace> lst = new ArrayList<>();		
+		for (ActionSpace as : actionSpaces) {
+			if (as.getType() == asType)
+				lst.add(as);
+		}
+		return lst;
+	}
+
 
 }

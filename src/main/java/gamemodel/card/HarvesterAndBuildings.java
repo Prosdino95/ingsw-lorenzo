@@ -9,6 +9,7 @@ import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Question;
 import gamemodel.Resource;
+import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
@@ -35,10 +36,15 @@ public class HarvesterAndBuildings extends Card implements Serializable
 	
 	public void activePermanentEffect(Player p) throws GameException 
 	{
-		int selection;
+		int selection = 0;
 		if(getExchangeEffects(permanentEffects).size()>1)
 		{
-			selection = p.answerToQuestion(0,new Question(GameQuestion.SELECT_EXCHANGE,getExchangeEffects(permanentEffects)));
+			try {
+				selection = p.answerToQuestion(new Question(GameQuestion.SELECT_EXCHANGE,getExchangeEffects(permanentEffects)));
+			} catch (GameException e) {
+				if (e.getType() == GameError.NOT_PLAYING_ONLINE)
+					selection = 0;
+			}
 			((Exchange) getExchangeEffects(permanentEffects).get(selection)).activate(p);
 		}
 		else

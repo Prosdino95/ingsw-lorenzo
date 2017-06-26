@@ -218,19 +218,12 @@ public class Model implements Serializable {
 	}
 
 	public Integer answerToQuestion(Question gq, Player player) throws GameException {
+		if (controller == null) {
+			throw new GameException(GameError.NOT_PLAYING_ONLINE);
+		}
 		return controller.answerToQuestion(gq, player);
 	}
-	
-	public Integer answerToQuestion(int defaultChoice, Question gq, Player player) throws GameException {
-		if (controller == null) {
-			Integer choice = defaultChoice;
-			System.out.println("E' partita una answerToQuestion per " + player + 
-					" ma non si sta giocando online, le possibili scelte sono " + gq.getChoose() +
-					" faccio finta che l'utente abbia scelto " + choice);
-			return choice;
-		}
-		return answerToQuestion(gq, player);
-	}
+
 
 	private int occurrence(List<Player> players,String string,int points) //testato
 	{

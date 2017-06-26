@@ -66,7 +66,7 @@ public class Card implements Serializable {
 			prices.add(resourceRequirement);
 			prices.add(pointRequirement);
 			try {
-				choose=p.answerToQuestion(0,new Question(GameQuestion.SELECT_PAY_METOD,prices));
+				choose=p.answerToQuestion(new Question(GameQuestion.SELECT_PAY_METOD,prices));
 			} catch (GameException e) {
 				choose=0;
 			}

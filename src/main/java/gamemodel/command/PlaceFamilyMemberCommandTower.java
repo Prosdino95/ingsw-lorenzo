@@ -94,17 +94,22 @@ public class PlaceFamilyMemberCommandTower implements Command {
 		else 
 			t.activateEffect(f);
 		
-		if(f.getPlayer().controlResourceAndPay(t.getCard())){
-			f.getPlayer().getFamilyMember(f.getColor()).use();
-			t.getTower().occupyTower();									
-			t.giveCard(f);
-			t.occupy();
-			t.getTower().addPlayer(f);
+		if(f.getPlayer().controlResourceAndPay(t.getCard())) {
+			if (f.getColor() == Color.STRANGE) {
+				t.giveCard(f);
+			} else {
+				f.getPlayer().getFamilyMember(f.getColor()).use();
+				t.getTower().occupyTower();									
+				t.giveCard(f);
+				t.occupy();
+				t.getTower().addPlayer(f);
 			}
-		else{
+		}
+		else
+		{
 			t.rollbackEffect(f);
 			throw new GameException(GameError.RESOURCE_ERR_CARD);	 									
-			}
+		}
 	}		
 }
 

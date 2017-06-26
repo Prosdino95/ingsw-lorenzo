@@ -27,7 +27,7 @@ public class SetOneColoredFMTest {
 	public void test() throws GameException {
 		e.activate(p);
 		//black is the first index=0	
-		assertEquals(6,p.getFamilyMemberList(Color.BLACK).getActionpoint());
+		assertEquals(6,p.getFamilyMember(Color.BLACK).getActionpoint());
 	}
 
 }

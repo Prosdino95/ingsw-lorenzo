@@ -68,7 +68,7 @@ public class LeaderCardTest {
 		p.play(ludovico);
 		p.prepareForNewRound();
 
-		for (FamilyMember fm : p.getFamilyMembersList())
+		for (FamilyMember fm : p.getFamilyMembers())
 			if(fm.getColor()!= Color.UNCOLORED)
 				assertEquals(fm.getActionpoint(), 5);
 	}
