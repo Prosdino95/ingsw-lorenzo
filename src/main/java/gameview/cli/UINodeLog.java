@@ -5,6 +5,7 @@ import java.io.IOException;
 import gamemodel.Team;
 import gameview.ViewController;
 import reti.ClientRequest;
+import reti.RequestType;
 import reti.ServerResponse;
 
 public class UINodeLog extends UINode 
@@ -38,9 +39,14 @@ public class UINodeLog extends UINode
 				case NEW_MODEL:
 					System.out.println("A new model has arrived...");
 					tree.setModel(sr.getModel());
-					System.out.println("turn :"+tree.getModel().getCurrentPlayer());
+					System.out.println("Player turn :"+tree.getModel().getCurrentPlayer());
+					System.out.println("turn :"+tree.getModel().turn);
 					break;
 				case MESSAGE:
+					if (sr.getQuestion() != null) {
+						System.out.println(sr.getQuestion());
+						tree.sendRequestToServer(new ClientRequest(CLIView.getString(),RequestType.VATICAN_REPORT));
+					}
 					System.out.print("Someone sent you this message: ");
 					System.out.println(sr.getMessage());
 					break;

@@ -43,8 +43,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
-		p1.setCurrentPlayer();
-		p2.setCurrentPlayer();
+		model.setCurretPlayer(p1);
 	}
 
 	@Test
@@ -91,6 +90,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		Action a1=new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0);
 		Action a2=new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0);
 		p1.placeFamilyMember(a1);
+		model.setCurretPlayer(p2);
 		p2.placeFamilyMember(a2);
 		assertEquals(a1.getFm().getActionpoint(),pointWhite1);
 		assertEquals(a2.getFm().getActionpoint(),pointWhite2-3);		

@@ -5,18 +5,19 @@ import com.eclipsesource.json.JsonValue;
 import gamemodel.Color;
 import gamemodel.Point;
 import gamemodel.Resource;
+import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 
 public class ParsingHelper {
 	
-	static Point pointParsing(JsonValue item) {
+	protected static Point pointParsing(JsonValue item) {
 		int military=item.asObject().getInt("military", 0);
 		int faith=item.asObject().getInt("faith", 0);
 		int victory=item.asObject().getInt("victory", 0);
 		return new Point(military,faith,victory);
 	}
 
-	static Resource resourceParsing(JsonValue item) {
+	protected static Resource resourceParsing(JsonValue item) {
 		int gold=item.asObject().getInt("gold", 0);
 		int wood=item.asObject().getInt("wood", 0);
 		int stone=item.asObject().getInt("stone", 0);
@@ -24,7 +25,7 @@ public class ParsingHelper {
 		return new Resource(gold,stone,wood,servants);	
 	}
 	
-	static CardType getCardType(JsonValue item){
+	protected static CardType getCardType(JsonValue item){
 		String s=item.asObject().getString("card-type","");
 		switch(s){
 		case"building":return CardType.BUILDING;
@@ -36,7 +37,7 @@ public class ParsingHelper {
 		}
 	}
 
-	public static Color getColor(String color) {
+	protected static Color getColor(String color) {
 		switch(color){
 		case"white":return Color.WHITE;
 		case"black":return Color.BLACK;
@@ -44,6 +45,18 @@ public class ParsingHelper {
 		case"uncolored":return Color.UNCOLORED;
 		}
 		return null;
+	}
+	
+	protected static ActionSpaceType getActionSpaceType(JsonValue item){
+		String s=item.asObject().getString("action-type","");
+		switch(s){
+		case"harvest":return ActionSpaceType.HARVEST;
+		case"production":return ActionSpaceType.PRODUCTION;
+		case"council-place":return ActionSpaceType.COUNCIL_PALACE;	
+		case"market":return ActionSpaceType.MARKET;
+		case"tower":return ActionSpaceType.TOWER;
+		default: return null;	
+		}
 	}
 
 }

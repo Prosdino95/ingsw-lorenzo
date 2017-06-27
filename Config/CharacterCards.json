@@ -395,7 +395,12 @@
       		{
       		    "type":"point-mod",
       		    "faith":2
-      		}
+      		},
+      		{
+				"type":"bonus-action",
+      			"action-value":4,
+      			"action-type":"harvest"
+			}
       	    ]				
 	},
 	
@@ -410,7 +415,12 @@
       		{
       		    "type":"point-mod",
       		    "faith":1
-      		}
+      		},
+      		{
+				"type":"bonus-action",
+      			"action-value":4,
+      			"action-type":"production"
+			}
       	    ]				
 	},
 	

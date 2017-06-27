@@ -7,7 +7,14 @@
 				"type":"card",
 				"venture":5
 			},
-			"activate-effect":[]
+			"activate-effect":
+						[
+							{
+							"type":"bonus-action",
+      						"action-value":1,
+      						"action-type":"harvest"
+							}									
+						]
 		},
 		{
 			"id":2,
@@ -126,7 +133,14 @@
 				"territory":2,
 				"character":4
 			},
-			"activate-effect":[]
+			"activate-effect":
+					[
+						{
+							"type":"bonus-action",
+      						"action-value":0,
+      						"action-type":"production"
+						}
+					]
 		},
 		{
 			"id":11,

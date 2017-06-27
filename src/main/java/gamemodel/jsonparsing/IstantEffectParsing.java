@@ -9,6 +9,7 @@ import com.eclipsesource.json.JsonValue;
 
 import gamemodel.effects.*;
 import gamemodel.*;
+import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 
 
@@ -47,12 +48,17 @@ public class IstantEffectParsing {
 	
 	private IstantEffect bonusAction(JsonValue item,Board board) {
 		Resource resource;
-		CardType type=ParsingHelper.getCardType(item);
+		CardType cType=ParsingHelper.getCardType(item);
+		ActionSpaceType asType=ParsingHelper.getActionSpaceType(item);
 		if(item.asObject().get("discount")==null)
 			resource=new Resource(0,0,0,0);
 		else resource=ParsingHelper.resourceParsing(item.asObject().get("discount"));
 		int actionValue=item.asObject().getInt("action-value", 0);
-		return new BonusAction(board, actionValue, type, resource);
+		if(cType!=null)
+			return new BonusAction(board, actionValue, cType, resource);
+		else
+			//return new BonusAction(board, actionValue, asType);
+			return null;
 	}
 
 

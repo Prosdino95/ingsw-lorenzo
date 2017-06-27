@@ -3,11 +3,14 @@ package gamemodel;
 import java.io.Serializable;
 
 
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
@@ -19,6 +22,7 @@ import gamemodel.card.VentureCard;
 import gamemodel.command.*;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.*;
+import reti.server.GameManager;
 
 
 public class Player implements Serializable{
@@ -34,7 +38,6 @@ public class Player implements Serializable{
 	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
 	private transient Model model;
-	private transient boolean currentPlayer=false;
 	private boolean death=false;
 	private List<LeaderCard> leaderCards = new ArrayList<>();
 	private List<FamilyMember> familyMembers; 
@@ -121,9 +124,8 @@ public class Player implements Serializable{
 	}
 	
 	public void placeFamilyMember(Action action) throws GameException {
-		System.out.println(this+" : "+currentPlayer);
 		//if(!this.equals(currentPlayer) && currentPlayer!=null )
-		if(!this.currentPlayer)
+		if(!this.equals(model.getCurrentPlayer()) && model.getCurrentPlayer()!=null)
 			throw new GameException(GameError.ERR_NOT_TURN);
 		currentAction = action;
 		increasePower();
@@ -281,30 +283,25 @@ public class Player implements Serializable{
 		else return false;			
 	}
 	
-	public void vaticanReport(int period,int requirement,int victoryPoints) throws GameException
+	public void vaticanReport(String answer)
 	{
-		//if (!this.vaticanTime)
-		//	throw new GameException(GameError.VATICAN_NOOO);
+		int period=1;
+		int requirement=0;
+		int victoryPoints=0;
+		int selection=Integer.parseInt(answer);
+		if (this.death)
+			return;
 		
 		if(this.point.getFaith()<requirement)
 		{
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-				model.sendMessage("now it's time to talk to the Pope but you are excommunicated",this);
+				model.sendMessage("you are excommunicated",this);
 		}
 					 // TODO da testare
 		if(this.point.getFaith()>=requirement) 
 		{
-			int selection;	
-			try 
-			{
-				selection = this.answerToQuestion(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()));
-			} 
-			catch (GameException e) 
-			{
-				selection =0;
-			}
 			if(selection==0)
 			{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
@@ -326,19 +323,42 @@ public class Player implements Serializable{
 			return model.answerToQuestion(question, this);
 		}
 
-		public void setCurrentPlayer(){
-			this.currentPlayer=true;	
+
+		public void setCurrentPlayer() {
+			if (death) {
+				return;
+				// model.rotateTurn();
+			}
+			else {
+				new Timer().schedule(new T(this), model.getTurnDelay());
+			}
 		}
 		
+		public void timerFinished() {
+			model.sendMessage("Sveglia!! Il tuo tempo e' scaduto!", this);
+			death=true;
+			// model.rotateTurn();
+		}
+		
+ 		class T extends TimerTask
+		{
+			Player gm;
+			
+			public T(Player gm) {
+				this.gm = gm;
+			}
+			
+			public void run(){
+				System.out.println("asdasdjnaksd");
+				gm.timerFinished();
+			}
+		}
+ 		
 		public void finishAction() throws GameException{
-			if(!currentPlayer)
+			if(this.equals(model.getCurrentPlayer()))
 				throw new GameException(GameError.ERR_NOT_TURN);
-			model.finishAction();
 		}
 		
-		public void unsetCurrentPlayer(){
-			this.currentPlayer=false;
-		}
 
 		@Override
 		public int hashCode() {
@@ -418,6 +438,11 @@ public class Player implements Serializable{
 				permanentEffects.removeIf(e -> e.equals(eff));
 			else
 				throw new RuntimeException();
+		}
+
+		public boolean isDead() {
+			// TODO Auto-generated method stub
+			return death;
 		}
 
 

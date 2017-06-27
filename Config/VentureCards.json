@@ -13,7 +13,13 @@
       		    "military":5
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -31,7 +37,13 @@
       		    "faith":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -51,7 +63,13 @@
       		    "quantity":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":3
+	    			}
+	    		]						
 	},
 	
 	{
@@ -68,7 +86,13 @@
       		    "quantity":2
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -87,7 +111,13 @@
       		    "gold":3
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -103,7 +133,13 @@
       		    "servants":4
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -122,7 +158,13 @@
       		    "faith":2
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -146,7 +188,13 @@
       		    "faith":3
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":1
+	    			}
+	    		]						
 	},
 	
 	{
@@ -162,7 +210,13 @@
       		    "military":6
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -180,7 +234,13 @@
       		    "faith":2
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":6
+	    			}
+	    		]						
 	},
 	
 	{
@@ -200,7 +260,13 @@
       		    "quantity":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":2
+	    			}
+	    		]					
 	},
 	
 	{
@@ -223,7 +289,13 @@
       		    "quantity":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":3
+	    			}
+	    		]						
 	},
 	
 	{
@@ -237,9 +309,20 @@
 	    "istant-effect": [
 		{
 		    "type":"testeffect"
+		},
+		{
+			"type":"bonus-action",
+      		"action-value":4,
+      		"action-type":"harvest"
 		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -255,7 +338,13 @@
       		    "servants":5
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -278,7 +367,13 @@
       		    "faith":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -302,7 +397,13 @@
       		    "faith":3
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -318,7 +419,13 @@
       		    "military":7
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":6
+	    			}
+	    		]						
 	},
 	
 	{
@@ -341,7 +448,13 @@
       			"card-type":"all"
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -361,7 +474,13 @@
       		    "quantity":1
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":4
+	    			}
+	    		]						
 	},
 	
 	{
@@ -377,7 +496,13 @@
       		    "faith":4
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":3
+	    			}
+	    		]						
 	},
 	
 	{
@@ -398,7 +523,13 @@
       		    "gold":3    										
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":7
+	    			}
+	    		]					
 	},
 	
 	{
@@ -411,10 +542,18 @@
 	    },														
 	    "istant-effect": [
       		{
-      		    "type":"testeffect"    										
-      		}
+				"type":"bonus-action",
+      			"action-value":3,
+      			"action-type":"production"
+			}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":5
+	    			}
+	    		]						
 	},
 	
 	{
@@ -433,7 +572,13 @@
       		    "faith":3   										
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":8
+	    			}
+	    		]						
 	},
 	
 	{
@@ -457,7 +602,13 @@
       		    "faith":2
       		}
       	    ],
-	    "activate-effect":[]						
+	    "activate-effect":
+	    		[
+	    			{
+	    			"type":"point-mod",
+	    			"victory":10
+	    			}
+	    		]						
 	}	
     ]
 }	

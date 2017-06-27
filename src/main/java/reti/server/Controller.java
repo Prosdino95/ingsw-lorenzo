@@ -39,30 +39,38 @@ public class Controller{
 	
 	public void run(){
 		while(true){
-			ServerResponse sr;
-		if(this.requestQueue.isEmpty()){
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Thread.currentThread().interrupt();
+			if (game.getCurrentPlayer()!=null && game.getCurrentPlayer().isDead()) {
+				game.rotateTurn();
 			}
-			continue;
-		}
-		
+			
+			
+			ServerResponse sr;
+			if(this.requestQueue.isEmpty()){
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Thread.currentThread().interrupt();
+				}
+				continue;
+			}
+
+			
 		ClientRequest request=requestQueue.remove();
 		HandlerView hv=playerToHV.get(request.getPlayer());
 		switch(request.getType()){
 		case FINISHACTION:
 			//System.out.println("inviata da: "+request.getPlayer());
 			finishAction(request.getPlayer(),hv);
+			game.rotateTurn();
 			break;
-		case PLACEFAMILYMEMBER: 
-			sr=placeFM(request,request.getPlayer());
-			hv.sendResponse(sr);
+		case PLACEFAMILYMEMBER:
+				sr=placeFM(request,request.getPlayer());
+				hv.sendResponse(sr);
 			break;
-		case ANSWER:
+		case VATICAN_REPORT:
+			hv.getPlayer().vaticanReport(request.getAnswer());
 			break;
 		case CHAT:
 			break;
@@ -105,7 +113,6 @@ public class Controller{
 	private void finishAction(Player player, HandlerView hv) {
 			try{
 				player.finishAction();
-				notifyNewModel();
 				hv.sendResponse(new ServerResponse());
 				}
 			catch(GameException e){

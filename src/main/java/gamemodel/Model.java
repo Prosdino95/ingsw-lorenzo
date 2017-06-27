@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +42,16 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	private transient int turn=1;
+	public int turn=1;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
-	private int actionCount;
 	
 	
 	public static void main(String[] args){
-		Model m=new Model(4);
+		// Model m=new Model(4);
+		
+		
+		
 		//System.out.println(m.getBoard().getActionSpaces());
 		//m.nextTurn();
 	}
@@ -62,28 +65,37 @@ public class Model implements Serializable {
 		this.controller=c;
 	}
 	
-	public void nextTurn(){
-		this.currentPlayer.unsetCurrentPlayer();
+	private void nextTurn(){
+		System.out.println("al turno"+turn+"prima: "+currentPlayer);
 		currentPlayer=turnOrder.getNextPlayer();
+		System.out.println("dopo"+currentPlayer);
 		currentPlayer.setCurrentPlayer();
 	}
-	
-	
-	
-	public void finishAction() throws GameException{
-		actionCount++;
-		if(turn%2==0 && actionCount>3*players.size()){
-			Integer faithPoints=faithPointsRequirement.get(turn/2);
-			Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
-			//TODO cambiare 0 con faithpoint
-			currentPlayer.vaticanReport(turn,0,victoryPoints);
-		}
-		if(!turnOrder.hasNext()){			
-			System.out.println("next turn");
-			turn++;
-			actionCount=1;
-			setupRound();
-			nextTurn();
+		
+	public void rotateTurn() {
+		controller.notifyNewModel();
+		if(!turnOrder.hasNext()){
+			if(turn==6){
+				System.out.println("gioco finito");
+				System.exit(0);
+			}
+			else if(turn%2==0){
+				currentPlayer=null;
+				//creare lista
+				//messaggino a tutti+question
+				Integer faithPoints=faithPointsRequirement.get(turn/2);
+				Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
+				System.out.println("vatican time");
+				//TODO cambiare 0 con faithpoint
+				//currentPlayer.vaticanReport(turn,0,victoryPoints);
+			}
+			else{
+				System.out.println("next turn");
+				turn++;
+				setupRound();
+				nextTurn();
+			}
+				
 		}		
 		else nextTurn();
 	}
@@ -95,7 +107,7 @@ public class Model implements Serializable {
 			p.prepareForNewRound();
 	}
 	
-	public TurnOrder getTurnOrder() {
+	private TurnOrder getTurnOrder() {
 		return turnOrder;
 	}
 	
@@ -186,9 +198,7 @@ public class Model implements Serializable {
 		board.setupRound(turn);
 		for(Player p:players)
 			p.prepareForNewRound();	
-		currentPlayer=turnOrder.getNextPlayer();
-		currentPlayer.setCurrentPlayer();
-	
+		nextTurn();
 	}
 	
 	public void giveLeaderCard(Player player, int index) {
@@ -345,6 +355,15 @@ public class Model implements Serializable {
 
 	public void sendMessage(String string, Player player) {
 		controller.sendMessage(string, player);		
+	}
+
+	// TODO
+	public Integer getTurnDelay() {
+		return 5000;
+	}
+	
+	public void setCurretPlayer(Player p){
+		this.currentPlayer=p;
 	}
 
 

@@ -29,6 +29,11 @@ public class ClientRequest  implements Serializable{
 		super();
 	}
 	
+	public ClientRequest(String a, RequestType type) {
+		this.answer=a;
+		this.type=type;
+	}
+
 	public void setType(RequestType type) {
 		this.type = type;
 	}

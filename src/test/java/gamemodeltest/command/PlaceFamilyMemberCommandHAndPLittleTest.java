@@ -45,8 +45,6 @@ public class PlaceFamilyMemberCommandHAndPLittleTest {
 		p1.prepareForNewRound();
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
-		p1.setCurrentPlayer();
-		p2.setCurrentPlayer();
 	}
 
 	@Test
@@ -56,6 +54,7 @@ public class PlaceFamilyMemberCommandHAndPLittleTest {
 		Action a2=new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0);
 		try {
 			p1.placeFamilyMember(a1);
+			model.setCurretPlayer(p2);
 			p2.placeFamilyMember(a2);
 		} catch (GameException e){s=e.getType();}		
 		assertEquals(a1.getFm().getActionpoint(),pointWhite1);

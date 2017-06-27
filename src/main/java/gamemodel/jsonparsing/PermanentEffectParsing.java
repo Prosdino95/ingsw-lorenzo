@@ -23,7 +23,7 @@ public class PermanentEffectParsing {
 		case"family-member-set":return FamilyMemberModify.coloredMembersSet(item.asObject().getInt("set", 0));
 		case"family-member-debuff":return FamilyMemberModify.coloredMembersDebuff(item.asObject().getInt("debuff", 0));
 		case"family-member-buff":return familiMemberBuff(item);
-		case"no-action-space":return new NoActionSpace(getActionSpaceType(item));
+		case"no-action-space":return new NoActionSpace(ParsingHelper.getActionSpaceType(item));
 		case"halve-servants":return new PermanentEffect(PEffect.HALVE_SERVANTS);
 		case"no-first-action":return new PermanentEffect(PEffect.NO_FIRST_ACTION);
 		case"victory-mod":return victoryEffect(item);
@@ -47,7 +47,7 @@ public class PermanentEffectParsing {
 	private PermanentEffect strenfthModify(JsonValue item) {
 		Resource discount;
 		int modPower=item.asObject().getInt("value", 0);
-		ActionSpaceType asType=getActionSpaceType(item);
+		ActionSpaceType asType=ParsingHelper.getActionSpaceType(item);
 		CardType cType=ParsingHelper.getCardType(item);
 		if(item.asObject().get("discount")!=null){
 			discount=ParsingHelper.resourceParsing(item.asObject().get("discount"));
@@ -60,18 +60,6 @@ public class PermanentEffectParsing {
 		CardType cType=ParsingHelper.getCardType(item);
 		Resource discount=ParsingHelper.resourceParsing(item);
 		return new StrengthModifyAndDiscount(discount,cType);
-	}
-	
-	private ActionSpaceType getActionSpaceType(JsonValue item){
-		String s=item.asObject().getString("action-type","");
-		switch(s){
-		case"harvest":return ActionSpaceType.HARVEST;
-		case"production":return ActionSpaceType.PRODUCTION;
-		case"council-place":return ActionSpaceType.COUNCIL_PALACE;	
-		case"market":return ActionSpaceType.MARKET;
-		case"tower":return ActionSpaceType.TOWER;
-		default: return null;	
-		}
 	}
 
 	

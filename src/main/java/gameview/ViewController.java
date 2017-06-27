@@ -24,9 +24,9 @@ public class ViewController {
 	
 	public ViewController() throws IOException, InterruptedException, NotBoundException{
 		super();
-		//hs=new HandlerSocket(this);
-		hs=new HandlerServerRMIImpl(this);
-		//new Thread((Runnable) hs).start();
+		hs=new HandlerSocket(this);
+		//hs=new HandlerServerRMIImpl(this);
+		new Thread((Runnable) hs).start();
 	}
 	
 	public boolean hasMessage()

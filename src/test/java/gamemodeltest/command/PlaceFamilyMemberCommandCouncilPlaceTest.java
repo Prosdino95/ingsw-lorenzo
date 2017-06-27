@@ -48,8 +48,6 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
-		p1.setCurrentPlayer();
-		p2.setCurrentPlayer();
 	}
 	
 	
@@ -98,16 +96,20 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		testplayers.add((Player) p1);
 		testplayers.add((Player) p2);
 		p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));
+		model.setCurretPlayer(p2);
 		p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0));
 		assertEquals(a0.getPlayers(),testplayers);		
 	}
 	
 	@Test
 	public void tooMuchFM() throws GameException{
+			model.setCurretPlayer(p1);
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),0));
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.ORANGE),0));
+			model.setCurretPlayer(p2);
 			p2.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.WHITE),0));
+			model.setCurretPlayer(p1);
 			p1.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.BLACK),0));
 		}
 		catch(GameException e){s=e.getType();}
