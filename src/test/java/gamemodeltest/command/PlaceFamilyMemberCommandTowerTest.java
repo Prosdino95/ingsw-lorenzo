@@ -93,6 +93,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	@Test
 	public void testDoublePlaceSamePost(){
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),0));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR,s);
@@ -101,6 +102,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	@Test
 	public void testDoublePlaceInTowerSamePlayer(){
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.TWR_ERR_FM,s);
@@ -118,6 +120,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	@Test
 	public void testDoubleUseFamiliare(){
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a2,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		

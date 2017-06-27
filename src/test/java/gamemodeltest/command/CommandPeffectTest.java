@@ -80,7 +80,7 @@ public class CommandPeffectTest {
 		action2.setPlayer(p);
 		action2.setSpaceAction(a2);
 		action2.setServants(0);
-		
+		model.setCurretPlayer(p);
 		
 
 		

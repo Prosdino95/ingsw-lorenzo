@@ -8,6 +8,7 @@ import org.junit.Test;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Resource;
+import gamemodel.Team;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.command.GameException;
@@ -27,7 +28,8 @@ public class BonusActionTest {
 	public void setUp() throws Exception {
 		m = new Model(4);
 		m.setupRound();
-		p = m.getCurrentPlayer();
+		p = new Player(new Resource(50,50,50,50), m.getBoard(), Team.RED, m);
+		m.setCurretPlayer(p);
 	}
 
 	@Test

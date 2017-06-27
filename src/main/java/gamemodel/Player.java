@@ -469,5 +469,11 @@ public class Player implements Serializable{
 			death=false;		
 		}
 
+		public void setAlradyPlaceFM(boolean alradyPlaceFM) {
+			this.alradyPlaceFM = alradyPlaceFM;
+		}
+
+		
+
 
 }

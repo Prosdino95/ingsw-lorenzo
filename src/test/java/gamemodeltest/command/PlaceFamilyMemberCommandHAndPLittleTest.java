@@ -45,6 +45,7 @@ public class PlaceFamilyMemberCommandHAndPLittleTest {
 		p1.prepareForNewRound();
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
+		model.setCurretPlayer(p1);
 	}
 
 	@Test
