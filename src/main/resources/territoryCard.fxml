@@ -3,7 +3,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.TerritoryCardController">
@@ -13,12 +12,8 @@
             <Image url="@territoryCard.png" />
          </image>
       </ImageView>
-      <TextFlow fx:id="cardName" layoutX="17.0" layoutY="-1.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
-      <TextFlow fx:id="actionValue" layoutX="12.0" layoutY="178.0" prefHeight="17.0" prefWidth="13.0" textAlignment="CENTER" />
-      <Pane layoutX="45.0" layoutY="142.0" prefHeight="38.0" prefWidth="63.0">
-         <children>
-            <TextFlow layoutY="-1.0" prefHeight="39.0" prefWidth="64.0" textAlignment="CENTER" />
-         </children>
-      </Pane>
+      <TextFlow fx:id="cardName" layoutX="6.0" layoutY="-5.0" prefHeight="8.0" prefWidth="67.0" textAlignment="CENTER" />
+      <TextFlow fx:id="actionValue" layoutX="5.0" layoutY="118.0" prefHeight="17.0" prefWidth="13.0" textAlignment="CENTER" />
+      <TextFlow layoutX="31.0" layoutY="112.0" prefHeight="16.0" prefWidth="43.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

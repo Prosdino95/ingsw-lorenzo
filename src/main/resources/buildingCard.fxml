@@ -12,7 +12,7 @@
             <Image url="@buildingCard.png" />
          </image>
       </ImageView>
-      <TextFlow fx:id="cardName" layoutX="18.0" layoutY="1.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
-      <TextFlow fx:id="actionValue" layoutX="13.0" layoutY="179.0" prefHeight="17.0" prefWidth="13.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardName" layoutX="7.0" layoutY="-4.0" prefHeight="6.0" prefWidth="71.0" textAlignment="CENTER" />
+      <TextFlow fx:id="actionValue" layoutX="7.0" layoutY="119.0" prefHeight="17.0" prefWidth="13.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

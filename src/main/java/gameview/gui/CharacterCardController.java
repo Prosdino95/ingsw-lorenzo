@@ -16,9 +16,9 @@ public class CharacterCardController
 		Integer cardPrice=card.getResourcePrice().getGold();
 		String str;
 		if(card.getResourcePrice().getGold()>1)
-			str="coins";
+			str=" coins";
 		else
-			str="coin";
+			str=" coin";
 		this.cardPrice.getChildren().add(new Text(cardPrice.toString()+str));
 	}
 	
