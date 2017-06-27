@@ -15,7 +15,8 @@ public class GameManager implements Runnable
 	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
-	final int delay=1000;
+	private final int delay=1000;
+	private Timer timer=new Timer();
 	
 	
 	private void setupGame()
@@ -78,8 +79,12 @@ public class GameManager implements Runnable
 				{
 					case 0: this.wait();break;
 					case 1: this.wait();break;
-					case 2: new Timer().schedule(new T(this),delay);this.wait();break;
-					case 3: new Timer().schedule(new T(this),delay);this.wait();break;
+					case 2: updateTimer();
+							this.wait();
+							break;
+					case 3: updateTimer();
+							this.wait();
+							break;
 				}
 			}
 			this.setupGame();
@@ -91,9 +96,17 @@ public class GameManager implements Runnable
 		}		
 	}
 
+	private void updateTimer() {
+		timer.cancel();
+		timer=new Timer();
+		timer.schedule(new Task(this), delay);
+		
+	}
+
 	public synchronized void timerFinishded() {		
 		whoWokeMeUp="TimeOut";
 		isFull=true;
+		timer.cancel();
 		notify();		
 	}
 
@@ -102,11 +115,11 @@ public class GameManager implements Runnable
 	}
 }
 
-class T extends TimerTask
+class Task extends TimerTask
 {
 	GameManager gm;
 	
-	public T(GameManager gm) {
+	public Task(GameManager gm) {
 		this.gm = gm;
 	}
 	

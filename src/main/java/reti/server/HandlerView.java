@@ -14,5 +14,6 @@ public interface HandlerView  {
 	Player getPlayer();
 	void setController(Controller c);
 	void setPlayer(Player p);
+	void shutDown();
 
 }

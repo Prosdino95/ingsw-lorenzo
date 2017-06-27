@@ -29,6 +29,7 @@ public class Controller{
 	private Map<Player, HandlerView> playerToHV;
 	private Queue<ClientRequest> requestQueue=new ArrayDeque<>();
 	private List<HandlerView> deadHVs = new ArrayList<>();
+	private boolean live=true;
 	
 	
 	public Controller(Model game){
@@ -40,7 +41,7 @@ public class Controller{
 	}
 	
 	public void run(){
-		while(true){
+		while(live){
 			game.updateState();
 					
 			ServerResponse sr;
@@ -235,6 +236,12 @@ public class Controller{
 	public void sendMessageToAll(String message){
 		for(HandlerView hv:playerToHV.values())
 			hv.sendResponse(new ServerResponse(message));
+	}
+
+	public void shutDown() {
+		for(HandlerView hv:playerToHV.values())
+			hv.shutDown();
+		live=false;		
 	}
 
 

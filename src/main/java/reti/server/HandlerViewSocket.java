@@ -60,20 +60,11 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 				} 
 				Thread.sleep(100);
 				if(!responseQueue.isEmpty())
-					send(this.responseQueue.remove());
-					
-			} catch (ClassNotFoundException | IOException | InterruptedException e) {
-				try {
-					controller.imDead(this);
-					live=false;
-					socket.close();
-					in.close();
-					out.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}				
-			}							
+					send(this.responseQueue.remove());				
+			} 
+			catch (ClassNotFoundException | IOException | InterruptedException e) {
+				shutDown();				
+			}		
 		}
 	}
 	
@@ -100,6 +91,19 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	public void doRequest(ClientRequest request) {
 		request.setPlayer(player);
 		controller.doRequest(request);
+	}
+
+	@Override
+	public void shutDown() {
+		controller.imDead(this);
+		live=false;
+		try {
+			socket.close();
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }

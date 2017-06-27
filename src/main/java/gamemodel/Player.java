@@ -44,6 +44,7 @@ public class Player implements Serializable{
 	private PersonalBonusTile personalBonusTile;
 	private boolean alradyPlaceFM=false;
 	private boolean alradyPlaceVatican=false;
+	private transient Timer timer;
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -103,12 +104,12 @@ public class Player implements Serializable{
 		if(!r.isEnought(new Resource(0,0,0,0)))
 			throw new RuntimeException();
 		
-		 for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
-		 {
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
+		{
 			r.subResources(((Debuff)permanentEffect).getResources());
 			r.normalize();
-		 }		 	
-		 this.resource.addResources(r);
+		}		 	
+		this.resource.addResources(r);
 	} 
 	
 	public boolean isEnoughtResource(Resource r){ 
@@ -302,7 +303,7 @@ public class Player implements Serializable{
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-				model.sendMessage("you are excommunicated",this);
+			model.sendMessage("you are excommunicated",this);
 		}
 					 // TODO da testare
 		if(this.point.getFaith()>=requirement) 
@@ -334,36 +335,29 @@ public class Player implements Serializable{
 				return;
 			}
 			else {
-				new Timer().schedule(new T(this), model.getTurnDelay());
+				System.out.println("timer start");
+				updateTimer();
 			}
 		}
 		
 		public void doVatican() {
 			if (death) {
-				
+				return;
 			}
 			else {
-				new Timer().schedule(new T(this), model.getTurnDelay());
+				updateTimer();
 			}
+		}
+		
+		private void updateTimer(){
+			Turn turn=new Turn(this);
+			timer=new Timer();
+			timer.schedule(turn, model.getTurnDelay());
 		}
 		
 		public void timerFinished() {
 			model.sendMessage("Sveglia!! Il tuo tempo e' scaduto, hai saltato il turno"+ model.turn, this);
 			death=true;
-		}
-		
- 		class T extends TimerTask
-		{
-			Player gm;
-			
-			public T(Player gm) {
-				this.gm = gm;
-			}
-			
-			public void run(){
-				System.out.println("asdasdjnaksd");
-				gm.timerFinished();
-			}
 		}
  		
  		public void finishAction() throws GameException{
@@ -371,6 +365,7 @@ public class Player implements Serializable{
 				throw new GameException(GameError.ERR_NOT_TURN);
 			else
 			{
+				timer.cancel();
 				alradyPlaceFM=false;
 				model.finishAction();
 			}
@@ -485,6 +480,7 @@ public class Player implements Serializable{
 			this.alradyPlaceFM = alradyPlaceFM;
 		}
 
+
 		public void activateOPT(Integer id) throws GameException {
 			LeaderCard lc = getLC(id);
 			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
@@ -496,6 +492,18 @@ public class Player implements Serializable{
 		public void play(LeaderCard girolamo) throws GameException {
 		playLC(girolamo.getId());
 		}
+}
 
-
+class Turn extends TimerTask
+{
+	Player gm;
+	
+	public Turn(Player gm) {
+		this.gm = gm;
+	}
+	
+	public void run(){
+		System.out.println("asdasdjnaksd");
+		gm.timerFinished();
+	}
 }

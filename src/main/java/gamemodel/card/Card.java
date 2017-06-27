@@ -87,9 +87,9 @@ public class Card implements Serializable {
 			p.subResources(resourcePrice.minus(discount));	
 		if(pointPrice!=null && choose==-1)
 			p.subPoint(pointPrice);
-		if(choose==0)
+		if(resourcePrice!=null && choose==0)
 			p.subResources(resourcePrice.minus(discount));
-		if(choose==1)
+		if(pointPrice!=null && choose==1)
 			p.subPoint(pointPrice);
 		
 	}

@@ -17,7 +17,7 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 
 	private static final long serialVersionUID = 1L;
 	private int numberOfCouncilPrivileges;
-	private List<Object> choice;
+	private ArrayList<Object> choice;
 	
 	public CouncilPrivileges(int numberOfCouncilPrivileges)
 	{

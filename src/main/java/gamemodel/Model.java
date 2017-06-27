@@ -78,15 +78,16 @@ public class Model implements Serializable {
 				all=false;
 		if(all)
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(100);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
 		switch(gameState){
 		case GAME_FINISH:
-			//TODO messaggio vittoria, uccidi tutti!!
-			System.exit(0);
+			whoIsWinner(players);
+			//TODO messaggio vittoria
+			System.out.println("finitoooooooooooooooo");
+			controller.shutDown();
 			break;
 		case TURN_FINISH:
 			if(turn%2==0){
