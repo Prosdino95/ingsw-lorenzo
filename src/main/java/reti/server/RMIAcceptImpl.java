@@ -10,7 +10,7 @@ import reti.RMIAccept;
 public class RMIAcceptImpl extends UnicastRemoteObject implements RMIAccept {
 
 	private static final long serialVersionUID = 1L;
-	private Server server;
+	private transient Server server;
 
 	protected RMIAcceptImpl(Server server) throws RemoteException 
 	{

@@ -55,7 +55,7 @@ public class Exchange implements IstantEffect,Serializable
 				"Exchange: "+"\n";
 		str+="give --> ";
 		if(this.pointsOut!=null)
-			str+=pointsOut+"\n";
+			str+=pointsOut+"";
 		if(this.resourcesOut!=null)
 			str+=resourcesOut+"\n";
 		str+="receive --> ";

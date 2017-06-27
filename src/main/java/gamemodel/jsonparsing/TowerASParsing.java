@@ -23,8 +23,13 @@ public class TowerASParsing {
 	private Tower buildings=new Tower(CardType.BUILDING);
 	private Tower ventures=new Tower(CardType.VENTURE);
 	private Tower characters=new Tower(CardType.CHARACTER);
+	private Board board;
 	
 	
+	public TowerASParsing(Board board) {
+		this.board=board;
+	}
+
 	public List<TowerActionSpace> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("TowerActionSpace").asArray();
 		for (JsonValue item : items) {
@@ -33,7 +38,7 @@ public class TowerASParsing {
     		id=item.asObject().getInt("id", -1);
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
-    			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray());
+    			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray(),board);
     		}
     		makeAS(item.asObject().getString("card-tower", null));
     	}	

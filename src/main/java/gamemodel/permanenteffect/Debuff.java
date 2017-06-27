@@ -5,17 +5,18 @@ import gamemodel.Resource;
 
 public class Debuff extends PermanentEffect 
 {
+	private static final long serialVersionUID = 1L;
 	private Resource resources;
 	private Point points;
 	
 	public Debuff(Resource resources)
 	{
-		super("DEBUFF_RESOURCE");
+		super(PEffect.DEBUFF_RESOURCE);
 		this.resources=resources;
 	}
 	public Debuff(Point points)
 	{
-		super("DEBUFF_POINT");
+		super(PEffect.DEBUFF_POINT);
 		this.points=points;
 	}
 	
@@ -25,7 +26,8 @@ public class Debuff extends PermanentEffect
 	public Point getPoints() {
 		return points;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Debuff [resources=" + resources + ", points=" + points + "]";
+	}	
 }

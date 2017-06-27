@@ -1,30 +1,41 @@
 package gamemodel;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class LeaderCard {
-	Requirement requirement;
-
-	PermanentEffect pe;
-	IstantEffect oncePerRound;
-
-	boolean usedOPR = false;
-	boolean played = false;
+public class LeaderCard implements Serializable {
 	
-	Player owner;
+	private static final long serialVersionUID = 1L;
+	private Requirement requirement;
 	
-	public LeaderCard(Requirement req2, PermanentEffect pe2) {
-		requirement = req2;
-		pe = pe2;
+	private PermanentEffect pe;
+	private List<IstantEffect> oncePerRound=new ArrayList<>();
+	
+	private String name;
+	private int id;
+	private boolean usedOPR = false;
+	private boolean played = false;	
+	private Player owner;
+	
+	public LeaderCard(int id,String name,Requirement req2, PermanentEffect pe2) {
+		this.name=name;
+		this.id=id;
+		this.requirement = req2;
+		this.pe = pe2;
 	}
 
-	public LeaderCard(Requirement req2, IstantEffect opr2) {
-		requirement = req2;
-		oncePerRound = opr2;
+	public LeaderCard(int id,String name,Requirement req2, List<IstantEffect> opr2) {
+		this.name=name;
+		this.id=id;
+		this.requirement = req2;
+		this.oncePerRound = opr2;
 	}
 	
 	public void activateOPT() throws GameException {
@@ -35,8 +46,8 @@ public class LeaderCard {
 		
 		if (usedOPR)
 			throw new GameException(GameError.LEADER_CARD_USED);
-
-		oncePerRound.activate(owner);
+		for(IstantEffect e:oncePerRound)
+			e.activate(owner);
 	}
 
 	public void discard() {
@@ -59,13 +70,33 @@ public class LeaderCard {
 		return pe;
 	}
 	
+	
+
 	@Override
 	public String toString() {
-		return "LeaderCard [requirement=" + requirement + ", pe=" + pe + ", oncePerRound=" + oncePerRound + ", usedOPR="
-				+ usedOPR + ", played=" + played + "]";
+		return "LeaderCard [name=" + name + ", id=" + id + ", requirement=" + requirement + ", pe=" + pe
+				+ ", oncePerRound=" + oncePerRound + ", usedOPR=" + usedOPR + ", played=" + played + "]";
 	}
 
 	public void setOwner(Player player) {
 		owner = player;
+	}
+
+	public boolean getPlayedOPR() {
+		// TODO Auto-generated method stub
+		return usedOPR;
+	}
+
+	public boolean getPlayed() {
+		// TODO Auto-generated method stub
+		return played;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -25,4 +25,6 @@ public interface ActionSpace extends Serializable{
 	void rollbackEffect(FamilyMember f);
 	
 	public boolean isAccessible(Action a);
+
+	void prepareForNewRound();
 }

@@ -12,11 +12,12 @@ import reti.ServerResponse;
 
 public class HandlerViewRMIImpl extends UnicastRemoteObject implements HandlerView,HandlerViewRMI {
 	
-	private Controller controller;
-	private Player player;
-	private HandlerServerRMI hsr;
-
 	private static final long serialVersionUID = 1L;
+	private transient Controller controller;
+	private Player player;
+	private transient HandlerServerRMI hsr;
+
+	
 
 	protected HandlerViewRMIImpl(HandlerServerRMI hsr) throws RemoteException {
 		super();
@@ -55,6 +56,10 @@ public class HandlerViewRMIImpl extends UnicastRemoteObject implements HandlerVi
 	public void setPlayer(Player p) {
 		this.player=p;
 		
+	}
+
+	@Override
+	public void shutDown() {
 	}
 
 }

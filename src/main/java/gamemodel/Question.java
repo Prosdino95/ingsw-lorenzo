@@ -31,7 +31,7 @@ public class Question implements Serializable{
 	}
 
 	public void setChoose(List<Object> choose) {
-		this.choose = choose;
+		this.choose.addAll(choose);
 	}
 
 	public static long getSerialversionuid() {

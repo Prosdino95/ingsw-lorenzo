@@ -23,7 +23,7 @@
 			    "gold":1
 			}
 		    },
-		    "for":"BUILDINGS",
+		    "for":"BUILDING",
 		    "quantity":1
 		    
 		}
@@ -53,7 +53,7 @@
 			    "gold":1
 			}
 		    },
-		    "for":"TERRITORIES",
+		    "for":"TERRITORY",
 		    "quantity":1
 		    
 		}
@@ -83,7 +83,7 @@
 			    "victory":2
 			}
 		    },
-		    "for":"VENTURES",
+		    "for":"VENTURE",
 		    "quantity":1		
 		}
 	    ]						
@@ -112,7 +112,7 @@
 			    "victory":1
 			}
 		    },
-		    "for":"CHARACTERS",
+		    "for":"CHARACTER",
 		    "quantity":1		
 		}	
 	    ]						

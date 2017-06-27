@@ -4,6 +4,8 @@ package reti;
 import gamemodel.actionSpace.ActionSpace;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import gamemodel.*;
 
@@ -19,16 +21,38 @@ public class ClientRequest  implements Serializable{
 	private Color which;
 	private String answer;
 	private Player player;
+	private LeaderCard leaderCard;
+	private String what;
+	private Integer lcID;
 	
 	public ClientRequest(String string) {
 		type = RequestType.ANSWER;
 		answer = string;
+	}
+	
+	public void setWhichLeaderCard(LeaderCard lc) {
+		leaderCard = lc;
+		lcID = lc.getId();
+	}
+	
+	public LeaderCard getLeaderCard() {
+		return leaderCard;
+	}
+
+	
+	public void setWhatLC(String what) {
+		this.what = what;
 	}
 
 	public ClientRequest() {
 		super();
 	}
 	
+	public ClientRequest(String a, RequestType type) {
+		this.answer=a;
+		this.type=type;
+	}
+
 	public void setType(RequestType type) {
 		this.type = type;
 	}
@@ -89,4 +113,28 @@ public class ClientRequest  implements Serializable{
 		return player;
 	}
 
+	public List<String> possibleLeaderCardActions() {
+		List<String> lst = new ArrayList<>();
+		if (leaderCard.getPlayed()) {
+			if (leaderCard.getPermanentEffect() == null) {
+				lst.add("Nothing");
+			} else if (leaderCard.getPlayedOPR()) { 
+				lst.add("Nothing");
+			} else {
+				lst.add("Activate OPR effect");
+			}
+		} else {
+			lst.add("Scartare");
+			lst.add("Play it");
+		}
+		return lst;
+	}
+
+	public String getWhatLC() {
+		return what;
+	}
+
+	public Integer getLeaderCardID() {
+		return lcID;
+	}
 }

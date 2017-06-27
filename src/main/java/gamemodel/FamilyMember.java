@@ -8,7 +8,7 @@ public class FamilyMember implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FamilyMember [player=" + player + ", actionPoint=" + actionPoint + ", color=" + color + ", used=" + used
+		return "FamilyMember [actionPoint=" + actionPoint + ", color=" + color + ", used=" + used
 				+ "]";
 	}
 
@@ -28,6 +28,7 @@ public class FamilyMember implements Serializable {
 		actionPoint = strength;
 	}
 	
+
 	public FamilyMember clone() {
 		FamilyMember fm = new FamilyMember(player, color);
 		fm.setActionpoint(actionPoint);

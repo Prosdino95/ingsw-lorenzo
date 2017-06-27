@@ -45,8 +45,13 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 				if(h.controlPlayer(f))
 					if(IsEnoughtStrong())
 						if(controlServant())
-							if(h.isAccessible(action)){
+							if (f.getColor() == Color.STRANGE) {
+								f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());								
+								cardEffect(h.getType());
+							}
+							else if(h.isAccessible(action)) {
 								f.getPlayer().getFamilyMember(f.getColor()).use();
+								f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());
 								cardEffect(h.getType());
 								h.occupy();
 								h.addPlayer(f);
@@ -54,6 +59,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 							else{
 								f.getPlayer().getFamilyMember(f.getColor()).use();
 								f.setActionpoint(f.getActionpoint()-3);
+								f.getPlayer().getPersonalBonusTile().activate(f.getPlayer(),h.getType());
 								cardEffect(h.getType());
 								h.addPlayer(f);
 							}

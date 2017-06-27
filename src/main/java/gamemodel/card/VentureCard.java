@@ -7,7 +7,7 @@ import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 
-public class VentureCard extends RealCard {
+public class VentureCard extends Card {
 
 	private static final long serialVersionUID = 1L;
 	private List<IstantEffect> activateEffect;

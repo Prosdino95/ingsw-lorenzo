@@ -1,15 +1,30 @@
 package gamemodel;
 
-public class Requirement {
+import java.io.Serializable;
+
+public class Requirement implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Resource resource;
 	private CardRequirement cardReq;
+	private Point point;
 
 	public Requirement(Resource resource) {
 		this.resource = resource;
 	}
 	
+	public Requirement(Point point){
+		this.point=point;
+	}
+	
 	public Requirement(CardRequirement cr) {
 		this.cardReq = cr;
+	}
+
+	public Requirement(Point point, Resource resource, CardRequirement card) {
+		this.resource=resource;
+		this.point=point;
+		this.cardReq=card;
 	}
 
 	public boolean isSatisfiedBy(Player player) {
@@ -19,10 +34,20 @@ public class Requirement {
 			satisfies = player.getResource().isEnought(resource);
 		}
 		
+		if(point!= null){
+			satisfies = player.getPoint().isEnought(point);
+		}
+		
 		if (cardReq != null) {
 			satisfies = cardReq.isSatisfiedBy(player);
 		}
 		
 		return satisfies;
 	}
+
+	@Override
+	public String toString() {
+		return "Requirement [resource=" + resource + ", cardReq=" + cardReq + ", point=" + point + "]";
+	}
+	
 }

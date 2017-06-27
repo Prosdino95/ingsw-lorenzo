@@ -17,7 +17,7 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 
 	private static final long serialVersionUID = 1L;
 	private int numberOfCouncilPrivileges;
-	private List<Object> choice;
+	private ArrayList<Object> choice;
 	
 	public CouncilPrivileges(int numberOfCouncilPrivileges)
 	{
@@ -40,9 +40,14 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 			System.out.println(counter);
 			System.out.println(numberOfCouncilPrivileges);
 			
-			int selection;
+			int selection = 0;
 			try {
-				selection = player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				try {
+					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_COUNCIL_PRIVILEGE, choice));
+				} catch (GameException e) {
+					if (e.getType() == GameError.NOT_PLAYING_ONLINE)
+						selection = 0;
+				}
 				while(selectionHistory.contains(selection) || selection>4)
 					selection = player.answerToQuestion(new Question(GameQuestion.SELECT_A_DIFFERENT_COUNCIL_PRIVILEGE, choice));
 				effect(selection,player);

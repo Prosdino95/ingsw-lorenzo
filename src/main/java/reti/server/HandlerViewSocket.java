@@ -3,18 +3,14 @@ package reti.server;
 import java.io.IOException;
 
 
+
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.ArrayDeque;
-import java.util.List;
+
 import java.util.Queue;
 
 import gamemodel.Player;
-import gamemodel.Question;
-import gamemodel.Model;
-import gamemodel.Team;
-import gamemodel.command.GameException;
 import reti.ClientRequest;
 import reti.ServerResponse;
 
@@ -59,24 +55,16 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 			try {
 				if (socket.getInputStream().available() > 1) {
 					request=readRequest();
-					System.out.println("Server received: " + request);
+					//System.out.println("Server received: " + request);
 					doRequest(request);					
 				} 
 				Thread.sleep(100);
 				if(!responseQueue.isEmpty())
-					send(this.responseQueue.remove());
-					
-			} catch (ClassNotFoundException | IOException | InterruptedException e) {
-				try {
-					controller.imDead(this);
-					in.close();
-					out.close();
-					live=false;
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}				
-			}							
+					send(this.responseQueue.remove());				
+			} 
+			catch (ClassNotFoundException | IOException | InterruptedException e) {
+				shutDown();				
+			}		
 		}
 	}
 	
@@ -103,6 +91,19 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 	public void doRequest(ClientRequest request) {
 		request.setPlayer(player);
 		controller.doRequest(request);
+	}
+
+	@Override
+	public void shutDown() {
+		controller.imDead(this);
+		live=false;
+		try {
+			socket.close();
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }

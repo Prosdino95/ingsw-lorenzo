@@ -13,15 +13,16 @@ public class Server {
 	private ExecutorService pool = Executors.newCachedThreadPool();
 	private ServerSocket serverSocket;
 	private GameManager gm;
+	private boolean live=true;
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
+		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
 		Server server=new Server();
-		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server.serverSocket)));		
+		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));		
 		server.serverSocket=new ServerSocket(3003);			
-		Registry registry = LocateRegistry.getRegistry();
-		RMIAcceptImpl rai= new RMIAcceptImpl(server);
-		registry.bind("rai",rai);
+		//Registry registry = LocateRegistry.getRegistry();
+		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
+		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
 		server.start();
 	}
@@ -30,7 +31,7 @@ public class Server {
 		System.out.println("server start");
 		gm=new GameManager();
 		pool.execute(gm);
-		while(true){
+		while(live){
 			Socket s=serverSocket.accept();				
 			System.out.println("ricevuta nuova connessione");
 			HandlerViewSocket hv =new HandlerViewSocket(s);		
@@ -46,23 +47,27 @@ public class Server {
 		gm.addHV(hv);
 		
 	}
-}	
-
-class Shutdown implements Runnable {
-	private ServerSocket ss;
-
-	public Shutdown(ServerSocket ss) {
-		this.ss = ss;
-	}
 	
-	public void run() {
+	public void Shutdown(){
 		try {
-			if(ss!=null)
-			ss.close();
+			serverSocket.close();
+			live=false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+}	
+
+class Shutdown implements Runnable {
+	private Server s;
+
+	public Shutdown(Server s) {
+		this.s = s;
+	}
+	
+	public void run() {
+		s.Shutdown();
 	}
 	
 }

@@ -9,21 +9,25 @@ public class PermanentEffect implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
-	private List<String> tag= new ArrayList<>();
+	private List<PEffect> tag= new ArrayList<>();
 	
 
-	public PermanentEffect(String tag) 
+	public PermanentEffect(PEffect tag) 
 	{
 		this.tag.add(tag);
 	}
 	
-	public PermanentEffect(List<String> tag) 
+	public PermanentEffect(List<PEffect> tag) 
 	{
 		this.tag=tag;
 	}
 	
-	public boolean hasTag(String tag){
+	public boolean hasTag(PEffect tag){
 		return this.tag.contains(tag);
+	}
+
+	public void addTag(PEffect tag) {
+		this.tag.add(tag);		
 	}
 	
 

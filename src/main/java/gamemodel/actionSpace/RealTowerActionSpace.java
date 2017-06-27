@@ -9,6 +9,7 @@ import gamemodel.Tower;
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
+import gamemodel.permanenteffect.PEffect;
 
 public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
 
@@ -42,7 +43,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	
 	public String toString() {
 		String str = "";
-		str += this.getId();
+		str += this.getActionCost();
 		str += "-> ";
 		str += "tower";
 		str += this.getTower();
@@ -58,7 +59,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	@Override
 	public void giveCard(FamilyMember f) throws GameException {
 		f.getPlayer().giveCard(this.card);
-		
+		this.card=null;
 	}
 	
 	/*@Override
@@ -69,7 +70,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException 
 	{
-		if(f.getPlayer().getPEffects("NO_BONUS").isEmpty())
+		if(f.getPlayer().getPEffects(PEffect.NO_BONUS).isEmpty())
 			super.activateEffect(f);
 	}
 }

@@ -6,6 +6,6 @@ public enum Color implements Serializable {
 	BLACK,
 	WHITE,
 	ORANGE,
-	UNCOLORED;
+	UNCOLORED, STRANGE;
 
 }

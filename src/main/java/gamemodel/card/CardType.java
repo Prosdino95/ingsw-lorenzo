@@ -6,5 +6,6 @@ public enum CardType implements Serializable {
 	TERRITORY,
 	BUILDING,
 	CHARACTER,
-	VENTURE
+	VENTURE, 
+	ALL
 }

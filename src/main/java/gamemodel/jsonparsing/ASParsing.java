@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.eclipsesource.json.*;
 
+import gamemodel.Board;
 import gamemodel.actionSpace.*;
 import gamemodel.effects.*;
 
@@ -19,7 +20,12 @@ public class ASParsing {
 	private ActionSpaceType type;
 	private int cost;
 	private int id;
+	private Board board;
 		
+
+	public ASParsing(Board board) {
+		this.board=board;
+	}
 
 	public List<ActionSpace> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("ActionSpace").asArray();
@@ -29,7 +35,7 @@ public class ASParsing {
     		effects=null;
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
-    			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray());
+    			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray(),board);
     		}
     		makeAS(item.asObject().getString("type", null));
     		

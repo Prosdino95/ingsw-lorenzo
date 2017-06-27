@@ -31,7 +31,11 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 	@Override
 	public void run() throws IOException {
 		System.out.println(intro);
-		print(getterList.get());
+		List<E> lst = getterList.get();
+		if (lst.isEmpty())
+			return;
+		else
+			print(lst);
 		try {
 			E choose = getterList.get().get(CLIView.getInt());
 			setter.accept(choose);			

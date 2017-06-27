@@ -22,6 +22,13 @@ public class Excommunication implements Serializable
 		this.permanentEffect=permanentEffect;
 	}
 
+	@Override
+	public String toString() {
+		return "Excommunication [period=" + period + ", permanentEffect=" + permanentEffect + "]";
+	}
+	
+	
+
 }
 
 

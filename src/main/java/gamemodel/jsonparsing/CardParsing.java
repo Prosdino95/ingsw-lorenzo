@@ -20,15 +20,20 @@ public class CardParsing {
 	private int actionCost;
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
-	private Map<CardType, Integer> rCard;
 	private List<IstantEffect> istantEffects,activateEffects;
-	private List<PermanentEffect> permanentEffects;
+	private PermanentEffect permanentEffects;
 	private CardType type;
-	private int id=0;
+	private int id=0;	
+	private Board board;
+	
+	public CardParsing(Board board){
+		this.board=board;
+	}
 	
 	public List<Card> parsing(String json){
 		JsonArray items = arrayBuild(json); 
 		for (JsonValue item : items) {
+			permanentEffects=null;
 			actionCost=item.asObject().getInt("action-cost", 0);
 			period=item.asObject().getInt("period", 0);
     		name=item.asObject().getString("name", null);
@@ -36,15 +41,14 @@ public class CardParsing {
     		cardCostParsing(item);
     		if(item.asObject().get("istant-effect")!=null){
     			istantEffects=new ArrayList<>();
-    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray());
+    			istantEffects=new IstantEffectParsing().parsing(item.asObject().get("istant-effect").asArray(),board);
     		}
     		if(item.asObject().get("activate-effect")!=null){
     			activateEffects=new ArrayList<>();
-    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray());
+    			activateEffects=new IstantEffectParsing().parsing(item.asObject().get("activate-effect").asArray(),board);
     		}
     		if(item.asObject().get("permanent-effect")!=null){
-    			permanentEffects=new ArrayList<>();
-    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect").asArray());
+    			permanentEffects=new PermanentEffectParsing().parsing(item.asObject().get("permanent-effect"));
     		}
     		makeCard(); 
     	}	
@@ -88,55 +92,27 @@ public class CardParsing {
 		}
 		return null;
 	}
-
-
-
+	
 	private void cardCostParsing(JsonValue item) {
 		rRequirement=null;
 		rPrice=null;
 		pRequirement=null;
 		pPrice=null;		
 		if(item.asObject().get("resource-requirement")!=null)
-			rRequirement=resourceParsing(item.asObject().get("resource-requirement").asObject());
+			rRequirement=ParsingHelper.resourceParsing(item.asObject().get("resource-requirement").asObject());
 		
 		if(item.asObject().get("resource-price")==null)
 			rPrice=rRequirement;
 		else
-			rPrice=resourceParsing(item.asObject().get("resource-price").asObject());
+			rPrice=ParsingHelper.resourceParsing(item.asObject().get("resource-price").asObject());
 		
 		if(item.asObject().get("point-requirement")!=null)
-			pRequirement=pointParsing(item.asObject().get("point-requirement").asObject());
+			pRequirement=ParsingHelper.pointParsing(item.asObject().get("point-requirement").asObject());
 		
 		if(item.asObject().get("point-price")==null)
 			pPrice=pRequirement;
 		else
-			pPrice=pointParsing(item.asObject().get("point-price").asObject());	
-		
-		if(item.asObject().get("card-requirement")!=null)
-			cardRequirementBuild(item);
-	}
-
-
-
-	private void cardRequirementBuild(JsonValue item) {
-		rCard=new HashMap<>();		
-	}
-
-
-
-	private Point pointParsing(JsonValue item) {
-		int military=item.asObject().getInt("military", 0);
-		int faith=item.asObject().getInt("faith", 0);
-		int victory=item.asObject().getInt("victory", 0);
-		return new Point(military,faith,victory);
-	}
-
-	private Resource resourceParsing(JsonValue item) {
-		int gold=item.asObject().getInt("gold", 0);
-		int wood=item.asObject().getInt("wood", 0);
-		int stone=item.asObject().getInt("stone", 0);
-		int servants=item.asObject().getInt("servants", 0);
-		return new Resource(gold,stone,wood,servants);
+			pPrice=ParsingHelper.pointParsing(item.asObject().get("point-price").asObject());	
 		
 	}
 

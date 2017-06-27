@@ -10,19 +10,19 @@ import gamemodel.Resource;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 
-public class CharactersCard extends RealCard implements Serializable {
+public class CharactersCard extends Card implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private List<PermanentEffect> permanentEffect;
+	private PermanentEffect permanentEffect;
 
 	public CharactersCard(int id,String name, int period, Resource resourceRequirement, Resource resourcePrice, Point point,
-			Point pointPrice, List<IstantEffect> istantEffects,List<PermanentEffect> permanentEffect, CardType type) {
+			Point pointPrice, List<IstantEffect> istantEffects,PermanentEffect permanentEffect, CardType type) {
 		super(id,name, period, resourceRequirement, resourcePrice, point, pointPrice, istantEffects, type);
 		this.permanentEffect=permanentEffect;
 	}
 
 
-	public List<PermanentEffect> getPermanentEffects() {
+	public PermanentEffect getPermanentEffects() {
 		return permanentEffect;
 	}
 	
@@ -42,7 +42,7 @@ public class CharactersCard extends RealCard implements Serializable {
 		if(this.istantEffect!=null)
 			str +="istant effect-> "+this.istantEffect+ "\n";		
 		if(this.permanentEffect!=null)
-			str +="Action effect-> "+this.permanentEffect+ "\n";		
+			str +="Permanent effect-> "+this.permanentEffect+ "\n";		
 		return str;
 	}
 

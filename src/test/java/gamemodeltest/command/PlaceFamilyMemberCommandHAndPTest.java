@@ -43,11 +43,13 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
+		model.setCurretPlayer(p1);
 	}
 
 	@Test
 	public void testDoubleUseFamiliare(){
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		
@@ -65,7 +67,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);
-		assertEquals(new Resource(5,5,5,0),p1.getResource());
+		assertEquals(new Resource(5,6,6,1),p1.getResource());
 	}
 	@Test 
 	public void testTooMatchServant(){
@@ -77,6 +79,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 	@Test
 	public void testDoublePlaceSamePost(){
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR_FM,s);		
@@ -89,6 +92,7 @@ public class PlaceFamilyMemberCommandHAndPTest {
 		Action a1=new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0);
 		Action a2=new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0);
 		p1.placeFamilyMember(a1);
+		model.setCurretPlayer(p2);
 		p2.placeFamilyMember(a2);
 		assertEquals(a1.getFm().getActionpoint(),pointWhite1);
 		assertEquals(a2.getFm().getActionpoint(),pointWhite2-3);		

@@ -3,11 +3,14 @@ package gamemodel;
 import java.io.Serializable;
 
 
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
@@ -17,9 +20,9 @@ import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.*;
-import gamemodel.permanenteffect.Debuff;
+import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.*;
-import gamemodel.permanenteffect.StrengthModifyAndDiscount;
+import reti.server.GameManager;
 
 
 public class Player implements Serializable{
@@ -31,15 +34,17 @@ public class Player implements Serializable{
 	private List<HarvesterAndBuildings> territories=new ArrayList<>();	
 	private List<VentureCard> ventures=new ArrayList<>();
 	private List<CharactersCard> characters=new ArrayList<>();
-	private Map<Color,FamilyMember> familyMembers;
 	private Board board;	
 	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
 	private transient Model model;
-	private transient Player currentPlayer;
-	private boolean vaticanTime=false;
-	private List<LeaderCard> lcs = new ArrayList<>();
-	private List<FamilyMember> familyMembersList; 
+	private boolean death=false;
+	private List<LeaderCard> leaderCards = new ArrayList<>();
+	private List<FamilyMember> familyMembers; 
+	private PersonalBonusTile personalBonusTile;
+	private boolean alradyPlaceFM=false;
+	private boolean alradyPlaceVatican=false;
+	private transient Timer timer;
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -49,6 +54,7 @@ public class Player implements Serializable{
 		this.board = board;
 		this.point=new Point(0,0,0);
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 	
 	public Player(Resource resource, Board board,Team team,Model model){
@@ -58,43 +64,34 @@ public class Player implements Serializable{
 		this.board = board;
 		this.point=new Point(0,0,0);
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 
 	public Player(Resource resource2, Point point) {
 		resource = resource2;
 		this.point = point;
 		generateFamilyMember();
+		personalBonusTile=new PersonalBonusTile(new Resource(0,1,1,1),new Point(1,0,0),new Resource(2,0,0,0));
 	}
 
 	private void generateFamilyMember() {
-		familyMembers=new HashMap<>();
-		familyMembers.put(Color.BLACK,new FamilyMember(this,Color.BLACK));
-		familyMembers.put(Color.WHITE,new FamilyMember(this,Color.WHITE));
-		familyMembers.put(Color.ORANGE,new FamilyMember(this,Color.ORANGE));
-		familyMembers.put(Color.UNCOLORED,new FamilyMember(this,Color.UNCOLORED));
-		
-		familyMembersList = new ArrayList<>();
-		familyMembersList.add(new FamilyMember(this,Color.BLACK));
-		familyMembersList.add(new FamilyMember(this,Color.WHITE));
-		familyMembersList.add(new FamilyMember(this,Color.ORANGE));
-		familyMembersList.add(new FamilyMember(this,Color.UNCOLORED));
+		familyMembers = new ArrayList<>();
+		familyMembers.add(new FamilyMember(this,Color.BLACK));
+		familyMembers.add(new FamilyMember(this,Color.WHITE));
+		familyMembers.add(new FamilyMember(this,Color.ORANGE));
+		familyMembers.add(new FamilyMember(this,Color.UNCOLORED));
 	}
 	
-	private void setFamilyMember(Color color,int actionPoint){
-		FamilyMember f = familyMembers.get(color);
+	private void setFamilyMember(Color color,int actionPoint) {
+		FamilyMember f = getFamilyMember(color); 
 		f.setActionpoint(actionPoint);		
 	}
 	
-	public boolean getvaticanTime()
+	public PersonalBonusTile getPersonalBonusTile() 
 	{
-		return this.vaticanTime;
+		return personalBonusTile;
 	}
-	public void setvaticanTime(boolean b)
-	{
-		this.vaticanTime=b;
-	}
-	
-	
+
 	 public void subResources(Resource r) {
 		if (r == null) return;  
 	    this.resource.subResources(r); 
@@ -107,12 +104,12 @@ public class Player implements Serializable{
 		if(!r.isEnought(new Resource(0,0,0,0)))
 			throw new RuntimeException();
 		
-		 for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_RESOURCE"))
-		 {
-			 r.subResources(((Debuff)permanentEffect).getResources());
-			 r.normalize();
-		 }	
-		 this.resource.addResources(r);
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
+		{
+			r.subResources(((Debuff)permanentEffect).getResources());
+			r.normalize();
+		}		 	
+		this.resource.addResources(r);
 	} 
 	
 	public boolean isEnoughtResource(Resource r){ 
@@ -120,18 +117,27 @@ public class Player implements Serializable{
 	}
 	
 	public FamilyMember getFamilyMember(Color c){
-		return familyMembers.get(c);
+		if (c == Color.STRANGE) return new FamilyMember(null, null);
+		for(FamilyMember fm:this.familyMembers)
+			if(fm.getColor()==c){
+				//System.out.println(fm);
+				return familyMembers.get(familyMembers.indexOf(fm));
+			}
+		return null;
 	}
 	
 	public void placeFamilyMember(Action action) throws GameException {
-		System.out.println(this+" : "+currentPlayer);
-		if(!this.equals(currentPlayer) && currentPlayer!=null )
+		//if(!this.equals(currentPlayer) && currentPlayer!=null )
+		if(!this.equals(model.getCurrentPlayer()))
 			throw new GameException(GameError.ERR_NOT_TURN);
+		if(this.alradyPlaceFM)
+			throw new GameException(GameError.ALREADY_PLACE_FM);
 		currentAction = action;
 		increasePower();
 		Command command;
 		command=model.getCommandFactory().placeFMCommandFactory(action);
 		command.isLegal();
+		alradyPlaceFM=true;
 	}
 	
 	public Team getTeam() {
@@ -142,19 +148,11 @@ public class Player implements Serializable{
 		return resource;
 	}
 
-	public void playRound() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
-		board.getDice().setFMActionPoints(familyMembersList);
 		
-		for(PermanentEffect permanentEffect:this.getPEffects("FM")){
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.FM)){
 			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
-			((FamilyMemberModify)permanentEffect).modify(this.familyMembersList);
 		}
 		
 	}
@@ -166,7 +164,7 @@ public class Player implements Serializable{
 
 	public void addPoint(Point point) {
 		this.point.addPoint(point);
-		for(PermanentEffect permanentEffect:this.getPEffects("DEBUFF_POINT"))
+		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_POINT))
 		{
 			this.subPoint(((Debuff)permanentEffect).getPoints());
 		}
@@ -191,11 +189,7 @@ public class Player implements Serializable{
 	}
 
 	public List<FamilyMember> getFamilyMembers() {
-		return  new ArrayList<>(familyMembers.values());
-	}
-
-	public List<FamilyMember> getFamilyMembersList() {
-		return familyMembersList;
+		return familyMembers;
 	}
 
 	public Point getPoint() {
@@ -221,13 +215,14 @@ public class Player implements Serializable{
 
 	public void giveCard(Card card) throws GameException {
 		card.activeIstantEffect(this);
+		if(card.isInstanceOfResourceModify(card.getIstantEffect()) && this.getPEffects(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT).size()>0)
+			for(IstantEffect ie:card.getResourceModifyInstantEffects(card.getIstantEffect()))
+				ie.activate(this);
 		if (card instanceof CharactersCard)
-			for(PermanentEffect e : ((CharactersCard) card).getPermanentEffects())
-				this.permanentEffects.add((PermanentEffect) e);
-		
+			this.permanentEffects.add(((CharactersCard) card).getPermanentEffects());
 	}
 
-	public PermanentEffect getPermanentEffect(String tag) {
+	public PermanentEffect getPermanentEffect(PEffect tag) {
 		for(PermanentEffect e:this.permanentEffects)
 			if(e.hasTag(tag))
 				return e;
@@ -239,16 +234,14 @@ public class Player implements Serializable{
 		FamilyMember fm = currentAction.getFm().clone();
 		for (PermanentEffect e : permanentEffects) 
 		{
-			if (e.hasTag("HALVE_SERVANTS"))
+			if (e.hasTag(PEffect.HALVE_SERVANTS))
 				fm.setActionpoint(fm.getActionpoint() + currentAction.getServants()/2);
 		}
 		fm.setActionpoint(fm.getActionpoint() + currentAction.getServants());
 		currentAction.setFm(fm);
 	
-		//TODO enum....
-//		List<ModForza> e = (ModForza) permanentEffects("MOD_FORZA");
 		for (PermanentEffect e : permanentEffects) {
-			if (e.hasTag("MOD_FORZA")) {
+			if (e.hasTag(PEffect.MOD_FORZA)) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
 						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {
@@ -269,7 +262,7 @@ public class Player implements Serializable{
 		}
 	}
 	
-	public List<PermanentEffect> getPEffects(String tag)
+	public List<PermanentEffect> getPEffects(PEffect tag)
 	{
 		List<PermanentEffect> temp=new ArrayList<>();
 		for(PermanentEffect pEffect:this.permanentEffects)
@@ -282,10 +275,10 @@ public class Player implements Serializable{
 	{
 		Resource discount=new Resource(0,0,0,0);
 		for (PermanentEffect e : permanentEffects) 
-			if (e.hasTag("Discount")) 
+			if (e.hasTag(PEffect.DISCOUNT)) 
 			{
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
-				if (mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
+				if (mf.getCtype()==CardType.ALL || mf.getCtype() == ((TowerActionSpace) currentAction.getActionSpace()).getTower().getType()) 
 					discount.addResources(mf.getDiscount());
 			}
 		if(card.controlResource(this, discount)){
@@ -296,37 +289,36 @@ public class Player implements Serializable{
 		else return false;			
 	}
 	
-	public void vaticanReport(int period,int requirement,int victoryPoints) throws GameException
+	public void vaticanReport(int selection)
 	{
-		if (!this.vaticanTime)
-			throw new GameException(GameError.VATICAN_NOOO);
+		this.alradyPlaceVatican=true;
+		int period=1;
+		int requirement=0;
+		int victoryPoints=0;
+		if (this.death)
+			return;
 		
 		if(this.point.getFaith()<requirement)
 		{
-			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
+			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+			model.sendMessage("you are excommunicated",this);
 		}
 					 // TODO da testare
-		if(this.point.getFaith()>=requirement) //aggiornato con il caso del caloclo finale dei punti vittoria
+		if(this.point.getFaith()>=requirement) 
 		{
-			int selection;	
-			try 
-			{
-				selection = this.answerToQuestion(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo()));
-			} 
-			catch (GameException e) 
-			{
-				selection =0;
-			}
 			if(selection==0)
 			{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 				if(period==3)
 					addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
+				model.sendMessage("hai deciso di non supportare il papa", this);
 			}
 			if(selection==1)
 			{
+				if(this.getPEffects(PEffect.FIVE_ADDITIONAL_VICTORY_POINTS_WHEN_SUPPORT_THE_CHURCH).size()>0)
+					this.addPoint(new Point(0,0,5));
 				this.subPoint(new Point(0,this.point.getFaith(),0));
 				this.addPoint(new Point(0,0,victoryPoints));
 			}
@@ -337,9 +329,48 @@ public class Player implements Serializable{
 			return model.answerToQuestion(question, this);
 		}
 
-		public void setCurrentPlayer(Player nextPlayer) {
-			this.currentPlayer=nextPlayer;			
+
+		public void doAction() {
+			if (death) {
+				return;
+			}
+			else {
+				System.out.println("timer start");
+				updateTimer();
+			}
 		}
+		
+		public void doVatican() {
+			if (death) {
+				return;
+			}
+			else {
+				updateTimer();
+			}
+		}
+		
+		private void updateTimer(){
+			Turn turn=new Turn(this);
+			timer=new Timer();
+			timer.schedule(turn, model.getTurnDelay());
+		}
+		
+		public void timerFinished() {
+			model.sendMessage("Sveglia!! Il tuo tempo e' scaduto, hai saltato il turno"+ model.turn, this);
+			death=true;
+		}
+ 		
+ 		public void finishAction() throws GameException{
+			if(!this.equals(model.getCurrentPlayer()))
+				throw new GameException(GameError.ERR_NOT_TURN);
+			else
+			{
+				timer.cancel();
+				alradyPlaceFM=false;
+				model.finishAction();
+			}
+		}
+		
 
 		@Override
 		public int hashCode() {
@@ -363,26 +394,34 @@ public class Player implements Serializable{
 			return true;
 		}
 
-		@Override
-		public String toString() {
+		public String toString2() {
 			return "" + team + "";
 		}
 
+		@Override
+		public String toString() {
+			return "Player [team=" + team + ", resource=" + resource + ", point=" + point + ", buildings=" + buildings
+					+ ", territories=" + territories + ", ventures=" + ventures + ", characters=" + characters
+					+ ", death=" + death + ", familyMembers=" + familyMembers + "]";
+		}
+
 		public List<LeaderCard> getLCList() {
-			return lcs;
+			return leaderCards;
 		}
 		
 		public void giveLeaderCard(LeaderCard lc) {
 			lc.setOwner(this);
-			lcs.add(lc);
-			
+			leaderCards.add(lc);
+		}
+	
+		
+		public void playLC(Integer id) throws GameException {
+			LeaderCard lc = getLC(id);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
+			lc.play();
 			PermanentEffect pe = lc.getPermanentEffect(); 
 			if (pe != null)
 				permanentEffects.add(pe);
-		}
-		
-		public void play(LeaderCard lc) throws GameException {
-			lc.play();
 		}
 		
 		public void activateLC(LeaderCard lc) throws GameException {
@@ -391,15 +430,80 @@ public class Player implements Serializable{
 
 		public void discardLC(LeaderCard lc) {
 			lc.discard();
-			lcs.remove(lc);
+			leaderCards.remove(lc);
 		}
 		
 		public void discardLC(Integer lcId) throws GameException {
-			LeaderCard lc = board.getLC(lcId);
+			LeaderCard lc = getLC(lcId);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
 			discardLC(lc);
 		}
 
 		public void setBoard(Board b) {
 			board = b;
 		}
+
+		public void registerPermanentEffect(PermanentEffect tempEffect) {
+			if (tempEffect == null) return;
+			permanentEffects.add(tempEffect);
+		}
+		
+		public void removePermanentEffect(PermanentEffect eff) {
+			if (eff == null) return;
+			if (permanentEffects.contains(eff))
+				permanentEffects.removeIf(e -> e.equals(eff));
+			else
+				throw new RuntimeException();
+		}
+
+		public boolean isDead() {
+			return death;
+		}
+		
+		public boolean playedVatican() {
+			return alradyPlaceVatican;
+		}
+
+		public void setAlive() {
+			death=false;		
+		}
+
+		public LeaderCard getLC(Integer id) {
+			for (LeaderCard l : this.leaderCards) {
+				if (l.getId() == id) 
+					return l;
+			}
+			return null;
+		}
+		
+		public void setAlradyPlaceFM(boolean alradyPlaceFM) {
+			this.alradyPlaceFM = alradyPlaceFM;
+		}
+
+
+		public void activateOPT(Integer id) throws GameException {
+			LeaderCard lc = getLC(id);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
+
+			lc.activateOPT();
+			
+		}
+
+		public void play(LeaderCard girolamo) throws GameException {
+		playLC(girolamo.getId());
+		}
+}
+
+class Turn extends TimerTask
+{
+	Player gm;
+	
+	public Turn(Player gm) {
+		this.gm = gm;
+	}
+	
+	public void run(){
+		System.out.println("asdasdjnaksd");
+		gm.timerFinished();
+	}
 }

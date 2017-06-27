@@ -48,6 +48,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		p2.prepareForNewRound();
 		b.addActionSpace(a0);	
 		b.addActionSpace(a1);
+		model.setCurretPlayer(p1);
 	}
 	
 	
@@ -55,6 +56,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	@Test
 	public void testDoubleUseFamiliare(){
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		
@@ -85,6 +87,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	@Test
 	public void testDoublePlaceSamePost() throws GameException{
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(null,s);		
@@ -96,6 +99,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 		testplayers.add((Player) p1);
 		testplayers.add((Player) p2);
 		p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.WHITE),0));
+		model.setCurretPlayer(p2);
 		p2.placeFamilyMember(new Action(p2,a0,p2.getFamilyMember(Color.WHITE),0));
 		assertEquals(a0.getPlayers(),testplayers);		
 	}
@@ -103,9 +107,14 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	@Test
 	public void tooMuchFM() throws GameException{
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),0));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),0));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.ORANGE),0));
+			p1.setAlradyPlaceFM(false);
+			model.setCurretPlayer(p2);
 			p2.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.WHITE),0));
+			model.setCurretPlayer(p1);
 			p1.placeFamilyMember(new Action(p2,a1,p2.getFamilyMember(Color.BLACK),0));
 		}
 		catch(GameException e){s=e.getType();}

@@ -40,6 +40,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 		a0=new RealActionSpace(0,5, e, ActionSpaceType.MARKET);
 		a1=new RealActionSpace(1,0, e, ActionSpaceType.MARKET);
 		p1.prepareForNewRound();
+		model.setCurretPlayer(p1);
 	}
 		
 	@Test
@@ -67,6 +68,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 	@Test
 	public void testDoublePlaceSamePost(){
 		try{p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.WHITE),5));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR,s);
@@ -75,6 +77,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 	@Test
 	public void testDoubleUseFamiliare(){
 		try{p1.placeFamilyMember(new Action(p1,a0,p1.getFamilyMember(Color.BLACK),5));
+			p1.setAlradyPlaceFM(false);
 			p1.placeFamilyMember(new Action(p1,a1,p1.getFamilyMember(Color.BLACK),5));}
 		catch(GameException e){s=e.getType();}		
 		assertEquals(GameError.FM_ERR_USE,s);		
