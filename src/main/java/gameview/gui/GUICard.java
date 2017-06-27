@@ -7,22 +7,9 @@ import java.io.IOException;
 
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
-import gamemodel.card.CharactersCard;
-import gamemodel.card.HarvesterAndBuildings;
-import gamemodel.card.RealCard;
-import gamemodel.card.VentureCard;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
-
 
 public class GUICard extends Region
 {
@@ -34,7 +21,7 @@ public class GUICard extends Region
 	{
 		loader=new FXMLLoader();
         this.card=card;
-        pane = imageGen(card.getType(),loader,pane);    
+        pane = imageGen(card.getType(),loader,pane);
     }
 
 	public Pane getPane() 
@@ -68,13 +55,13 @@ public class GUICard extends Region
 						TerritoryCardController territoryCardController=loader.getController();
 						territoryCardController.initialize(card);			
 					} break;
-					/*case VENTURE:
+					case VENTURE:
 					{
 						loader.setLocation(getClass().getResource("/ventureCard.fxml"));
 						pane=loader.load();
 						VentureCardController ventureCardController=loader.getController();
 						ventureCardController.initialize(card);
-					} break;*/
+					} break;
 					default:
 						break;
 				} 

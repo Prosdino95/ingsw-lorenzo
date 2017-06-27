@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.VentureCardController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.7" prefWidth="85.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.VentureCardController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="137.7" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ventureCard.png" />
          </image>
       </ImageView>
-      <TextFlow fx:id="cardName" layoutX="17.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
-      <TextFlow fx:id="victoryPoints" layoutX="82.0" layoutY="167.0" prefHeight="26.0" prefWidth="15.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardName" layoutX="3.0" layoutY="1.0" prefHeight="7.0" prefWidth="76.0" textAlignment="CENTER" />
+      <TextFlow fx:id="victoryPoints" layoutX="56.0" layoutY="104.0" prefHeight="26.0" prefWidth="15.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

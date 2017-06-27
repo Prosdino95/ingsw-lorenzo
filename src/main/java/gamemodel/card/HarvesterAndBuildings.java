@@ -31,12 +31,12 @@ public class HarvesterAndBuildings extends Card implements Serializable
 	}
 	
 	public HarvesterAndBuildings(int id,String name,int period, Resource resourceRequirement, Resource resourcePrice, 
-			Point point,Point pointPrice, IstantEffect istantEffects,IstantEffect activateEffect, 
+			Point point,Point pointPrice, List<IstantEffect> istantEffects,IstantEffect permanentEffect, 
 			CardType type,int actionCost)
 	{
 		super(id,name,period,resourceRequirement,resourcePrice,point,pointPrice, istantEffects,type);
 		this.actionCost=actionCost;
-		this.activateEffect.add(activateEffect);
+		this.permanentEffects.add(permanentEffect);
 	}
 	
 	public Integer getActionCost(){

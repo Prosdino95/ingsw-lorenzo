@@ -10,7 +10,6 @@ import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
-import gamemodel.card.RealCard;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

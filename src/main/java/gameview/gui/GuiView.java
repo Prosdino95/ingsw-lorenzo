@@ -1,26 +1,15 @@
 package gameview.gui;
 
 
-import java.beans.EventHandler;
-import java.io.IOException;
-import java.rmi.NotBoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import gamemodel.Model;
-import gamemodel.Resource;
-import gamemodel.card.CardType;
-import gamemodel.card.HarvesterAndBuildings;
-import gamemodel.card.RealCard;
-import gamemodel.effects.ResourceModify;
+
 import gameview.ViewController;
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -123,6 +112,7 @@ public class GuiView extends Application {
 		
 
 		Model m = new Model(4);
+		m.getBoard().setupRound(1);
 		c.initialize(m, this);
 		this.model = m;
 		

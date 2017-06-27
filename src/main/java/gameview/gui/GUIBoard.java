@@ -14,9 +14,9 @@ import gamemodel.Tower;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.RealTowerActionSpace;
+import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
-import gamemodel.card.RealCard;
 import gamemodel.effects.ResourceModify;
 import gamemodel.effects.TestEffects;
 import javafx.scene.image.Image;
@@ -96,7 +96,7 @@ public class GUIBoard extends Region{
 		
 		
 	
-		RealCard rc=new HarvesterAndBuildings(0, "test", 0, null, null, null, null, null, new ResourceModify(new Resource(1,1,1,1)),CardType.TERRITORY,5);
+		Card rc=new HarvesterAndBuildings(0, "test", 0, null, null, null, null, null, new ResourceModify(new Resource(1,1,1,1)),CardType.TERRITORY,5);
 		GUICard card=new GUICard(rc);
 		c.getChildren().add(card.getPane());
 	}

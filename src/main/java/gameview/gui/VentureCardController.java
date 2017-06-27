@@ -16,8 +16,9 @@ public class VentureCardController
 	public void initialize(Card card)
 	{
 		cardName.getChildren().add(new Text(card.getName()));
-		Integer victoryPoints=((PointModify)(((VentureCard)card).getActivateEffects().get(0))).getPoints().getVictory();
-		this.victoryPoints.getChildren().add(new Text(victoryPoints.toString()));
+		System.out.println(((PointModify)(((VentureCard)card).getActivateEffects().get(0))).getPoints().getVictory());
+		Integer victoryPoint=((PointModify)(((VentureCard)card).getActivateEffects().get(0))).getPoints().getVictory();
+		this.victoryPoints.getChildren().add(new Text(victoryPoint.toString()));
 	}
 	
 	/*public void initialize(int i)

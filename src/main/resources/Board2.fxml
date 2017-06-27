@@ -52,7 +52,7 @@
             <Pane fx:id="cartaTorre4" layoutX="188.7" layoutY="522.95" prefHeight="137.7" prefWidth="85.0" />
             <Pane fx:id="cartaTorre5" layoutX="188.7" layoutY="362.95" prefHeight="137.7" prefWidth="85.0" />
             <Pane fx:id="cartaTorre6" layoutX="188.7" layoutY="202.29999999999998" prefHeight="137.7" prefWidth="85.0" />
-            <Pane fx:id="cartaTorre7" layoutX="188.7" layoutY="65" prefHeight="137.7" prefWidth="85.0" />
+            <Pane fx:id="cartaTorre7" layoutX="188.7" layoutY="41.65" prefHeight="137.7" prefWidth="85.0" />
 
             <Pane fx:id="cartaTorre8" layoutX="361.25" layoutY="522.95" prefHeight="137.7" prefWidth="85.0" />
             <Pane fx:id="cartaTorre9" layoutX="361.25" layoutY="362.95" prefHeight="137.7" prefWidth="85.0" />
