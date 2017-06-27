@@ -9,6 +9,12 @@ import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
+// TODO: Cosa succede se tutte le scelte vanno in error?
+// TODO: Finale di partita
+// TODO: Carte leader, funzionano?
+// TODO: Forse giveMeMoney e' da rimuovere
+// TODO: Mentre navigo l'albero non posso tornare indietro?
+
 public class UITree {
 	private UINode root;
 	private UINode next;
@@ -31,12 +37,12 @@ public class UITree {
 
 		UINodeLog log = new UINodeLog("", this, serverEndler);
 		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this); 
-		UINodeSetRequestType placeFM = 
-				new UINodeSetRequestType("Place family member", 
+		UINodeSetRequest placeFM = 
+				new UINodeSetRequest("Place family member", 
 						request::setType, 
 						RequestType.PLACEFAMILYMEMBER, this);
-		UINodeSetRequestType finishTurn = 
-				new UINodeSetRequestType("Notify finish action",
+		UINodeSetRequest finishTurn = 
+				new UINodeSetRequest("Notify finish action",
 						request::setType,
 						RequestType.FINISHACTION, this);
 		UINodeChooseValue<ActionSpace> where = 
@@ -53,23 +59,58 @@ public class UITree {
 				new UINodeGetInput("How many servants?",
 						request::setServants, this);
 		UINode talkToServer = new UINodeTalkToServer("Waiting for server response...", this);
-		/*UINodeSetRequestType vatican= new UINodeSetRequestType("Talk to the Pope", 
-										request::setType, 
-										RequestType.VATICAN_REPORT, this);*/
 		
-		root= log.addSon(
-				menu.addSon(
-				  placeFM.addSon(
-	                where.addSon(
-	                  which.addSon(
-	                	servants.addSon(
+		UINode leaderCards = new UINodeSetRequest("Leader cards", 
+				request::setType, 
+				RequestType.LEADERCARD, this);
+		
+		UINodeChooseValue<LeaderCard> whichLeader = 
+				new UINodeChooseValue<LeaderCard>("Which?", 
+						request::setWhichLeaderCard, 
+						() -> this.getPlayer().getLCList(), 
+						this);
+		
+		UINodeChooseValue<String> whatLeader = 
+				new UINodeChooseValue<String>("What do you want to do with it?", 
+						request::setWhatLC,
+						request::possibleLeaderCardActions,
+						this);
+		
+		UINodeSetRequest giveMeMoney = 
+				new UINodeSetRequest("I WANT money. Now.", 
+						request::setType, 
+						RequestType.IWANTMONEY, this);
+	
+		
+		root= log
+			  .addSon(
+				menu
+				.addSon(
+				  placeFM
+				  .addSon(
+	                where
+	                .addSon(
+	                  which
+	                  .addSon(
+	                	servants
+	                	.addSon(
 	                	  talkToServer)))))
-				   // .addSon(
-				  //vatican.addSon(
-				   // talkToServer))
+			  .addSon(
+				leaderCards
+				.addSon(
+				  whichLeader
+				  .addSon(
+				    whatLeader
 				    .addSon(
-				  finishTurn.addSon(
-					talkToServer))); 
+				      talkToServer))))
+			  .addSon(
+				finishTurn
+				.addSon(
+				  talkToServer))
+			  .addSon(
+			    giveMeMoney
+			    .addSon(
+			      talkToServer))); 
 		
 		reset();
 		System.out.println("Hi, this is Lorenzo!");
@@ -114,6 +155,8 @@ public class UITree {
 
 	public void setModel(Model model2) {
 		model = model2;
+		if (player != null)
+			player = model2.getPlayer(player.getTeam());
 		hasModel = true;
 	}
 

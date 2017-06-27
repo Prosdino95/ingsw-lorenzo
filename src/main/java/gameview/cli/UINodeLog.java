@@ -39,6 +39,7 @@ public class UINodeLog extends UINode
 				switch (sr.getType()) {
 				case NEW_MODEL:
 					newModel(sr.getModel());
+					
 					break;
 				case MESSAGE:
 					System.out.print("Someone sent you this message: ");

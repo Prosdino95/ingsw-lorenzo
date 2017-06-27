@@ -13,7 +13,9 @@ import gamemodel.Action;
 import gamemodel.GameQuestion;
 import gamemodel.LeaderCard;
 import gamemodel.Player;
+import gamemodel.Point;
 import gamemodel.Question;
+import gamemodel.Resource;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
@@ -80,6 +82,48 @@ public class Controller{
 		case IWANTAMODEL:
 			break;
 		case LEADERCARD:
+			Integer id = request.getLeaderCardID();
+			String action = request.getWhatLC();
+			Player p = hv.getPlayer();
+			switch (action) {
+			case "Nothing":
+				break;
+			case "Activate OPR effect":
+				try {
+					p.activateOPT(id);
+					hv.sendResponse(new ServerResponse());
+				} catch (GameException e) {
+					hv.sendResponse(new ServerResponse(e.getType()));
+				}
+				break;
+			case "Scartare":
+				try {
+					p.discardLC(id);
+					hv.sendResponse(new ServerResponse());
+				} catch (GameException e) {
+					hv.sendResponse(new ServerResponse(e.getType()));
+				}
+				break;
+			case "Play it":
+				try {
+					p.playLC(id);
+					hv.sendResponse(new ServerResponse());
+				} catch (GameException e) {
+					hv.sendResponse(new ServerResponse(e.getType()));
+				}
+				break;
+			}
+			this.notifyNewModel();
+			break;
+		case ANSWER:
+			break;
+		case IWANTMONEY:
+			Player pl = hv.getPlayer();
+			game.sendMessage("Before -> Resources: " + pl.getResource() + " Points: " + pl.getPoint(), pl);
+			pl.addResources(new Resource(100, 100, 100, 100));
+			pl.addPoint(new Point(100, 100, 100));
+			game.sendMessage("After -> Resources: " + pl.getResource() + " Points: " + pl.getPoint(), pl);
+			hv.sendResponse(new ServerResponse());
 			break;
 		default:
 			break;
@@ -90,8 +134,9 @@ public class Controller{
 	public void giveLeaderCard() {
 		//TODO ordine turno
 		int index;
-		sendMessageToAll("now it's time to choose your leaders, so wait your turn");	
-			for(int i=0;i<4;i++)
+		sendMessageToAll("now it's time to choose your leaders, so wait your turn");
+//		for(int i=0;i<4;i++)
+		for(int i=0;i<1;i++)
 				for(HandlerView hv:playerToHV.values()){
 					try {
 						index=answerToQuestion(new Question(GameQuestion.LEADER,game.getLeaderCards()),hv);

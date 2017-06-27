@@ -36,6 +36,7 @@ public class UINode {
 	
 	public void run() throws IOException {
 		if(!descendants.isEmpty())
-			this.nextNode=descendants.get(0);	
+			this.nextNode=descendants.get(0);
+		
 	}
 }

@@ -5,12 +5,12 @@ import java.util.function.Consumer;
 
 import reti.RequestType;
 
-public class UINodeSetRequestType extends UINode {
+public class UINodeSetRequest extends UINode {
 	
 	Consumer<RequestType> set;
 	RequestType type;
 
-	public UINodeSetRequestType(String desc,Consumer<RequestType> set,RequestType type, UITree tree) {
+	public UINodeSetRequest(String desc,Consumer<RequestType> set,RequestType type, UITree tree) {
 		super(desc, tree);
 		this.set=set;
 		this.type=type;

@@ -418,8 +418,11 @@ public class Player implements Serializable{
 			lc.setOwner(this);
 			leaderCards.add(lc);
 		}
+	
 		
-		public void play(LeaderCard lc) throws GameException {
+		public void playLC(Integer id) throws GameException {
+			LeaderCard lc = getLC(id);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
 			lc.play();
 			PermanentEffect pe = lc.getPermanentEffect(); 
 			if (pe != null)
@@ -436,7 +439,8 @@ public class Player implements Serializable{
 		}
 		
 		public void discardLC(Integer lcId) throws GameException {
-			LeaderCard lc = board.getLC(lcId);
+			LeaderCard lc = getLC(lcId);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
 			discardLC(lc);
 		}
 
@@ -469,11 +473,29 @@ public class Player implements Serializable{
 			death=false;		
 		}
 
+		public LeaderCard getLC(Integer id) {
+			for (LeaderCard l : this.leaderCards) {
+				if (l.getId() == id) 
+					return l;
+			}
+			return null;
+		}
+		
 		public void setAlradyPlaceFM(boolean alradyPlaceFM) {
 			this.alradyPlaceFM = alradyPlaceFM;
 		}
 
-		
+		public void activateOPT(Integer id) throws GameException {
+			LeaderCard lc = getLC(id);
+			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
+
+			lc.activateOPT();
+			
+		}
+
+		public void play(LeaderCard girolamo) throws GameException {
+		playLC(girolamo.getId());
+		}
 
 
 }

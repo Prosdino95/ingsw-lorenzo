@@ -14,8 +14,10 @@ public class LeaderCard implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private Requirement requirement;
+	
 	private PermanentEffect pe;
 	private List<IstantEffect> oncePerRound=new ArrayList<>();
+	
 	private String name;
 	private int id;
 	private boolean usedOPR = false;
@@ -72,11 +74,29 @@ public class LeaderCard implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LeaderCard [requirement=" + requirement + ", pe=" + pe + ", oncePerRound=" + oncePerRound + ", name="
-				+ name + ", id=" + id + ", usedOPR=" + usedOPR + ", played=" + played + ", owner=" + owner + "]";
+		return "LeaderCard [name=" + name + ", id=" + id + ", requirement=" + requirement + ", pe=" + pe
+				+ ", oncePerRound=" + oncePerRound + ", usedOPR=" + usedOPR + ", played=" + played + "]";
 	}
 
 	public void setOwner(Player player) {
 		owner = player;
+	}
+
+	public boolean getPlayedOPR() {
+		// TODO Auto-generated method stub
+		return usedOPR;
+	}
+
+	public boolean getPlayed() {
+		// TODO Auto-generated method stub
+		return played;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

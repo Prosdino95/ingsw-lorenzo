@@ -46,14 +46,11 @@ public class Model implements Serializable {
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
-	private int delay=10000;
+	private int delay=200000;
 	
 	
 	public static void main(String[] args){
 		// Model m=new Model(4);
-		
-		
-		
 		//System.out.println(m.getBoard().getActionSpaces());
 		//m.nextTurn();
 	}
