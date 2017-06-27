@@ -10,10 +10,10 @@
    <children>
       <ImageView fitHeight="200.0" fitWidth="134.0" layoutX="-2.0" layoutY="-1.0">
          <image>
-            <Image url="@Card.png" />
+            <Image url="@territoryCard.png" />
          </image>
       </ImageView>
-      <TextFlow layoutX="17.0" layoutY="3.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardTitle" layoutX="17.0" layoutY="3.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
       <TextFlow layoutX="11.0" layoutY="177.0" prefHeight="17.0" prefWidth="13.0" />
       <Pane layoutX="45.0" layoutY="142.0" prefHeight="38.0" prefWidth="63.0">
          <children>

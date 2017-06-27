@@ -5,8 +5,10 @@ package gameview.gui;
 
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.RealCard;
+import gamemodel.card.VentureCard;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,12 +29,12 @@ public class GUICard extends Region{
 	Pane effectPane;
 	String tooltip = "";
 
-	public GUICard(Card card2,double w,double h) {
+	public GUICard(Card card,double w,double h) {
 		AnchorPane pane=new AnchorPane();
-		ImageView iv1 = new ImageView();
-        iv1.setFitWidth(w);
-        iv1.setFitHeight(h);
-        pane.getChildren().add(iv1);
+		ImageView iv = new ImageView();
+        iv.setFitWidth(w);
+        iv.setFitHeight(h);
+        pane.getChildren().add(iv);
 		effectPane=new Pane();
 
         TextFlow cName=new TextFlow();
@@ -41,11 +43,11 @@ public class GUICard extends Region{
         TextFlow activateEffect=new TextFlow(new Text("G +1"));
         effectPane.getChildren().add(activateEffect);
 
-        if (card2 != null) {
-        	this.card=card2;
-        	image = imageGen(card2.getType());
-        	iv1.setImage(image); 
-        	cName = new TextFlow(new Text(card2.getName()));
+        if (card != null) {
+        	this.card=card;
+        	image = imageGen(card.getType());
+        	iv.setImage(image); 
+        	cName = new TextFlow(new Text(card.getName()));
         	cost=new TextFlow(new Text(actionCost));
         }
         GuiView.setAll(0.13, 4.0/200, 96.0/134, 11.0/200, cName,w,h);
@@ -68,17 +70,26 @@ public class GUICard extends Region{
 
 	private Image imageGen(CardType type) {
 		switch(type){
-		case BUILDING:
-			break;
-		case CHARACTER:
+		case BUILDING:{
+			HarvesterAndBuildings HAndB=(HarvesterAndBuildings)card;
+			actionCost=HAndB.getActionCost().toString();
+			tooltip=HAndB.getActivateEffect().toString();
+			return new Image("buildingCard.png");
+			
+		}
+		case CHARACTER:{
+			
+		}
 			break;
 		case TERRITORY:{
 			HarvesterAndBuildings HAndB=(HarvesterAndBuildings)card;
 			actionCost=HAndB.getActionCost().toString();
 			tooltip=HAndB.getActivateEffect().toString();
-			return new Image("Card.png");
+			return new Image("territoryCard.png");
 		}
-		case VENTURE:
+		case VENTURE:{
+		
+		}
 			break;
 		default:
 			break;
