@@ -41,4 +41,8 @@ public class HandlerServerRMIImpl extends UnicastRemoteObject implements Handler
 	public void sendResponse(ServerResponse sr) throws IOException,RemoteException {
 		vc.placeResponse(sr);
 	}
+
+	@Override
+	public void shutdown() {		
+	}
 }

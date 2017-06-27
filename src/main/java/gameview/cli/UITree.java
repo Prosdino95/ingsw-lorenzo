@@ -24,6 +24,7 @@ public class UITree {
 	private Player player;
 	boolean hasModel = false;
 	boolean hasPlayer = false;
+	private boolean live=true;
 	
 		
 	public UITree(ViewController serverEndler) {
@@ -80,7 +81,12 @@ public class UITree {
 				new UINodeSetRequest("I WANT money. Now.", 
 						request::setType, 
 						RequestType.IWANTMONEY, this);
-	
+		UINode exit= new UINode("exit",this){				
+			@Override
+			public void run(){
+				tree.shutdown();
+			}
+		};
 		
 		root= log
 			  .addSon(
@@ -110,10 +116,17 @@ public class UITree {
 			  .addSon(
 			    giveMeMoney
 			    .addSon(
-			      talkToServer))); 
+			      talkToServer))
+			  .addSon(exit)); 
 		
 		reset();
 		System.out.println("Hi, this is Lorenzo!");
+	}
+
+	protected void shutdown() {
+		live=false;
+		serverHandler.shutdown();
+		
 	}
 
 	Player getPlayer() {
@@ -134,7 +147,7 @@ public class UITree {
 	} 
 
 	public void run() throws IOException {
-		while (true) {
+		while (live) {
 			while (next != null) {
 				next.run();
 				next = next.getNextNode();

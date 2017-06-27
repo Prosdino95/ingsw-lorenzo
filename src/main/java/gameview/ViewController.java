@@ -20,6 +20,7 @@ public class ViewController {
 	private ClientRequest crOut;
 	private ServerResponse srIn = null;
 	private HandlerServer hs;
+	private boolean live=true;
 
 	
 	public ViewController() throws IOException, InterruptedException, NotBoundException{
@@ -79,7 +80,7 @@ public class ViewController {
 	public ServerResponse syncSend(ClientRequest request) {
 		hs.doRequest(request);
 		ServerResponse srr;
-		while (true) { 
+		while (live) { 
 	    	try {
 	    		Thread.sleep(100); 
 	    	} catch (InterruptedException e) {
@@ -88,7 +89,13 @@ public class ViewController {
 	    	}     	
 	    	srr = getSRIn(); 
 	    	if (srr != null) return srr; 
-	    } 
+	    }
+		return null; 
+	}
+
+	public void shutdown() {
+		hs.shutdown();
+		
 	}	
 }
 

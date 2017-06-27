@@ -16,6 +16,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	private Socket s;
 	private ViewController vc;
 	private ClientRequest crOut;
+	private boolean live=true;
 	
 	
 	public HandlerSocket(ViewController vc) throws IOException, InterruptedException{
@@ -27,7 +28,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	}
 	
 	private void send(ClientRequest request) throws IOException {
-		ServerResponse response=null;
+		//ServerResponse response=null;
 		out.writeObject(request);
 		//System.out.println("HSocket --- Sending request: " + request);
 		out.flush();
@@ -47,7 +48,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	{
 		System.out.println("run");
 		try {
-			while(true)
+			while(live)
 			{
 				Thread.sleep(100);
 				if(s.getInputStream().available()>1)       
@@ -64,14 +65,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 			}
 			
 		} catch (ClassNotFoundException | IOException | InterruptedException  e) {
-			try {
-				in.close();
-				out.close();
-				s.close();
-				e.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			shutdown();
 			
 		}
 		
@@ -79,5 +73,18 @@ public class HandlerSocket implements Runnable,HandlerServer{
 
 	@Override
 	public void sendResponse(ServerResponse sr) {		
+	}
+
+	@Override
+	public void shutdown() {
+		try {
+			live=false;
+			s.close();
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 }
