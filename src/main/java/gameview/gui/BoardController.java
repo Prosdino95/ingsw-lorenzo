@@ -33,10 +33,10 @@ public class BoardController {
 			}
 			if (as instanceof RealTowerActionSpace) {
 				Card card = ((RealTowerActionSpace) as).getCard();
-				GUICard gcard = new GUICard(card, cardPaneList.get(id).getPrefWidth(), cardPaneList.get(id).getPrefHeight());
+				GUICard gcard = new GUICard(card);
 				Pane cardPane = cardPaneList.get(id);
 				if (!cardPane.getChildren().isEmpty()) cardPane.getChildren().remove(0);
-				cardPane.getChildren().add(gcard);
+				cardPane.getChildren().add(gcard.getPane());
 			}
 		}
 

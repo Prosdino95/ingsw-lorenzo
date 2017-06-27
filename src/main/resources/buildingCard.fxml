@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BuildingCardController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@buildingCard.png" />
+         </image>
+      </ImageView>
+      <TextFlow fx:id="cardName" layoutX="18.0" layoutY="1.0" prefHeight="8.0" prefWidth="92.0" textAlignment="CENTER" />
+      <TextFlow fx:id="actionValue" layoutX="13.0" layoutY="179.0" prefHeight="17.0" prefWidth="13.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

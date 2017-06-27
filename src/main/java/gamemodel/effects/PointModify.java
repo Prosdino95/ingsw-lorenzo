@@ -18,6 +18,11 @@ public class PointModify implements IstantEffect,EffectRollBack,Serializable
 		this.points=points;
 	}
 	
+	public Point getPoints() 
+	{
+		return points;
+	}
+
 	@Override
 	public void activate(Player player) 
 	{

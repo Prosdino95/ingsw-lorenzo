@@ -1,9 +1,6 @@
 package gamemodel.card;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
@@ -27,7 +24,7 @@ public class VentureCard extends RealCard {
 	}
 
 
-	public Collection<IstantEffect> getActivateEffects() {
+	public List<IstantEffect> getActivateEffects() {
 		return this.activateEffect;
 	}
 	
