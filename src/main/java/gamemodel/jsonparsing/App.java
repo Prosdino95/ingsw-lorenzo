@@ -15,14 +15,14 @@ public class App{
 	
     public static void main( String[] args )
     {	
-    	//testAS();
-    	//testBCard();
-    	//testTCard();
-    	//testCCard();
+    	testAS();
+    	testBCard();
+    	testTCard();
+    	testCCard();
     	testVCard();
-    	//testEx();
-    	//testLCard();
-    	//testpoints();
+    	testEx();
+    	testLCard();
+    	testpoints();
     } 
     
     private static void testpoints() {

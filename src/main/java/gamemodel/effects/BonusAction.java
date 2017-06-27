@@ -40,17 +40,16 @@ public class BonusAction implements IstantEffect {
 		this.cardType = cardType;
 	}
 
-	public BonusAction(Board board, Integer actionValue, ActionSpaceType asType) {
+	public BonusAction(Board board, int actionValue, ActionSpaceType asType) {
 		if (asType != ActionSpaceType.HARVEST &&
 			asType != ActionSpaceType.PRODUCTION) throw new RuntimeException();
 		this.board = board;
-		this.discount = discount;
 		this.actionValue = actionValue;
 		this.asType = asType;
 	}
 
-	
-	
+
+
 	@Override
 	public void activate(Player player) throws GameException {
 		this.familyMember = new FamilyMember(player, Color.STRANGE, this.actionValue);

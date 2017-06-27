@@ -57,8 +57,7 @@ public class IstantEffectParsing {
 		if(cType!=null)
 			return new BonusAction(board, actionValue, cType, resource);
 		else
-			//return new BonusAction(board, actionValue, asType);
-			return null;
+			return new BonusAction(board, actionValue, asType);
 	}
 
 
