@@ -15,13 +15,13 @@ public class Server {
 	private GameManager gm;
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
+		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
 		Server server=new Server();
 		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server.serverSocket)));		
 		server.serverSocket=new ServerSocket(3003);			
-		Registry registry = LocateRegistry.getRegistry();
-		RMIAcceptImpl rai= new RMIAcceptImpl(server);
-		registry.bind("rai",rai);
+		//Registry registry = LocateRegistry.getRegistry();
+		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
+		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
 		server.start();
 	}

@@ -42,6 +42,8 @@ public class Player implements Serializable{
 	private List<LeaderCard> leaderCards = new ArrayList<>();
 	private List<FamilyMember> familyMembers; 
 	private PersonalBonusTile personalBonusTile;
+	private boolean alradyPlaceFM=false;
+	private boolean alradyPlaceVatican=false;
 	
 	
 	public Player(Resource resource, Board board,Team team) 
@@ -125,13 +127,16 @@ public class Player implements Serializable{
 	
 	public void placeFamilyMember(Action action) throws GameException {
 		//if(!this.equals(currentPlayer) && currentPlayer!=null )
-		if(!this.equals(model.getCurrentPlayer()) && model.getCurrentPlayer()!=null)
+		if(!this.equals(model.getCurrentPlayer()))
 			throw new GameException(GameError.ERR_NOT_TURN);
+		if(this.alradyPlaceFM)
+			throw new GameException(GameError.ALREADY_PLACE_FM);
 		currentAction = action;
 		increasePower();
 		Command command;
 		command=model.getCommandFactory().placeFMCommandFactory(action);
 		command.isLegal();
+		alradyPlaceFM=true;
 	}
 	
 	public Team getTeam() {
@@ -283,12 +288,12 @@ public class Player implements Serializable{
 		else return false;			
 	}
 	
-	public void vaticanReport(String answer)
+	public void vaticanReport(int selection)
 	{
+		this.alradyPlaceVatican=true;
 		int period=1;
 		int requirement=0;
 		int victoryPoints=0;
-		int selection=Integer.parseInt(answer);
 		if (this.death)
 			return;
 		
@@ -324,10 +329,18 @@ public class Player implements Serializable{
 		}
 
 
-		public void setCurrentPlayer() {
+		public void doAction() {
 			if (death) {
 				return;
-				// model.rotateTurn();
+			}
+			else {
+				new Timer().schedule(new T(this), model.getTurnDelay());
+			}
+		}
+		
+		public void doVatican() {
+			if (death) {
+				
 			}
 			else {
 				new Timer().schedule(new T(this), model.getTurnDelay());
@@ -335,9 +348,8 @@ public class Player implements Serializable{
 		}
 		
 		public void timerFinished() {
-			model.sendMessage("Sveglia!! Il tuo tempo e' scaduto!", this);
+			model.sendMessage("Sveglia!! Il tuo tempo e' scaduto, hai saltato il turno"+ model.turn, this);
 			death=true;
-			// model.rotateTurn();
 		}
 		
  		class T extends TimerTask
@@ -354,9 +366,14 @@ public class Player implements Serializable{
 			}
 		}
  		
-		public void finishAction() throws GameException{
-			if(this.equals(model.getCurrentPlayer()))
+ 		public void finishAction() throws GameException{
+			if(!this.equals(model.getCurrentPlayer()))
 				throw new GameException(GameError.ERR_NOT_TURN);
+			else
+			{
+				alradyPlaceFM=false;
+				model.finishAction();
+			}
 		}
 		
 
@@ -441,8 +458,15 @@ public class Player implements Serializable{
 		}
 
 		public boolean isDead() {
-			// TODO Auto-generated method stub
 			return death;
+		}
+		
+		public boolean playedVatican() {
+			return alradyPlaceVatican;
+		}
+
+		public void setAlive() {
+			death=false;		
 		}
 
 

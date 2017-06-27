@@ -3,18 +3,14 @@ package reti.server;
 import java.io.IOException;
 
 
+
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.ArrayDeque;
-import java.util.List;
+
 import java.util.Queue;
 
 import gamemodel.Player;
-import gamemodel.Question;
-import gamemodel.Model;
-import gamemodel.Team;
-import gamemodel.command.GameException;
 import reti.ClientRequest;
 import reti.ServerResponse;
 
@@ -69,9 +65,10 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 			} catch (ClassNotFoundException | IOException | InterruptedException e) {
 				try {
 					controller.imDead(this);
+					live=false;
+					socket.close();
 					in.close();
 					out.close();
-					live=false;
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

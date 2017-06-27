@@ -39,11 +39,8 @@ public class Controller{
 	
 	public void run(){
 		while(true){
-			if (game.getCurrentPlayer()!=null && game.getCurrentPlayer().isDead()) {
-				game.rotateTurn();
-			}
-			
-			
+			game.updateState();
+					
 			ServerResponse sr;
 			if(this.requestQueue.isEmpty()){
 				try {
@@ -59,18 +56,24 @@ public class Controller{
 			
 		ClientRequest request=requestQueue.remove();
 		HandlerView hv=playerToHV.get(request.getPlayer());
+		if(request.getPlayer().isDead())
+			request.getPlayer().setAlive();
 		switch(request.getType()){
 		case FINISHACTION:
-			//System.out.println("inviata da: "+request.getPlayer());
-			finishAction(request.getPlayer(),hv);
-			game.rotateTurn();
+			try {
+				request.getPlayer().finishAction();
+				hv.sendResponse(new ServerResponse());				
+			} 
+			catch (GameException e) {
+				hv.sendResponse(new ServerResponse(e.getType()));
+			}			
 			break;
 		case PLACEFAMILYMEMBER:
 				sr=placeFM(request,request.getPlayer());
 				hv.sendResponse(sr);
 			break;
 		case VATICAN_REPORT:
-			hv.getPlayer().vaticanReport(request.getAnswer());
+			hv.getPlayer().vaticanReport(Integer.parseInt(request.getAnswer()));
 			break;
 		case CHAT:
 			break;
@@ -109,16 +112,7 @@ public class Controller{
 				
 		}
 	}
-	
-	private void finishAction(Player player, HandlerView hv) {
-			try{
-				player.finishAction();
-				hv.sendResponse(new ServerResponse());
-				}
-			catch(GameException e){
-				hv.sendResponse(new ServerResponse(e.getType()));
-			}			
-	}
+
 	private ServerResponse placeFM(ClientRequest request, Player player){
 		Action a =new Action(player,game.getBoard().getActionSpace(request.getWhere()),player.getFamilyMember(request.getWhich()),request.getServants());
 		try {

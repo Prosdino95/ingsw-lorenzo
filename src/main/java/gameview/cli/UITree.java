@@ -83,11 +83,11 @@ public class UITree {
 		return model;
 	}
 	
-	ServerResponse sendRequestToServer() throws IOException {
+	ServerResponse sendRequestToServer(){
 		return sendRequestToServer(request);
 	}
 
-	public ServerResponse sendRequestToServer(ClientRequest request) throws IOException { 		
+	public ServerResponse sendRequestToServer(ClientRequest request){ 		
 	    ServerResponse srr = serverHandler.syncSend(request);
 	    return srr;
 	} 

@@ -45,6 +45,8 @@ public class Model implements Serializable {
 	public int turn=1;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
+	private GameState gameState; 
+	private int delay=10000;
 	
 	
 	public static void main(String[] args){
@@ -65,50 +67,94 @@ public class Model implements Serializable {
 		this.controller=c;
 	}
 	
-	private void nextTurn(){
-		System.out.println("al turno"+turn+"prima: "+currentPlayer);
+	
+	
+	private void nextPlayer(){
 		currentPlayer=turnOrder.getNextPlayer();
-		System.out.println("dopo"+currentPlayer);
-		currentPlayer.setCurrentPlayer();
+		currentPlayer.doAction();
 	}
-		
-	public void rotateTurn() {
-		controller.notifyNewModel();
-		if(!turnOrder.hasNext()){
-			if(turn==6){
-				System.out.println("gioco finito");
-				System.exit(0);
+	
+	public void updateState(){
+		boolean all=true;
+		for(Player p:players)		
+			if(!p.isDead())
+				all=false;
+		if(all)
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			else if(turn%2==0){
-				currentPlayer=null;
-				//creare lista
-				//messaggino a tutti+question
-				Integer faithPoints=faithPointsRequirement.get(turn/2);
-				Integer victoryPoints=victoryPointsBoundedTofaithPoints.get(faithPoints);
-				System.out.println("vatican time");
-				//TODO cambiare 0 con faithpoint
-				//currentPlayer.vaticanReport(turn,0,victoryPoints);
+		switch(gameState){
+		case GAME_FINISH:
+			//TODO messaggio vittoria, uccidi tutti!!
+			System.exit(0);
+			break;
+		case TURN_FINISH:
+			if(turn%2==0){
+				gameState=GameState.VATICAN_TIME;
+				controller.notifyNewModel();
 			}
 			else{
 				System.out.println("next turn");
 				turn++;
-				setupRound();
-				nextTurn();
+				gameState=GameState.SET_UP_ROUND;
+			}					
+			break;
+		case VATICAN_TIME:
+			boolean allPlayed=true;
+			for(Player p:players){
+				if(!p.playedVatican())
+					allPlayed=false;
+				if(p.isDead() && !p.playedVatican())
+					p.vaticanReport(0);
+			}	
+			if(allPlayed && turn==6)
+				gameState=GameState.GAME_FINISH;
+			else if(allPlayed){
+				turn++;
+				gameState=GameState.SET_UP_ROUND;
 			}
-				
-		}		
-		else nextTurn();
+			break;
+		case ACTION_FINISH:
+			currentPlayer=null;
+			if(!turnOrder.hasNext()){
+				gameState=GameState.TURN_FINISH;
+			}
+			else{
+				nextPlayer();
+				gameState=GameState.PLAYER_PLAING;
+				controller.notifyNewModel();
+			}			
+			break;
+		case PLAYER_PLAING:
+			if(currentPlayer.isDead())
+				try {
+					currentPlayer.finishAction();
+				} catch (GameException e) {
+					// TODO Auto-generated catch block
+					throw new RuntimeException();
+				}
+			break;
+		case SET_UP_ROUND:
+			setupRound();
+			nextPlayer();
+			controller.notifyNewModel();
+			gameState=GameState.PLAYER_PLAING;
+			break;
+		default:
+			break;
+		}
 	}
+		
+
 
 	public void setupRound() {		
 		this.turnOrder.setupRound(board.getTurnOrder());
 		board.setupRound(turn);
 		for(Player p:players)
 			p.prepareForNewRound();
-	}
-	
-	private TurnOrder getTurnOrder() {
-		return turnOrder;
 	}
 	
 	
@@ -195,10 +241,7 @@ public class Model implements Serializable {
 		
 		this.commandFactory=PlaceFMCommandFactory.GenerateCommandFactory(players.size());
 		turnOrder=new TurnOrder(players);
-		board.setupRound(turn);
-		for(Player p:players)
-			p.prepareForNewRound();	
-		nextTurn();
+		gameState=GameState.SET_UP_ROUND;
 	}
 	
 	public void giveLeaderCard(Player player, int index) {
@@ -359,11 +402,19 @@ public class Model implements Serializable {
 
 	// TODO
 	public Integer getTurnDelay() {
-		return 5000;
+		return delay;
 	}
 	
 	public void setCurretPlayer(Player p){
 		this.currentPlayer=p;
+	}
+
+	public void finishAction() {
+		this.gameState=GameState.ACTION_FINISH;		
+	}
+
+	public GameState getState() {
+		return gameState;
 	}
 
 

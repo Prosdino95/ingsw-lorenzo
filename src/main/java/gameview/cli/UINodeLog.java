@@ -2,6 +2,7 @@ package gameview.cli;
 
 import java.io.IOException;
 
+import gamemodel.Model;
 import gamemodel.Team;
 import gameview.ViewController;
 import reti.ClientRequest;
@@ -37,16 +38,9 @@ public class UINodeLog extends UINode
 				// System.out.println(sr);
 				switch (sr.getType()) {
 				case NEW_MODEL:
-					System.out.println("A new model has arrived...");
-					tree.setModel(sr.getModel());
-					System.out.println("Player turn :"+tree.getModel().getCurrentPlayer());
-					System.out.println("turn :"+tree.getModel().turn);
+					newModel(sr.getModel());
 					break;
 				case MESSAGE:
-					if (sr.getQuestion() != null) {
-						System.out.println(sr.getQuestion());
-						tree.sendRequestToServer(new ClientRequest(CLIView.getString(),RequestType.VATICAN_REPORT));
-					}
 					System.out.print("Someone sent you this message: ");
 					System.out.println(sr.getMessage());
 					break;
@@ -77,4 +71,30 @@ public class UINodeLog extends UINode
 		
 		super.run();
 	}
+	
+	private void newModel(Model model){
+		System.out.print("A new model has arrived... It says:");
+		tree.setModel(model);
+		switch(model.getState()){
+		case GAME_FINISH:
+			break;
+		case PLAYER_PLAING:
+			System.out.println("it's Player turn :"+model.getCurrentPlayer());
+			break;
+		case SET_UP_ROUND:
+			System.out.println("the turn is finished:"+model.turn);
+			break;
+		case VATICAN_TIME:
+			System.out.println("it's time to play with the Pope, unless you're too poor");
+			System.out.println("yes or not???");
+			tree.sendRequestToServer(new ClientRequest(CLIView.getString(),RequestType.VATICAN_REPORT));
+			break;
+		default:
+			break;
+		
+		}
+		
+	}
 }
+
+
