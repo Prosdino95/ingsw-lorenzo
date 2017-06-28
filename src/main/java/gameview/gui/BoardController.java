@@ -7,28 +7,22 @@ import java.util.List;
 
 import gamemodel.Model;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.ActionSpaceType;
-import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gameview.gui.actionspacecontroll.ActionSpaceControll;
-import gameview.gui.actionspacecontroll.CouncilPlaceActionSpaceControll;
-import gameview.gui.actionspacecontroll.HandPActionSpaceControll;
-import gameview.gui.actionspacecontroll.NormalActionSpaceControll;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 public class BoardController {
 	List<Integer> asIdList;
 	List<Pane> cardPaneList;
 	List<Pane> asPaneList;
-	private Model model;
 	private GuiView guiView;
 	private boolean big = false;
 //	private Pane dialogPane;
+	private Model model;
 	
 	public void update(Model model) {
 		for (Integer id : asIdList) {
@@ -142,41 +136,29 @@ public class BoardController {
 		 
 		 
 		 for (Integer id : asIdList) {
-			 	loader=new FXMLLoader();
-			 	loader.setLocation(getClass().getResource("/NormalActionSpace.fxml"));	
-			 	asRoot = loader.load();
-			 	ascontroller=loader.getController();
-			 	Pane cp = cardPaneList.get(id);
-			 	Pane asp=asPaneList.get(id);
-			 	ActionSpace actionSpace=m.getBoard().getActionSpace(id);
-			 	ascontroller.initialize(actionSpace);
-			 	asp.getChildren().add(asRoot);
-			 	cp.setOnMouseEntered(e-> {
-					if (!isBig()) {
-						cp.toFront();
-						cp.setScaleX(1.7);
-						cp.setScaleY(1.7);
-					}
-					setBig(true);
-				});
-				cp.setOnMouseExited(e-> {
-					if (isBig()) {
-						
-						cp.setScaleX(1);
-						cp.setScaleY(1);
-					}
-					setBig(false);
-				});
-			 	
-			 	/*cp.setOnMouseClicked(e -> {
-			 		RealActionSpace as = guiView.getModel().getBoard().getActionSpace(id);
-			 		if (as instanceof RealTowerActionSpace) {
-			 			((RealTowerActionSpace) as).attachDevelopmentCard(null);
-			 		}
-//				 System.out.println("You clicked on " + id);
-				 this.guiView.updateModelAndGui(this.model);
-			 })*/;
-		 }
+			 	if(id<16)
+			 	{
+			 		Pane cp = cardPaneList.get(id);
+			 		cp.setOnMouseEntered(e-> {
+						if (!isBig()) {
+							cp.toFront();
+							cp.setScaleX(1.7);
+							cp.setScaleY(1.7);
+						}
+						setBig(true);
+					});
+					cp.setOnMouseExited(e-> {
+						if (isBig()) {
+							
+							cp.setScaleX(1);
+							cp.setScaleY(1);
+						}
+						setBig(false);
+					});
+			 		
+			 	}
+			 		
+		}
 		 
 	}
 	
@@ -248,3 +230,4 @@ public class BoardController {
 	@FXML Pane asMarket4;
 
 }
+
