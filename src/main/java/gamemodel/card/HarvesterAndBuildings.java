@@ -75,12 +75,11 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		return exchangeEffects;
 	}	
 
-	/*@Override
-	public String toString() {
+	public String toStr6ing() {
 		return "HarvesterAndBuildings [actionCost=" + actionCost + ", name=" + name + ", resourceRequirement="
 				+ resourceRequirement + ", resourcePrice=" + resourcePrice + ", pointRequirement=" + pointRequirement
-				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", requirementCard=" + requirementCard + "]";
-	}*/
+				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", ]";
+	}
 	
 	
 	@Override

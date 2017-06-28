@@ -3,9 +3,12 @@ package gameview.gui;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class TestDavide extends Application {
@@ -16,10 +19,10 @@ public class TestDavide extends Application {
 	{
 		primaryStage.setTitle("carta");
 		FXMLLoader loader=new FXMLLoader();
-		loader.setLocation(getClass().getResource("/territoryCard.fxml"));
+		loader.setLocation(getClass().getResource("/prova.fxml"));
 		Pane pane=loader.load();
-		TerritoryCardController tcc=loader.getController();
-		tcc.initialize(0);
+	//	TestController tcc=loader.getController();
+	//	tcc.initialize(0);
 		Scene scene=new Scene(pane);
 		primaryStage.setScene(scene);
 	    primaryStage.show();

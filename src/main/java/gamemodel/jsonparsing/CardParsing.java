@@ -20,7 +20,8 @@ public class CardParsing {
 	private int actionCost;
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
-	private List<IstantEffect> istantEffects,activateEffects;
+	private List<IstantEffect> istantEffects=new ArrayList<>();
+	private List<IstantEffect> activateEffects=new ArrayList<>();
 	private PermanentEffect permanentEffects;
 	private CardType type;
 	private int id=0;	

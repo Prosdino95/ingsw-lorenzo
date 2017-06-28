@@ -43,6 +43,7 @@ public class GuiView extends Application {
 		Integer w = 1024;
 		Integer h = 800;
 		
+	
 		FXMLLoader loader=new FXMLLoader();
 //		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));		
 //		PlayerBoardController c=loader.getController();
@@ -53,11 +54,15 @@ public class GuiView extends Application {
 		boardController = c;
 		//boardRoot.setPrefSize(w, h);
 		boardRoot.setOnMouseClicked(e -> {
-			System.out.println("Heeeeeey");
+			System.out.println(boardScene.getWidth());
+			updateGui();
+			
 		});
 		boardRoot.setStyle("-fx-background-color: #228b22");
 		Scene bs = new Scene(boardRoot);
 		boardScene = bs;
+		
+
 		addScene(bs);
 		bs.setOnKeyPressed(e -> {
 			System.out.println("You pressed key " + e.getCode());
@@ -75,7 +80,6 @@ public class GuiView extends Application {
 
 		
 		Pane p = new AnchorPane();
-		p.setPrefSize(w, h);
 		p.setStyle("-fx-background-color: #b22222");
 		bs = new Scene(p);
 		
@@ -89,12 +93,13 @@ public class GuiView extends Application {
 			case RIGHT:
 				sceneGoRight();
 				break;
+			default:
+				break;
 			}
 		});
 
 		
 		p = new AnchorPane();
-		p.setPrefSize(w, h);
 		p.setStyle("-fx-background-color: #cd6889");
 		bs = new Scene(p);
 		addScene(bs);

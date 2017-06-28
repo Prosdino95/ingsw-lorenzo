@@ -27,6 +27,7 @@ public class BoardController {
 	List<Pane> asPaneList;
 	private Model model;
 	private GuiView guiView;
+	private boolean big = false;
 //	private Pane dialogPane;
 	
 	public void update(Model model) {
@@ -46,13 +47,23 @@ public class BoardController {
 				Card card = ((RealTowerActionSpace) as).getCard();
 				GUICard gcard = new GUICard(card);
 				Pane cardPane = cardPaneList.get(id);
+				
 				if (!cardPane.getChildren().isEmpty()) cardPane.getChildren().remove(0);
 				cardPane.getChildren().add(gcard.getPane());
 			}
 		}
 
 	}
+	
+	public boolean isBig() {
+		return big;
+	}
 
+	synchronized public void setBig(boolean big) {
+		this.big = big;
+	}
+
+	
 	public void initialize(Model m, GuiView v) throws IOException {
 		
 		 asIdList = new ArrayList<>();
@@ -131,15 +142,40 @@ public class BoardController {
 		 
 		 
 		 for (Integer id : asIdList) {
-			 	Pane cp = asPaneList.get(id);
-			 	cp.setOnMouseClicked(e -> {
+			 	loader=new FXMLLoader();
+			 	loader.setLocation(getClass().getResource("/NormalActionSpace.fxml"));	
+			 	asRoot = loader.load();
+			 	ascontroller=loader.getController();
+			 	Pane cp = cardPaneList.get(id);
+			 	Pane asp=asPaneList.get(id);
+			 	ActionSpace actionSpace=m.getBoard().getActionSpace(id);
+			 	ascontroller.initialize(actionSpace);
+			 	asp.getChildren().add(asRoot);
+			 	cp.setOnMouseEntered(e-> {
+					if (!isBig()) {
+						cp.toFront();
+						cp.setScaleX(1.7);
+						cp.setScaleY(1.7);
+					}
+					setBig(true);
+				});
+				cp.setOnMouseExited(e-> {
+					if (isBig()) {
+						
+						cp.setScaleX(1);
+						cp.setScaleY(1);
+					}
+					setBig(false);
+				});
+			 	
+			 	/*cp.setOnMouseClicked(e -> {
 			 		RealActionSpace as = guiView.getModel().getBoard().getActionSpace(id);
 			 		if (as instanceof RealTowerActionSpace) {
 			 			((RealTowerActionSpace) as).attachDevelopmentCard(null);
 			 		}
 //				 System.out.println("You clicked on " + id);
 				 this.guiView.updateModelAndGui(this.model);
-			 });
+			 })*/;
 		 }
 		 
 	}

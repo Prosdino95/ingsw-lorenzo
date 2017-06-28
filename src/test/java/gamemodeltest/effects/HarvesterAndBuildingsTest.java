@@ -42,6 +42,7 @@ public class HarvesterAndBuildingsTest {
 		IstantEffect ex2=new Exchange(new Point(0,0,0),new Point(0,0,0),new Resource(5,0,0,0),new Resource(0,0,2,0),null);
 		permanentEffects.add(ex1);
 		permanentEffects.add(ex2);
+		System.out.println(ex1);
 		try {
 			card.activePermanentEffect(player);
 		} catch (GameException e) {
