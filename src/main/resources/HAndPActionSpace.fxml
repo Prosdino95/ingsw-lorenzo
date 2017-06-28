@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="85.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.actionspacecontroll.HandPActionSpaceControll">
+   <children>
+      <Pane fx:id="littleSpace" prefHeight="84.0" prefWidth="79.0">
+         <children>
+            <TextFlow fx:id="asActionPoint" layoutX="35.5" layoutY="66.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" prefHeight="84.0" prefWidth="190.0">
+         <children>
+            <HBox fx:id="bigSpace" layoutX="54.0" layoutY="29.0" prefHeight="26.0" prefWidth="128.0" />
+            <TextFlow fx:id="asActionPoint2" layoutX="94.0" layoutY="66.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>

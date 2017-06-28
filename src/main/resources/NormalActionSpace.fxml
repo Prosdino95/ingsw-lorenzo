@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="81.6" prefWidth="75.64999999999999" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.NormalActionSpaceControll">
+<AnchorPane prefHeight="81.6" prefWidth="75.64999999999999" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.actionspacecontroll.NormalActionSpaceControll">
    <children>
       <Pane layoutX="20.0" layoutY="53.0" prefHeight="22.0" prefWidth="28.0">
          <children>
             <TextFlow fx:id="actionCost" layoutX="14.0" layoutY="11.0" />
          </children>
       </Pane>
-      <Pane layoutX="4.0" layoutY="7.0" prefHeight="47.0" prefWidth="67.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+      <Pane fx:id="familyMember" layoutX="4.0" layoutY="7.0" prefHeight="47.0" prefWidth="67.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
          <children>
             <TextFlow fx:id="effect" layoutX="33.5" layoutY="23.5" />
          </children>

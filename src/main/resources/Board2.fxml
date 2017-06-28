@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BoardController">
    <children>
       <Pane layoutX="733.55" layoutY="9.35">
          <children>
@@ -14,7 +17,8 @@
                   <Image url="@raccolto_produzione.jpg" />
                </image>
             </ImageView>
-            <Pane fx:id="asProduzione" layoutY="25.5" prefHeight="90.95" prefWidth="294.09999999999997" />
+            <Pane fx:id="asHAndp1" layoutY="30.0" prefHeight="85.0" prefWidth="294.0" />
+            <Pane fx:id="asHAndp2" layoutY="139.0" prefHeight="85.0" prefWidth="294.0" />
          </children>
       </Pane>
       <Pane layoutX="733.55" layoutY="261.8">
@@ -24,10 +28,13 @@
                   <Image url="@mercato.jpg" />
                </image>
             </ImageView>
-            <Pane fx:id="asMercato1" layoutX="96.05" prefHeight="90.95" prefWidth="85.0" />
+            <Pane fx:id="asMarket1" layoutX="16.0" layoutY="4.0" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asMarket3" layoutX="181.0" layoutY="27.0" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asMarket4" layoutX="242.0" layoutY="88.0" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asMarket2" layoutX="101.0" layoutY="4.0" prefHeight="81.6" prefWidth="75.64999999999999" />
          </children>
       </Pane>
-      <Pane layoutX="733.55" layoutY="516.8">
+      <Pane fx:id="councilPlace" layoutX="733.55" layoutY="516.8">
          <children>
             <ImageView fitHeight="183.6" fitWidth="270.3" pickOnBounds="true" preserveRatio="true">
                <image>

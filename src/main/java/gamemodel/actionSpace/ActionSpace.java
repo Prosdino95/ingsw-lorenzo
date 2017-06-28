@@ -27,4 +27,6 @@ public interface ActionSpace extends Serializable{
 	public boolean isAccessible(Action a);
 
 	void prepareForNewRound();
+
+	FamilyMember getFamilyMember();
 }

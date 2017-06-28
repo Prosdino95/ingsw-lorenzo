@@ -17,6 +17,7 @@ public class RealActionSpace implements ActionSpace,Serializable {
 	private final int actionCost;
 	private List<IstantEffect> effects=new ArrayList<>();
 	private ActionSpaceType type;
+	protected FamilyMember familyMember;
 
 	public RealActionSpace(int id,int actionCost, List<IstantEffect> effects,ActionSpaceType type) {
 		this.id=id;
@@ -49,6 +50,7 @@ public class RealActionSpace implements ActionSpace,Serializable {
 
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException{
+		familyMember=f;
 		if(effects!=null)
 		for(IstantEffect e:effects)
 			e.activate(f.getPlayer());
@@ -95,6 +97,8 @@ public class RealActionSpace implements ActionSpace,Serializable {
 	public ActionSpaceType getType() {
 		return type;
 	}
+	
+	
 
 	/*@Override
 	public String toString() {
@@ -102,6 +106,9 @@ public class RealActionSpace implements ActionSpace,Serializable {
 				+ ", getEffects()=" + getEffects() + "]";
 	}*/
 
+	public FamilyMember getFamilyMember() {
+		return familyMember;
+	}
 
 	public String toString() {
 		String str = "";

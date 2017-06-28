@@ -70,6 +70,7 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException 
 	{
+		familyMember=f;
 		if(f.getPlayer().getPEffects(PEffect.NO_BONUS).isEmpty())
 			super.activateEffect(f);
 	}

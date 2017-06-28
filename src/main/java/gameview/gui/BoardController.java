@@ -7,12 +7,18 @@ import java.util.List;
 
 import gamemodel.Model;
 import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
-
+import gameview.gui.actionspacecontroll.ActionSpaceControll;
+import gameview.gui.actionspacecontroll.CouncilPlaceActionSpaceControll;
+import gameview.gui.actionspacecontroll.HandPActionSpaceControll;
+import gameview.gui.actionspacecontroll.NormalActionSpaceControll;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 public class BoardController {
@@ -25,8 +31,14 @@ public class BoardController {
 	
 	public void update(Model model) {
 		for (Integer id : asIdList) {
-//			System.out.println(id);
 			RealActionSpace as = model.getBoard().getActionSpace(id);
+			Pane asp=asPaneList.get(id);
+			try {
+				asp.getChildren().add(makeAS(as));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (as == null) {
 				continue;
 			}
@@ -40,7 +52,7 @@ public class BoardController {
 		}
 
 	}
-	
+
 	public void initialize(Model m, GuiView v) throws IOException {
 		
 		 asIdList = new ArrayList<>();
@@ -100,23 +112,26 @@ public class BoardController {
 		 asIdList.add(15);
 		 cardPaneList.add(cartaTorre15);
 		 asPaneList.add(asTorre15);
+		 asIdList.add(16);
+		 asPaneList.add(asHAndp1);
+		 asIdList.add(17);
+		 asPaneList.add(asHAndp2);
+		 asIdList.add(18);
+		 asPaneList.add(asMarket1);
+		 asIdList.add(19);
+		 asPaneList.add(asMarket2);
+		 asIdList.add(20);
+		 asPaneList.add(asMarket3);
+		 asIdList.add(21);
+		 asPaneList.add(asMarket4);
+		 asIdList.add(22);
+		 asPaneList.add(councilPlace);
 		 
-		 Pane asRoot;
-		 NormalActionSpaceControll ascontroller;
-		 //List<ActionSpace> asList=m.getBoard().getActionSpaces();
-		 FXMLLoader loader;
+		
 		 
 		 
 		 for (Integer id : asIdList) {
-			 	loader=new FXMLLoader();
-			 	loader.setLocation(getClass().getResource("/NormalActionSpace.fxml"));	
-			 	asRoot = loader.load();
-			 	ascontroller=loader.getController();
-			 	Pane cp = cardPaneList.get(id);
-			 	Pane asp=asPaneList.get(id);
-			 	ActionSpace actionSpace=m.getBoard().getActionSpace(id);
-			 	ascontroller.initialize(actionSpace);
-			 	asp.getChildren().add(asRoot);
+			 	Pane cp = asPaneList.get(id);
 			 	cp.setOnMouseClicked(e -> {
 			 		RealActionSpace as = guiView.getModel().getBoard().getActionSpace(id);
 			 		if (as instanceof RealTowerActionSpace) {
@@ -126,11 +141,39 @@ public class BoardController {
 				 this.guiView.updateModelAndGui(this.model);
 			 });
 		 }
+		 
 	}
+	
+	private Pane makeAS(ActionSpace actionSpace) throws IOException{
+		Pane asRoot=new Pane();
+		FXMLLoader loader;
+		ActionSpaceControll controll;
+		loader=new FXMLLoader();
+		switch(actionSpace.getType()){
+		case COUNCIL_PALACE:
+			loader.setLocation(getClass().getResource("/CouncilPlaceActionSpace.fxml"));			
+			break;
+		case PRODUCTION:
+			loader.setLocation(getClass().getResource("/HAndPActionSpace.fxml"));
+			break;
+		case HARVEST:
+			loader.setLocation(getClass().getResource("/HAndPActionSpace.fxml"));
+			break;
+		case TOWER:
+		case MARKET:			
+			loader.setLocation(getClass().getResource("/NormalActionSpace.fxml"));		
+			break;	
+		}
+		asRoot = loader.load();
+		controll=loader.getController();
+		controll.initialize(actionSpace);
 		
-
-	@FXML Pane asProduzione;
-	@FXML Pane asMercato1;
+	 	return asRoot;		
+	}
+	
+	@FXML Pane asHAndp1;
+	@FXML Pane asHAndp2;
+	@FXML Pane councilPlace;
 	@FXML Pane cartaTorre0;
 	@FXML Pane cartaTorre1;
 	@FXML Pane cartaTorre2;
@@ -163,5 +206,9 @@ public class BoardController {
 	@FXML Pane asTorre13;
 	@FXML Pane asTorre14;
 	@FXML Pane asTorre15;
+	@FXML Pane asMarket1;
+	@FXML Pane asMarket2;
+	@FXML Pane asMarket3;
+	@FXML Pane asMarket4;
 
 }

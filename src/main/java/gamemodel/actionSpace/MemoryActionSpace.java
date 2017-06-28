@@ -15,7 +15,8 @@ import gamemodel.effects.IstantEffect;
 public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private List<Player> players=new ArrayList<Player>();
+	private List<Player> players=new ArrayList<>();
+	private List<FamilyMember> fm=new ArrayList<>();
 
 	public MemoryActionSpace(int id,int actionCost, IstantEffect effect, ActionSpaceType type) {
 		super(id,actionCost, effect, type);
@@ -28,6 +29,10 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	public List<Player> getPlayers() {
 		return players;
 	}
+	
+	public List<FamilyMember> getFm() {
+		return fm;
+	}
 
 	public boolean controlPlayer(FamilyMember f) {
 		if(f.getColor()==Color.UNCOLORED)
@@ -39,6 +44,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	}
 
 	public void addPlayer(FamilyMember f){
+		fm.add(f);
 		if(f.getColor()!=Color.UNCOLORED || this.getType()==ActionSpaceType.COUNCIL_PALACE)
 			players.add(f.getPlayer());			
 	}
@@ -46,6 +52,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	@Override
 	public void prepareForNewRound(){
 		super.prepareForNewRound();
+		this.fm.clear();
 		this.players.clear();
 	}
 
