@@ -25,7 +25,7 @@ public class CouncilPlaceActionSpaceControll implements ActionSpaceControll {
 		this.asActionPoint.getChildren().add(new Text(actionCost.toString()));
 		MemoryActionSpace actionSpace=(MemoryActionSpace)as;
 		List<FamilyMember> familyMembers= actionSpace.getFm();
-		//test(familyMembers);
+	//	test(familyMembers);
 		Pane p;
 		if(!familyMembers.isEmpty())
 			for(FamilyMember fm:familyMembers){
@@ -35,14 +35,15 @@ public class CouncilPlaceActionSpaceControll implements ActionSpaceControll {
 			}	
 	}
 	
-/*
+
 	private void test(List<FamilyMember> f){
+		f.clear();
 		FamilyMember f1=new FamilyMember(new Player(null, null, Team.BLUE), Color.WHITE);
 		FamilyMember f2=new FamilyMember(new Player(null, null, Team.GREEN), Color.BLACK);
 		FamilyMember f3=new FamilyMember(new Player(null, null, Team.RED), Color.ORANGE);
 		f.add(f1);
 		f.add(f2);
 		f.add(f3);	
-	}*/
+	}
 
 }

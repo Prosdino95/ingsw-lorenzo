@@ -24,7 +24,8 @@ public class HandPActionSpaceControll implements ActionSpaceControll {
 	
 	@Override
 	public void initialize(ActionSpace as){
-		
+		System.out.println("big prima: "+bigSpace.getChildren().size());
+		System.out.println("little prima : "+littleSpace.getChildren().size());
 		MemoryActionSpace actionSpace=(MemoryActionSpace)as;
 		List<FamilyMember> familyMembers= actionSpace.getFm();
 		//test(familyMembers);
@@ -46,16 +47,19 @@ public class HandPActionSpaceControll implements ActionSpaceControll {
 						MakeFM.makeFM(familyMember,fm);
 						bigSpace.getChildren().add(familyMember);
 				}
+		System.out.println("big dopo : "+bigSpace.getChildren().size());
+		System.out.println("little dopo : "+littleSpace.getChildren().size());
 	}
 	
-	/*
+	
 	private void test(List<FamilyMember> f){
+		f.clear();
 		FamilyMember f1=new FamilyMember(new Player(null, null, Team.BLUE), Color.WHITE);
 		FamilyMember f2=new FamilyMember(new Player(null, null, Team.GREEN), Color.BLACK);
 		FamilyMember f3=new FamilyMember(new Player(null, null, Team.RED), Color.ORANGE);
 		f.add(f1);
 		f.add(f2);
 		f.add(f3);	
-	}*/
+	}
 
 }
