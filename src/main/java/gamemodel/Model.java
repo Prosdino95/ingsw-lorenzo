@@ -46,7 +46,7 @@ public class Model implements Serializable {
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
-	private int delay=200000;
+	private int delay;
 	
 	
 	public static void main(String[] args){
@@ -56,7 +56,13 @@ public class Model implements Serializable {
 	}
 	
 	public Model(int num){
-		initializeGame(num);	
+		initializeGame(num);
+		this.delay=200000;
+	}
+	
+	public Model(int num, int delay){
+		initializeGame(num);
+		this.delay=delay;
 	}
 	
 	

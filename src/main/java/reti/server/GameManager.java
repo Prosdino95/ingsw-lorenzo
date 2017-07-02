@@ -15,14 +15,24 @@ public class GameManager implements Runnable
 	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
-	private final int delay=1000;
+	private int delay;
 	private Timer timer=new Timer();
+	private int gameDelay;
 	
+	public GameManager(){
+		this.delay=1000;
+		this.gameDelay=200000;
+	}
 	
+	public GameManager(int delay,int gameDelay){
+		this.delay=delay;
+		this.gameDelay=gameDelay;
+	}
+		
 	private void setupGame()
 	{
 		System.out.println("creazione partita");      
-		Model rl=new Model(hw.size());
+		Model rl=new Model(hw.size(),gameDelay);
 		Controller c=new Controller(rl);
 		rl.setController(c);
 		for(int i=0;i<rl.getPlayers().size();i++){
