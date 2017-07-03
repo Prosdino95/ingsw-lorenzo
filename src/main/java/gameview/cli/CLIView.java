@@ -20,6 +20,13 @@ public class CLIView {
 		view.uiTree.run();
 	}
 	
+	public static void cliStart(String choose) throws IOException, InterruptedException, NotBoundException {		
+		CLIView view = new CLIView();
+		ViewController hs=new ViewController();
+		view.uiTree = new UITree(hs);
+		view.uiTree.run();
+	}
+	
 	public static int getInt(){
 		try {
 			return Integer.parseInt(inKeyboard.readLine());

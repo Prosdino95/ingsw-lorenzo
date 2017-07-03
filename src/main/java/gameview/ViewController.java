@@ -94,19 +94,4 @@ public class ViewController {
 }
 
 
-/*public static void main(String[] args) throws IOException, InterruptedException
-{
-	System.out.println("ciao");
-	ExecutorService pool = Executors.newCachedThreadPool();
-		try{BufferedReader inK = new BufferedReader(new InputStreamReader(System.in));
-		ServerSocket ss=new ServerSocket(3001);
-		Socket s=ss.accept();
-		ObjectOutputStream out2 = new ObjectOutputStream(s.getOutputStream());	
-		while(true){							
-			ServerResponse sr= new ServerResponse(inK.readLine());
-			out2.writeObject(sr);
-			out2.flush();
-			out2.reset();}
-		}
-		catch(Exception e){}
-}*/
+

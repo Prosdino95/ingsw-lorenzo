@@ -56,7 +56,7 @@ public class Server {
 
 	private void start() throws IOException {
 		System.out.println("server start");
-		gm=new GameManager();
+		gm=new GameManager(delay,gameDelay);
 		pool.execute(gm);
 		while(live){
 			Socket s=serverSocket.accept();				
@@ -68,7 +68,7 @@ public class Server {
 	
 	public synchronized void addHV(HandlerView hv){
 		if(gm == null || gm.getIsFull()) {
-			gm = new GameManager();
+			gm = new GameManager(delay,gameDelay);
 			new Thread(gm).start();
 		}
 		gm.addHV(hv);
