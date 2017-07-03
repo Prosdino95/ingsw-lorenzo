@@ -26,12 +26,12 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 		this.atype = atype;
 		this.ctype = ctype;
 	}
-	public StrengthModifyAndDiscount(int modStrength, CardType ctype,Resource discount) {
+	/*public StrengthModifyAndDiscount(int modStrength, CardType ctype,Resource discount) {
 		super(PEffect.MODIFY_STRENGTH);
 		this.modStrength = modStrength;
 		this.ctype = ctype;
 		this.discount=discount;
-	}
+	}*/
 	public StrengthModifyAndDiscount(Resource discount, CardType type) {
 		super(PEffect.DISCOUNT);
 		this.ctype=type;
@@ -76,10 +76,5 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 				+ ", discount:" + discount + "]";
 	}
 	
-	public static void main(String[] args)
-	{
-		StrengthModifyAndDiscount nas=new StrengthModifyAndDiscount(2,CardType.ALL,new Resource(2,8,9,7));
-		System.out.println(nas.toStringGui());
-	}
 
 }

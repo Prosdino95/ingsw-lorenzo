@@ -39,7 +39,7 @@ public class GuiView extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		this.stage = stage;
+		this.setStage(stage);
 		Integer w = 1024;
 		Integer h = 800;
 		
@@ -175,11 +175,11 @@ public class GuiView extends Application {
 		boardController.update(this.model);
 		System.out.println("You're in scene " + this.getCurrentScene());
 		System.out.println("Index " + this.currentSceneIndex);
-		if (stage.getScene() != getCurrentScene()) {
+		if (getStage().getScene() != getCurrentScene()) {
 			// Non dovrei invertire show e hide? Lo scatto e' supervisibile
-			stage.hide();
-			stage.setScene(getCurrentScene());
-			stage.show();
+			getStage().hide();
+			getStage().setScene(getCurrentScene());
+			getStage().show();
 		}
 	}
 
@@ -193,5 +193,13 @@ public class GuiView extends Application {
 
 	public Model getModel() {
 		return model;
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
 	}
 }

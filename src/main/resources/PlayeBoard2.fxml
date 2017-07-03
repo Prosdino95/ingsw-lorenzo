@@ -17,7 +17,7 @@
             <Image url="@ventureCardPlayer.jpg" />
          </image>
       </ImageView>
-      <Pane fx:id="b0" layoutX="34.0" layoutY="41.0" prefHeight="248.0" prefWidth="148.0" />
+      <Pane fx:id="char0" layoutX="20.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
       <Pane layoutX="13.0" layoutY="582.0" prefHeight="200.0" prefWidth="424.0" style="-fx-background-color: #ff1a;" />
       <Pane layoutX="500.0" layoutY="582.0" prefHeight="200.0" prefWidth="424.0" style="-fx-background-color: #ff1a;" />
       <Pane layoutX="1060.0" layoutY="35.0" prefHeight="525.0" prefWidth="62.0" style="-fx-background-color: #ff1a;">
@@ -28,5 +28,16 @@
                </image>
             </ImageView>
          </children></Pane>
+      <Pane fx:id="char1" layoutX="192.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="char2" layoutX="360.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="char3" layoutX="528.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="char4" layoutX="695.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="char5" layoutX="864.0" layoutY="43.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture0" layoutX="20.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture1" layoutX="192.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture2" layoutX="360.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture3" layoutX="528.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture4" layoutX="695.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture5" layoutX="864.0" layoutY="318.0" prefHeight="246.0" prefWidth="148.0" style="-fx-background-color: #ff1a;" />
    </children>
 </AnchorPane>

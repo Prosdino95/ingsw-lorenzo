@@ -2,6 +2,11 @@ package gameview.gui;
 
 import java.io.IOException;
 
+import gamemodel.Model;
+import gamemodel.Player;
+import gamemodel.Team;
+import gamemodel.card.Card;
+import gamemodel.command.GameException;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +20,20 @@ public class TestDavide extends Application {
 
 	
 	@Override
-	public void start(Stage primaryStage) throws IOException 
+	public void start(Stage primaryStage) throws IOException, GameException 
 	{
 		primaryStage.setTitle("carta");
 		FXMLLoader loader=new FXMLLoader();
-		loader.setLocation(getClass().getResource("/prova.fxml"));
+		loader.setLocation(getClass().getResource("/PlayeBoard2.fxml"));
 		Pane pane=loader.load();
-	//	TestController tcc=loader.getController();
-	//	tcc.initialize(0);
+		PlayerBoardController tcc=loader.getController();
+		Model m=new Model(2);
+		Player p = m.getPlayer(Team.RED);
+		Card c = m.getBoard().characterCards.get(5);
+		m.setupRound();
+		p.giveCard(c);
+		tcc.initialize();
+		tcc.update(p);
 		Scene scene=new Scene(pane);
 		primaryStage.setScene(scene);
 	    primaryStage.show();
