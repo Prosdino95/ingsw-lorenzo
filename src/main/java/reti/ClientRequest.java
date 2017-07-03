@@ -47,6 +47,10 @@ public class ClientRequest  implements Serializable{
 	public ClientRequest() {
 		super();
 	}
+
+	public ClientRequest(RequestType t) {
+		this.type = t;
+	}
 	
 	public ClientRequest(String a, RequestType type) {
 		this.answer=a;
@@ -58,6 +62,7 @@ public class ClientRequest  implements Serializable{
 	}
 	
 	public void setServants(String servants) {
+		this.type = RequestType.PLACEFAMILYMEMBER;
 		this.servants= Integer.parseInt(servants);
 	}
 		
@@ -66,14 +71,25 @@ public class ClientRequest  implements Serializable{
 	}
 	
 	public void setWhere(ActionSpace where){
+		this.type = RequestType.PLACEFAMILYMEMBER;
 		this.where=where.getId();
 	}
-	
-	public void setWhich(FamilyMember which){
-		this.which=which.getColor();
-		
+
+	public void setWhere(Integer id){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.where=id;
 	}
-	
+
+	public void setWhich(FamilyMember which){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=which.getColor();
+	}
+
+	public void setWhich(Color color){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=color;
+	}
+
 
 	public int getWhere() {
 		return where;
@@ -94,7 +110,8 @@ public class ClientRequest  implements Serializable{
 	@Override
 	public String toString() {
 		return "ClientRequest [type=" + type + ", where=" + where + ", servants=" + servants + ", which=" + which
-				+ ", answer=" + answer + "]";
+				+ ", answer=" + answer + ", player=" + player + ", leaderCard=" + leaderCard + ", what=" + what
+				+ ", lcID=" + lcID + "]";
 	}
 
 	public void cleanUp() {
@@ -136,5 +153,10 @@ public class ClientRequest  implements Serializable{
 
 	public Integer getLeaderCardID() {
 		return lcID;
+	}
+
+	public void setServants(int i) {
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		servants = i;
 	}
 }

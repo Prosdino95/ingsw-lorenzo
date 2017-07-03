@@ -22,14 +22,14 @@ public class GuiView extends Application {
 	private ViewController viewController;
 	private Model model;
 	
-	private int currentSceneIndex = 0;
-	private List<Scene> scenes = new  ArrayList<Scene>(2);
+	private int currentSceneIndex = 1;
+	private List<Scene> scenes = new  ArrayList<Scene>(3);
 	
-	private Pane boardRoot;
+	private Pane rootPane;
 	private Scene boardScene;
 	private BoardController boardController;
 	
-	
+	private RequestController requestController;
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
 		r.setLayoutX(x*ww);
@@ -45,24 +45,18 @@ public class GuiView extends Application {
 		
 	
 		FXMLLoader loader=new FXMLLoader();
-//		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));		
-//		PlayerBoardController c=loader.getController();
-
 		loader.setLocation(getClass().getResource("/Board2.fxml"));		
-		boardRoot = loader.load();
-		BoardController c=loader.getController();
-		boardController = c;
+		rootPane = loader.load();
+		boardController = loader.getController();
 		//boardRoot.setPrefSize(w, h);
-		boardRoot.setOnMouseClicked(e -> {
+		rootPane.setOnMouseClicked(e -> {
 			System.out.println(boardScene.getWidth());
 			updateGui();
-			
 		});
-		boardRoot.setStyle("-fx-background-color: #228b22");
-		Scene bs = new Scene(boardRoot);
+		rootPane.setStyle("-fx-background-color: #228b22");
+		Scene bs = new Scene(rootPane);
 		boardScene = bs;
 		
-
 		addScene(bs);
 		bs.setOnKeyPressed(e -> {
 			System.out.println("You pressed key " + e.getCode());
@@ -74,7 +68,28 @@ public class GuiView extends Application {
 				sceneGoRight();
 				break;
 			default:
-				System.out.println("Don't know what to do with " + e.getCode());
+//				System.out.println("Don't know what to do with " + e.getCode());
+			}
+		});
+
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/Request.fxml"));
+		Pane requestPane;
+		requestPane = loader.load();
+		requestController = loader.getController();
+		bs = new Scene(requestPane);
+		addScene(bs);		
+		bs.setOnKeyPressed(e -> {
+			System.out.println("You pressed key " + e.getCode());
+			switch (e.getCode()) {
+			case LEFT:
+				sceneGoLeft();
+				break;
+			case RIGHT:
+				sceneGoRight();
+				break;
+			default:
+//				System.out.println("Don't know what to do with " + e.getCode());
 			}
 		});
 
@@ -82,7 +97,6 @@ public class GuiView extends Application {
 		Pane p = new AnchorPane();
 		p.setStyle("-fx-background-color: #b22222");
 		bs = new Scene(p);
-		
 		addScene(bs);
 		bs.setOnKeyPressed(e -> {
 			System.out.println("You pressed key " + e.getCode());
@@ -118,8 +132,10 @@ public class GuiView extends Application {
 
 		Model m = new Model(4);
 		m.getBoard().setupRound(1);
-		c.initialize(m, this);
+		boardController.initialize(m, this, requestController);
 		this.model = m;
+		
+		requestController.initialize(null);
 		
 		stage.setTitle("Il magnifico");
 		updateGui();
