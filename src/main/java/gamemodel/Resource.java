@@ -89,6 +89,20 @@ public class Resource implements Serializable {
 			srt+=" servants="+this.servant;
 		return srt;
 	}
+	public String toStringGui() 
+	{
+		String srt="";
+		if(gold!=0)
+			srt+=" G="+this.gold;
+		if(stone!=0)
+			srt+=" St="+this.stone;
+		if(wood!=0)
+			srt+=" W="+this.wood;
+		if(servant!=0)
+			srt+=" Se="+this.servant;
+		return srt;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -120,5 +134,4 @@ public class Resource implements Serializable {
 			return false;
 		return true;
 	}
-
 }

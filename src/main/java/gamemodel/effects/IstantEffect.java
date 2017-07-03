@@ -9,4 +9,5 @@ public interface IstantEffect extends Serializable{
 	
 	public void activate(Player player) throws GameException;
 	public String toString();
+	public String toStringGui();
 }

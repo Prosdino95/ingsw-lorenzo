@@ -29,7 +29,7 @@ public class CharacterCardController
 
 		if(card.getIstantEffect().size()!=0)
 		{
-			Text instantEffect=new Text(card.getIstantEffect().get(0).toString());
+			Text instantEffect=new Text(card.getIstantEffect().get(0).toStringGui());
 			instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 			this.instantEffect.getChildren().add(instantEffect);
 		}

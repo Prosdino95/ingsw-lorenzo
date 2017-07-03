@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BoardController">
    <children>
       <Pane layoutX="733.55" layoutY="9.35">
          <children>
@@ -28,7 +26,10 @@
                   <Image url="@mercato.jpg" />
                </image>
             </ImageView>
-            <Pane fx:id="asMarket1" layoutX="16.0" layoutY="4.0" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asMarket1" layoutX="16.0" layoutY="4.0" prefHeight="81.6" prefWidth="75.64999999999999">
+               <children>
+                  <TextFlow fx:id="instantEffect" layoutX="24.0" layoutY="25.0" prefHeight="30.0" prefWidth="36.0" textAlignment="CENTER" />
+               </children></Pane>
             <Pane fx:id="asMarket3" layoutX="181.0" layoutY="27.0" prefHeight="81.6" prefWidth="75.64999999999999" />
             <Pane fx:id="asMarket4" layoutX="242.0" layoutY="88.0" prefHeight="81.6" prefWidth="75.64999999999999" />
             <Pane fx:id="asMarket2" layoutX="101.0" layoutY="4.0" prefHeight="81.6" prefWidth="75.64999999999999" />
@@ -71,25 +72,25 @@
             <Pane fx:id="cartaTorre14" layoutX="532.1" layoutY="202.29999999999998" prefHeight="137.7" prefWidth="85.0" />
             <Pane fx:id="cartaTorre15" layoutX="532.1" layoutY="41.65" prefHeight="137.7" prefWidth="85.0" />
 
-            <Pane fx:id="asTorre0" layoutX="104.55" layoutY="547.8" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre1" layoutX="104.55" layoutY="388.15" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre2" layoutX="104.55" layoutY="227.5" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre3" layoutX="104.55" layoutY="68.85" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre0" layoutX="104.55" layoutY="547.8" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre1" layoutX="104.55" layoutY="388.15" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre2" layoutX="104.55" layoutY="227.5" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre3" layoutX="104.55" layoutY="68.85" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
 	    
-            <Pane fx:id="asTorre4" layoutX="275.4" layoutY="547.8" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre5" layoutX="275.4" layoutY="388.15" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre6" layoutX="275.4" layoutY="227.5" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre7" layoutX="275.4" layoutY="68.85" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre4" layoutX="275.4" layoutY="547.8" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre5" layoutX="275.4" layoutY="388.15" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre6" layoutX="275.4" layoutY="227.5" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre7" layoutX="275.4" layoutY="68.85" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
 
-	    	<Pane fx:id="asTorre8" layoutX="446.25" layoutY="547.8" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre9" layoutX="446.25" layoutY="388.15" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre10" layoutX="446.25" layoutY="227.5" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre11" layoutX="446.25" layoutY="68.85" prefHeight="81.6" prefWidth="75.64999999999999" />
+	    	<Pane fx:id="asTorre8" layoutX="446.25" layoutY="547.8" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre9" layoutX="446.25" layoutY="388.15" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre10" layoutX="446.25" layoutY="227.5" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre11" layoutX="446.25" layoutY="68.85" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
 
-	    	<Pane fx:id="asTorre12" layoutX="620.1" layoutY="547.8" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre13" layoutX="620.1" layoutY="388.15" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre14" layoutX="620.1" layoutY="227.5" prefHeight="81.6" prefWidth="75.64999999999999" />
-            <Pane fx:id="asTorre15" layoutX="620.1" layoutY="68.85" prefHeight="81.6" prefWidth="75.64999999999999" />
+	    	<Pane fx:id="asTorre12" layoutX="620.1" layoutY="547.8" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre13" layoutX="620.1" layoutY="388.15" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre14" layoutX="620.1" layoutY="227.5" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
+            <Pane fx:id="asTorre15" layoutX="620.1" layoutY="68.85" onMouseClicked="#request" prefHeight="81.6" prefWidth="75.64999999999999" />
          </children>
       </Pane>
    </children>

@@ -27,18 +27,14 @@ public class ResourceModify implements IstantEffect,EffectRollBack,Serializable
 		player.subResources(resources);
 	}
 
-	/*@Override
-	public String toString() {
-		return "ResourceModify [resources=" + resources + "]";
-	}*/
-
 	@Override
 	public String toString() {
 		return  ""+resources;
 	}
-	
-	
-	
+	@Override
+	public String toStringGui() {
+		return  ""+resources.toStringGui();
+	}
 }
 
 

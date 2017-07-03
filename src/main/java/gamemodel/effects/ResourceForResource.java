@@ -131,12 +131,6 @@ public class ResourceForResource implements IstantEffect,Serializable
 			return resources.getStone()/forEach;
 		return 0;
 	}
-	
-/*	@Override
-	public String toString() {
-		return "ResourceForResource [cardType=" + cardType + ", resourcesIn=" + resourcesIn + ", pointsIn=" + pointsIn
-				+ ", resourcesOut=" + resourcesOut + ", pointsOut=" + pointsOut + ", forEach=" + forEach + "]";
-	}*/
 
 	@Override
 	public void activate(Player player)
@@ -187,13 +181,13 @@ public class ResourceForResource implements IstantEffect,Serializable
 	
 	
 	public String toString() {
-		String str ="\n"+ "Reasource for Resource: "+"\n";
-		str+="receve --> ";
+		String str ="Reasource for Resource: "+"\n";
+		str+="recieve-->";
 		if(this.pointsOut!=null)
 			str+=pointsOut+"\n";
 		if(this.resourcesOut!=null)
 			str+=resourcesOut+"\n";
-		str+="for "+this.forEach+" ";
+		str+="for each "+this.forEach+" ";
 		if(this.pointsIn!=null)
 			str+=pointsIn;			
 		if(this.resourcesIn!=null)		
@@ -202,6 +196,23 @@ public class ResourceForResource implements IstantEffect,Serializable
 			str+=cardType;
 		return str;
 		
+	}
+	@Override
+	public String toStringGui() {
+		String str ="Reasource for Resource: "+"\n";
+		str+="recieve-->";
+		if(this.pointsOut!=null)
+			str+=pointsOut.toStringGui()+"\n";
+		if(this.resourcesOut!=null)
+			str+=resourcesOut.toStringGui()+"\n";
+		str+="for each "+this.forEach+" ";
+		if(this.pointsIn!=null)
+			str+=pointsIn.toStringGui();			
+		if(this.resourcesIn!=null)		
+			str+=resourcesIn.toStringGui();
+		if(this.cardType!=null)	
+			str+=cardType;
+		return str;
 	}
 }
 

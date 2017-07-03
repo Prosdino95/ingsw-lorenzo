@@ -1,5 +1,7 @@
 package gameview.gui;
 
+import java.awt.event.MouseEvent;
+
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -11,9 +13,17 @@ import gamemodel.actionSpace.RealActionSpace;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gameview.gui.actionspacecontroll.ActionSpaceControll;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class BoardController {
 	List<Integer> asIdList;
@@ -161,6 +171,21 @@ public class BoardController {
 		}
 		 
 	}
+	
+	public void request(Event e){
+		
+		System.out.println(asPaneList.indexOf(e.getSource()));
+		Popup p=new Popup();
+		Pane pa=new Pane();
+		Button b=new Button();
+		b.setOnAction(ev->p.hide());
+		pa.setPrefWidth(100);
+		pa.setPrefHeight(100);
+		pa.getChildren().add(b);		
+		p.getContent().add(pa);
+		p.show(guiView.getStage());
+	}
+	
 	
 	private Pane makeAS(ActionSpace actionSpace) throws IOException{
 		Pane asRoot=new Pane();

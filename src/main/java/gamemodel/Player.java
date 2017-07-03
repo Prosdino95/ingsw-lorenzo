@@ -220,6 +220,23 @@ public class Player implements Serializable{
 				ie.activate(this);
 		if (card instanceof CharactersCard)
 			this.permanentEffects.add(((CharactersCard) card).getPermanentEffects());
+		switch(card.getType())
+		{
+			case BUILDING:
+				buildings.add((HarvesterAndBuildings) card);
+				break;
+			case CHARACTER:
+				characters.add((CharactersCard)card);
+				break;
+			case TERRITORY:
+				buildings.add((HarvesterAndBuildings)card);
+				break;
+			case VENTURE:
+				ventures.add((VentureCard) card);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public PermanentEffect getPermanentEffect(PEffect tag) {
@@ -241,7 +258,7 @@ public class Player implements Serializable{
 		currentAction.setFm(fm);
 	
 		for (PermanentEffect e : permanentEffects) {
-			if (e.hasTag(PEffect.MOD_FORZA)) {
+			if (e.hasTag(PEffect.MODIFY_STRENGTH)) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
 						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {

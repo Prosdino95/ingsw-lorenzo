@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
-public class GUICard extends Region
+public class GUICard
 {
 	Card card;
 	Pane pane;
