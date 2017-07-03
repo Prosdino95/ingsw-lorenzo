@@ -7,63 +7,79 @@ import gamemodel.card.CardType;
 public class StrengthModifyAndDiscount extends PermanentEffect {
 	
 	private static final long serialVersionUID = 1L;
-	private int modForza;
+	private int modStrength;
 	private ActionSpaceType atype;
 	private CardType ctype;
 	private Resource discount;
 
-	public StrengthModifyAndDiscount(int modForza,ActionSpaceType atype, CardType ctype,Resource resource){
-		super(PEffect.MOD_FORZA);
+	public StrengthModifyAndDiscount(int modStrength,ActionSpaceType atype, CardType ctype,Resource discount){
+		super(PEffect.MODIFY_STRENGTH);
 		super.addTag(PEffect.DISCOUNT);
-		this.modForza = modForza;
+		this.modStrength = modStrength;
 		this.atype = atype;
 		this.ctype = ctype;
-		this.discount=resource;
+		this.discount=discount;
 	}
-
+	public StrengthModifyAndDiscount(int modStrength, ActionSpaceType atype, CardType ctype) {
+		super(PEffect.MODIFY_STRENGTH);
+		this.modStrength = modStrength;
+		this.atype = atype;
+		this.ctype = ctype;
+	}
+	public StrengthModifyAndDiscount(int modStrength, CardType ctype,Resource discount) {
+		super(PEffect.MODIFY_STRENGTH);
+		this.modStrength = modStrength;
+		this.ctype = ctype;
+		this.discount=discount;
+	}
+	public StrengthModifyAndDiscount(Resource discount, CardType type) {
+		super(PEffect.DISCOUNT);
+		this.ctype=type;
+		this.discount=discount;
+	}
+	public StrengthModifyAndDiscount(Resource discount) {
+		this(discount, CardType.ALL);
+	}
+	
 	public Resource getDiscount() {
 		return discount;
 	}
-
 	public void setDiscount(Resource discount) {
 		this.discount = discount;
 	}
 
 	public int getModForza() {
-		return modForza;
+		return modStrength;
 	}
-
-	public StrengthModifyAndDiscount(int modForza, ActionSpaceType atype, CardType ctype) {
-		super(PEffect.MOD_FORZA);
-		this.modForza = modForza;
-		this.atype = atype;
-		this.ctype = ctype;
-	}
-
-	public StrengthModifyAndDiscount(Resource resource, CardType type) {
-		super(PEffect.DISCOUNT);
-		this.ctype=type;
-		this.discount=resource;
-	}
-
-	public StrengthModifyAndDiscount(Resource resource) {
-		this(resource, CardType.ALL);
-	}
-
 	public ActionSpaceType getAtype() {
 		return atype;
 	}
-
 	public CardType getCtype() {
 		return ctype;
 	}
 
 	@Override
-	public String toString() {
-		return "StrengthModifyAndDiscount [modForza=" + modForza + ", atype=" + atype + ", ctype=" + ctype
-				+ ", discount=" + discount + "]";
+	public String toString() 
+	{
+		String string="";
+		if(modStrength!=0)
+			string=" Whenever you perform an action to take " + ctype + " card increase the value of the action by " + modStrength + ".";
+		if(discount!=null)
+			string+=" The cost of " +  ctype + " card you take is reduced by" + discount + ".";
+		if(atype!=null)
+			string+=" Whenever you perform " + atype + " action increase the value of the action by " + modStrength;
+		return string;
 	}
 	
+	public String toStringGui() {
+		return "StrengthModifyAndDiscount [modStrength=" + modStrength + ", astype=" + atype + ", ctype=" + ctype
+				+ ", discount:" + discount + "]";
+	}
 	
+	public static void main(String[] args)
+	{
+		StrengthModifyAndDiscount nas=new StrengthModifyAndDiscount(2,CardType.ALL,new Resource(2,8,9,7));
+		System.out.println(nas.toStringGui());
+	}
 
 }

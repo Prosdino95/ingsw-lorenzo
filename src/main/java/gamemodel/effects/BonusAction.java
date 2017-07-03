@@ -106,6 +106,12 @@ public class BonusAction implements IstantEffect {
 	public String toString() {
 		return "BonusAction [discount=" + discount + ", actionValue=" + actionValue + ", cardType=" + cardType + "]";
 	}
+	@Override
+	public String toStringGui()
+	{
+		;
+		return null;
+	}
 	
 	
 }

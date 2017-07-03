@@ -56,8 +56,8 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 		this.players.clear();
 	}
 
-	/*@Override
-	public String toString() {
+	@Override
+	/*public String toString() {
 		return "MemoryActionSpace [players=" + players + ", getPlayers()=" + getPlayers() + ", getEffects()="
 				+ getEffects() + "]";
 	}*/

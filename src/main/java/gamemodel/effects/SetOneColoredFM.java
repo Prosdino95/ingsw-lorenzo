@@ -37,5 +37,15 @@ public class SetOneColoredFM implements IstantEffect,Serializable {
 		FamilyMember fm=(FamilyMember)list.get(index);
 		fm.setActionpoint(actionPoint);
 	}
+	@Override
+	public String toString()
+	{
+		return " One of your colored family members has a value of " + actionPoint;
+	}
 
+	@Override
+	public String toStringGui() 
+	{
+		return " One of your colored family members has a value of " + actionPoint;
+	}
 }

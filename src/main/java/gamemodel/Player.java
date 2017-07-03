@@ -241,7 +241,7 @@ public class Player implements Serializable{
 		currentAction.setFm(fm);
 	
 		for (PermanentEffect e : permanentEffects) {
-			if (e.hasTag(PEffect.MOD_FORZA)) {
+			if (e.hasTag(PEffect.MODIFY_STRENGTH)) {
 				StrengthModifyAndDiscount mf = (StrengthModifyAndDiscount) e;
 				if (mf.getAtype() == ActionSpaceType.TOWER && 
 						currentAction.getActionSpace().getType() == ActionSpaceType.TOWER) {

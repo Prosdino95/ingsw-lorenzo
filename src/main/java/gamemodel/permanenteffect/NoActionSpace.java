@@ -18,12 +18,13 @@ public class NoActionSpace extends PermanentEffect
 	{
 		return this.atype;
 	}
-
+	
 	@Override
-	public String toString() {
-		return "NoActionSpace [atype=" + atype + "]";
+	public String toString()
+	{
+		return " You can’t place your family members in the " + atype + " action space";
 	}
-	
-	
-	
+	public String toStringGui() {
+		return " No Action Space: " + atype;
+	}
 }

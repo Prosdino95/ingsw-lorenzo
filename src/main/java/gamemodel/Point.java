@@ -92,12 +92,21 @@ public class Point implements Serializable
 	public String toString() {
 		String srt="";
 		if(military!=0)
-			srt+=" military= "+this.military;
+			srt+=" military="+this.military;
 		if(faith!=0)
-			srt+=" faith= "+this.faith;
+			srt+=" faith="+this.faith;
 		if(victory!=0)
-			srt+=" victory= "+this.victory;
+			srt+=" victory="+this.victory;
 		return srt;
 	}
-	
+	public String toStringGui() {
+		String srt="";
+		if(military!=0)
+			srt+=" M="+this.military;
+		if(faith!=0)
+			srt+=" F="+this.faith;
+		if(victory!=0)
+			srt+=" V="+this.victory;
+		return srt;
+	}
 }

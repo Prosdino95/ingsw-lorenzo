@@ -50,25 +50,39 @@ public class Exchange implements IstantEffect,Serializable
 	
 	@Override
 	public String toString() {
-		String str =
-				"\n"+ 
-				"Exchange: "+"\n";
-		str+="give --> ";
+		String str ="Exchange:\n";
+		str+="give-->";
 		if(this.pointsOut!=null)
 			str+=pointsOut+"";
 		if(this.resourcesOut!=null)
 			str+=resourcesOut+"\n";
-		str+="receive --> ";
+		str+="receive-->";
 		if(this.councilPrivilegesIn!=null)
 			str+=councilPrivilegesIn;
 		if(this.pointsIn!=null)
 			str+=pointsIn;			
 		if(this.resourcesIn!=null)		
 			str+=resourcesIn;
-			
 		return str;
 		
 	}
-	
+	@Override
+	public String toStringGui() {
+		String str ="Exchange:\n";
+		str+="give-->";
+		if(this.pointsOut!=null)
+			str+=pointsOut.toStringGui()+"";
+		if(this.resourcesOut!=null)
+			str+=resourcesOut.toStringGui()+"\n";
+		str+="receive-->";
+		if(this.councilPrivilegesIn!=null)
+			str+=councilPrivilegesIn.toStringGui();
+		if(this.pointsIn!=null)
+			str+=pointsIn.toStringGui();			
+		if(this.resourcesIn!=null)		
+			str+=resourcesIn.toStringGui();
+		return str;
+		
+	}
 }
 
