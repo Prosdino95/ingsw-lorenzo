@@ -34,7 +34,12 @@ public class UINodeChooseUI extends UINode {
 
 	@Override
 	public UINode getNextNode() {
-		choose=CLIView.getInt();
+		try {
+			choose = this.tree.getInt();
+		} catch (OfflineException e1) {
+			choose = this.tree.getChoice();
+		}
+		
 		try{
 			return descendants.get(choose);					
 			}

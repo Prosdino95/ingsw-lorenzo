@@ -17,10 +17,11 @@ public class UINodeTalkToServer extends UINode {
 	public void run() throws IOException {
 		ClientRequest request = tree.getRequest();
 		boolean finishedTalking = false;
-		ServerResponse response;
+		ServerResponse response = null;
 		
 		do {
 			response = tree.sendRequestToServer(request);
+			
 			//System.out.print("UINodeTalkToServer -- Received response: ");
 			//System.out.println(response);
 
@@ -28,7 +29,11 @@ public class UINodeTalkToServer extends UINode {
 			case QUESTION:
 				Question question = response.getQuestion();
 				System.out.println(question);
-				request = new ClientRequest(CLIView.getString());
+				try {
+					request = new ClientRequest(this.tree.getString());
+				} catch (OfflineException e) {
+					System.out.println("Catched offline exception");
+				}
 				break;
 			case ERROR:
 				System.out.print("You can't do that because: ");

@@ -37,7 +37,12 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 		else
 			print(lst);
 		try {
-			E choose = getterList.get().get(CLIView.getInt());
+			E choose;
+			try {
+				choose = getterList.get().get(this.tree.getInt());
+			} catch (OfflineException e) {
+				choose = getterList.get().get(this.tree.getChoice());
+			}
 			setter.accept(choose);			
 			super.run();
 		} catch(IndexOutOfBoundsException e) {

@@ -1,6 +1,10 @@
 package gameview.cli;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
@@ -19,16 +23,30 @@ public class UITree {
 	private UINode root;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
-	private ViewController serverHandler;
+	private ViewController viewController;
 	private Model model;
 	private Player player;
 	boolean hasModel = false;
 	boolean hasPlayer = false;
 	private boolean live=true;
 	
-		
-	public UITree(ViewController serverEndler) {
-		this.serverHandler=serverEndler;
+	BufferedReader inKeyboard = new BufferedReader(new InputStreamReader(System.in));
+	private List<Integer> fakeIntChoices;
+	private List<String> stringChoices;
+	private List<ServerResponse> messages;
+	private List<ServerResponse> responses;
+	private long fakeDelay = 1000;
+	
+	public UITree(List<Integer> intChoices, List<String> stringChoices, List<ServerResponse> messages, LinkedList<ServerResponse> responses2) {
+		this((ViewController)null);
+		this.fakeIntChoices = intChoices;
+		this.stringChoices = stringChoices;
+		this.messages = messages;
+		this.responses = responses2;
+	}
+	
+	public UITree(ViewController vc) {
+		this.viewController=vc;
 
 // 		// Riusciremo a infilarlo nell'albero un giorno?
 //		UINodeSetResponseType sendMessage = 
@@ -36,7 +54,7 @@ public class UITree {
 //				response::setType, 
 //				ResponseType.CHAT);
 
-		UINodeLog log = new UINodeLog("", this, serverEndler);
+		UINodeLog log = new UINodeLog("", this, vc);
 		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this); 
 		UINodeSetRequest placeFM = 
 				new UINodeSetRequest("Place family member", 
@@ -125,7 +143,9 @@ public class UITree {
 
 	protected void shutdown() {
 		live=false;
-		serverHandler.shutdown();
+		if (viewController == null)
+			return;
+		viewController.shutdown();
 		
 	}
 
@@ -137,12 +157,16 @@ public class UITree {
 		return model;
 	}
 	
-	ServerResponse sendRequestToServer(){
+	ServerResponse sendRequestToServer() {
 		return sendRequestToServer(request);
 	}
 
-	public ServerResponse sendRequestToServer(ClientRequest request){ 		
-	    ServerResponse srr = serverHandler.syncSend(request);
+	public ServerResponse sendRequestToServer(ClientRequest request) {
+		ServerResponse srr;
+		if (viewController == null)
+			return this.responses.remove(0);
+		else 
+			srr = viewController.syncSend(request);
 	    return srr;
 	} 
 
@@ -156,6 +180,31 @@ public class UITree {
 		}
 	}
 
+	public int getInt() throws OfflineException {
+		if (viewController == null)
+			throw new OfflineException();
+		try {
+			return Integer.parseInt(inKeyboard.readLine());
+		} catch (NumberFormatException e) {
+			return getInt();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return getInt();
+		}
+	}
+
+	public String getString() throws OfflineException {
+		if (viewController == null)
+			throw new OfflineException();
+		try {
+			return inKeyboard.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return getString();
+	}
+
+	
 	private void reset() {
 		next = root;
 		request.cleanUp();
@@ -176,5 +225,42 @@ public class UITree {
 	public void setPlayer(Team playerTeam) {
 		player = model.getPlayer(playerTeam);
 		hasPlayer = true;
+	}
+
+	public Integer getChoice() {
+		try {
+			Thread.sleep(this.fakeDelay);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Integer choice = fakeIntChoices.remove(0);
+		System.out.println("Chose: " + choice);
+		return choice;
+	}
+
+	public String getStringChoice() {
+		try {
+			Thread.sleep(this.fakeDelay );
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String choice = stringChoices.remove(0);
+		System.out.println("Chose: " + choice);
+		return choice;
+	}
+
+	public boolean hasMessage() {
+		if (viewController == null) {
+			return !messages.isEmpty();
+		}
+		return viewController.hasMessage();
+	}
+
+	public ServerResponse getMessage() {
+		if (viewController == null) {
+			return messages.remove(0);
+		}
+		return viewController.getMessage();
 	}
 }

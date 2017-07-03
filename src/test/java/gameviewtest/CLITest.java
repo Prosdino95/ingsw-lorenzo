@@ -1,30 +1,29 @@
-package gameview.cli;
+package gameviewtest;
 
+import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.rmi.NotBoundException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import gamemodel.Model;
 import gamemodel.Player;
-import gamemodel.Point;
 import gamemodel.Resource;
 import gamemodel.Team;
-import gameview.ViewController;
+import gameview.cli.UITree;
 import reti.ServerResponse;
 
+public class CLITest {
 
-public class CLIView {
+	@Before
+	public void setUp() throws Exception {
+	}
 
-	
-	public static void main(String[] arg) throws IOException, InterruptedException, NotBoundException {		
+	@Test
+	public void test() throws IOException {
 		UITree uiTree;
-		
-//		uiTree = new UITree(hs);
 		
 		LinkedList<String> stringChoices = new LinkedList<>();
 		LinkedList<Integer> intChoices = new LinkedList<>();
@@ -47,6 +46,5 @@ public class CLIView {
 		
 		uiTree.run();
 	}
+
 }
-
-

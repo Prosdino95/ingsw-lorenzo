@@ -11,12 +11,10 @@ import reti.ServerResponse;
 
 public class UINodeLog extends UINode 
 {
-	ViewController hs;
-	
+
 	public UINodeLog(String desc, UITree tree,ViewController hs) 
 	{
 		super(desc, tree);
-		this.hs=hs;
 	}
 	
 	@Override
@@ -32,9 +30,11 @@ public class UINodeLog extends UINode
 				Thread.currentThread().interrupt();
 				e.printStackTrace();
 			}
-			
-			if(hs.hasMessage()) {		
-				sr=hs.getMessage();
+			boolean hasMessage;
+			hasMessage = this.tree.hasMessage();
+			if(hasMessage) {		
+				sr=tree.getMessage();
+				
 				// System.out.println(sr);
 				switch (sr.getType()) {
 				case NEW_MODEL:
@@ -57,7 +57,11 @@ public class UINodeLog extends UINode
 					break;
 				case LEADER:
 					System.out.println(sr.getQuestion());
-					tree.sendRequestToServer(new ClientRequest(CLIView.getString()));
+					try {
+						tree.sendRequestToServer(new ClientRequest(this.tree.getString()));
+					} catch (OfflineException e) {
+						System.out.println("Catched offline exception");
+					}
 					break;
 				default:
 					System.out.println("Should this message get here? " + sr);
@@ -65,7 +69,7 @@ public class UINodeLog extends UINode
 				}
 			}
 			
-			if(CLIView.inKeyboard.ready() && tree.hasModel && tree.hasPlayer) {
+			if(tree.hasModel && tree.hasPlayer) {
 				run=false;
 			}
 		}
@@ -88,7 +92,12 @@ public class UINodeLog extends UINode
 		case VATICAN_TIME:
 			System.out.println("it's time to play with the Pope, unless you're too poor");
 			System.out.println("yes or not???");
-			tree.sendRequestToServer(new ClientRequest(CLIView.getString(),RequestType.VATICAN_REPORT));
+			try {
+				tree.sendRequestToServer(new ClientRequest(this.tree.getString(),
+						RequestType.VATICAN_REPORT));
+			} catch (OfflineException e) {
+				System.out.println("Catched offline exception");
+			}
 			break;
 		default:
 			break;

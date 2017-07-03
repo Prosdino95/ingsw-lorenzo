@@ -95,7 +95,6 @@ public class ViewController {
 
 	public void shutdown() {
 		hs.shutdown();
-		
 	}	
 }
 
