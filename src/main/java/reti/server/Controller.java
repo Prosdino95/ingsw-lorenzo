@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 
 import gamemodel.Action;
 import gamemodel.GameQuestion;
@@ -133,21 +134,26 @@ public class Controller{
 	}
 	
 	public void giveLeaderCard() {
-		//TODO ordine turno
-		int index;
+		int index=0,i,j;
+		Random random=new Random();
+		List<Object> cards=new ArrayList<>(); 
 		sendMessageToAll("now it's time to choose your leaders, so wait your turn");
-//		for(int i=0;i<4;i++)
-		for(int i=0;i<1;i++)
-				for(HandlerView hv:playerToHV.values()){
-					try {
-						index=answerToQuestion(new Question(GameQuestion.LEADER,game.getLeaderCards()),hv);
-						game.giveLeaderCard(hv.getPlayer(), index);
-						hv.sendResponse(new ServerResponse());
-					} catch (GameException e) {
-						game.giveLeaderCard(hv.getPlayer(), 0);
-					}				
+		for(i=0;i<4;i++){
+			for(j=0;j<4;j++){
+				index=random.nextInt(game.getLeaderCards().size());
+				cards.add(game.getLeaderCards().remove(index));
+			}			
+			for(HandlerView hv:playerToHV.values())
+				try {
+					index=answerToQuestion(new Question(GameQuestion.LEADER,cards),hv);
+					hv.getPlayer().giveLeaderCard((LeaderCard)cards.remove(index));
+					hv.sendResponse(new ServerResponse());
+				} catch (GameException e) {
+					game.giveLeaderCard(hv.getPlayer(), 0);
 				}
-			sendMessageToAll("iniziamo a giocare");
+			cards.clear();
+		}
+		sendMessageToAll("iniziamo a giocare");
 	}
 
 	public void notifyNewModel() 

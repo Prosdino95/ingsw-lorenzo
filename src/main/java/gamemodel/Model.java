@@ -249,7 +249,7 @@ public class Model implements Serializable {
 	}
 	
 	public void giveLeaderCard(Player player, int index) {
-				player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
+		player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
 	}
 
 

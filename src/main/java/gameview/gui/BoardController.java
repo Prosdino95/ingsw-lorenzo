@@ -50,7 +50,6 @@ public class BoardController {
 			}
 			if (as instanceof RealTowerActionSpace) {
 				Card card = ((RealTowerActionSpace) as).getCard();
-				System.out.println(id+", "+card);
 				Pane cardPane = cardPaneList.get(id);
 				if (!cardPane.getChildren().isEmpty()) 
 					cardPane.getChildren().remove(0);

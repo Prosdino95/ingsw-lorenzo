@@ -113,7 +113,8 @@ public class GuiView extends Application {
 	private void newModel(Model model){
 		System.out.print("GUIView -- A new model has arrived... It says:");
 		this.model = model;
-		this.player = model.getPlayer(player.getTeam());
+		if(player!=null)
+			this.player = model.getPlayer(player.getTeam());
 		switch(model.getState()){
 		case GAME_FINISH:
 			break;
