@@ -520,7 +520,6 @@ class Turn extends TimerTask
 	}
 	
 	public void run(){
-		System.out.println("asdasdjnaksd");
 		gm.timerFinished();
 	}
 }

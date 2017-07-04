@@ -4,6 +4,7 @@ package gameview;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -23,13 +24,34 @@ public class ViewController {
 	private boolean live=true;
 
 	
-	public ViewController() throws IOException, InterruptedException, NotBoundException{
-		super();
-		hs=new HandlerSocket(this);
-		//hs=new HandlerServerRMIImpl(this);
-		new Thread((Runnable) hs).start();
+	public ViewController() {
+		this("socket");
 	}
 	
+
+	public ViewController(String networkChoose) {
+		super();
+		if (networkChoose == "rmi") {
+			try {
+				hs=new HandlerServerRMIImpl(this);
+			} catch (RemoteException | NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (networkChoose == "socket") {
+			try {
+				hs=new HandlerSocket(this);
+			} catch (IOException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			new Thread((Runnable) hs).start();
+		} else {
+			
+		}
+		
+	}
+
 
 	public boolean hasMessage()
 	{

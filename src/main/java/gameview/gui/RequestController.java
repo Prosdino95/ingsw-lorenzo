@@ -3,6 +3,8 @@ package gameview.gui;
 import java.util.List;
 
 import gamemodel.Color;
+import gamemodel.Question;
+import gamemodel.command.GameError;
 import gameview.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -102,5 +104,9 @@ public class RequestController {
 		List<Node> children = currentRequestFlow.getChildren();
 		while (!children.isEmpty()) children.remove(0);
 		this.currentRequestFlow.getChildren().add(t);
+	}
+
+	public void giveSR(ServerResponse sr) {
+		
 	}
 }
