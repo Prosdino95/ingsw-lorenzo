@@ -9,7 +9,6 @@ import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 
 public class GUICard
 {

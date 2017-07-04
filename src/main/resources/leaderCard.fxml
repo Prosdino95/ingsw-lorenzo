@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.LeaderCardController">
+   <children>
+      <ImageView fitHeight="360.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@leaderCard.jpg" />
+         </image>
+      </ImageView>
+      <TextFlow fx:id="effect" layoutY="227.0" prefHeight="128.0" prefWidth="198.0" />
+      <TextFlow fx:id="cardName" layoutX="58.0" layoutY="11.0" prefHeight="23.0" prefWidth="105.0" />
+      <TextFlow fx:id="cardRequirement" layoutX="111.0" layoutY="72.0" prefHeight="83.0" prefWidth="50.0" />
+   </children>
+</AnchorPane>

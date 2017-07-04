@@ -15,12 +15,17 @@ public class BuildingCardController
 	@FXML TextFlow actionValue;
 	@FXML TextFlow instantEffect;
 	@FXML TextFlow permanentEffect;
+	@FXML TextFlow cardPrice;
 	
 	public void initialize(Card card)
 	{
 		Text cardName=new Text(card.getName());
 		cardName.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
-		this.cardName.getChildren().add(cardName);                 
+		this.cardName.getChildren().add(cardName);
+		
+		Text cardPrice=new Text(card.getResourcePrice().toStringGui());
+		cardPrice.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+		this.cardPrice.getChildren().add(cardPrice);
 		
 		Integer actionValue=((HarvesterAndBuildings)card).getActionCost();
 		this.actionValue.getChildren().add(new Text(actionValue.toString()));

@@ -26,12 +26,9 @@ public class TestDavide extends Application {
 		FXMLLoader loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/PlayeBoard2.fxml"));
 		Pane pane=loader.load();
-		PlayerBoardController tcc=loader.getController();
+		PlayerBoardController2 tcc=loader.getController();
 		Model m=new Model(2);
 		Player p = m.getPlayer(Team.RED);
-		Card c = m.getBoard().characterCards.get(5);
-		m.setupRound();
-		p.giveCard(c);
 		tcc.initialize();
 		tcc.update(p);
 		Scene scene=new Scene(pane);

@@ -16,5 +16,6 @@
       <TextFlow fx:id="actionValue" layoutX="6.0" layoutY="122.0" prefHeight="13.0" prefWidth="13.0" textAlignment="CENTER" />
       <TextFlow fx:id="instantEffect" layoutX="24.0" layoutY="64.0" prefHeight="21.0" prefWidth="53.0" textAlignment="CENTER" />
       <TextFlow fx:id="permanentEffect" layoutX="24.0" layoutY="86.0" prefHeight="46.0" prefWidth="53.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardPrice" layoutX="6.0" layoutY="23.0" prefHeight="39.0" prefWidth="17.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

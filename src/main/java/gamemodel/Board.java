@@ -20,12 +20,10 @@ import gamemodel.card.Excommunication;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	private List<ActionSpace> actionSpaces;
-	
 	private transient List<Card> territoryCards;
 	private transient List<Card> buildingCards;
-	public transient List<Card> characterCards; 
+	private transient List<Card> characterCards; 
 	private transient List<Card> ventureCards;
 	private transient Dice dice;
 	private Excommunication[]excommunicationCards=new Excommunication[3];
