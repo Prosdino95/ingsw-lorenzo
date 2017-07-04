@@ -16,7 +16,11 @@ public class UINodeGetInput extends UINode {
 	@Override
 	public void run() throws IOException {
 		System.out.println(intro);
-		choose = CLIView.getString();
+		try {
+			choose = this.tree.getString();
+		} catch (OfflineException e1) {
+			choose = this.tree.getStringChoice();
+		}
 		try {
 			set.accept(choose);
 		} catch (NumberFormatException e) {

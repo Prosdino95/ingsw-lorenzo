@@ -1,8 +1,11 @@
 package reti.server;
 
 import java.util.*;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Model;
 import gamemodel.Player;
@@ -54,19 +57,6 @@ public class GameManager implements Runnable
 		c.run();
 	}
 	
-	/*private synchronized void checkWait()
-	{
-		try 
-		{
-			this.wait();
-		} 
-		catch (InterruptedException e) 
-		{
-			e.printStackTrace();
-			Thread.currentThread().interrupt();
-		}
-	}*/
-	
 	public synchronized void addHV(HandlerView hv)
 	{
 		hw.add(hv);
@@ -101,6 +91,7 @@ public class GameManager implements Runnable
 		}
 		catch(Exception ex)
 		{
+			//Logger.getLogger("log").log(Level.WARNING, ex.toString());
 			ex.printStackTrace();
 			Thread.currentThread().interrupt();
 		}		
