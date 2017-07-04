@@ -1,0 +1,45 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane style="-fx-background-color: #228b22;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.RequestController">
+   <children>
+	  <Pane fx:id="serverResponse" prefHeight="660.0" prefWidth="705" layoutX="10" layoutY="10">
+      </Pane>
+
+      <Pane layoutX="735" layoutY="10" prefHeight="660.0" prefWidth="160" style="-fx-background-color: #cd0000;">
+		<children>
+			<Pane layoutX="30" layoutY="52" prefHeight="100.0" prefWidth="100" fx:id="blackFM" style="-fx-background-color: #3b3b3b;">
+			</Pane>		   
+
+			<Pane layoutX="30" layoutY="204" prefHeight="100.0" prefWidth="100" fx:id="whiteFM" style="-fx-background-color: #eee9e9;">
+			  <TextFlow fx:id="currentRequestFlow" prefHeight="160.0" prefWidth="160" />
+			</Pane>		   
+
+			<Pane layoutX="30" layoutY="356" prefHeight="100.0" prefWidth="100" fx:id="orangeFM" style="-fx-background-color: #ff7f24;">
+			  <TextFlow fx:id="currentRequestFlow" prefHeight="160.0" prefWidth="160" />
+			</Pane>		   
+
+			<Pane layoutX="30" layoutY="508" prefHeight="100.0" prefWidth="100" fx:id="uncoloredFM" style="-fx-background-color: #68228b;">
+			  <TextFlow fx:id="currentRequestFlow" prefHeight="160.0" prefWidth="160" />
+			</Pane>		   
+		</children>
+      </Pane>
+      
+      <Pane layoutX="925" layoutY="40" prefHeight="160.0" prefWidth="160" style="-fx-background-color: #b22222;">
+		 <TextFlow fx:id="currentRequestFlow" prefHeight="160.0" prefWidth="160" />
+      </Pane>
+
+      <Pane fx:id="servants" layoutX="925" layoutY="240" prefHeight="160.0" prefWidth="160" style="-fx-background-color: #b22222;">
+		 <TextFlow fx:id="servText" prefHeight="240.0" prefWidth="160" />
+      </Pane>
+
+      <Pane fx:id="sendRequest" layoutX="925" layoutY="440" prefHeight="80.0" prefWidth="160" style="-fx-background-color: #b22222;">
+		 <TextFlow fx:id="sendText" prefHeight="80.0" prefWidth="160" />
+      </Pane>
+
+      <Pane fx:id="finishAction" layoutX="925" layoutY="560" prefHeight="80" prefWidth="160" style="-fx-background-color: #b22222;">
+		 <TextFlow fx:id="finishText" prefHeight="80.0" prefWidth="160" />
+      </Pane>
+   </children>
+</AnchorPane>

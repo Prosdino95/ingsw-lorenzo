@@ -33,6 +33,7 @@ public class BoardController {
 	private boolean big = false;
 //	private Pane dialogPane;
 	private Model model;
+	private RequestController requestController;
 	
 	public void update(Model model) {
 		for (Integer id : asIdList) {
@@ -68,7 +69,7 @@ public class BoardController {
 	}
 
 	
-	public void initialize(Model m, GuiView v) throws IOException {
+	public void initialize(Model m, GuiView v, RequestController requestController) throws IOException {
 		
 		 asIdList = new ArrayList<>();
 		 cardPaneList = new ArrayList<>();
@@ -78,6 +79,7 @@ public class BoardController {
 		
 		this.model = m;
 		this.guiView = v;
+		this.requestController = requestController;
 		
 		 asIdList.add(0);
 		 cardPaneList.add(cartaTorre0);
@@ -167,6 +169,11 @@ public class BoardController {
 					});
 			 		
 			 	}
+			 	
+			 	Pane asp = asPaneList.get(id);
+			 	asp.setOnMouseClicked(e -> {
+			 		requestController.setActionSpace(id);
+			 	});
 			 		
 		}
 		 
