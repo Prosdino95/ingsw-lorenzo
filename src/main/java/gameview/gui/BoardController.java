@@ -32,10 +32,10 @@ public class BoardController {
 	private GuiView guiView;
 	private boolean big = false;
 //	private Pane dialogPane;
-	private Model model;
-	private RequestController requestController;
+	//private RequestController requestController;
 	
 	public void update(Model model) {
+		if(model==null) return;
 		for (Integer id : asIdList) {
 			RealActionSpace as = model.getBoard().getActionSpace(id);
 			Pane asp=asPaneList.get(id);
@@ -50,11 +50,15 @@ public class BoardController {
 			}
 			if (as instanceof RealTowerActionSpace) {
 				Card card = ((RealTowerActionSpace) as).getCard();
-				GUICard gcard = new GUICard(card);
+				System.out.println(id+", "+card);
 				Pane cardPane = cardPaneList.get(id);
+				if (!cardPane.getChildren().isEmpty()) 
+					cardPane.getChildren().remove(0);
+				if(card!=null){
+					GUICard gcard = new GUICard(card);
+					cardPane.getChildren().add(gcard.getPane());	
+				}	
 				
-				if (!cardPane.getChildren().isEmpty()) cardPane.getChildren().remove(0);
-				cardPane.getChildren().add(gcard.getPane());
 			}
 		}
 
@@ -69,7 +73,7 @@ public class BoardController {
 	}
 
 	
-	public void initialize(Model m, GuiView v, RequestController requestController) throws IOException {
+	public void initialize(GuiView v, RequestController requestController) throws IOException {
 		
 		 asIdList = new ArrayList<>();
 		 cardPaneList = new ArrayList<>();
@@ -77,9 +81,8 @@ public class BoardController {
 		 
 //		 dialogPane.
 		
-		this.model = m;
 		this.guiView = v;
-		this.requestController = requestController;
+		//this.requestController = requestController;
 		
 		 asIdList.add(0);
 		 cardPaneList.add(cartaTorre0);

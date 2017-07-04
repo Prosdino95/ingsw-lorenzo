@@ -31,8 +31,8 @@ public class Test extends Application{
 			creacarte();
 			//creaaltro();
 			//controller.update(new ServerResponse(GameError.RESOURCE_ERR_SERVANTS));
-			controller.update(new ServerResponse(new Question(GameQuestion.LEADER,choose)));
-			//controller.update(new ServerResponse(new Question(GameQuestion.HOW_MANY_FMS , new ArrayList<>())));	
+			//controller.update(new ServerResponse(new Question(GameQuestion.LEADER,choose)));
+			controller.update(new ServerResponse(new Question(GameQuestion.HOW_MANY_FMS , new ArrayList<>())));	
 			stage.setScene(new Scene(root));
 			stage.show();
 		}

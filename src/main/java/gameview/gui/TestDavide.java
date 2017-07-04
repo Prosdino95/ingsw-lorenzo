@@ -24,7 +24,7 @@ public class TestDavide extends Application {
 	{
 		primaryStage.setTitle("carta");
 		FXMLLoader loader=new FXMLLoader();
-		loader.setLocation(getClass().getResource("/PlayeBoard2.fxml"));
+		loader.setLocation(getClass().getResource("/PlayerBoard2.fxml"));
 		Pane pane=loader.load();
 		PlayerBoardController2 tcc=loader.getController();
 		Model m=new Model(2);
@@ -33,9 +33,7 @@ public class TestDavide extends Application {
 		tcc.update(p);
 		Scene scene=new Scene(pane);
 		primaryStage.setScene(scene);
-	    primaryStage.show();
-		
-		
+	    primaryStage.show();		
 	}
 	
 	

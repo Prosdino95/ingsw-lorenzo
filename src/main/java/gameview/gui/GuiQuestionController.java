@@ -35,10 +35,7 @@ public class GuiQuestionController {
 	private String answer;
 	
 	public void update(ServerResponse sr){
-		question.getChildren().clear();
-		text.getChildren().clear();
-		servants.getChildrenUnmodifiable().clear();
-		servants.setEditable(false);
+		servants.setDisable(true);
 		choices=new ToggleGroup();
 		question.setSpacing(-20);
 		question.setStyle("-fx-background-color: transparent;");
@@ -62,7 +59,6 @@ public class GuiQuestionController {
 			break;
 		case ERROR:
 		case MESSAGE:	
-		case PLAYER_ASSIGNED:
 			initializeTextOnly();
 			break;	
 		default:
@@ -116,7 +112,7 @@ public class GuiQuestionController {
 		answer="0";
 		Text t=new Text("write the number and press ENTER");
 		servantsQuest.getChildren().add(t);
-		servants.setEditable(true);
+		servants.setDisable(false);
 		servants.setOnKeyPressed(e -> {
 			switch (e.getCode()) {
 			case ENTER:
@@ -149,12 +145,23 @@ private void initializeTextOnly() {
 	}
 
 	public String getAnswer() {
+		servants.setDisable(false);
+		System.out.println("risposta"+answer);
 		return answer;
 	}
 
 	public void initialize() {
 		this.text.getChildren().add(new Text("it's time to play"));	
-		servants.setEditable(false);
+		servants.setDisable(true);
+	}
+
+	public void clear() {
+		if(!question.getChildren().isEmpty())
+			question.getChildren().clear();	
+		if(!text.getChildren().isEmpty())
+			text.getChildren().clear();	
+		if(!servantsQuest.getChildren().isEmpty())
+			servantsQuest.getChildren().clear();
 	}
 }
 

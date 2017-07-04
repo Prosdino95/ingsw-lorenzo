@@ -6,6 +6,5 @@ public enum ResponseType {
 	MESSAGE,
 	ERROR,
 	OK, PLAYER_ASSIGNED, 
-	VATICAN_SUPPORT, 
 	LEADER;
 }

@@ -45,6 +45,7 @@ public class PlayerBoardController2
 	
 	public void update(Player player) 
 	{
+		if(player==null) return;
 		for(int c=0;c<player.getCharacters().size();c++)
 		{
 			CharactersCard cc=player.getCharacters().get(c);

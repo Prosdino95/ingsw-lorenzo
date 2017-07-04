@@ -45,7 +45,7 @@ public class ClientRequest  implements Serializable{
 	}
 
 	public ClientRequest() {
-		super();
+		this.type=RequestType.FINISHACTION;
 	}
 
 	public ClientRequest(RequestType t) {

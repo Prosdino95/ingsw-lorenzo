@@ -71,10 +71,9 @@ public class ViewController {
 		case MESSAGE:
 		case NEW_MODEL:
 		case PLAYER_ASSIGNED:
-		case VATICAN_SUPPORT:
 		case LEADER:	
-					this.serverMessages.add(sr);
-					break;
+			this.serverMessages.add(sr);
+			break;
 		default:
 			System.out.println("What is going on ???");
 			break;

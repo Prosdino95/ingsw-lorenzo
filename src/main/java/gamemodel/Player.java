@@ -229,7 +229,7 @@ public class Player implements Serializable{
 				characters.add((CharactersCard)card);
 				break;
 			case TERRITORY:
-				buildings.add((HarvesterAndBuildings)card);
+				territories.add((HarvesterAndBuildings)card);
 				break;
 			case VENTURE:
 				ventures.add((VentureCard) card);

@@ -3,25 +3,23 @@ package gameview.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Team;
 import gameview.ViewController;
-import gameview.cli.OfflineException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import reti.ClientRequest;
-import reti.RequestType;
 import reti.ServerResponse;
 
 public class GuiView extends Application {
@@ -31,14 +29,16 @@ public class GuiView extends Application {
 	
 	private int currentSceneIndex = 1;
 	private List<Scene> scenes = new  ArrayList<Scene>(3);
-	
+	private ClientRequest request=null;
+
 	private Pane rootPane;
 	private Scene boardScene;
 	private BoardController boardController;
 	
 	private RequestController requestController;
+	private PlayerBoardController pbc;
+	private PlayerBoardController2 pbc2;
 	private boolean pressed= false;
-	private TT te;
 	private Player player;
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
@@ -47,9 +47,9 @@ public class GuiView extends Application {
 		r.setPrefSize(w*ww, h*wh);
 	}
 	
-	public void timerFinished() {
+	public void eventHandler() {
 		if (viewController == null) {
-			System.out.println("GUIView -- Still no internet connection :("); 
+			//System.out.println("GUIView -- Still no internet connection :("); 
 			return;
 		}
 		while(viewController.hasMessage()) {
@@ -57,33 +57,49 @@ public class GuiView extends Application {
 			// System.out.println(sr);
 			switch (sr.getType()) {
 			case NEW_MODEL:
+				System.out.println("A new fuckuni g model arrived prev: " + sr.getModel());
+				System.out.println("MY model: " + this.model);
 				newModel(sr.getModel());
-				break;
+				System.out.println("After: " + this.model);
+			break;
 			case PLAYER_ASSIGNED:
-				if (this.model != null) {
+				if (this.model == null) {
 					System.out.println("GUIView -- They sent me the player but I still did not get the model...");
 					break;
 				}
 				Team team = sr.getPlayerTeam();
 				System.out.println("GUIView -- Your player got assigned, you're team: " + team);
 				this.setPlayer(team);
+				requestController.generateFM();
 				System.out.println("GUIView -- Now get out of this log and play!");
-				break;
-			case VATICAN_SUPPORT:
-				break;
+			break;
 			case MESSAGE:
-			case ERROR:
-			case OK:
-			case QUESTION:
-			case LEADER:
 				requestController.giveSR(sr);
+			break;	
+			case LEADER:
+				requestController.giveSR(sr,true);
 				break;
 			default:
 				System.out.println("GUIView -- Should this message get here? " + sr);
 				break;
 			}
 		}
-		System.out.println("GUIView -- View controller message queue is empty!");
+		if(request!=null){
+			ServerResponse sr=viewController.syncSend(request);
+			switch (sr.getType()){
+			case QUESTION:
+				requestController.giveSR(sr,true);
+			break;	
+			case ERROR:
+			case OK:
+				requestController.giveSR(sr,false);
+			break;	
+			default:
+				System.out.println("GUIView -- Should this message get here? " + sr);
+				break;
+			}
+			request=null;
+		}
 	}
 
 	private void setPlayer(Team team) {
@@ -97,6 +113,7 @@ public class GuiView extends Application {
 	private void newModel(Model model){
 		System.out.print("GUIView -- A new model has arrived... It says:");
 		this.model = model;
+		this.player = model.getPlayer(player.getTeam());
 		switch(model.getState()){
 		case GAME_FINISH:
 			break;
@@ -116,13 +133,13 @@ public class GuiView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.setStage(stage);
-//		this.viewController = new ViewController();
+		this.viewController = new ViewController();
 
-		te = new TT(this);
-		Timer timer;
-		timer = new Timer();
-		timer.schedule(te, 0, 1000);
-
+		Timeline fiveSecondsWonder = new Timeline();
+		fiveSecondsWonder.getKeyFrames().add(
+				new KeyFrame(Duration.seconds(1), e->eventHandler()));
+		fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+		fiveSecondsWonder.play();
 
 		FXMLLoader loader;
 		
@@ -138,7 +155,7 @@ public class GuiView extends Application {
 		Scene bs = new Scene(rootPane);
 		boardScene = bs;		
 		addScene(bs);
-
+		
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Request.fxml"));
 		Pane requestPane;
@@ -147,18 +164,26 @@ public class GuiView extends Application {
 		bs = new Scene(requestPane);
 		addScene(bs);		
 		
-		Pane p = new AnchorPane();
-		p.setStyle("-fx-background-color: #b22222");
-		bs = new Scene(p);
-		addScene(bs);
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));
+		Pane requestPane2;
+		requestPane2 = loader.load();
+		pbc = loader.getController();
+		bs = new Scene(requestPane2);
+		addScene(bs);	
 		
-		p = new AnchorPane();
-		p.setStyle("-fx-background-color: #cd6889");
-		bs = new Scene(p);
-		addScene(bs);
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/PlayerBoard2.fxml"));
+		Pane requestPane3;
+		requestPane3 = loader.load();
+		pbc2 = loader.getController();
+		bs = new Scene(requestPane3);
+		addScene(bs);	
+	
 		
 		for(Scene s:scenes){
 			s.setOnKeyPressed(e -> {
+				System.out.println("GUIView -- You pressed key " + e.getCode());
 				if (getPressed()) return;
 				setPressed(true);
 				System.out.println("GUIView -- You pressed key " + e.getCode());
@@ -179,12 +204,12 @@ public class GuiView extends Application {
 			});
 		}
 		
-		Model m = new Model(4);
-		m.getBoard().setupRound(1);
-		boardController.initialize(m, this, requestController);
-		this.model = m;
+		//Model m = new Model(4);
+		//m.getBoard().setupRound(1);
+		boardController.initialize(this, requestController);
+		//this.model = m;
 		
-		requestController.initialize(null);
+		requestController.initialize(this);
 		
 		stage.setTitle("Il magnifico");
 		updateGui();
@@ -247,6 +272,8 @@ public class GuiView extends Application {
 	}
 	
 	private void updateGui() {
+		pbc.update(player);
+		pbc2.update(player);
 		boardController.update(this.model);
 		System.out.println("GUIView -- You're in scene " + this.getCurrentScene());
 		System.out.println("GUIView -- Index " + this.currentSceneIndex);
@@ -266,10 +293,6 @@ public class GuiView extends Application {
         Application.launch(GuiView.class, args);
     }
 
-	public Model getModel() {
-		return model;
-	}
-
 	public Stage getStage() {
 		return stage;
 	}
@@ -277,20 +300,9 @@ public class GuiView extends Application {
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-
-
-}
-
-class TT extends TimerTask
-{
-	private GuiView te;
-
-	public TT(GuiView guiView) {
-		super();
-		this.te = guiView;
-	}
 	
-	public void run(){
-		te.timerFinished();
+	public void setRequest(ClientRequest request) {
+		this.request = request;
 	}
 }
+

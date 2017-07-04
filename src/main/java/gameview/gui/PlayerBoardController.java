@@ -44,6 +44,7 @@ public class PlayerBoardController
 	
 	public void update(Player player) 
 	{
+		if(player==null) return;
 		for(int c=0;c<player.getTerritories().size();c++)
 		{
 			HarvesterAndBuildings cc=player.getTerritories().get(c);

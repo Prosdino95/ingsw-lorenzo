@@ -28,14 +28,14 @@ public class Server {
 	private int gameDelay;
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
+		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
 		Server server=new Server();
 		server.setUpServer();
 		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));		
 		server.serverSocket=new ServerSocket(server.port);			
-		Registry registry = LocateRegistry.getRegistry();
-		RMIAcceptImpl rai= new RMIAcceptImpl(server);
-		registry.bind("rai",rai);
+		//Registry registry = LocateRegistry.getRegistry();
+		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
+		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
 		server.start();
 	}

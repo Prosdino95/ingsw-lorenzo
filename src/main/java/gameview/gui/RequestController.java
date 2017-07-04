@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import gamemodel.Color;
-import gamemodel.Question;
-import gamemodel.command.GameError;
 import gamemodel.Player;
 import gamemodel.Team;
 import gameview.ViewController;
@@ -17,10 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import reti.ClientRequest;
 import reti.RequestType;
+import reti.ResponseType;
 import reti.ServerResponse;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -29,7 +27,6 @@ public class RequestController {
 	ClientRequest cr = new ClientRequest();
 	
 	private GuiView gv;
-	private ViewController vc;
 	@FXML Pane serverResponse;
 	@FXML TextFlow currentRequestFlow;
 	@FXML AnchorPane root;	
@@ -38,17 +35,17 @@ public class RequestController {
 	@FXML Pane whiteFM;
 	@FXML Pane orangeFM;
 	@FXML Pane uncoloredFM;
+	private GuiQuestionController questionController;
+	private boolean question=false;
 
-	public void initialize(ViewController vc) throws IOException {
-		//this.gv=gv;
-		this.vc = vc;
+	public void initialize(GuiView gv) throws IOException {
+		this.gv=gv;
 		root.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		FXMLLoader loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/GuiQuestion.fxml"));
 		serverResponse.getChildren().add(loader.load());
-		GuiQuestionController questionController= loader.getController();
-		servText.getChildren().add(new Text("Add servant"));
-		generateFM();				
+		questionController= loader.getController();
+		servText.getChildren().add(new Text("Add servant"));				
 		blackFM.setOnMouseClicked(e -> {
 			cr.setWhich(Color.BLACK);
 			showCurrentRequest();
@@ -72,8 +69,8 @@ public class RequestController {
 		
 	}
 
-	private void generateFM() {
-		Player p=new Player(null,null,Team.RED);
+	public void generateFM() {
+		Player p=gv.getPlayer();
 		MakeFM.makeFM(blackFM, p.getFamilyMember(Color.BLACK),60,40);
 		MakeFM.makeFM(orangeFM, p.getFamilyMember(Color.ORANGE),60,40);	
 		MakeFM.makeFM(whiteFM, p.getFamilyMember(Color.WHITE),60,40);	
@@ -105,27 +102,34 @@ public class RequestController {
 	}
 	
 	public void sendRequest(){
-		System.out.println("RequestController -- Sending: " + cr);
-		if (vc == null) {
-			System.out.println("RequestController -- Maybe you should turn the network on?");
+		ServerResponse sr = null;
+		if(question) {
+			cr = new ClientRequest(questionController.getAnswer());
+			gv.setRequest(cr);
 		} else {
-			ServerResponse sr = vc.syncSend(cr);
-			//TODO Pass it to serverResponseController
+			gv.setRequest(cr);
 		}
-		cr = new ClientRequest();
-		showCurrentRequest();
-	}
-	
-	public void finishAction(){
-		System.out.println("RequestController -- Sending a finish action");
-		if (vc != null) {
-			vc.syncSend(new ClientRequest(RequestType.FINISHACTION));
-		}
+		questionController.clear();
+		System.out.println("RequestController -- Receve: " + sr);
+		System.out.println("RequestController -- Sent: " + cr);
 		cr = new ClientRequest();
 		showCurrentRequest();
 	}
 
-	public void giveSR(ServerResponse sr) {
-		
+	
+	public void finishAction(){
+		System.out.println("RequestController -- Sending a finish action");
+		gv.setRequest(new ClientRequest());
+		showCurrentRequest();
 	}
+
+	public void giveSR(ServerResponse sr,boolean question) {
+		this.question=question;
+		questionController.update(sr);
+	}
+
+	public void giveSR(ServerResponse sr) {
+		questionController.update(sr);	
+	}
+
 }
