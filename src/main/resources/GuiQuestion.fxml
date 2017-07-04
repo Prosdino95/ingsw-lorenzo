@@ -1,16 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="660.0" prefWidth="705.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gameview.gui.GuiQuestionController">
+<AnchorPane fx:id="root" maxHeight="660.0" maxWidth="705.0" minHeight="660.0" minWidth="705.0" prefHeight="660.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.GuiQuestionController">
    <children>
-      <TextFlow fx:id="text" layoutX="14.0" layoutY="13.0" prefHeight="72.0" prefWidth="677.0" />
-      <Button layoutX="609.0" layoutY="114.0" mnemonicParsing="false" onAction="#test" text="Test" />
-      <VBox fx:id="question" layoutX="27.0" layoutY="145.0" prefHeight="497.0" prefWidth="657.0" />
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="9.0" layoutY="90.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="176.0" layoutY="90.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="343.0" layoutY="90.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="510.0" layoutY="90.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="510.0" layoutY="234.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="343.0" layoutY="234.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="176.0" layoutY="234.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="9.0" layoutY="234.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="9.0" layoutY="377.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="176.0" layoutY="377.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="343.0" layoutY="377.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="510.0" layoutY="377.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="510.0" layoutY="517.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="343.0" layoutY="517.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="176.0" layoutY="517.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="153.0" layoutX="9.0" layoutY="517.0">
+         <image>
+            <Image url="@paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="573.0" layoutY="3.0">
+         <image>
+            <Image url="@paper2.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="question" layoutX="27.0" layoutY="85.0" />
+      <TextFlow fx:id="text" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="310.0" />
+      <TextField fx:id="servants" layoutX="600.0" layoutY="27.0" prefHeight="32.0" prefWidth="32.0" />
+      <TextFlow fx:id="servantsQuest" layoutX="361.0" layoutY="4.0" prefHeight="72.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
