@@ -35,6 +35,9 @@ public class GuiQuestionController {
 	private String answer;
 	
 	public void update(ServerResponse sr){
+		question.getChildren().clear();
+		text.getChildren().clear();
+		servants.getChildrenUnmodifiable().clear();
 		root.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		servants.setEditable(false);
 		choices=new ToggleGroup();
@@ -52,15 +55,17 @@ public class GuiQuestionController {
 		case LEADER:
 			initializeQuestion();
 			break;
-		case ERROR:
-		case MESSAGE:
 		case NEW_MODEL:
+			this.text.getChildren().add(new Text("new model"));	
+			break;
 		case OK:
+			this.text.getChildren().add(new Text("ok from server"));	
+			break;
+		case ERROR:
+		case MESSAGE:	
 		case PLAYER_ASSIGNED:
 			initializeTextOnly();
 			break;	
-		case VATICAN_SUPPORT:
-			break;
 		default:
 			break;		
 		}
