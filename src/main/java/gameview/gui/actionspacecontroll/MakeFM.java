@@ -5,9 +5,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-class MakeFM {
+public class MakeFM {
 	
-	static void makeFM(Pane p,FamilyMember fm){
+	public static void makeFM(Pane p,FamilyMember fm){
 			Circle colorFM,colorP;
 			colorFM =new Circle(7);
 			colorP=new Circle(20);		
@@ -17,11 +17,21 @@ class MakeFM {
 			p.getChildren().add(colorFM);			
 	}
 	
+	public static void makeFM(Pane p,FamilyMember fm,int big,int small){
+		Circle colorFM,colorP;
+		colorFM =new Circle(small);
+		colorP=new Circle(big);		
+		colorFM.setFill(familyMemberColor(fm));
+		colorP.setFill(palyerColor(fm));
+		p.getChildren().add(colorP);
+		p.getChildren().add(colorFM);			
+}
+	
 	private static Color palyerColor(FamilyMember fm){
 		switch(fm.getPlayer().getTeam()){
-		case BLUE: return Color.BLUE;
-		case GREEN: return Color.GREEN;
-		case RED:	return Color.RED;
+		case BLUE: return Color.CORNFLOWERBLUE;
+		case GREEN: return Color.DARKSEAGREEN;
+		case RED:	return Color.INDIANRED;
 		case YELLOW: return Color.YELLOW;
 		default: return Color.FUCHSIA;
 		}
@@ -30,8 +40,8 @@ class MakeFM {
 	private static Color familyMemberColor(FamilyMember fm){
 		switch(fm.getColor()){
 		case BLACK: return Color.BLACK;
-		case ORANGE: return Color.ORANGE;
-		case UNCOLORED: return Color.GRAY;
+		case ORANGE: return Color.CORAL;
+		case UNCOLORED: return Color.LIGHTGREY;
 		case WHITE: return Color.WHITE;
 		default: return Color.FUCHSIA;		
 		}

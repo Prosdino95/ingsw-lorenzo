@@ -38,7 +38,6 @@ public class GuiQuestionController {
 		question.getChildren().clear();
 		text.getChildren().clear();
 		servants.getChildrenUnmodifiable().clear();
-		root.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		servants.setEditable(false);
 		choices=new ToggleGroup();
 		question.setSpacing(-20);
@@ -151,6 +150,11 @@ private void initializeTextOnly() {
 
 	public String getAnswer() {
 		return answer;
+	}
+
+	public void initialize() {
+		this.text.getChildren().add(new Text("it's time to play"));	
+		servants.setEditable(false);
 	}
 }
 
