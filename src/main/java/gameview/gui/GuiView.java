@@ -40,6 +40,8 @@ public class GuiView extends Application {
 	private PlayerBoardController2 pbc2;
 	private boolean pressed= false;
 	private Player player;
+	private Timeline task;
+
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
 		r.setLayoutX(x*ww);
@@ -130,17 +132,24 @@ public class GuiView extends Application {
 			break;
 	}
 }
+	@Override
+	public void stop(){
+	    System.out.println("Stage is closing");
+	    task.stop();
+	    viewController.shutdown();
+	}
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.setStage(stage);
 		this.viewController = new ViewController();
+		
 
-		Timeline fiveSecondsWonder = new Timeline();
-		fiveSecondsWonder.getKeyFrames().add(
+		task = new Timeline();
+		task.getKeyFrames().add(
 				new KeyFrame(Duration.seconds(1), e->eventHandler()));
-		fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-		fiveSecondsWonder.play();
+		task.setCycleCount(Timeline.INDEFINITE);
+		task.play();
 
 		FXMLLoader loader;
 		

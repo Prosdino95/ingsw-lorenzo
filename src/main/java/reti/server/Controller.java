@@ -138,7 +138,7 @@ public class Controller{
 		Random random=new Random();
 		List<Object> cards=new ArrayList<>(); 
 		sendMessageToAll("now it's time to choose your leaders, so wait your turn");
-		for(i=0;i<4;i++){
+		for(i=0;i<1;i++){
 			for(j=0;j<4;j++){
 				index=random.nextInt(game.getLeaderCards().size());
 				cards.add(game.getLeaderCards().remove(index));
