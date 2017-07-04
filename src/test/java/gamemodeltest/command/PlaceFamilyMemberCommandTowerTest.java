@@ -15,6 +15,7 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.Card;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
@@ -30,7 +31,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	IstantEffect e;
 	GameError s;
 	int id0,id1,id2;
-	Card c0,c1;
+	HarvesterAndBuildings c0,c1;
 	List<IstantEffect> effects=new ArrayList<>();
 	static Model model;
 	
@@ -45,8 +46,8 @@ public class PlaceFamilyMemberCommandTowerTest {
 		t=new Tower();
 		b=new Board();
 		b.setDice(1, 7, 7);
-		c0=new Card(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, CardType.BUILDING);
-		c1=new Card(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, CardType.TERRITORY);
+		c0=new HarvesterAndBuildings(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects,effects, CardType.BUILDING,0);
+		c1=new HarvesterAndBuildings(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects,effects, CardType.TERRITORY,0);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
 		p2=new Player(new Resource(2,5,5,5), b, Team.BLUE,model);
 		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
