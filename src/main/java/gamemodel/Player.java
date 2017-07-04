@@ -436,7 +436,7 @@ public class Player implements Serializable{
 			LeaderCard lc = getLC(id);
 			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
 			lc.play();
-			PermanentEffect pe = lc.getPermanentEffect(); 
+			PermanentEffect pe = lc.getPe(); 
 			if (pe != null)
 				permanentEffects.add(pe);
 		}

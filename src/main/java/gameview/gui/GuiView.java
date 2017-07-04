@@ -30,6 +30,7 @@ public class GuiView extends Application {
 	private BoardController boardController;
 	
 	private RequestController requestController;
+	private boolean pressed= false;
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
 		r.setLayoutX(x*ww);
@@ -55,22 +56,8 @@ public class GuiView extends Application {
 		});
 		rootPane.setStyle("-fx-background-color: #228b22");
 		Scene bs = new Scene(rootPane);
-		boardScene = bs;
-		
+		boardScene = bs;		
 		addScene(bs);
-		bs.setOnKeyPressed(e -> {
-			System.out.println("You pressed key " + e.getCode());
-			switch (e.getCode()) {
-			case LEFT:
-				sceneGoLeft();
-				break;
-			case RIGHT:
-				sceneGoRight();
-				break;
-			default:
-//				System.out.println("Don't know what to do with " + e.getCode());
-			}
-		});
 
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Request.fxml"));
@@ -79,57 +66,39 @@ public class GuiView extends Application {
 		requestController = loader.getController();
 		bs = new Scene(requestPane);
 		addScene(bs);		
-		bs.setOnKeyPressed(e -> {
-			System.out.println("You pressed key " + e.getCode());
-			switch (e.getCode()) {
-			case LEFT:
-				sceneGoLeft();
-				break;
-			case RIGHT:
-				sceneGoRight();
-				break;
-			default:
-//				System.out.println("Don't know what to do with " + e.getCode());
-			}
-		});
 
 		
 		Pane p = new AnchorPane();
 		p.setStyle("-fx-background-color: #b22222");
 		bs = new Scene(p);
 		addScene(bs);
-		bs.setOnKeyPressed(e -> {
-			System.out.println("You pressed key " + e.getCode());
-			switch (e.getCode()) {
-			case LEFT:
-				sceneGoLeft();
-				break;
-			case RIGHT:
-				sceneGoRight();
-				break;
-			default:
-				break;
-			}
-		});
-
 		
 		p = new AnchorPane();
 		p.setStyle("-fx-background-color: #cd6889");
 		bs = new Scene(p);
 		addScene(bs);
-		bs.setOnKeyPressed(e -> {
-			System.out.println("You pressed key " + e.getCode());
-			switch (e.getCode()) {
-			case LEFT:
-				sceneGoLeft();
-				break;
-			case RIGHT:
-				sceneGoRight();
-				break;
-			}
-		});
 		
-
+		for(Scene s:scenes){
+			s.setOnKeyPressed(e -> {
+				if (getPressed()) return;
+				setPressed(true);
+				System.out.println("You pressed key " + e.getCode());
+				switch (e.getCode()) {
+				case LEFT:
+					sceneGoLeft();
+					break;
+				case RIGHT:
+					sceneGoRight();
+					break;
+				default:
+//					System.out.println("Don't know what to do with " + e.getCode());
+				}
+				
+			});
+			s.setOnKeyReleased(e -> {
+				setPressed(false);
+			});
+		}
 		Model m = new Model(4);
 		m.getBoard().setupRound(1);
 		boardController.initialize(m, this, requestController);
@@ -141,6 +110,16 @@ public class GuiView extends Application {
 		updateGui();
 	}
 	
+	private boolean getPressed() {
+		// TODO Auto-generated method stub
+		return pressed;
+	}
+
+	private synchronized void setPressed(boolean b) {
+		// TODO Auto-generated method stub
+		pressed = b;
+	}
+
 	private Scene getCurrentScene() {
 		return scenes.get(currentSceneIndex);
 	}
