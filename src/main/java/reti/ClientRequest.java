@@ -133,7 +133,7 @@ public class ClientRequest  implements Serializable{
 	public List<String> possibleLeaderCardActions() {
 		List<String> lst = new ArrayList<>();
 		if (leaderCard.getPlayed()) {
-			if (leaderCard.getPermanentEffect() == null) {
+			if (leaderCard.getPe() == null) {
 				lst.add("Nothing");
 			} else if (leaderCard.getPlayedOPR()) { 
 				lst.add("Nothing");
