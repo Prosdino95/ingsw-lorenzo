@@ -2,6 +2,7 @@ package gameview.gui;
 
 import gamemodel.card.Card;
 import gamemodel.card.CharactersCard;
+import gamemodel.effects.IstantEffect;
 import javafx.fxml.FXML;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -27,11 +28,13 @@ public class CharacterCardController
 		textCardPrice.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 10));
 		this.cardPrice.getChildren().add(textCardPrice);
 
-		if(card.getIstantEffect().size()!=0)
+		if(!card.getIstantEffect().isEmpty())
 		{
-			Text instantEffect=new Text(card.getIstantEffect().get(0).toString());
-			instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
-			this.instantEffect.getChildren().add(instantEffect);
+			for(IstantEffect e:card.getIstantEffect()){
+				Text instantEffect=new Text(e.toString()+"\n");
+				instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+				this.instantEffect.getChildren().add(instantEffect);
+			}
 		}
 
 		if(((CharactersCard)card).getPermanentEffects()!=null)

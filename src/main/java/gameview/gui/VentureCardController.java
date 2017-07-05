@@ -1,7 +1,9 @@
 package gameview.gui;
 
 import gamemodel.card.Card;
+import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
+import gamemodel.effects.IstantEffect;
 import gamemodel.effects.PointModify;
 import javafx.fxml.FXML;
 import javafx.scene.text.Font;
@@ -35,17 +37,21 @@ public class VentureCardController
 			this.cardPrice.getChildren().add(cardPrice);
 		}
 		
-		if(card.getIstantEffect().size()!=0)
+		if(!card.getIstantEffect().isEmpty())
 		{
-			Text instantEffect=new Text(card.getIstantEffect().get(0).toString());
-			instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
-			this.instantEffect.getChildren().add(instantEffect);
+			for(IstantEffect e:card.getIstantEffect()){
+				Text instantEffect=new Text(e.toString()+"\n");
+				instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+				this.instantEffect.getChildren().add(instantEffect);
+			}
 		}
 		
-		if(((VentureCard)card).getPermanentEffects().size()>0)
+		if(!((VentureCard)card).getPermanentEffects().isEmpty())
 		{
-			Integer victoryPoint=((PointModify)(((VentureCard)card).getPermanentEffects().get(0))).getPoints().getVictory();
-			this.victoryPoints.getChildren().add(new Text(victoryPoint.toString()));
+			for(IstantEffect e:((VentureCard) card).getPermanentEffects()){
+				Integer victoryPoint=(((PointModify) e).getPoints().getVictory());
+				this.victoryPoints.getChildren().add(new Text(victoryPoint.toString()));
+			}
 		}		
 	}
 }
