@@ -9,6 +9,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
+import gameview.gui.LeaderCardAction;
 
 public class LeaderCard implements Serializable {
 	
@@ -18,9 +19,9 @@ public class LeaderCard implements Serializable {
 	private List<IstantEffect> oncePerRound=new ArrayList<>();
 	private String name;
 	private int id;
-	private boolean usedOPR = false;
-	private boolean played = false;	
 	private Player owner;
+	
+	private LeaderState state = LeaderState.NOT_PLAYED;
 	
 	public LeaderCard(int id,String name,Requirement req2, PermanentEffect pe2) {
 		this.name=name;
@@ -36,32 +37,35 @@ public class LeaderCard implements Serializable {
 		this.oncePerRound = opr2;
 	}
 	
-	public void activateOPT() throws GameException {
+	void activateOPT() throws GameException {
 		if (oncePerRound == null) {
 			System.out.println("Why did you call activate??? This card has only a permanent effect");
 			return;
 		}
 		
-		if (usedOPR)
+		if (state == LeaderState.USED_OPR)
 			throw new GameException(GameError.LEADER_CARD_USED);
+		else if (state == LeaderState.NOT_PLAYED)
+			throw new GameException(GameError.LEADER_CARD_STILL_NOT_PLAYED);
+			
 		for(IstantEffect e:oncePerRound)
 			e.activate(owner);
 	}
 
-	public void discard() {
+	void discard() {
 		new CouncilPrivileges(1).activate(owner);
 	}
 	
-	public void play() throws GameException {
+	void play() throws GameException {
 		if (requirement.isSatisfiedBy(owner)) {
-			played = true;
+			state = LeaderState.PLAYED;
 		} else {
 			throw new GameException(GameError.LEADER_CARD_NOT_ENOUGH_MONEY);
 		}
 	}
 	
-	public void prepareForNewRound() {
-		usedOPR = true;
+	void prepareForNewRound() {
+		state = LeaderState.PLAYED;
 	}
 
 	public PermanentEffect getPe() {
@@ -72,12 +76,15 @@ public class LeaderCard implements Serializable {
 		return oncePerRound;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "LeaderCard [name=" + name + ", id=" + id + ", requirement=" + requirement + ", pe=" + pe
-				+ ", oncePerRound=" + oncePerRound + ", usedOPR=" + usedOPR + ", played=" + played + "]";
+		String s = "" + name + " Req: " + requirement + " State: " + state;
+		if (hasPE()) {
+			s += " PermEff: " + pe;
+		} else if (hasOPR()) {
+			s += " OPR: " + oncePerRound;
+		}
+		return s;
 	}
 
 	public String getName() {
@@ -92,13 +99,11 @@ public class LeaderCard implements Serializable {
 	}
 
 	public boolean getPlayedOPR() {
-		// TODO Auto-generated method stub
-		return usedOPR;
+		return state == LeaderState.USED_OPR;
 	}
 
 	public boolean getPlayed() {
-		// TODO Auto-generated method stub
-		return played;
+		return state == LeaderState.PLAYED;
 	}
 
 	public int getId() {
@@ -107,5 +112,37 @@ public class LeaderCard implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public LeaderState getState() {
+		return state;
+	}
+	
+	public boolean hasOPR() {
+		return !hasPE();
+	}
+	
+	
+	public boolean hasPE() {
+		return pe != null;
+	}
+
+	public List<LeaderCardAction> getPossibleActions() {
+		List<LeaderCardAction> lst = new ArrayList<>();
+		switch (this.state) {
+		case NOT_PLAYED:
+			lst.add(LeaderCardAction.DISCARD);
+			lst.add(LeaderCardAction.PLAY);
+			break;
+		case PLAYED:
+			if (this.hasOPR())
+				lst.add(LeaderCardAction.ACTIVATE);
+			break;
+		case USED_OPR:
+		default:
+			break;
+		
+		}
+		return lst;
 	}
 }

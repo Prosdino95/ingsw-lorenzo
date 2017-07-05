@@ -2,6 +2,7 @@ package reti;
 
 
 import gamemodel.actionSpace.ActionSpace;
+import gameview.gui.LeaderCardAction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,13 +23,20 @@ public class ClientRequest  implements Serializable{
 	private String answer;
 	private Player player;
 	private LeaderCard leaderCard;
-	private String what;
+	private LeaderCardAction action;
 	private Integer lcID;
 	
 	public ClientRequest(String string) {
 		type = RequestType.ANSWER;
 		answer = string;
 	}
+	
+	public ClientRequest(LeaderCard lc, LeaderCardAction action) {
+		type = RequestType.LEADERCARD;
+		this.setAction(action); 
+		this.leaderCard = lc;
+	}
+	
 	
 	public void setWhichLeaderCard(LeaderCard lc) {
 		leaderCard = lc;
@@ -40,10 +48,6 @@ public class ClientRequest  implements Serializable{
 	}
 
 	
-	public void setWhatLC(String what) {
-		this.what = what;
-	}
-
 	public ClientRequest() {
 		this.type=RequestType.FINISHACTION;
 	}
@@ -109,9 +113,35 @@ public class ClientRequest  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ClientRequest [type=" + type + ", where=" + where + ", servants=" + servants + ", which=" + which
-				+ ", answer=" + answer + ", player=" + player + ", leaderCard=" + leaderCard + ", what=" + what
-				+ ", lcID=" + lcID + "]";
+		String str = "";
+		str += this.type;
+		str += " ";
+		switch (this.type) {
+		case ANSWER:
+			str += "Answer: " + answer;
+			break;
+		case CHAT:
+			break;
+		case FINISHACTION:
+			break;
+		case IWANTAMODEL:
+			break;
+		case IWANTMONEY:
+			break;
+		case LEADERCARD:
+			str += "LeaderCard: " + leaderCard + " Action: " + getAction();
+			break;
+		case PLACEFAMILYMEMBER:
+			str += "Where: " + where + " Servants: " + servants + "Which: " + which;
+			break;
+		case VATICAN_REPORT:
+			str += "Answer: " + answer;
+			break;
+		default:
+			break;
+		}
+
+		return str;
 	}
 
 	public void cleanUp() {
@@ -130,25 +160,9 @@ public class ClientRequest  implements Serializable{
 		return player;
 	}
 
-	public List<String> possibleLeaderCardActions() {
-		List<String> lst = new ArrayList<>();
-		if (leaderCard.getPlayed()) {
-			if (leaderCard.getPe() == null) {
-				lst.add("Nothing");
-			} else if (leaderCard.getPlayedOPR()) { 
-				lst.add("Nothing");
-			} else {
-				lst.add("Activate OPR effect");
-			}
-		} else {
-			lst.add("Scartare");
-			lst.add("Play it");
-		}
-		return lst;
-	}
+	public List<LeaderCardAction> possibleLeaderCardActions() {
+		return leaderCard.getPossibleActions();
 
-	public String getWhatLC() {
-		return what;
 	}
 
 	public Integer getLeaderCardID() {
@@ -158,5 +172,13 @@ public class ClientRequest  implements Serializable{
 	public void setServants(int i) {
 		this.type = RequestType.PLACEFAMILYMEMBER;
 		servants = i;
+	}
+
+	public LeaderCardAction getAction() {
+		return action;
+	}
+
+	public void setAction(LeaderCardAction action) {
+		this.action = action;
 	}
 }

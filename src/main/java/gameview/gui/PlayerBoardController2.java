@@ -27,7 +27,7 @@ public class PlayerBoardController2
 	List<Pane> characterCardPaneList=new ArrayList<>();
 	List<Pane> ventureCardPaneList=new ArrayList<>();
 	
-	public void initialize()
+	public void initialize(Object object)
 	{
 		characterCardPaneList.add(character0);
 		characterCardPaneList.add(character1);
@@ -62,10 +62,10 @@ public class PlayerBoardController2
 			VentureCard cc=player.getVentures().get(c);
 			GUICard gc=new GUICard(cc);
 			Pane pane=gc.getPane();
-			pane.setLayoutX(35);
-			pane.setLayoutY(58);
-			pane.setScaleX(1.8);
-			pane.setScaleY(1.8);
+			pane.setLayoutX(20);
+			pane.setLayoutY(35);
+			pane.setScaleX(1.5);
+			pane.setScaleY(1.5);
 			ventureCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
 	}

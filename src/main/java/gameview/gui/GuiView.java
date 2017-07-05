@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.GameQuestion;
+import gamemodel.Board;
+import gamemodel.LeaderCard;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Question;
+import gamemodel.Point;
+import gamemodel.Requirement;
+import gamemodel.Resource;
 import gamemodel.Team;
+import gamemodel.effects.IstantEffect;
+import gamemodel.effects.PointModify;
 import gameview.ViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -212,12 +219,32 @@ public class GuiView extends Application {
 			});
 		}
 		
-		//Model m = new Model(4);
-		//m.getBoard().setupRound(1);
-		boardController.initialize(this, requestController);
-		//this.model = m;
+		Model m = new Model(4);
+		m.setupRound();
+		Board b = m.getBoard();
 		
+		boardController.initialize(this, requestController);
 		requestController.initialize(this);
+		pbc.initialize(requestController, this);
+		pbc2.initialize(null);
+
+		
+		this.model = m;
+		this.player = m.getPlayer(Team.RED);
+		player.giveCard(b.ventureCards.get(0));
+		Requirement req = new Requirement(new Resource(0, 0, 1, 0));
+		List<IstantEffect> ie = new ArrayList<>();
+		ie.add(new PointModify(new Point(0, 1, 0)));
+		LeaderCard girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
+		player.giveLeaderCard(girolamo);
+		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
+		player.giveLeaderCard(girolamo);
+		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
+		player.giveLeaderCard(girolamo);
+		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
+		player.giveLeaderCard(girolamo);
+
+		
 		
 		stage.setTitle("Il magnifico");
 		updateGui();
@@ -279,10 +306,11 @@ public class GuiView extends Application {
 		updateGui();
 	}
 	
-	private void updateGui() {
+	void updateGui() {
 		pbc.update(player);
 		pbc2.update(player);
 		boardController.update(this.model);
+		requestController.update();
 		System.out.println("GUIView -- You're in scene " + this.getCurrentScene());
 		System.out.println("GUIView -- Index " + this.currentSceneIndex);
 		if (getStage().getScene() != getCurrentScene()) {

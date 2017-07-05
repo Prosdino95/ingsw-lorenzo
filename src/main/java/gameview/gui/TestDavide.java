@@ -29,7 +29,7 @@ public class TestDavide extends Application {
 		PlayerBoardController2 tcc=loader.getController();
 		Model m=new Model(2);
 		Player p = m.getPlayer(Team.RED);
-		tcc.initialize();
+//		tcc.initialize();
 		tcc.update(p);
 		Scene scene=new Scene(pane);
 		primaryStage.setScene(scene);

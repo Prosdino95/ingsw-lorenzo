@@ -1,16 +1,19 @@
 package gameview.gui;
 
 import java.io.IOException;
+import java.util.List;
 
 import gamemodel.LeaderCard;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import reti.ClientRequest;
 
 public class GuiLeaderCard 
 {
 	LeaderCard leaderCard;
 	Pane pane;
 	FXMLLoader loader;
+	
 	
 	public GuiLeaderCard(LeaderCard leaderCard)
 	{

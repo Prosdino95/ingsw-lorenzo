@@ -9,18 +9,17 @@ import java.util.List;
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
 import gameview.ViewController;
+import gameview.gui.LeaderCardAction;
 import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
 // TODO: Cosa succede se tutte le scelte vanno in error?
 // TODO: Finale di partita
-// TODO: Carte leader, funzionano?
-// TODO: Forse giveMeMoney e' da rimuovere
-// TODO: Mentre navigo l'albero non posso tornare indietro?
 
 public class UITree {
 	private UINode root;
+	private UINode prev;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
 	private ViewController viewController;
@@ -89,9 +88,9 @@ public class UITree {
 						() -> this.getPlayer().getLCList(), 
 						this);
 		
-		UINodeChooseValue<String> whatLeader = 
-				new UINodeChooseValue<String>("What do you want to do with it?", 
-						request::setWhatLC,
+		UINodeChooseValue<LeaderCardAction> whatLeader = 
+				new UINodeChooseValue<>("What do you want to do with it?", 
+						request::setAction,
 						request::possibleLeaderCardActions,
 						this);
 		
@@ -131,10 +130,10 @@ public class UITree {
 				finishTurn
 				.addSon(
 				  talkToServer))
-			  .addSon(
-			    giveMeMoney
-			    .addSon(
-			      talkToServer))
+//			  .addSon(
+//			    giveMeMoney
+//			    .addSon(
+//			      talkToServer))
 			  .addSon(exit)); 
 		
 		reset();
@@ -174,6 +173,7 @@ public class UITree {
 		while (live) {
 			while (next != null) {
 				next.run();
+				
 				next = next.getNextNode();
 			}
 			reset();

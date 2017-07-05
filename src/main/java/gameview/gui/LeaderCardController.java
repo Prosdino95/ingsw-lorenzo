@@ -22,7 +22,7 @@ public class LeaderCardController
 		
 		Text cardRequirement=new Text(leaderCard.getRequirement().toString());
 		cardRequirement.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
-		this.cardRequirement.getChildren().add(cardName);
+		this.cardRequirement.getChildren().add(cardRequirement);
 		
 		if(leaderCard.getOncePerRound().size()!=0)
 		{

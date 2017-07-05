@@ -166,14 +166,20 @@ public class BoardController {
 							cp.toFront();
 							cp.setScaleX(1.7);
 							cp.setScaleY(1.7);
+							cp.setTranslateX(25);
+							if (id % 4 == 0)
+								cp.setTranslateY(-50);
+							else
+								cp.setTranslateY(25);
 						}
 						setBig(true);
 					});
 					cp.setOnMouseExited(e-> {
 						if (isBig()) {
-							
 							cp.setScaleX(1);
 							cp.setScaleY(1);
+							cp.setTranslateX(0);
+							cp.setTranslateY(0);
 						}
 						setBig(false);
 					});

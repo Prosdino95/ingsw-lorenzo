@@ -158,6 +158,7 @@ public class Board implements Serializable {
 	}
 
 	public LeaderCard getLC(Integer lcId) {
+		// TODO
 		// La board tiene una mappa da id a carta leader
 		return null;
 	}

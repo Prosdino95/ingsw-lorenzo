@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class RequestController {
-	ClientRequest cr = new ClientRequest();
+	private ClientRequest cr = new ClientRequest();
 	
 	private GuiView gv;
 	@FXML Pane serverResponse;
@@ -48,28 +48,29 @@ public class RequestController {
 		loader.setLocation(getClass().getResource("/GuiQuestion.fxml"));
 		serverResponse.getChildren().add(loader.load());
 		questionController= loader.getController();
-		servText.getChildren().add(new Text("Add servant"));				
+		servText.getChildren().add(new Text("Add servant"));
 		blackFM.setOnMouseClicked(e -> {
-			cr.setWhich(Color.BLACK);
+			getCr().setWhich(Color.BLACK);
 			showCurrentRequest();
-
 		});
 		orangeFM.setOnMouseClicked(e -> {
-			cr.setWhich(Color.ORANGE);
+			getCr().setWhich(Color.ORANGE);
 			showCurrentRequest();
-
 		});
 		uncoloredFM.setOnMouseClicked(e -> {
-			cr.setWhich(Color.UNCOLORED);
+			getCr().setWhich(Color.UNCOLORED);
 			showCurrentRequest();
-
 		});
 		whiteFM.setOnMouseClicked(e -> {
-			cr.setWhich(Color.WHITE);
+			getCr().setWhich(Color.WHITE);
 			showCurrentRequest();
 		});
 		
 		
+	}
+	
+	void update() {
+		showCurrentRequest();
 	}
 
 	public void generateFM() {
@@ -82,45 +83,45 @@ public class RequestController {
 
 	public void setActionSpace(Integer id) {
 //		System.out.println("RequestController -- ActionSpace " + id + " got set.");
-		cr.setWhere(id);
+		getCr().setWhere(id);
 		showCurrentRequest();
 	}
 	
 	public void showCurrentRequest() {
-		Text t = new Text(this.cr.toString());
+		Text t = new Text(this.getCr().toString());
 		List<Node> children = currentRequestFlow.getChildren();
 		while (!children.isEmpty()) children.remove(0);
 		this.currentRequestFlow.getChildren().add(t);
 	}
 	
 	public void addServant(){
-		cr.setServants(cr.getServants() + 1);
+		getCr().setServants(getCr().getServants() + 1);
 		showCurrentRequest();
 	}
 	
 	public void subServant(){
-		if(cr.getServants()>0)
-			cr.setServants(cr.getServants() -1);
+		if(getCr().getServants()>0)
+			getCr().setServants(getCr().getServants() -1);
 		showCurrentRequest();
 	}
 	
 	public void sendRequest(){
 		ServerResponse sr = null;
 		if(question) {
-			cr = new ClientRequest(questionController.getAnswer());
-			gv.setRequest(cr);
+			setCr(new ClientRequest(questionController.getAnswer()));
+			gv.setRequest(getCr());
 		} else {
-			gv.setRequest(cr);
+			gv.setRequest(getCr());
 		}
 		questionController.clear();
 		System.out.println("RequestController -- Receve: " + sr);
-		System.out.println("RequestController -- Sent: " + cr);
-		cr = new ClientRequest();
+		System.out.println("RequestController -- Sent: " + getCr());
+		setCr(new ClientRequest());
 		showCurrentRequest();
 	}
-
 	
-	public void finishAction(Event e){
+
+	public void finishAction(){
 		System.out.println("RequestController -- Sending a finish action");
 		gv.setRequest(new ClientRequest());
 		showCurrentRequest();
@@ -135,6 +136,14 @@ public class RequestController {
 	public void giveSR(ServerResponse sr) {
 		questionController.clear();
 		questionController.update(sr);	
+	}
+
+	public ClientRequest getCr() {
+		return cr;
+	}
+
+	public void setCr(ClientRequest cr) {
+		this.cr = cr;
 	}
 
 	public void setPlayerTurn(Player player) {

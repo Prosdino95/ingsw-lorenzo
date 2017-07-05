@@ -20,6 +20,7 @@ import gamemodel.Resource;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gameview.gui.LeaderCardAction;
 import reti.ClientRequest;
 import reti.ResponseType;
 import reti.ServerResponse;
@@ -85,12 +86,10 @@ public class Controller{
 			break;
 		case LEADERCARD:
 			Integer id = request.getLeaderCardID();
-			String action = request.getWhatLC();
+			LeaderCardAction action = request.getAction();
 			Player p = hv.getPlayer();
 			switch (action) {
-			case "Nothing":
-				break;
-			case "Activate OPR effect":
+			case ACTIVATE:
 				try {
 					p.activateOPT(id);
 					hv.sendResponse(new ServerResponse());
@@ -98,7 +97,7 @@ public class Controller{
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
 				break;
-			case "Scartare":
+			case DISCARD:
 				try {
 					p.discardLC(id);
 					hv.sendResponse(new ServerResponse());
@@ -106,13 +105,15 @@ public class Controller{
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
 				break;
-			case "Play it":
+			case PLAY:
 				try {
 					p.playLC(id);
 					hv.sendResponse(new ServerResponse());
 				} catch (GameException e) {
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
+				break;
+			default:
 				break;
 			}
 			this.notifyNewModel();

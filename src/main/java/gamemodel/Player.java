@@ -452,7 +452,6 @@ public class Player implements Serializable{
 		
 		public void discardLC(Integer lcId) throws GameException {
 			LeaderCard lc = getLC(lcId);
-			if (lc == null) throw new GameException(GameError.LEADER_CARD_USED);
 			discardLC(lc);
 		}
 
@@ -507,7 +506,7 @@ public class Player implements Serializable{
 		}
 
 		public void play(LeaderCard girolamo) throws GameException {
-		playLC(girolamo.getId());
+			playLC(girolamo.getId());
 		}
 }
 
