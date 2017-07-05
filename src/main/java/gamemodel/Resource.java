@@ -80,19 +80,6 @@ public class Resource implements Serializable {
 	public String toString() {
 		String srt="";
 		if(gold!=0)
-			srt+=" gold="+this.gold;
-		if(stone!=0)
-			srt+=" stone="+this.stone;
-		if(wood!=0)
-			srt+=" wood="+this.wood;
-		if(servant!=0)
-			srt+=" servants="+this.servant;
-		return srt;
-	}
-	public String toStringGui() 
-	{
-		String srt="";
-		if(gold!=0)
 			srt+=" G="+this.gold;
 		if(stone!=0)
 			srt+=" St="+this.stone;

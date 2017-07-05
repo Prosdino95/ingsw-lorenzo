@@ -22,9 +22,6 @@ public class NoActionSpace extends PermanentEffect
 	@Override
 	public String toString()
 	{
-		return " You can’t place your family members in the " + atype + " action space";
-	}
-	public String toStringGui() {
-		return " No Action Space: " + atype;
+		return " No action space: " + atype;
 	}
 }

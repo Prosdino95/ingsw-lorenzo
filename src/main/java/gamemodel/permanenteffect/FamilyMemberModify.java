@@ -71,7 +71,10 @@ public class FamilyMemberModify extends PermanentEffect {
 	public String toString() {
 		return "FamilyMemberModify [quantity=" + quantity + ", set=" + set + ", type=" + type + "]";
 	}
-
+	@Override
+	public String toStringGui() {
+		return "FamilyMemberModify [quantity=" + quantity + ", set=" + set + ", type=" + type + "]";
+	}
 
 	
 	

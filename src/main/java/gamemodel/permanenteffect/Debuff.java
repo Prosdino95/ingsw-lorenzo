@@ -28,24 +28,11 @@ public class Debuff extends PermanentEffect
 	}
 	@Override
 	public String toString() {
-		String string=" Debuff [";
+		String string=" Debuff:";
 		if(resources!=null)
-			string+="resources:" + resources;
+			string+=resources;
 		if(points!=null)
-			string+="points:" + points;
-		string+="]";
+			string+=points;
 		return string;
-		//return "Debuff [resources:" + resources + ",points:" + points + "]";
 	}	
-	
-	public String toStringGui() 
-	{
-		String string=" Debuff [";
-		if(resources!=null)
-			string+=resources.toStringGui();
-		if(points!=null)
-			string+=points.toStringGui();
-		string+="]";
-		return string;
-	}
 }

@@ -35,8 +35,4 @@ public class PointModify implements IstantEffect,EffectRollBack,Serializable
 	public String toString() {
 		return "" + points;
 	}
-	@Override
-	public String toStringGui() {
-		return "" + points.toStringGui();
-	}
 }

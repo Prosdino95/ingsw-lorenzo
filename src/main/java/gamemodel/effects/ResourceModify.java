@@ -31,10 +31,6 @@ public class ResourceModify implements IstantEffect,EffectRollBack,Serializable
 	public String toString() {
 		return  ""+resources;
 	}
-	@Override
-	public String toStringGui() {
-		return  ""+resources.toStringGui();
-	}
 }
 
 

@@ -20,9 +20,4 @@ public class TestEffects implements IstantEffect,Serializable {
 	public String toString() {
 		return "TestEffects ";
 	}
-	@Override
-	public String toStringGui() {
-		return "TestEffects ";
-	}
-
 }

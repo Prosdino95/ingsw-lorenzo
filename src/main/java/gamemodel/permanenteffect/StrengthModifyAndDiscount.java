@@ -61,20 +61,15 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 	@Override
 	public String toString() 
 	{
-		String string="";
-		if(modStrength!=0)
-			string=" Whenever you perform an action to take " + ctype + " card increase the value of the action by " + modStrength + ".";
-		if(discount!=null)
-			string+=" The cost of " +  ctype + " card you take is reduced by" + discount + ".";
+		String str="";
+		if(ctype!=null)
+			str+=" card type: " + ctype;
 		if(atype!=null)
-			string+=" Whenever you perform " + atype + " action increase the value of the action by " + modStrength;
-		return string;
+			str+=" action type:" + atype;
+		if(modStrength!=0)
+			str+=", increase value by " + modStrength;
+		if(discount!=null)
+			str+=", discount" + discount;
+		return str;
 	}
-	
-	public String toStringGui() {
-		return "StrengthModifyAndDiscount [modStrength=" + modStrength + ", astype=" + atype + ", ctype=" + ctype
-				+ ", discount:" + discount + "]";
-	}
-	
-
 }

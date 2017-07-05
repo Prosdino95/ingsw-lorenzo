@@ -40,12 +40,6 @@ public class SetOneColoredFM implements IstantEffect,Serializable {
 	@Override
 	public String toString()
 	{
-		return " One of your colored family members has a value of " + actionPoint;
-	}
-
-	@Override
-	public String toStringGui() 
-	{
-		return " One of your colored family members has a value of " + actionPoint;
+		return " One of family members'value " + actionPoint;
 	}
 }

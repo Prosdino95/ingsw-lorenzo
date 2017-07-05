@@ -181,38 +181,22 @@ public class ResourceForResource implements IstantEffect,Serializable
 	
 	
 	public String toString() {
-		String str ="Reasource for Resource: "+"\n";
-		str+="recieve-->";
+		String str ="";
 		if(this.pointsOut!=null)
-			str+=pointsOut+"\n";
+			str+=pointsOut;
 		if(this.resourcesOut!=null)
-			str+=resourcesOut+"\n";
-		str+="for each "+this.forEach+" ";
+			str+=resourcesOut;
+		str+=" X ";
+		str+=+this.forEach;
+		if(cardType!=null)
+			str+=" "+cardType;
 		if(this.pointsIn!=null)
 			str+=pointsIn;			
 		if(this.resourcesIn!=null)		
 			str+=resourcesIn;
-		if(this.cardType!=null)	
-			str+=cardType;
+		if(this.cardType!=null);
 		return str;
 		
-	}
-	@Override
-	public String toStringGui() {
-		String str ="Reasource for Resource: "+"\n";
-		str+="recieve-->";
-		if(this.pointsOut!=null)
-			str+=pointsOut.toStringGui()+"\n";
-		if(this.resourcesOut!=null)
-			str+=resourcesOut.toStringGui()+"\n";
-		str+="for each "+this.forEach+" ";
-		if(this.pointsIn!=null)
-			str+=pointsIn.toStringGui();			
-		if(this.resourcesIn!=null)		
-			str+=resourcesIn.toStringGui();
-		if(this.cardType!=null)	
-			str+=cardType;
-		return str;
 	}
 }
 
