@@ -23,7 +23,7 @@ public class BuildingCardController
 		cardName.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 		this.cardName.getChildren().add(cardName);
 		
-		Text cardPrice=new Text(card.getResourcePrice().toStringGui());
+		Text cardPrice=new Text(card.getResourcePrice().toString());
 		cardPrice.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 		this.cardPrice.getChildren().add(cardPrice);
 		
@@ -32,14 +32,14 @@ public class BuildingCardController
 	
 		if(card.getIstantEffect().size()!=0)
 		{
-			Text instantEffect=new Text(card.getIstantEffect().get(0).toStringGui());
+			Text instantEffect=new Text(card.getIstantEffect().get(0).toString());
 			instantEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 			this.instantEffect.getChildren().add(instantEffect);
 		}
 		
 		if(((HarvesterAndBuildings)card).getPermanentEffects().size()!=0)
 		{
-			Text permanentEffect=new Text(((HarvesterAndBuildings)card).getPermanentEffects().get(0).toStringGui());
+			Text permanentEffect=new Text(((HarvesterAndBuildings)card).getPermanentEffects().get(0).toString());
 			permanentEffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 			this.permanentEffect.getChildren().add(permanentEffect);
 		}

@@ -26,7 +26,7 @@ public class LeaderCardController
 		
 		if(leaderCard.getOncePerRound().size()!=0)
 		{
-			Text effect=new Text(leaderCard.getOncePerRound().get(0).toStringGui());
+			Text effect=new Text(leaderCard.getOncePerRound().get(0).toString());
 			effect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 			this.effect.getChildren().add(effect);
 		}
