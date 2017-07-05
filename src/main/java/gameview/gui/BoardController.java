@@ -141,9 +141,9 @@ public class BoardController {
 		 cardPaneList.add(cartaTorre15);
 		 asPaneList.add(asTorre15);
 		 asIdList.add(16);
-		 asPaneList.add(asHAndp1);
-		 asIdList.add(17);
 		 asPaneList.add(asHAndp2);
+		 asIdList.add(17);
+		 asPaneList.add(asHAndp1);
 		 asIdList.add(18);
 		 asPaneList.add(asMarket1);
 		 asIdList.add(19);
