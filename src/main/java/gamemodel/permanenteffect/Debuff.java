@@ -28,11 +28,11 @@ public class Debuff extends PermanentEffect
 	}
 	@Override
 	public String toString() {
-		String string=" Debuff:";
+		String string="every time you earn resource lose /n";
 		if(resources!=null)
 			string+=resources;
 		if(points!=null)
-			string+=points;
+			string+= points;
 		return string;
 	}	
 }

@@ -25,7 +25,7 @@ public class Board implements Serializable {
 	private transient List<Card> buildingCards;
 	private transient List<Card> characterCards; 
 	private transient List<Card> ventureCards;
-	private transient Dice dice;
+	private Dice dice;
 	private Excommunication[]excommunicationCards=new Excommunication[3];
 
 	

@@ -15,7 +15,7 @@ public class Dice implements Serializable
 		dice.put(Color.ORANGE, 0);
 	}
 	
-	public int getValue(Color c) {
+	public Integer getValue(Color c) {
 		return dice.get(c);
 	}
 

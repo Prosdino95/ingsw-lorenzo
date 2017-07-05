@@ -22,10 +22,18 @@ public class VentureCardController
 		Text cardName=new Text(card.getName());
 		cardName.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
 		this.cardName.getChildren().add(cardName);	
-		
-		//Text cardPrice=new Text(card.getResourcePrice().toStringGui());
-		//cardPrice.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
-		//this.cardPrice.getChildren().add(cardPrice);
+		Text cardPrice;
+		Font font=Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8);
+		if(card.getResourcePrice()!=null){
+			cardPrice=new Text(card.getResourcePrice().toString());
+			cardPrice.setFont(font);
+			this.cardPrice.getChildren().add(cardPrice);
+		}
+		if(card.getPointPrice()!=null){
+			cardPrice=new Text(card.getPointPrice().toString());
+			cardPrice.setFont(font);
+			this.cardPrice.getChildren().add(cardPrice);
+		}
 		
 		if(card.getIstantEffect().size()!=0)
 		{

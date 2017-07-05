@@ -16,7 +16,7 @@ import gamemodel.effects.*;
 public class ASParsing {
 	
 	private List<ActionSpace> AS=new ArrayList<>();
-	private List<IstantEffect> effects;
+	private List<IstantEffect> effects=new ArrayList<>();
 	private ActionSpaceType type;
 	private int cost;
 	private int id;
@@ -30,9 +30,9 @@ public class ASParsing {
 	public List<ActionSpace> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("ActionSpace").asArray();
 		for (JsonValue item : items) {
+			effects=new ArrayList<>();
 			id=item.asObject().getInt("id", -1);
     		cost=item.asObject().getInt("action-cost", 1);
-    		effects=null;
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();
     			effects=new IstantEffectParsing().parsing(item.asObject().get("effect").asArray(),board);

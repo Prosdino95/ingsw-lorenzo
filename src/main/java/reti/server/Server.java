@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,7 +41,7 @@ public class Server {
 		server.start();
 	}
 
-	private void setUpServer() throws IOException {
+	private void setUpServer() throws IOException{
 		Path path = FileSystems.getDefault().getPath("Config/ServerConfig.json");
 		List<String> jsonFile=Files.readAllLines(path);
 		StringBuilder builder = new StringBuilder();
@@ -52,6 +53,7 @@ public class Server {
 		port=item.getInt("port", 3003);
 		delay=item.getInt("server-delay", 1000);
 		gameDelay=item.getInt("game-deley", 200000);
+		//FileSystems.getDefault().close();
 	}
 
 	private void start() throws IOException {

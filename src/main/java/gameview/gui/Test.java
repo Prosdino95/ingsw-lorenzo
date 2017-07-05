@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.GameQuestion;
+import gamemodel.Model;
 import gamemodel.Point;
 import gamemodel.Question;
 import gamemodel.Resource;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
 import gamemodel.command.GameError;
 import gamemodel.effects.IstantEffect;
+import gamemodel.effects.TestEffects;
+import gameview.gui.actionspacecontroll.CouncilPlaceActionSpaceControll;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,14 +30,17 @@ public class Test extends Application{
 		@Override
 		public void start(Stage stage) throws Exception {
 			FXMLLoader loader=new FXMLLoader();
-			loader.setLocation(getClass().getResource("/GuiQuestion.fxml"));		
+			loader.setLocation(getClass().getResource("/CouncilPlaceActionSpace.fxml"));		
 			Pane root = loader.load();
-			GuiQuestionController controller=loader.getController();
+			CouncilPlaceActionSpaceControll controller=loader.getController();
+			//GuiQuestionController controller=loader.getController();
 			creacarte();
 			//creaaltro();
 			//controller.update(new ServerResponse(GameError.RESOURCE_ERR_SERVANTS));
 			//controller.update(new ServerResponse(new Question(GameQuestion.LEADER,choose)));
-			controller.update(new ServerResponse(new Question(GameQuestion.HOW_MANY_FMS , new ArrayList<>())));	
+			//controller.update(new ServerResponse(new Question(GameQuestion.HOW_MANY_FMS , new ArrayList<>())));
+			ActionSpace a=new MemoryActionSpace(5, 4, new TestEffects(), null);
+			controller.initialize(a);
 			stage.setScene(new Scene(root));
 			stage.show();
 		}

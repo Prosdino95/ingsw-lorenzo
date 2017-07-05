@@ -231,7 +231,7 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 		Integer choice = fakeIntChoices.remove(0);
 		System.out.println("Chose: " + choice);
@@ -242,8 +242,7 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay );
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 		String choice = stringChoices.remove(0);
 		System.out.println("Chose: " + choice);

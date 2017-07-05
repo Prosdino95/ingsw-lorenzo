@@ -4,9 +4,10 @@ package gameview.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import gamemodel.GameQuestion;
 import gamemodel.Model;
 import gamemodel.Player;
+import gamemodel.Question;
 import gamemodel.Team;
 import gameview.ViewController;
 import javafx.animation.KeyFrame;
@@ -56,13 +57,10 @@ public class GuiView extends Application {
 		}
 		while(viewController.hasMessage()) {
 			ServerResponse sr = viewController.getMessage();
-			// System.out.println(sr);
 			switch (sr.getType()) {
 			case NEW_MODEL:
-				System.out.println("A new fuckuni g model arrived prev: " + sr.getModel());
-				System.out.println("MY model: " + this.model);
 				newModel(sr.getModel());
-				System.out.println("After: " + this.model);
+				requestController.setPlayerTurn(model.getCurrentPlayer());
 			break;
 			case PLAYER_ASSIGNED:
 				if (this.model == null) {
@@ -126,7 +124,7 @@ public class GuiView extends Application {
 			System.out.println("GUIView -- Setting up round for turn: " + model.turn);
 			break;
 		case VATICAN_TIME:
-			// TODO
+			requestController.giveSR(new ServerResponse(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo())));
 			break;
 		default:
 			break;
@@ -198,10 +196,10 @@ public class GuiView extends Application {
 				setPressed(true);
 				System.out.println("GUIView -- You pressed key " + e.getCode());
 				switch (e.getCode()) {
-				case LEFT:
+				case A:
 					sceneGoLeft();
 					break;
-				case RIGHT:
+				case D:
 					sceneGoRight();
 					break;
 				default:

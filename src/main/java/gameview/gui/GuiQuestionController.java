@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import gamemodel.GameQuestion;
+import gamemodel.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -79,7 +81,7 @@ public class GuiQuestionController {
 	private void genericQuestion() {
 		Integer id=0;
 		List<Object> list=sr.getQuestion().getChoose();
-		HBox hbox =null;
+		HBox hbox =new HBox();
 		for(Object o:list){
 			VBox vbox=new VBox();
 			vbox.setStyle("-fx-background-color: transparent;");
@@ -111,7 +113,7 @@ public class GuiQuestionController {
 	private void questionHowMany() {
 		answer="0";
 		Text t=new Text("write the number and press ENTER");
-		servantsQuest.getChildren().add(t);
+		text.getChildren().add(t);
 		servants.setDisable(false);
 		servants.setOnKeyPressed(e -> {
 			switch (e.getCode()) {
@@ -162,6 +164,13 @@ private void initializeTextOnly() {
 			text.getChildren().clear();	
 		if(!servantsQuest.getChildren().isEmpty())
 			servantsQuest.getChildren().clear();
+	}
+
+	public void setCurrentPlayer(Player player) {
+		Text t=new Text();
+		t.setFill(Color.WHITE);		
+		t.setText("player turn: "+ player.getTeam());
+		servantsQuest.getChildren().add(t);
 	}
 }
 

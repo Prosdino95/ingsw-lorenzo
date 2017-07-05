@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="183.6" prefWidth="270.3" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.actionspacecontroll.CouncilPlaceActionSpaceControll">
+<AnchorPane maxHeight="126.0" maxWidth="271.0" minHeight="126.0" minWidth="271.0" prefHeight="126.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.actionspacecontroll.CouncilPlaceActionSpaceControll">
    <children>
-      <TextFlow fx:id="asActionPoint" layoutX="136.0" layoutY="163.0" />
-      <HBox fx:id="familyMembersSpace" layoutX="59.0" layoutY="56.0" prefHeight="97.0" prefWidth="197.0" />
+      <HBox fx:id="familyMembersSpace" layoutX="96.0" layoutY="62.0" prefHeight="43.0" prefWidth="161.0" />
+      <TextFlow fx:id="asActionPoint" layoutX="133.0" layoutY="105.0" />
+      <TextFlow fx:id="effect" layoutX="22.0" layoutY="14.0" prefHeight="43.0" prefWidth="86.0" />
    </children>
 </AnchorPane>

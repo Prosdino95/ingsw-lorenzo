@@ -16,7 +16,7 @@ public class TowerASParsing {
 	
 	private int cost;
 	private List<TowerActionSpace> AS=new ArrayList<>();
-	private List<IstantEffect> effects;
+	private List<IstantEffect> effects=new ArrayList<>();
 	private int id=0;
 	private final ActionSpaceType TYPE=ActionSpaceType.TOWER;
 	private Tower territories=new Tower(CardType.TERRITORY);
@@ -33,8 +33,8 @@ public class TowerASParsing {
 	public List<TowerActionSpace> parsing(String json){
 		JsonArray items = Json.parse(json).asObject().get("TowerActionSpace").asArray();
 		for (JsonValue item : items) {
+			effects=new ArrayList<>();
     		cost=item.asObject().getInt("action-cost", 1);
-    		effects=null;
     		id=item.asObject().getInt("id", -1);
     		if(item.asObject().get("effect")!=null){
     			effects=new ArrayList<>();

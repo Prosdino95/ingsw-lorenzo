@@ -1,5 +1,6 @@
 package gameview.gui;
 
+
 import java.io.IOException;
 import java.util.List;
 
@@ -8,9 +9,11 @@ import gamemodel.Player;
 import gamemodel.Team;
 import gameview.ViewController;
 import gameview.gui.actionspacecontroll.MakeFM;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -117,19 +120,25 @@ public class RequestController {
 	}
 
 	
-	public void finishAction(){
+	public void finishAction(Event e){
 		System.out.println("RequestController -- Sending a finish action");
 		gv.setRequest(new ClientRequest());
 		showCurrentRequest();
 	}
 
 	public void giveSR(ServerResponse sr,boolean question) {
+		questionController.clear();
 		this.question=question;
 		questionController.update(sr);
 	}
 
 	public void giveSR(ServerResponse sr) {
+		questionController.clear();
 		questionController.update(sr);	
+	}
+
+	public void setPlayerTurn(Player player) {
+		questionController.setCurrentPlayer(player);	
 	}
 
 }

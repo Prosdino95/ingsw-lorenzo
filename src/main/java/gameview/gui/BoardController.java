@@ -1,12 +1,14 @@
 package gameview.gui;
 
-import java.awt.event.MouseEvent;
+
+
 
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gamemodel.Color;
 import gamemodel.Model;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.RealActionSpace;
@@ -16,14 +18,11 @@ import gameview.gui.actionspacecontroll.ActionSpaceControll;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class BoardController {
 	List<Integer> asIdList;
@@ -36,6 +35,15 @@ public class BoardController {
 	
 	public void update(Model model) {
 		if(model==null) return;
+		blackDice.getChildren().clear();
+		whiteDice.getChildren().clear();
+		orangeDice.getChildren().clear();
+		orangeDice.getChildren().add(new Text(model.getBoard().getDice().getValue(Color.ORANGE).toString()));
+		whiteDice.getChildren().add(new Text(model.getBoard().getDice().getValue(Color.WHITE).toString()));
+		Text text=new Text(model.getBoard().getDice().getValue(Color.BLACK).toString());
+		text.setFill(javafx.scene.paint.Color.WHITE);
+		blackDice.getChildren().add(text);
+			
 		for (Integer id : asIdList) {
 			RealActionSpace as = model.getBoard().getActionSpace(id);
 			Pane asp=asPaneList.get(id);
@@ -219,7 +227,6 @@ public class BoardController {
 		asRoot = loader.load();
 		controll=loader.getController();
 		controll.initialize(actionSpace);
-		
 	 	return asRoot;		
 	}
 	
@@ -242,6 +249,7 @@ public class BoardController {
 	@FXML Pane cartaTorre13;
 	@FXML Pane cartaTorre14;
 	@FXML Pane cartaTorre15;
+	@FXML TextFlow blackDice,whiteDice,orangeDice;
 	@FXML Pane asTorre0;
 	@FXML Pane asTorre1;
 	@FXML Pane asTorre2;

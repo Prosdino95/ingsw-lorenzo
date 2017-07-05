@@ -3,6 +3,7 @@ package gameview.gui.actionspacecontroll;
 import java.util.List;
 
 
+
 import gamemodel.Color;
 import gamemodel.FamilyMember;
 import gamemodel.Player;
@@ -26,7 +27,6 @@ public class HandPActionSpaceControll implements ActionSpaceControll {
 	public void initialize(ActionSpace as){
 		MemoryActionSpace actionSpace=(MemoryActionSpace)as;
 		List<FamilyMember> familyMembers= actionSpace.getFm();
-		//test(familyMembers);
 		Integer actionCost=as.getActionCost();
 		this.asActionPoint.getChildren().add(new Text(actionCost.toString()));
 		this.asActionPoint2.getChildren().add(new Text(actionCost.toString()));
@@ -46,16 +46,4 @@ public class HandPActionSpaceControll implements ActionSpaceControll {
 						bigSpace.getChildren().add(familyMember);
 				}
 	}
-	
-	
-	private void test(List<FamilyMember> f){
-		f.clear();
-		FamilyMember f1=new FamilyMember(new Player(null, null, Team.BLUE), Color.WHITE);
-		FamilyMember f2=new FamilyMember(new Player(null, null, Team.GREEN), Color.BLACK);
-		FamilyMember f3=new FamilyMember(new Player(null, null, Team.RED), Color.ORANGE);
-		f.add(f1);
-		f.add(f2);
-		f.add(f3);	
-	}
-
 }

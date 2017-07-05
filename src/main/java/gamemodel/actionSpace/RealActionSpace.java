@@ -116,7 +116,7 @@ public class RealActionSpace implements ActionSpace,Serializable {
 		str += "-> ";
 		str += this.getType();
 		str+=" ";
-		if(this.getEffects()!=null)
+		if(this.getEffects().isEmpty())
 			str +=this.getEffects();
 		str+=", ";
 		if(this.free)

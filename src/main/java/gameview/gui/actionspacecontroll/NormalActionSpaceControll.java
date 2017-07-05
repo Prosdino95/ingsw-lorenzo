@@ -3,6 +3,7 @@ package gameview.gui.actionspacecontroll;
 
 import gamemodel.FamilyMember;
 import gamemodel.actionSpace.ActionSpace;
+import gamemodel.effects.IstantEffect;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -17,9 +18,7 @@ public class NormalActionSpaceControll implements ActionSpaceControll {
 	
 	@Override
 	public void initialize(ActionSpace as){
-		//TODO effect
 		fm=as.getFamilyMember();
-		//fm=new FamilyMember(new Player(null, null, Team.RED), Color.UNCOLORED);
 		if(fm!=null && familyMember.getChildren().size()<=1){
 			Pane p=new Pane();
 			p.setLayoutX(33);
@@ -29,7 +28,12 @@ public class NormalActionSpaceControll implements ActionSpaceControll {
 		}
 		Integer actionCost=as.getActionCost();
 		this.actionCost.getChildren().add(new Text(actionCost.toString()));
-		//this.effect.getChildren().add(new Text(as.getEffect()));
+		String effectText="";
+		if(!as.getEffects().isEmpty()){
+			for(IstantEffect e:as.getEffects())
+				effectText+=e.toString();
+			effect.getChildren().add(new Text(effectText));	
+		}	
 	}
 
 }

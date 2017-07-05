@@ -14,7 +14,7 @@
       </Pane>
       <Pane fx:id="familyMember" layoutX="4.0" layoutY="7.0" prefHeight="47.0" prefWidth="67.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
          <children>
-            <TextFlow fx:id="effect" layoutX="33.5" layoutY="23.5" />
+            <TextFlow fx:id="effect" layoutX="12.5" layoutY="23.5" />
          </children>
       </Pane>
    </children>

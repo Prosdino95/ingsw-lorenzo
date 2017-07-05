@@ -9,7 +9,6 @@ import gamemodel.FamilyMember;
 
 public class FamilyMemberModify extends PermanentEffect {
 	private static final long serialVersionUID = 1L;
-	public transient Consumer<Map<Color,FamilyMember>> f;
 	private transient Consumer<FamilyMember> g;
 	private int quantity=0;
 	private int set=0;
@@ -31,13 +30,6 @@ public class FamilyMemberModify extends PermanentEffect {
 		return new FamilyMemberModify((f) -> f.setActionpoint(f.getActionpoint()+n),0,n,type);
 	}
 
-	// TODO: map to list
-	public FamilyMemberModify(Consumer<Map<Color,FamilyMember>> f) {
-		
-		super(PEffect.FM);
-		this.f=f;
-	}
-
 	public FamilyMemberModify(Consumer<FamilyMember> g,int set,int quantity) {
 		super(PEffect.FM);
 		this.set=set;
@@ -53,11 +45,6 @@ public class FamilyMemberModify extends PermanentEffect {
 		this.type=type;
 	}
 
-	public void modify(Map<Color,FamilyMember> familyMembers){
-		if (f != null)
-			f.accept(familyMembers);
-	}
-
 	public void modify(List<FamilyMember> familyMembers){
 		if (g != null)
 			for (FamilyMember f : familyMembers)
@@ -69,14 +56,17 @@ public class FamilyMemberModify extends PermanentEffect {
 
 	@Override
 	public String toString() {
-		return "FamilyMemberModify [quantity=" + quantity + ", set=" + set + ", type=" + type + "]";
+		String s = "";
+		s+="FM :";
+		if(type!=null)
+			s+=type;
+		s+="colored";
+		s+="have /n";
+		if(set!=0)
+			s+=set+"point";
+		if(quantity!=0){
+			s+="+"+quantity+"point";
+		}
+		return s;
 	}
-	@Override
-	public String toStringGui() {
-		return "FamilyMemberModify [quantity=" + quantity + ", set=" + set + ", type=" + type + "]";
-	}
-
-	
-	
-
 }
