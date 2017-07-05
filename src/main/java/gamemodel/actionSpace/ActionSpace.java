@@ -9,7 +9,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.*;
 import gamemodel.permanenteffect.*;
 
-public class RealActionSpace implements ActionSpace,Serializable {
+public class ActionSpace implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private final int id;
@@ -18,15 +18,19 @@ public class RealActionSpace implements ActionSpace,Serializable {
 	private List<IstantEffect> effects=new ArrayList<>();
 	private ActionSpaceType type;
 	protected FamilyMember familyMember;
+	
+	public void setFamilyMember(FamilyMember familyMember) {
+		this.familyMember = familyMember;
+	}
 
-	public RealActionSpace(int id,int actionCost, List<IstantEffect> effects,ActionSpaceType type) {
+	public ActionSpace(int id,int actionCost, List<IstantEffect> effects,ActionSpaceType type) {
 		this.id=id;
 		this.actionCost = actionCost;
 		this.effects = effects;
 		this.type = type;
 	}
 
-	public RealActionSpace(int id,int actionCost, IstantEffect effect, ActionSpaceType type) {
+	public ActionSpace(int id,int actionCost, IstantEffect effect, ActionSpaceType type) {
 		this.id=id;
 		this.actionCost = actionCost;
 		this.effects.add(effect);
@@ -48,7 +52,7 @@ public class RealActionSpace implements ActionSpace,Serializable {
 		return true;
 	}
 
-	@Override
+	
 	public void activateEffect(FamilyMember f) throws GameException{
 		familyMember=f;
 		if(effects!=null)
@@ -56,29 +60,29 @@ public class RealActionSpace implements ActionSpace,Serializable {
 			e.activate(f.getPlayer());
 	}
 	
-	@Override
+	
 	public void rollbackEffect(FamilyMember f){
 		if(effects!=null)
 		for(IstantEffect e:effects)
 			((EffectRollBack) e).rollBack(f.getPlayer());
 	}
 	
-	@Override
+	
 	public void occupy(){
 		free=false;
 	}
 
-	@Override
+	
 	public boolean isFree() {
 		return free;
 	}
 
-	@Override
+	
 	public int getActionCost() {
 		return actionCost;
 	}
 
-	@Override
+	
 	public int getId() {
 		return id;
 	}
@@ -88,23 +92,15 @@ public class RealActionSpace implements ActionSpace,Serializable {
 		return effects;
 	}
 
-	@Override
+	
 	public void setType(ActionSpaceType type) {
 		this.type = type;
 	}
 
-	@Override
+	
 	public ActionSpaceType getType() {
 		return type;
 	}
-	
-	
-
-	/*@Override
-	public String toString() {
-		return "RealActionSpace [id=" + id + ", free=" + free + ", actionCost=" + actionCost + ", type=" + type
-				+ ", getEffects()=" + getEffects() + "]";
-	}*/
 
 	public FamilyMember getFamilyMember() {
 		return familyMember;
@@ -127,10 +123,10 @@ public class RealActionSpace implements ActionSpace,Serializable {
 		return str;
 	}
 
-	@Override
+	
 	public void prepareForNewRound() {
 		this.free=true;
-		
+		familyMember=null;		
 	}
 	
 	

@@ -11,7 +11,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PEffect;
 
-public class RealTowerActionSpace extends RealActionSpace implements TowerActionSpace,Serializable {
+public class TowerActionSpace extends ActionSpace implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Tower tower;
@@ -21,22 +21,22 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		return card;
 	}
 
-	public RealTowerActionSpace(int id,int actionCost, List<IstantEffect> effects, Tower tower,ActionSpaceType type) {
+	public TowerActionSpace(int id,int actionCost, List<IstantEffect> effects, Tower tower,ActionSpaceType type) {
 		super(id,actionCost, effects,type);
 		this.tower = tower;
 	}
 	
-	public RealTowerActionSpace(int id,int actionCost, IstantEffect effects, Tower tower,ActionSpaceType type) {
+	public TowerActionSpace(int id,int actionCost, IstantEffect effects, Tower tower,ActionSpaceType type) {
 		super(id,actionCost, effects,type);
 		this.tower = tower;
 	}
 
-	@Override
+	
 	public Tower getTower() {
 		return tower;
 	}
 
-	@Override	
+		
 	public void attachDevelopmentCard(Card card) {
 		this.card = card;
 	}
@@ -55,22 +55,15 @@ public class RealTowerActionSpace extends RealActionSpace implements TowerAction
 		}	
 		return str;
 	}
-		
-	@Override
+			
 	public void giveCard(FamilyMember f) throws GameException {
 		f.getPlayer().giveCard(this.card);
 		this.card=null;
 	}
-	
-	/*@Override
-	public String toString() {
-		return "RealTowerActionSpace [tower=" + tower + ", card=" + card + "]";
-	}*/
 
 	@Override
 	public void activateEffect(FamilyMember f) throws GameException 
 	{
-		familyMember=f;
 		if(f.getPlayer().getPEffects(PEffect.NO_BONUS).isEmpty())
 			super.activateEffect(f);
 	}
