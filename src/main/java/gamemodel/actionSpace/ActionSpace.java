@@ -17,7 +17,7 @@ public class ActionSpace implements Serializable {
 	private final int actionCost;
 	private List<IstantEffect> effects=new ArrayList<>();
 	private ActionSpaceType type;
-	protected FamilyMember familyMember;
+	private FamilyMember familyMember;
 	
 	public void setFamilyMember(FamilyMember familyMember) {
 		this.familyMember = familyMember;
@@ -54,7 +54,6 @@ public class ActionSpace implements Serializable {
 
 	
 	public void activateEffect(FamilyMember f) throws GameException{
-		familyMember=f;
 		if(effects!=null)
 		for(IstantEffect e:effects)
 			e.activate(f.getPlayer());

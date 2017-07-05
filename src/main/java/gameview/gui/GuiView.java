@@ -106,6 +106,7 @@ public class GuiView extends Application {
 			case ERROR:
 			case OK:
 				requestController.giveSR(sr);
+				currentState=GUIState.ACTION;
 			break;	
 			default:
 				System.out.println("GUIView -- Should this message get here? " + sr);
