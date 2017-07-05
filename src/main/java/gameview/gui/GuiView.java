@@ -37,7 +37,7 @@ public class GuiView extends Application {
 	private Stage stage;
 	private ViewController viewController;
 	private Model model;
-	private GUIState currentState=GUIState.ACTION;
+	private GUIState currentState=GUIState.START;
 	private int currentSceneIndex = 1;
 	private List<Scene> scenes = new  ArrayList<Scene>(3);
 	private ClientRequest request=null;
@@ -71,6 +71,7 @@ public class GuiView extends Application {
 			case NEW_MODEL:
 				newModel(sr.getModel());
 				requestController.setPlayerTurn(model.getCurrentPlayer());
+				updateGui();
 			break;
 			case PLAYER_ASSIGNED:
 				if (this.model == null) {
@@ -172,7 +173,7 @@ public class GuiView extends Application {
 		boardController = loader.getController();
 		rootPane.setOnMouseClicked(e -> {
 			System.out.println("GUIView -- " + boardScene.getWidth());
-			updateGui();
+			//updateGui();
 		});
 		rootPane.setStyle("-fx-background-color: #228b22");
 		Scene bs = new Scene(rootPane);
@@ -292,7 +293,8 @@ public class GuiView extends Application {
 		} else {
 			currentSceneIndex = 0;
 		}
-		updateGui();
+		changeScene();
+		//updateGui();
 	}
 
 	private void sceneGoLeft() {
@@ -302,7 +304,8 @@ public class GuiView extends Application {
 		} else {
 			currentSceneIndex = scenes.size() - 1;
 		}
-		updateGui();
+		changeScene();
+		//updateGui();
 	}
 		
 	
@@ -311,10 +314,10 @@ public class GuiView extends Application {
 	    return srr;
 	}
 
-	public void updateModelAndGui(Model m) {
+/*	public void updateModelAndGui(Model m) {
 		setModel(m);
 		updateGui();
-	}
+	}*/
 	
 	void updateGui() {
 		pbc.update(player);
@@ -329,6 +332,11 @@ public class GuiView extends Application {
 			getStage().setScene(getCurrentScene());
 			//getStage().show();
 		}
+	}
+	
+	void changeScene(){
+		if (getStage().getScene() != getCurrentScene())
+			getStage().setScene(getCurrentScene());
 	}
 
 	public void setModel(Model m) {

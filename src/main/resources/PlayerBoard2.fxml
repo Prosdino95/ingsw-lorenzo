@@ -38,7 +38,7 @@
       <Pane fx:id="character5" layoutX="738.4615384615385" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture0" layoutX="17.094017094017094" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture1" layoutX="164.10256410256412" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
-      <Pane fx:id="venture2" layoutX="307.69230769230774" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture2" layoutX="307.69230769230774" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture3" layoutX="451.2820512820513" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture4" layoutX="594.0170940170941" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture5" layoutX="738.4615384615385" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />

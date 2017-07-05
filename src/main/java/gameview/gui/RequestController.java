@@ -2,6 +2,7 @@ package gameview.gui;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import gamemodel.Color;
@@ -39,10 +40,15 @@ public class RequestController {
 	@FXML Pane orangeFM;
 	@FXML Pane uncoloredFM;
 	private GuiQuestionController questionController;
+	private List<Pane>fm=new ArrayList<>();
 
 
 	public void initialize(GuiView gv) throws IOException {
 		this.gv=gv;
+		fm.add(blackFM);
+		fm.add(whiteFM);
+		fm.add(orangeFM);
+		fm.add(uncoloredFM);
 		FXMLLoader loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/GuiQuestion.fxml"));
 		serverResponse.getChildren().add(loader.load());
@@ -70,14 +76,22 @@ public class RequestController {
 	
 	void update() {
 		showCurrentRequest();
+		for(Pane p:fm)
+			p.getChildren().clear();
+		if(gv.getPlayer()!=null)
+			generateFM();
 	}
-
+	
 	public void generateFM() {
 		Player p=gv.getPlayer();
-		MakeFM.makeFM(blackFM, p.getFamilyMember(Color.BLACK),60,40);
-		MakeFM.makeFM(orangeFM, p.getFamilyMember(Color.ORANGE),60,40);	
-		MakeFM.makeFM(whiteFM, p.getFamilyMember(Color.WHITE),60,40);	
-		MakeFM.makeFM(uncoloredFM, p.getFamilyMember(Color.UNCOLORED),60,40);	
+		if(!p.getFamilyMember(Color.BLACK).isUsed())
+			MakeFM.makeFM(blackFM, p.getFamilyMember(Color.BLACK),60,40);
+		if(!p.getFamilyMember(Color.ORANGE).isUsed())
+			MakeFM.makeFM(orangeFM, p.getFamilyMember(Color.ORANGE),60,40);	
+		if(!p.getFamilyMember(Color.WHITE).isUsed())
+			MakeFM.makeFM(whiteFM, p.getFamilyMember(Color.WHITE),60,40);	
+		if(!p.getFamilyMember(Color.UNCOLORED).isUsed())
+			MakeFM.makeFM(uncoloredFM, p.getFamilyMember(Color.UNCOLORED),60,40);	
 	}
 
 	public void setActionSpace(Integer id) {
@@ -105,6 +119,7 @@ public class RequestController {
 	}
 	
 	public void sendRequest(){
+		if(gv.getState()==GUIState.START) return;
 		ServerResponse sr = null;
 		if(gv.getState()==GUIState.VATICAN){
 			setCr(new ClientRequest(questionController.getAnswer(),RequestType.VATICAN_REPORT));
@@ -125,12 +140,13 @@ public class RequestController {
 	
 
 	public void finishAction(){
+		if(gv.getState()!=GUIState.ACTION) return;
 		System.out.println("RequestController -- Sending a finish action");
 		gv.setRequest(new ClientRequest());
 		showCurrentRequest();
 	}
 
-	public void giveSR(ServerResponse sr) {
+	public void giveSR(ServerResponse sr) {			
 		questionController.clear();
 		questionController.update(sr);	
 	}
@@ -146,5 +162,6 @@ public class RequestController {
 	public void setPlayerTurn(Player player) {
 		questionController.setCurrentPlayer(player);	
 	}
+
 
 }
