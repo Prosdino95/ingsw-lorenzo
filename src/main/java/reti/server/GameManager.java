@@ -18,24 +18,24 @@ public class GameManager implements Runnable
 	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
-	private int delay;
+	private int joinDelay;
 	private Timer timer=new Timer();
-	private int gameDelay;
+	private int playerActionDelay;
 	
 	public GameManager(){
-		this.delay=1000;
-		this.gameDelay=200000;
+		this.joinDelay=1000;
+		this.playerActionDelay=200000;
 	}
 	
 	public GameManager(int delay,int gameDelay){
-		this.delay=delay;
-		this.gameDelay=gameDelay;
+		this.joinDelay=delay;
+		this.playerActionDelay=gameDelay;
 	}
 		
 	private void setupGame()
 	{
 		System.out.println("creazione partita");      
-		Model rl=new Model(hw.size(),gameDelay);
+		Model rl=new Model(hw.size(),playerActionDelay);
 		Controller c=new Controller(rl);
 		rl.setController(c);
 		for(int i=0;i<rl.getPlayers().size();i++){
@@ -100,7 +100,7 @@ public class GameManager implements Runnable
 	private void updateTimer() {
 		timer.cancel();
 		timer=new Timer();
-		timer.schedule(new Task(this), delay);
+		timer.schedule(new Task(this), joinDelay);
 		
 	}
 

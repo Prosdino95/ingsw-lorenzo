@@ -18,12 +18,12 @@ public class App{
     public static void main( String[] args )
     {	
     	//testAS();
-    	testBCard();
-    	testTCard();
+    	//testBCard();
+    	//testTCard();
     	//testCCard();
     	//testVCard();
     	//test();
-    	//testLCard();
+    	testLCard();
     } 
     
     private static void testpoints() {

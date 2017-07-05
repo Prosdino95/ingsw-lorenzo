@@ -56,9 +56,9 @@ public class CommandPeffectTest {
 		p.giveCard(c1);
 		p.giveCard(c2);
 		p.giveCard(c3);
-		RealTowerActionSpace a=new RealTowerActionSpace(0,3, is, t, ActionSpaceType.TOWER);
+		TowerActionSpace a=new TowerActionSpace(0,3, is, t, ActionSpaceType.TOWER);
 		MemoryActionSpace a1=new MemoryActionSpace(1,3, is, ActionSpaceType.HARVEST);
-		RealTowerActionSpace a2=new RealTowerActionSpace(2,3, is, t2, ActionSpaceType.TOWER);
+		TowerActionSpace a2=new TowerActionSpace(2,3, is, t2, ActionSpaceType.TOWER);
 		p.prepareForNewRound();
 		a.attachDevelopmentCard(c);
 		a2.attachDevelopmentCard(c2);
@@ -112,7 +112,7 @@ public class CommandPeffectTest {
 	@Test
 	public void test4()
 	{
-		try{p.placeFamilyMember(new Action(p,new RealActionSpace(3,0,is,ActionSpaceType.MARKET),p.getFamilyMember(Color.ORANGE),0));}
+		try{p.placeFamilyMember(new Action(p,new ActionSpace(3,0,is,ActionSpaceType.MARKET),p.getFamilyMember(Color.ORANGE),0));}
 		catch(GameException e){s=e.getType();}
 		assertEquals(GameError.SA_ERR,s);
 	}

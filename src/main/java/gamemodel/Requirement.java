@@ -47,7 +47,13 @@ public class Requirement implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Requirement [resource=" + resource + ", cardReq=" + cardReq + ", point=" + point + "]";
+		String s="";
+		if(resource!=null)
+			s+=resource;
+		if(point!=null)
+			s+=point;
+		s+=cardReq;
+		return s;
 	}
 	
 }

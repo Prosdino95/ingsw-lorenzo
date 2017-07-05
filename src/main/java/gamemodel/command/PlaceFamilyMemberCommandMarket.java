@@ -2,7 +2,7 @@ package gamemodel.command;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.RealActionSpace;
+import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 
 public class PlaceFamilyMemberCommandMarket implements Command {

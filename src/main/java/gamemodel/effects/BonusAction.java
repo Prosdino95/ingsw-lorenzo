@@ -106,12 +106,13 @@ public class BonusAction implements IstantEffect {
 	public String toString() {
 		String str="Bonus action:";
 		if(cardType!=null)
-			str+=" cardType=" + cardType + ",";
+			str+=" C Type= " + cardType + ",";
 		if(asType!=null)
-			str+=" action space type=" + asType + ",";
+			str+=" AS type= " + asType + ",";
 		if(actionValue!=0)
-			str+=" action value=" + actionValue + ",";
-		str=" discount=" + discount;
+			str+=" strength= " + actionValue + ",";
+		if(discount!=null)
+			str+=" discount= " + discount;
 		return str;
 	}
 }

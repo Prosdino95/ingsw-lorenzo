@@ -41,9 +41,17 @@ public class CardRequirement implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CardRequirement [tc=" + tc + ", cc=" + cc + ", bc=" + bc + ", vc=" + vc + "]";
+		String s="";
+		if(all)
+			s+="BC/TC/CC/VC: "+quantity;
+		if(bc!=0)
+			s+="BC: "+bc;
+		if(cc!=0)
+			s+="CC: "+cc;
+		if(vc!=0)
+			s+="VC: "+vc;
+		if(tc!=0)
+			s+="TC: "+tc;
+		return s;
 	}
-	
-	
-
 }

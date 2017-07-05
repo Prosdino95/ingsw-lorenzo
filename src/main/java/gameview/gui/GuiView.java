@@ -22,7 +22,10 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -34,7 +37,7 @@ public class GuiView extends Application {
 	private Stage stage;
 	private ViewController viewController;
 	private Model model;
-	
+	private GUIState currentState=GUIState.ACTION;
 	private int currentSceneIndex = 1;
 	private List<Scene> scenes = new  ArrayList<Scene>(3);
 	private ClientRequest request=null;
@@ -84,7 +87,8 @@ public class GuiView extends Application {
 				requestController.giveSR(sr);
 			break;	
 			case LEADER:
-				requestController.giveSR(sr,true);
+				currentState=GUIState.QUESTION;
+				requestController.giveSR(sr);
 				break;
 			default:
 				System.out.println("GUIView -- Should this message get here? " + sr);
@@ -95,11 +99,12 @@ public class GuiView extends Application {
 			ServerResponse sr=viewController.syncSend(request);
 			switch (sr.getType()){
 			case QUESTION:
-				requestController.giveSR(sr,true);
+				currentState=GUIState.QUESTION;
+				requestController.giveSR(sr);
 			break;	
 			case ERROR:
 			case OK:
-				requestController.giveSR(sr,false);
+				requestController.giveSR(sr);
 			break;	
 			default:
 				System.out.println("GUIView -- Should this message get here? " + sr);
@@ -124,13 +129,16 @@ public class GuiView extends Application {
 			this.player = model.getPlayer(player.getTeam());
 		switch(model.getState()){
 		case GAME_FINISH:
+			assert(false);
 			break;
 		case PLAYER_PLAING:
+			currentState=GUIState.ACTION;
 			break;
 		case SET_UP_ROUND:
 			System.out.println("GUIView -- Setting up round for turn: " + model.turn);
 			break;
 		case VATICAN_TIME:
+			currentState=GUIState.VATICAN;
 			requestController.giveSR(new ServerResponse(new Question(GameQuestion.VATICAN_SUPPORT,Question.yesOrNo())));
 			break;
 		default:
@@ -175,6 +183,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/Request.fxml"));
 		Pane requestPane;
 		requestPane = loader.load();
+		requestPane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		requestController = loader.getController();
 		bs = new Scene(requestPane);
 		addScene(bs);		
@@ -183,6 +192,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));
 		Pane requestPane2;
 		requestPane2 = loader.load();
+		requestPane2.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		pbc = loader.getController();
 		bs = new Scene(requestPane2);
 		addScene(bs);	
@@ -191,6 +201,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/PlayerBoard2.fxml"));
 		Pane requestPane3;
 		requestPane3 = loader.load();
+		requestPane3.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		pbc2 = loader.getController();
 		bs = new Scene(requestPane3);
 		addScene(bs);	
@@ -219,16 +230,16 @@ public class GuiView extends Application {
 			});
 		}
 		
-		Model m = new Model(4);
+	/*	Model m = new Model(4);
 		m.setupRound();
-		Board b = m.getBoard();
+		Board b = m.getBoard();*/
 		
 		boardController.initialize(this, requestController);
 		requestController.initialize(this);
 		pbc.initialize(requestController, this);
 		pbc2.initialize(null);
 
-		
+	/*	
 		this.model = m;
 		this.player = m.getPlayer(Team.RED);
 		player.giveCard(b.ventureCards.get(0));
@@ -243,20 +254,19 @@ public class GuiView extends Application {
 		player.giveLeaderCard(girolamo);
 		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
 		player.giveLeaderCard(girolamo);
-
+*/
 		
 		
 		stage.setTitle("Il magnifico");
+		stage.show();
 		updateGui();
 	}
 	
 	private boolean getPressed() {
-		// TODO Auto-generated method stub
 		return pressed;
 	}
 
 	private synchronized void setPressed(boolean b) {
-		// TODO Auto-generated method stub
 		pressed = b;
 	}
 
@@ -315,9 +325,9 @@ public class GuiView extends Application {
 		System.out.println("GUIView -- Index " + this.currentSceneIndex);
 		if (getStage().getScene() != getCurrentScene()) {
 			// Non dovrei invertire show e hide? Lo scatto e' supervisibile
-			getStage().hide();
+			//getStage().hide();
 			getStage().setScene(getCurrentScene());
-			getStage().show();
+			//getStage().show();
 		}
 	}
 
@@ -339,6 +349,10 @@ public class GuiView extends Application {
 	
 	public void setRequest(ClientRequest request) {
 		this.request = request;
+	}
+
+	public GUIState getState() {
+		return currentState;
 	}
 }
 

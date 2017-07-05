@@ -11,8 +11,8 @@ import java.util.Random;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
-import gamemodel.actionSpace.RealActionSpace;
-import gamemodel.actionSpace.RealTowerActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
@@ -73,7 +73,7 @@ public class Board implements Serializable {
 				if (card==null) {
 					System.err.println("Finished cards");
 				}
-				((RealTowerActionSpace) as).attachDevelopmentCard(card);
+				((TowerActionSpace) as).attachDevelopmentCard(card);
 			}
 		}
 		dice.rollDice();
@@ -102,13 +102,13 @@ public class Board implements Serializable {
 		return null;
 	}
 
-	public void addActionSpace(RealActionSpace a) {
+	public void addActionSpace(ActionSpace a) {
 		this.actionSpaces.add(a);
 	}
 
-	public RealActionSpace getActionSpace(int id) {
+	public ActionSpace getActionSpace(int id) {
 		for (ActionSpace as : this.actionSpaces) {
-			if (as.getId() == id) return (RealActionSpace) as;
+			if (as.getId() == id) return (ActionSpace) as;
 		}
 		return null;
 	}

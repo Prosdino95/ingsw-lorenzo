@@ -22,9 +22,9 @@ public class ClientRequest  implements Serializable{
 	private Color which;
 	private String answer;
 	private Player player;
-	private LeaderCard leaderCard;
 	private LeaderCardAction action;
 	private Integer lcID;
+	private transient LeaderCard sleaderCard;
 	
 	public ClientRequest(String string) {
 		type = RequestType.ANSWER;
@@ -34,17 +34,18 @@ public class ClientRequest  implements Serializable{
 	public ClientRequest(LeaderCard lc, LeaderCardAction action) {
 		type = RequestType.LEADERCARD;
 		this.setAction(action); 
-		this.leaderCard = lc;
+		sleaderCard = lc;
+		this.lcID = lc.getId();
 	}
 	
 	
 	public void setWhichLeaderCard(LeaderCard lc) {
-		leaderCard = lc;
+		sleaderCard = lc;
 		lcID = lc.getId();
 	}
 	
 	public LeaderCard getLeaderCard() {
-		return leaderCard;
+		return sleaderCard;
 	}
 
 	
@@ -129,7 +130,7 @@ public class ClientRequest  implements Serializable{
 		case IWANTMONEY:
 			break;
 		case LEADERCARD:
-			str += "LeaderCard: " + leaderCard + " Action: " + getAction();
+			str += "LeaderCard: " + sleaderCard + " Action: " + getAction();
 			break;
 		case PLACEFAMILYMEMBER:
 			str += "Where: " + where + " Servants: " + servants + "Which: " + which;
@@ -161,7 +162,7 @@ public class ClientRequest  implements Serializable{
 	}
 
 	public List<LeaderCardAction> possibleLeaderCardActions() {
-		return leaderCard.getPossibleActions();
+		return sleaderCard.getPossibleActions();
 
 	}
 

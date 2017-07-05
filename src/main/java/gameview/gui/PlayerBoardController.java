@@ -72,10 +72,10 @@ public class PlayerBoardController
 			HarvesterAndBuildings cc=player.getTerritories().get(c);
 			GUICard gc=new GUICard(cc);
 			Pane pane=gc.getPane();
-			pane.setLayoutX(35);
-			pane.setLayoutY(58);
-			pane.setScaleX(1.8);
-			pane.setScaleY(1.8);
+			pane.setLayoutX(20);
+			pane.setLayoutY(35);
+			pane.setScaleX(1.5);
+			pane.setScaleY(1.5);
 			territoryCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
 		for(int c=0;c<player.getBuildings().size();c++)
@@ -83,20 +83,26 @@ public class PlayerBoardController
 			HarvesterAndBuildings cc=player.getBuildings().get(c);
 			GUICard gc=new GUICard(cc);
 			Pane pane=gc.getPane();
-			pane.setLayoutX(35);
-			pane.setLayoutY(58);
-//			pane.setScaleX(1.8);
-//			pane.setScaleY(1.8);
+			pane.setLayoutX(20);
+			pane.setLayoutY(35);
+			pane.setScaleX(1.5);
+			pane.setScaleY(1.5);
 			buildingCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
 		
 		int c;
-		for(c=0;c< Math.min(player.getLCList().size(), leaderCardPaneList.size()); c++)
-		{
+		for(c=0;c< leaderCardPaneList.size(); c++)
+		{	
+			Pane lcPane = leaderCardPaneList.get(c);
+			lcPane.getChildren().clear();
+			
+			if (c >= player.getLCList().size()) break;
+			
 			LeaderCard cc= player.getLCList().get(c);
 			GuiLeaderCard gc = new GuiLeaderCard(cc);
 			Pane pane=gc.getPane();
-
+			lcPane.getChildren().add(gc.getPane());
+		
 			int d = c;
 			pane.setOnMouseEntered(e -> {
 				pane.toFront();
@@ -121,19 +127,7 @@ public class PlayerBoardController
 				ClientRequest cr = this.getNextRequest(cc);
 				rc.setCr(cr);
 				gv.updateGui();
-			});
-
-//			pane.setLayoutX(35);
-//			pane.setLayoutY(40);
-//			pane.setScaleX(1.4);
-//			pane.setScaleY(1.4);
-			
-			Pane lcPane = leaderCardPaneList.get(c);
-			while (!lcPane.getChildren().isEmpty()) {
-				lcPane.getChildren().remove(0);
-			}
-			lcPane.getChildren().add(gc.getPane());
-			
+			});			
 			showCurrentRequest();
 		}
 

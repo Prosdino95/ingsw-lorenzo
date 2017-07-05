@@ -51,10 +51,10 @@ public class PlayerBoardController2
 			CharactersCard cc=player.getCharacters().get(c);
 			GUICard gc=new GUICard(cc);
 			Pane pane=gc.getPane();
-			pane.setLayoutX(35);
-			pane.setLayoutY(58);
-			pane.setScaleX(1.8);
-			pane.setScaleY(1.8);
+			pane.setLayoutX(20);
+			pane.setLayoutY(35);
+			pane.setScaleX(1.5);
+			pane.setScaleY(1.5);
 			characterCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
 		for(int c=0;c<player.getVentures().size();c++)

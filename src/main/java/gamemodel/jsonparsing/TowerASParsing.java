@@ -47,13 +47,13 @@ public class TowerASParsing {
 	
 	private void makeAS(String tower){
     	switch(tower){
-			case "territories":AS.add(new RealTowerActionSpace(id,cost,effects,territories,TYPE));
+			case "territories":AS.add(new TowerActionSpace(id,cost,effects,territories,TYPE));
 			break;
-			case "buildings":AS.add(new RealTowerActionSpace(id,cost,effects,buildings,TYPE));
+			case "buildings":AS.add(new TowerActionSpace(id,cost,effects,buildings,TYPE));
 			break;
-			case "ventures":AS.add(new RealTowerActionSpace(id,cost,effects,ventures,TYPE));
+			case "ventures":AS.add(new TowerActionSpace(id,cost,effects,ventures,TYPE));
 			break;
-			case "characters":AS.add(new RealTowerActionSpace(id,cost,effects,characters,TYPE));
+			case "characters":AS.add(new TowerActionSpace(id,cost,effects,characters,TYPE));
 			break;
     	}
 	}	

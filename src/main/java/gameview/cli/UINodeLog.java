@@ -12,6 +12,8 @@ import reti.ServerResponse;
 public class UINodeLog extends UINode 
 {
 
+	private boolean leaderPlayed = false;
+
 	public UINodeLog(String desc, UITree tree,ViewController hs) 
 	{
 		super(desc, tree);
@@ -62,6 +64,7 @@ public class UINodeLog extends UINode
 					} catch (OfflineException e) {
 						System.out.println("Catched offline exception");
 					}
+					leaderPlayed  = true;
 					break;
 				default:
 					System.out.println("Should this message get here? " + sr);
@@ -69,7 +72,7 @@ public class UINodeLog extends UINode
 				}
 			}
 			
-			if(tree.hasModel && tree.hasPlayer) {
+			if(tree.inKeyboard.ready() && leaderPlayed && tree.hasModel && tree.hasPlayer) {
 				run=false;
 			}
 		}

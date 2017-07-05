@@ -79,6 +79,7 @@ public class Controller{
 			break;
 		case VATICAN_REPORT:
 			hv.getPlayer().vaticanReport(Integer.parseInt(request.getAnswer()));
+			hv.sendResponse(new ServerResponse());
 			break;
 		case CHAT:
 			break;
@@ -119,6 +120,7 @@ public class Controller{
 			this.notifyNewModel();
 			break;
 		case ANSWER:
+			assert(false);
 			break;
 		case IWANTMONEY:
 			Player pl = hv.getPlayer();

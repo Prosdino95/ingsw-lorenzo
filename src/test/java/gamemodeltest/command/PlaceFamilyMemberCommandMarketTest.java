@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpaceType;
-import gamemodel.actionSpace.RealActionSpace;
+import gamemodel.actionSpace.ActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
@@ -20,7 +20,7 @@ public class PlaceFamilyMemberCommandMarketTest {
 	
 	Board b;
 	Player p1;
-	RealActionSpace a0,a1;
+	ActionSpace a0,a1;
 	IstantEffect e;
 	GameError s;
 	int id0,id1;	
@@ -37,8 +37,8 @@ public class PlaceFamilyMemberCommandMarketTest {
 		b=new Board();
 		b.setDice(1, 7, 0);
 		p1=new Player(new Resource(5,5,5,5), b, Team.RED,model);
-		a0=new RealActionSpace(0,5, e, ActionSpaceType.MARKET);
-		a1=new RealActionSpace(1,0, e, ActionSpaceType.MARKET);
+		a0=new ActionSpace(0,5, e, ActionSpaceType.MARKET);
+		a1=new ActionSpace(1,0, e, ActionSpaceType.MARKET);
 		p1.prepareForNewRound();
 		model.setCurretPlayer(p1);
 	}

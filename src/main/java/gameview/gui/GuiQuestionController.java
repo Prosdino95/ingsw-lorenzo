@@ -30,13 +30,14 @@ public class GuiQuestionController {
 	@FXML TextFlow text;
 	@FXML VBox question;
 	@FXML TextField servants;
-	@FXML TextFlow servantsQuest;
+	@FXML TextFlow playerTurn;
 	@FXML AnchorPane root;
 	private ToggleGroup choices;
 	private ServerResponse sr;
 	private String answer;
 	
 	public void update(ServerResponse sr){
+	//	text.setStyle("-fx-font-size: 14px;");
 		servants.setDisable(true);
 		choices=new ToggleGroup();
 		question.setSpacing(-20);
@@ -70,7 +71,6 @@ public class GuiQuestionController {
 
 	private void initializeQuestion() {		
 		Text text=new Text(sr.getQuestion().getGq().toString());
-		this.text.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");
 		this.text.getChildren().add(text);	
 		if(sr.getQuestion().getGq()==GameQuestion.HOW_MANY_FMS)
 			questionHowMany();
@@ -97,7 +97,7 @@ public class GuiQuestionController {
 			rbutton.setId(id.toString());
 			rbutton.setToggleGroup(choices);
 			Text chooseText=new Text(o.toString());	
-			chooseText.setFont(Font.font(7));
+			chooseText.setFont(Font.font(11.5));
 			vbox.getChildren().add(rbutton);
 			TextFlow textFlow=new TextFlow(chooseText);
 			double top=12;
@@ -153,7 +153,8 @@ private void initializeTextOnly() {
 	}
 
 	public void initialize() {
-		this.text.getChildren().add(new Text("it's time to play"));	
+		text.setStyle("-fx-font-size: 14px;");
+		text.getChildren().add(new Text("it's time to play"));	
 		servants.setDisable(true);
 	}
 
@@ -162,15 +163,17 @@ private void initializeTextOnly() {
 			question.getChildren().clear();	
 		if(!text.getChildren().isEmpty())
 			text.getChildren().clear();	
-		if(!servantsQuest.getChildren().isEmpty())
-			servantsQuest.getChildren().clear();
 	}
 
 	public void setCurrentPlayer(Player player) {
-		Text t=new Text();
-		t.setFill(Color.WHITE);		
-		t.setText("player turn: "+ player.getTeam());
-		servantsQuest.getChildren().add(t);
+		playerTurn.getChildren().clear();	
+		Text t=new Text("");
+		t.setFill(Color.WHITE);	
+		if(player==null)
+			t.setText("No one's turn! Maybe the Pope is waiting for you?");
+		else
+			t.setText("player turn: "+ player.getTeam());		
+		playerTurn.getChildren().add(t);
 	}
 }
 

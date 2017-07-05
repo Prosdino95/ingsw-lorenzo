@@ -12,14 +12,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.BoardController">
    <children>
-      <Pane fx:id="councilPlace" layoutX="734.0" layoutY="526.0" prefWidth="271.0" style="-fx-background-color: #fac4;">
-         <children>
-            <ImageView fitHeight="126.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Turno.jpg" />
-               </image>
-            </ImageView>
-         </children></Pane>
+      <ImageView fitHeight="126.0" fitWidth="271.0" layoutX="734.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Turno.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="councilPlace" layoutX="734.0" layoutY="526.0" prefHeight="126.0" prefWidth="271.0" />
       <Pane layoutX="733.55" layoutY="9.35">
          <children>
             <ImageView fitHeight="236.3" fitWidth="323.0" pickOnBounds="true" preserveRatio="true">

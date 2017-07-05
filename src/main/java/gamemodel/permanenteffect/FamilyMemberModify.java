@@ -57,11 +57,11 @@ public class FamilyMemberModify extends PermanentEffect {
 	@Override
 	public String toString() {
 		String s = "";
-		s+="FM :";
+		s+="FM: ";
 		if(type!=null)
 			s+=type;
-		s+="colored";
-		s+="have /n";
+		else s+="colored";
+		s+="have ";
 		if(set!=0)
 			s+=set+"point";
 		if(quantity!=0){

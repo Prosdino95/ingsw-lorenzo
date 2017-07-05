@@ -39,11 +39,10 @@ public class RequestController {
 	@FXML Pane orangeFM;
 	@FXML Pane uncoloredFM;
 	private GuiQuestionController questionController;
-	private boolean question=false;
+
 
 	public void initialize(GuiView gv) throws IOException {
 		this.gv=gv;
-		root.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		FXMLLoader loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/GuiQuestion.fxml"));
 		serverResponse.getChildren().add(loader.load());
@@ -107,7 +106,11 @@ public class RequestController {
 	
 	public void sendRequest(){
 		ServerResponse sr = null;
-		if(question) {
+		if(gv.getState()==GUIState.VATICAN){
+			setCr(new ClientRequest(questionController.getAnswer(),RequestType.VATICAN_REPORT));
+			gv.setRequest(getCr());
+		}
+		if(gv.getState()==GUIState.QUESTION) {
 			setCr(new ClientRequest(questionController.getAnswer()));
 			gv.setRequest(getCr());
 		} else {
@@ -125,12 +128,6 @@ public class RequestController {
 		System.out.println("RequestController -- Sending a finish action");
 		gv.setRequest(new ClientRequest());
 		showCurrentRequest();
-	}
-
-	public void giveSR(ServerResponse sr,boolean question) {
-		questionController.clear();
-		this.question=question;
-		questionController.update(sr);
 	}
 
 	public void giveSR(ServerResponse sr) {

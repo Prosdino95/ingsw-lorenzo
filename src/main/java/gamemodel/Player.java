@@ -445,7 +445,7 @@ public class Player implements Serializable{
 			lc.activateOPT();
 		}
 
-		public void discardLC(LeaderCard lc) {
+		private void discardLC(LeaderCard lc) {
 			lc.discard();
 			leaderCards.remove(lc);
 		}

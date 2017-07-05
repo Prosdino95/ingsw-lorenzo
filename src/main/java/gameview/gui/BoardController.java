@@ -11,8 +11,8 @@ import java.util.List;
 import gamemodel.Color;
 import gamemodel.Model;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.RealActionSpace;
-import gamemodel.actionSpace.RealTowerActionSpace;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gameview.gui.actionspacecontroll.ActionSpaceControll;
 import javafx.event.Event;
@@ -45,9 +45,10 @@ public class BoardController {
 		blackDice.getChildren().add(text);
 			
 		for (Integer id : asIdList) {
-			RealActionSpace as = model.getBoard().getActionSpace(id);
+			ActionSpace as = model.getBoard().getActionSpace(id);
 			Pane asp=asPaneList.get(id);
 			try {
+				asp.getChildren().clear();
 				asp.getChildren().add(makeAS(as));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -56,8 +57,8 @@ public class BoardController {
 			if (as == null) {
 				continue;
 			}
-			if (as instanceof RealTowerActionSpace) {
-				Card card = ((RealTowerActionSpace) as).getCard();
+			if (as instanceof TowerActionSpace) {
+				Card card = ((TowerActionSpace) as).getCard();
 				Pane cardPane = cardPaneList.get(id);
 				if (!cardPane.getChildren().isEmpty()) 
 					cardPane.getChildren().remove(0);

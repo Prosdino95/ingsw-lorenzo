@@ -65,7 +65,7 @@ public class ASParsing {
 
 	private void marketAS(){
     	this.type=ActionSpaceType.MARKET;
-    	AS.add(new RealActionSpace(id,cost, effects, type));   	
+    	AS.add(new ActionSpace(id,cost, effects, type));   	
     }
 
 }

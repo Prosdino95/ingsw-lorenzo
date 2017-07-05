@@ -12,7 +12,7 @@ import gamemodel.FamilyMember;
 import gamemodel.Player;
 import gamemodel.effects.IstantEffect;
 
-public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
+public class MemoryActionSpace extends ActionSpace implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private List<Player> players=new ArrayList<>();
@@ -57,11 +57,6 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	}
 
 	@Override
-	/*public String toString() {
-		return "MemoryActionSpace [players=" + players + ", getPlayers()=" + getPlayers() + ", getEffects()="
-				+ getEffects() + "]";
-	}*/
-
 	public String toString() {
 		String str = "";
 		str += this.getId();

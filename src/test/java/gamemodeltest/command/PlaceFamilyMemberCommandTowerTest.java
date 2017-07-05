@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpaceType;
-import gamemodel.actionSpace.RealTowerActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
@@ -27,7 +27,7 @@ public class PlaceFamilyMemberCommandTowerTest {
 	Tower t,t1;
 	Board b;
 	Player p1,p2,p3;
-	RealTowerActionSpace a0,a1,a2;
+	TowerActionSpace a0,a1,a2;
 	IstantEffect e;
 	GameError s;
 	int id0,id1,id2;
@@ -50,10 +50,10 @@ public class PlaceFamilyMemberCommandTowerTest {
 		c1=new HarvesterAndBuildings(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects,effects, CardType.TERRITORY,0);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
 		p2=new Player(new Resource(2,5,5,5), b, Team.BLUE,model);
-		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
-		a1=new RealTowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
+		a0=new TowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
+		a1=new TowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
-		a2=new RealTowerActionSpace(2,5, e, t1, ActionSpaceType.TOWER);
+		a2=new TowerActionSpace(2,5, e, t1, ActionSpaceType.TOWER);
 		p1.prepareForNewRound();
 		p2.prepareForNewRound();
 		a0.attachDevelopmentCard(c0);

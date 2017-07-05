@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.PlayerBoardController2">
+<AnchorPane prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.PlayerBoardController2">
    <children>
       <ImageView fitHeight="230.8" fitWidth="854.7" layoutX="11.111111111111112" layoutY="21.36752136752137">
          <image>
@@ -17,9 +20,9 @@
             <Image url="@ventureCardPlayer.jpg" />
          </image>
       </ImageView>
-      <Pane fx:id="character0" layoutX="17.094017094017094" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane layoutX="11.111111111111112" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" style="-fx-background-color: #ff1a;" />
-      <Pane layoutX="427.35042735042737" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="character0" layoutX="17.094017094017094" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane layoutX="11.111111111111112" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" />
+      <Pane layoutX="427.35042735042737" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" />
       <Pane layoutX="905.982905982906" layoutY="29.914529914529915" prefHeight="448.71794871794873" prefWidth="52.991452991452995" style="-fx-background-color: #ff1a;">
          <children>
             <ImageView fitHeight="448.7" fitWidth="74.3" pickOnBounds="true" preserveRatio="true">
@@ -28,16 +31,16 @@
                </image>
             </ImageView>
          </children></Pane>
-      <Pane fx:id="character1" layoutX="164.10256410256412" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="character2" layoutX="307.69230769230774" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="character3" layoutX="451.2820512820513" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="character4" layoutX="594.0170940170941" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="character5" layoutX="738.4615384615385" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="venture0" layoutX="17.094017094017094" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="venture1" layoutX="164.10256410256412" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="character1" layoutX="164.10256410256412" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character2" layoutX="307.69230769230774" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character3" layoutX="451.2820512820513" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character4" layoutX="594.0170940170941" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character5" layoutX="738.4615384615385" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture0" layoutX="17.094017094017094" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture1" layoutX="164.10256410256412" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
       <Pane fx:id="venture2" layoutX="307.69230769230774" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="venture3" layoutX="451.2820512820513" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="venture4" layoutX="594.0170940170941" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
-      <Pane fx:id="venture5" layoutX="738.4615384615385" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" style="-fx-background-color: #ff1a;" />
+      <Pane fx:id="venture3" layoutX="451.2820512820513" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture4" layoutX="594.0170940170941" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture5" layoutX="738.4615384615385" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
    </children>
 </AnchorPane>

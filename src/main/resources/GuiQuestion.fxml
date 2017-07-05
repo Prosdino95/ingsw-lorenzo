@@ -102,6 +102,6 @@
       </ImageView>
       <TextField fx:id="servants" layoutX="600.0" layoutY="27.0" prefHeight="32.0" prefWidth="32.0" />
       <TextFlow fx:id="text" layoutX="100.0" layoutY="17.0" prefHeight="55.0" prefWidth="229.0" />
-      <TextFlow fx:id="servantsQuest" layoutX="430.0" layoutY="10.0" prefHeight="64.0" prefWidth="137.0" />
+      <TextFlow fx:id="playerTurn" layoutX="430.0" layoutY="10.0" prefHeight="64.0" prefWidth="137.0" />
    </children>
 </AnchorPane>

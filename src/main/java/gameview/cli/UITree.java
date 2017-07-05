@@ -196,12 +196,19 @@ public class UITree {
 	public String getString() throws OfflineException {
 		if (viewController == null)
 			throw new OfflineException();
+		String s = "0";
 		try {
-			return inKeyboard.readLine();
+			s = inKeyboard.readLine();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return getString();
+		try{
+			Integer.parseInt(s);
+		}catch(NumberFormatException e){
+			return getString();
+		}		
+		return s;
 	}
 
 	
