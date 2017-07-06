@@ -106,19 +106,17 @@ public class ActionSpace implements Serializable {
 	}
 
 	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += this.getType();
-		str+=" ";
-		if(this.getEffects().isEmpty())
-			str +=this.getEffects();
-		str+=", ";
-		if(this.free)
-			str+="free";
-		else
-			str+="occupy";
-		str+="\n";
+		String str = "\n";
+		str += "-" + this.getType() + " action space\n";
+		if(!this.getEffects().isEmpty()) {
+			str += "- Effects: \n";
+			for (IstantEffect e : this.getEffects()) {
+				str += "-- " + e + "\n";
+			}
+		}
+		if(!this.free)
+			str+="- Occupied by " + familyMember + "\n";
+
 		return str;
 	}
 

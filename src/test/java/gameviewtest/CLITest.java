@@ -40,7 +40,7 @@ public class CLITest {
 		intChoices.addLast(0);
 		stringChoices.addLast("0");
 		responses.addLast(new ServerResponse());
-		intChoices.addLast(3);
+		intChoices.addLast(4);
 
 		uiTree = new UITree(intChoices, stringChoices, messages, responses);
 		

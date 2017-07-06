@@ -115,11 +115,14 @@ public class Board implements Serializable {
 
 	public String toString() {
 		String str = "";
-		str += "Action Spaces\n";
+		str += "Here come the action spaces\n";
 		for (ActionSpace as : actionSpaces) {
 			str += as.toString();
-			str += "\n";
 		}
+		str += "\n";
+		
+		str += "The dices -> " + dice + "\n";
+		str += "And the excommunication cards -> " + excommunicationCards + "\n"; 
 		return str;
 	}
 

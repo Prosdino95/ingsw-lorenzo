@@ -1,6 +1,7 @@
 package gameview.cli;
 
 import java.io.IOException;
+import java.util.function.Supplier;
 
 import gamemodel.Model;
 import gamemodel.Team;
@@ -59,8 +60,18 @@ public class UINodeLog extends UINode
 					break;
 				case LEADER:
 					System.out.println(sr.getQuestion());
+					Supplier<Boolean> asdf = () -> {
+						System.out.println("Ain't got time for this, just select one of the possible choices");
+						return true;
+					};
 					try {
-						tree.sendRequestToServer(new ClientRequest(this.tree.getString()));
+						String s = null;
+						Integer i;
+						do {
+							i = this.tree.getInt();
+						} while (i >= sr.getQuestion().getChoose().size() && asdf.get());
+						s = i.toString();
+						tree.sendRequestToServer(new ClientRequest(s));
 					} catch (OfflineException e) {
 						System.out.println("Catched offline exception");
 					}

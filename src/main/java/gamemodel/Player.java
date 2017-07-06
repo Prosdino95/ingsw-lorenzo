@@ -417,9 +417,35 @@ public class Player implements Serializable{
 
 		@Override
 		public String toString() {
-			return "Player [team=" + team + ", resource=" + resource + ", point=" + point + ", buildings=" + buildings
-					+ ", territories=" + territories + ", ventures=" + ventures + ", characters=" + characters
-					+ ", death=" + death + ", familyMembers=" + familyMembers + "]";
+			String str = "";
+			
+			str += "\n"
+				  + "| " + team + "\n" +
+					"| He has [" + resource + "] resources and [" + point + "] points\n";
+			      
+			
+//			Boolean b = buildings != null;
+//			Boolean t = territories != null;
+//			Boolean c = characters != null;
+//			Boolean v = ventures != null;
+
+//			if (b || t || c || v)
+				str += "| His cards -> ";
+//			if (b)
+				str += buildings + " ";
+//			if (t)
+				str += this.territories + " ";
+//			if (v)
+				str += this.ventures + " ";
+//			if (c)
+				str += this.characters + " ";
+				
+			str += "\n";
+					
+			str += "| His leader cards -> ";
+			str += this.getLCList();
+				
+			return str;
 		}
 
 		public List<LeaderCard> getLCList() {

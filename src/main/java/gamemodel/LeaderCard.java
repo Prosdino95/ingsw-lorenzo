@@ -78,7 +78,7 @@ public class LeaderCard implements Serializable {
 
 	@Override
 	public String toString() {
-		String s = "" + name + " Req: " + requirement + " State: " + state;
+		String s = "" + name + " Requirements: " + requirement + " State: " + state;
 		if (hasPE()) {
 			s += " PermEff: " + pe;
 		} else if (hasOPR()) {
