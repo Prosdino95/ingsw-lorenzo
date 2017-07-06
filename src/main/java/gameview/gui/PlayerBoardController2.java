@@ -5,6 +5,7 @@ import java.util.List;
 
 import gamemodel.Player;
 import gamemodel.card.CharactersCard;
+import gamemodel.card.Excommunication;
 import gamemodel.card.VentureCard;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -27,10 +28,14 @@ public class PlayerBoardController2
 	@FXML Pane venture4;
 	@FXML Pane venture5;
 	@FXML Pane servants,gold,faith,stone,victory,military,wood;
+	@FXML Pane excommunication0;
+	@FXML Pane excommunication1;
+	@FXML Pane excommunication2;
 	
 	List<Pane> characterCardPaneList=new ArrayList<>();
 	List<Pane> ventureCardPaneList=new ArrayList<>();
 	List<Pane> resPoint=new ArrayList<>();
+	List<Pane> excommunicationCardPaneList=new ArrayList<>();
 	
 	public void initialize(Object object)
 	{
@@ -53,6 +58,9 @@ public class PlayerBoardController2
 		resPoint.add(victory);
 		resPoint.add(military);
 		resPoint.add(faith);
+		excommunicationCardPaneList.add(excommunication0);
+		excommunicationCardPaneList.add(excommunication1);
+		excommunicationCardPaneList.add(excommunication2);
 	}
 	
 	public void update(Player player) 
@@ -80,6 +88,13 @@ public class PlayerBoardController2
 			pane.setScaleY(1.5);
 			ventureCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
+		for(int c=0;c<3;c++)
+		{
+			Excommunication exCard=player.getBoard().getExcommunicationCards()[c];
+			GuiExcommunicationCard gc=new GuiExcommunicationCard(exCard);
+			excommunicationCardPaneList.get(c).getChildren().add(gc.getPane());
+		}
+		
 		for(Pane p:this.resPoint)
 			p.getChildren().clear();
 		Font f=new Font(30);

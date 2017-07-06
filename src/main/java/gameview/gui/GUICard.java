@@ -1,11 +1,6 @@
 package gameview.gui;
 
-
-
-
 import java.io.IOException;
-
-
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import javafx.fxml.FXMLLoader;
@@ -67,8 +62,7 @@ public class GUICard
 				} 
 			}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("file fxml not found");
 		}
 				return pane;
 	}

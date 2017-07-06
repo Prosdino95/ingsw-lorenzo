@@ -44,8 +44,5 @@ public class CharacterCardController
 			this.permanentEffect.getChildren().add(permanentEffect);
 		}
 		
-		
-		
-		
 	}
 }

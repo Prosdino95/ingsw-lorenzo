@@ -458,6 +458,9 @@ public class Player implements Serializable{
 		public void setBoard(Board b) {
 			board = b;
 		}
+		public Board getBoard() {
+			return board;
+		}
 
 		public void registerPermanentEffect(PermanentEffect tempEffect) {
 			if (tempEffect == null) return;
