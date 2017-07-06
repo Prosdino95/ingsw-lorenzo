@@ -58,20 +58,21 @@ public class MemoryActionSpace extends ActionSpace implements Serializable {
 
 	@Override
 	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += this.getType();
-		str+=" ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects();
-		if(!this.players.isEmpty()){
-			str+=", players:[";
-			for(Player p:players)
-				str +=p.getTeam()+" ";
-			str+="] ";
-		}	
-		str+="\n";
+		String str = "\n";
+
+		str += "-" + this.getType() + " action space";
+		if(!this.getEffects().isEmpty()) {
+			str += "\n";
+			str += "- Effects: \n";
+			for (IstantEffect e : this.getEffects()) {
+				str += "-- " + e + "\n";
+			}
+		}
+		if(!this.fm.isEmpty()) {
+			str+="- Occupied by " + this.fm;
+		}
+		str += "\n";
+
 		return str;
 	}
 	

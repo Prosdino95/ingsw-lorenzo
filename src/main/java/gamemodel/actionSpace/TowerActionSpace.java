@@ -42,17 +42,21 @@ public class TowerActionSpace extends ActionSpace implements Serializable {
 	}
 	
 	public String toString() {
-		String str = "";
-		str += this.getActionCost();
-		str += "-> ";
-		str += "tower";
-		str += this.getTower();
-		str += " ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects() +"\n";
-		if(!(card==null)){	
-			str += card.toString();
-		}	
+		String str = "\n";
+		str += "- Floor " + this.getId() % 4 + " in " + tower.getType() + " tower action space\n";
+		str += "- Action cost -> " + this.getActionCost();
+		if(!this.getEffects().isEmpty()) {
+			str += "\n";
+			str += "- Effects:";
+			for (IstantEffect e : this.getEffects()) {
+				str += "\n";
+				str += "--" + e;
+			}
+		}
+		if(!(card==null)){
+			str += "\n";
+			str += "- Holding card\n" + card.toString();
+		}
 		return str;
 	}
 			

@@ -94,6 +94,21 @@ public class UITree {
 						request::possibleLeaderCardActions,
 						this);
 		
+		UINodeChooseUI examineGame = new UINodeChooseUI("Examine game", this);
+		UINode board = new UINode("The board", this) {
+			public void run() {
+				System.out.println(tree.getModel().getBoard());
+			}
+		}; 
+		UINode players = new UINode("The players", this) {
+			public void run() {
+				for (Player p : this.tree.getModel().getPlayers()) {
+					System.out.print(p + "\n");
+				}
+			}
+		};
+				new UINodeChooseValue<>("Player", System.out::println, () -> this.getModel().getPlayers(), this);
+				
 		UINodeSetRequest giveMeMoney = 
 				new UINodeSetRequest("I WANT money. Now.", 
 						request::setType, 
@@ -126,6 +141,10 @@ public class UITree {
 				    whatLeader
 				    .addSon(
 				      talkToServer))))
+			  .addSon(
+				examineGame
+				.addSon(board)
+				.addSon(players))
 			  .addSon(
 				finishTurn
 				.addSon(
