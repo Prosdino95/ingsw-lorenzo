@@ -34,10 +34,10 @@ public class UITree {
 	private List<String> stringChoices;
 	private List<ServerResponse> messages;
 	private List<ServerResponse> responses;
-	private long fakeDelay = 1000;
+	private long fakeDelay = 400;
 	
 	public UITree(List<Integer> intChoices, List<String> stringChoices, List<ServerResponse> messages, LinkedList<ServerResponse> responses2) {
-		this((ViewController)null);
+		this((ViewController) null);
 		this.fakeIntChoices = intChoices;
 		this.stringChoices = stringChoices;
 		this.messages = messages;
@@ -142,7 +142,7 @@ public class UITree {
 
 	protected void shutdown() {
 		live=false;
-		if (viewController == null)
+		if (isOffline())
 			return;
 		viewController.shutdown();
 		
@@ -162,7 +162,7 @@ public class UITree {
 
 	public ServerResponse sendRequestToServer(ClientRequest request) {
 		ServerResponse srr;
-		if (viewController == null)
+		if (isOffline())
 			return this.responses.remove(0);
 		else 
 			srr = viewController.syncSend(request);
@@ -181,7 +181,7 @@ public class UITree {
 	}
 
 	public int getInt() throws OfflineException {
-		if (viewController == null)
+		if (isOffline())
 			throw new OfflineException();
 		try {
 			return Integer.parseInt(inKeyboard.readLine());
@@ -194,7 +194,7 @@ public class UITree {
 	}
 
 	public String getString() throws OfflineException {
-		if (viewController == null)
+		if (isOffline())
 			throw new OfflineException();
 		String s = "0";
 		try {
@@ -242,6 +242,12 @@ public class UITree {
 		}
 		Integer choice = fakeIntChoices.remove(0);
 		System.out.println("Chose: " + choice);
+		try {
+			Thread.sleep(this.fakeDelay);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return choice;
 	}
 
@@ -253,18 +259,28 @@ public class UITree {
 		}
 		String choice = stringChoices.remove(0);
 		System.out.println("Chose: " + choice);
+		try {
+			Thread.sleep(this.fakeDelay);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return choice;
 	}
 
 	public boolean hasMessage() {
-		if (viewController == null) {
+		if (isOffline()) {
 			return !messages.isEmpty();
 		}
 		return viewController.hasMessage();
 	}
+	
+	boolean isOffline() {
+		return viewController == null;
+	}
 
 	public ServerResponse getMessage() {
-		if (viewController == null) {
+		if (isOffline()) {
 			return messages.remove(0);
 		}
 		return viewController.getMessage();

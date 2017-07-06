@@ -72,7 +72,10 @@ public class UINodeLog extends UINode
 				}
 			}
 			
-			if(tree.inKeyboard.ready() && leaderPlayed && tree.hasModel && tree.hasPlayer) {
+			if (tree.isOffline())
+				leaderPlayed = true;
+			boolean canPlay = leaderPlayed && tree.hasModel && tree.hasPlayer;
+			if(canPlay && (tree.inKeyboard.ready() || tree.isOffline())) {
 				run=false;
 			}
 		}
