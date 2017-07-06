@@ -229,6 +229,10 @@ public class Model implements Serializable {
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
+		if(num<4){
+			board.getActionSpaces().remove(board.getActionSpace(20));
+			board.getActionSpaces().remove(board.getActionSpace(21));
+		}
 		
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);

@@ -27,13 +27,19 @@ public class Exchange implements IstantEffect,Serializable
 		this.councilPrivilegesIn=councilPrivilegesIn;
 	}
 	
+	public boolean canExchange(Player player){
+		return (player.isEnoughtPoint(this.pointsOut) && player.isEnoughtResource(this.resourcesOut));
+	}
+	
 	@Override
 	public void activate(Player player) throws GameException
 	{
 		if(!player.isEnoughtPoint(this.pointsOut))
-			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+			return;
+			//throw new GameException(GameError.RESOURCE_ERR_EFFECT);
 		if(!player.isEnoughtResource(this.resourcesOut))
-			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+			return;
+			//throw new GameException(GameError.RESOURCE_ERR_EFFECT);
 		player.addPoint(pointsIn);
 		player.subPoint(pointsOut);
 		player.addResources(resourcesIn);

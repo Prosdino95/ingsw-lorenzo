@@ -150,11 +150,11 @@ public class Player implements Serializable{
 
 	public void prepareForNewRound() {
 		board.getDice().setFMActionPoints(familyMembers);
-		
+		for(FamilyMember fm:familyMembers)
+			fm.prepareForNewRound();
 		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.FM)){
 			((FamilyMemberModify)permanentEffect).modify(this.familyMembers);
-		}
-		
+		}		
 	}
 
 	public void subPoint(Point point) {

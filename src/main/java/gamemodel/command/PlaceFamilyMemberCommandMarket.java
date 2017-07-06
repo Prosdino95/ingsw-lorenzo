@@ -48,6 +48,7 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 					if(IsEnoughtStrong())
 						if(controlServant()){
 							f.getPlayer().getFamilyMember(f.getColor()).use();
+							a.setFamilyMember(f);
 							a.activateEffect(f);
 							a.occupy();				
 							}
