@@ -24,6 +24,7 @@ import reti.ClientRequest;
 import reti.RequestType;
 import reti.ResponseType;
 import reti.ServerResponse;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -84,14 +85,32 @@ public class RequestController {
 	
 	public void generateFM() {
 		Player p=gv.getPlayer();
-		if(!p.getFamilyMember(Color.BLACK).isUsed())
+		Font font=new Font(20);
+		if(!p.getFamilyMember(Color.BLACK).isUsed()){
 			MakeFM.makeFM(blackFM, p.getFamilyMember(Color.BLACK),60,40);
-		if(!p.getFamilyMember(Color.ORANGE).isUsed())
-			MakeFM.makeFM(orangeFM, p.getFamilyMember(Color.ORANGE),60,40);	
-		if(!p.getFamilyMember(Color.WHITE).isUsed())
+			Text blackPoint=new Text(""+p.getFamilyMember(Color.BLACK).getActionpoint());
+			blackPoint.setFill(javafx.scene.paint.Color.WHITE);
+			blackPoint.setFont(font);
+			blackFM.getChildren().add(new TextFlow(blackPoint));
+		}
+		if(!p.getFamilyMember(Color.ORANGE).isUsed()){
+			MakeFM.makeFM(orangeFM, p.getFamilyMember(Color.ORANGE),60,40);
+			Text orangePoint=new Text(""+p.getFamilyMember(Color.ORANGE).getActionpoint());
+			orangePoint.setFont(font);
+			orangeFM.getChildren().add(new TextFlow(orangePoint));
+		}
+		if(!p.getFamilyMember(Color.WHITE).isUsed()){
 			MakeFM.makeFM(whiteFM, p.getFamilyMember(Color.WHITE),60,40);	
-		if(!p.getFamilyMember(Color.UNCOLORED).isUsed())
+			Text whitePoint=new Text(""+p.getFamilyMember(Color.WHITE).getActionpoint());
+			whitePoint.setFont(font);
+			whiteFM.getChildren().add(new TextFlow(whitePoint));
+		}
+		if(!p.getFamilyMember(Color.UNCOLORED).isUsed()){
 			MakeFM.makeFM(uncoloredFM, p.getFamilyMember(Color.UNCOLORED),60,40);	
+			Text uncoloredPoint=new Text(""+p.getFamilyMember(Color.UNCOLORED).getActionpoint());
+			uncoloredPoint.setFont(font);
+			uncoloredFM.getChildren().add(new TextFlow(uncoloredPoint));
+		}
 	}
 
 	public void setActionSpace(Integer id) {
@@ -119,20 +138,18 @@ public class RequestController {
 	}
 	
 	public void sendRequest(){
-		if(gv.getState()==GUIState.START) return;
-		ServerResponse sr = null;
+		if(gv.getState()==GUIState.IDLE) return;
 		if(gv.getState()==GUIState.VATICAN){
 			setCr(new ClientRequest(questionController.getAnswer(),RequestType.VATICAN_REPORT));
 			gv.setRequest(getCr());
 		}
-		if(gv.getState()==GUIState.QUESTION) {
+		else if(gv.getState()==GUIState.QUESTION) {
 			setCr(new ClientRequest(questionController.getAnswer()));
 			gv.setRequest(getCr());
 		} else {
 			gv.setRequest(getCr());
 		}
 		questionController.clear();
-		System.out.println("RequestController -- Receve: " + sr);
 		System.out.println("RequestController -- Sent: " + getCr());
 		setCr(new ClientRequest());
 		showCurrentRequest();

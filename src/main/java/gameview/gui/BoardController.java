@@ -19,6 +19,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -35,6 +36,18 @@ public class BoardController {
 	
 	public void update(Model model) {
 		if(model==null) return;
+		int numPlayer=model.getPlayers().size();
+		
+		if(numPlayer>2){
+			coverHP1.setOpacity(0);
+			coverHP2.setOpacity(0);
+		}
+		if(numPlayer>3){
+			coverm1.setOpacity(0);
+			coverm2.setOpacity(0);
+			asPaneList.get(20).setMouseTransparent(false);
+			asPaneList.get(21).setMouseTransparent(false);
+		}
 		blackDice.getChildren().clear();
 		whiteDice.getChildren().clear();
 		orangeDice.getChildren().clear();
@@ -46,6 +59,7 @@ public class BoardController {
 			
 		for (Integer id : asIdList) {
 			ActionSpace as = model.getBoard().getActionSpace(id);
+			if(as==null) continue;
 			Pane asp=asPaneList.get(id);
 			try {
 				asp.getChildren().clear();
@@ -53,9 +67,6 @@ public class BoardController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			if (as == null) {
-				continue;
 			}
 			if (as instanceof TowerActionSpace) {
 				Card card = ((TowerActionSpace) as).getCard();
@@ -156,7 +167,8 @@ public class BoardController {
 		 asPaneList.add(councilPlace);
 		 
 		
-		 
+		asPaneList.get(20).setMouseTransparent(true);
+		asPaneList.get(21).setMouseTransparent(true);
 		 
 		 for (Integer id : asIdList) {
 			 	if(id<16)
@@ -277,6 +289,7 @@ public class BoardController {
 	@FXML Pane asMarket2;
 	@FXML Pane asMarket3;
 	@FXML Pane asMarket4;
+	@FXML ImageView coverHP1,coverHP2,coverm1,coverm2;
 
 }
 

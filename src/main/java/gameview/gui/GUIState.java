@@ -3,6 +3,6 @@ package gameview.gui;
 public enum GUIState {
 	VATICAN,
 	ACTION,
-	START,
+	IDLE,
 	QUESTION;
 }

@@ -37,7 +37,7 @@ public class GuiView extends Application {
 	private Stage stage;
 	private ViewController viewController;
 	private Model model;
-	private GUIState currentState=GUIState.START;
+	private GUIState currentState=GUIState.IDLE;
 	private int currentSceneIndex = 1;
 	private List<Scene> scenes = new  ArrayList<Scene>(3);
 	private ClientRequest request=null;

@@ -32,7 +32,7 @@ public class MakeFM {
 		case BLUE: return Color.CORNFLOWERBLUE;
 		case GREEN: return Color.DARKSEAGREEN;
 		case RED:	return Color.INDIANRED;
-		case YELLOW: return Color.YELLOW;
+		case YELLOW: return Color.YELLOW.desaturate().brighter();
 		default: return Color.FUCHSIA;
 		}
 	}

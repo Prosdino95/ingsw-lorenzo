@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -21,8 +22,52 @@
          </image>
       </ImageView>
       <Pane fx:id="character0" layoutX="17.094017094017094" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
-      <Pane layoutX="11.111111111111112" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" />
-      <Pane layoutX="427.35042735042737" layoutY="497.43589743589746" prefHeight="170.94017094017096" prefWidth="362.3931623931624" />
+      <Pane layoutX="11.0" layoutY="497.0" prefHeight="171.0" prefWidth="541.0">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="19.0" layoutY="24.0" preserveRatio="true">
+               <image>
+                  <Image url="@woodresource.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="45.0" layoutX="152.0" layoutY="21.0" preserveRatio="true">
+               <image>
+                  <Image url="@coinResource.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="6.0" layoutY="94.0" preserveRatio="true">
+               <image>
+                  <Image url="@Stone.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="wood" layoutX="66.0" layoutY="31.0" prefHeight="41.0" prefWidth="77.0" />
+            <TextFlow fx:id="stone" layoutX="75.0" layoutY="95.0" prefHeight="41.0" prefWidth="69.0" />
+            <TextFlow fx:id="gold" layoutX="204.0" layoutY="28.0" prefHeight="41.0" prefWidth="77.0" />
+            <ImageView fitHeight="95.0" fitWidth="60.0" layoutX="281.0" layoutY="15.0" preserveRatio="true">
+               <image>
+                  <Image url="@faith.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="faith" layoutX="356.0" layoutY="28.0" prefHeight="41.0" prefWidth="69.0" />
+            <ImageView fitHeight="94.0" fitWidth="69.0" layoutX="277.0" layoutY="81.0" preserveRatio="true">
+               <image>
+                  <Image url="@military.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="military" layoutX="346.0" layoutY="96.0" prefHeight="41.0" prefWidth="69.0" />
+            <ImageView fitHeight="95.0" fitWidth="69.0" layoutX="464.0" layoutY="15.0" preserveRatio="true">
+               <image>
+                  <Image url="@victory.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="victory" layoutX="461.0" layoutY="116.0" prefHeight="41.0" prefWidth="69.0" textAlignment="CENTER" />
+            <ImageView fitHeight="79.0" fitWidth="53.0" layoutX="152.0" layoutY="86.0" preserveRatio="true">
+               <image>
+                  <Image url="@servants.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="servants" layoutX="204.0" layoutY="95.0" prefHeight="41.0" prefWidth="77.0" />
+         </children></Pane>
+      <Pane layoutX="552.0" layoutY="497.0" prefHeight="171.0" prefWidth="414.0" />
       <Pane layoutX="905.982905982906" layoutY="29.914529914529915" prefHeight="448.71794871794873" prefWidth="52.991452991452995" style="-fx-background-color: #ff1a;">
          <children>
             <ImageView fitHeight="448.7" fitWidth="74.3" pickOnBounds="true" preserveRatio="true">

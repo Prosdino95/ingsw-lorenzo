@@ -27,6 +27,16 @@
             </ImageView>
             <Pane fx:id="asHAndp1" layoutY="30.0" prefHeight="85.0" prefWidth="294.0" />
             <Pane fx:id="asHAndp2" layoutY="139.0" prefHeight="85.0" prefWidth="294.0" />
+            <ImageView fx:id="coverHP2" fitHeight="200.0" fitWidth="95.0" layoutX="149.0" layoutY="79.0" mouseTransparent="true" rotate="-90.0">
+               <image>
+                  <Image url="@cover2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="coverHP1" fitHeight="200.0" fitWidth="95.0" layoutX="149.0" layoutY="-26.0" mouseTransparent="true" rotate="-90.0">
+               <image>
+                  <Image url="@cover.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="733.55" layoutY="261.8">
@@ -43,6 +53,16 @@
             <TextFlow fx:id="blackDice" layoutX="29.0" layoutY="180.0" prefHeight="17.0" prefWidth="13.0" />
             <TextFlow fx:id="whiteDice" layoutX="116.0" layoutY="180.0" prefHeight="17.0" prefWidth="13.0" />
             <TextFlow fx:id="orangeDice" layoutX="206.0" layoutY="180.0" prefHeight="17.0" prefWidth="13.0" />
+            <ImageView fx:id="coverm1" fitHeight="103.0" fitWidth="68.0" layoutX="185.0" layoutY="30.0" mouseTransparent="true" preserveRatio="true">
+               <image>
+                  <Image url="@coverm.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="coverm2" fitHeight="103.0" fitWidth="68.0" layoutX="247.0" layoutY="90.0" mouseTransparent="true" preserveRatio="true">
+               <image>
+                  <Image url="@coverm.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane prefHeight="680.0" prefWidth="707.1999999999999">

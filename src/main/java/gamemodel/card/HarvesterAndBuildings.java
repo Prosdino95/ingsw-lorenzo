@@ -46,15 +46,15 @@ public class HarvesterAndBuildings extends Card implements Serializable
 	public void activePermanentEffect(Player p) throws GameException 
 	{
 		int selection = 0;
-		if(getExchangeEffects(permanentEffects).size()>1)
-		{
+		if(getExchangeEffects(p).size()>1){
 			try {
-				selection = p.answerToQuestion(new Question(GameQuestion.SELECT_EXCHANGE,getExchangeEffects(permanentEffects)));
-			} catch (GameException e) {
+				selection = p.answerToQuestion(new Question(GameQuestion.SELECT_EXCHANGE,getExchangeEffects(p)));
+				} 
+			catch (GameException e) {
 				if (e.getType() == GameError.NOT_PLAYING_ONLINE)
 					selection = 0;
 			}
-			((Exchange) getExchangeEffects(permanentEffects).get(selection)).activate(p);
+			((Exchange) getExchangeEffects(p).get(selection)).activate(p);
 		}
 		else
 			for(IstantEffect e:this.permanentEffects)
@@ -66,20 +66,15 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		return this.permanentEffects;
 	}
 	
-	public List<Object> getExchangeEffects (List<IstantEffect> permanenetEffects)
+	private List<Object> getExchangeEffects (Player p)
 	{
 		List<Object> exchangeEffects=new ArrayList<>();
 		for(IstantEffect permanentEffect:permanentEffects)
 			if(permanentEffect instanceof Exchange)
-				exchangeEffects.add(permanentEffect);
+				if(((Exchange) permanentEffect).canExchange(p))
+					exchangeEffects.add((Exchange) permanentEffect);
 		return exchangeEffects;
 	}	
-
-	public String toStr6ing() {
-		return "HarvesterAndBuildings [actionCost=" + actionCost + ", name=" + name + ", resourceRequirement="
-				+ resourceRequirement + ", resourcePrice=" + resourcePrice + ", pointRequirement=" + pointRequirement
-				+ ", pointPrice=" + pointPrice + ", istantEffect=" + istantEffect + ", type=" + type + ", id=" + id + ", ]";
-	}
 	
 	
 	@Override
@@ -88,11 +83,11 @@ public class HarvesterAndBuildings extends Card implements Serializable
 		str +=this.type+"\n";
 		str +="id:"+this.id+" "+this.name+"\n";
 		if(resourceRequirement!=resourcePrice)
-			str +="resource requirement-> "+this.resourceRequirement+ "\n";
+			str +="resource req-> "+this.resourceRequirement+ "\n";
 		if(resourcePrice!=null)
 			str +="resource price-> "+this.resourcePrice+ "\n";			
 		if(pointRequirement!=pointPrice)
-			str +="point requirement-> "+this.pointRequirement+ "\n";
+			str +="point req-> "+this.pointRequirement+ "\n";
 		if(pointPrice!=null)
 			str +="point price-> "+this.pointPrice+ "\n";
 		if(this.istantEffect!=null)
