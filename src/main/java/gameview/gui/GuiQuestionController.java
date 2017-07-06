@@ -6,6 +6,7 @@ import java.util.List;
 
 import gamemodel.GameQuestion;
 import gamemodel.Player;
+import gamemodel.actionSpace.TowerActionSpace;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -97,7 +98,11 @@ public class GuiQuestionController {
 				rbutton.setSelected(true);
 			rbutton.setId(id.toString());
 			rbutton.setToggleGroup(choices);
-			Text chooseText=new Text(o.toString());	
+			Text chooseText= new Text();
+			if(o instanceof TowerActionSpace)
+				chooseText=new Text(((TowerActionSpace)o).toGui());
+			else 
+				chooseText=new Text(o.toString());	
 			chooseText.setFont(Font.font(11.5));
 			vbox.getChildren().add(rbutton);
 			TextFlow textFlow=new TextFlow(chooseText);
