@@ -45,13 +45,7 @@ public class Model implements Serializable {
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
 	private int delay;
-	
-	
-	public static void main(String[] args){
-		// Model m=new Model(4);
-		//System.out.println(m.getBoard().getActionSpaces());
-		//m.nextTurn();
-	}
+
 	
 	public Model(int num){
 		initializeGame(num);
@@ -89,8 +83,6 @@ public class Model implements Serializable {
 		switch(gameState){
 		case GAME_FINISH:
 			whoIsWinner(players);
-			//TODO messaggio vittoria
-			System.out.println("finitoooooooooooooooo");
 			controller.shutDown();
 			break;
 		case TURN_FINISH:
@@ -391,14 +383,8 @@ public class Model implements Serializable {
 		if(occurrence(players,"victory",players.get(0).getPoint().getVictory())>1)
 			for(Player player:turnOrder.getListActionOrder())
 				if(player.getPoint().getVictory()==players.get(0).getPoint().getVictory())
-				{
-					
 					players.set(0, player);
-					//System.out.println("The winner is " + player);
-					break;
-				}
-		else
-			System.out.println("The winner is " + players.get(0));  //TODO migliorare
+		controller.sendMessageToAll("The winner is " + players.get(0));
 	}
 
 	public Player getCurrentPlayer() {
