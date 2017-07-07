@@ -309,9 +309,9 @@ public class Player implements Serializable{
 	public void vaticanReport(int selection)
 	{
 		this.alradyPlaceVatican=true;
-		int period=1;
-		int requirement=0;
-		int victoryPoints=0;
+		int period=model.getTurn();
+		int requirement=model.getFaithPointsRequirement().get(period);
+		int victoryPoints=model.getVictoryPointsBoundedTofaithPoints().get(requirement);
 		if (this.death)
 			return;
 		

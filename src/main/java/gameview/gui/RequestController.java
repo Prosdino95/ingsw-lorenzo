@@ -138,12 +138,13 @@ public class RequestController {
 	}
 	
 	public void sendRequest(){
+		System.out.println(gv.getState());
 		if(gv.getState()==GUIState.IDLE) return;
 		if(gv.getState()==GUIState.VATICAN){
 			setCr(new ClientRequest(questionController.getAnswer(),RequestType.VATICAN_REPORT));
 			gv.setRequest(getCr());
 		}
-		else if(gv.getState()==GUIState.QUESTION) {
+		else if(gv.getState()==GUIState.QUESTION || gv.getState()==GUIState.LEADER) {
 			setCr(new ClientRequest(questionController.getAnswer()));
 			gv.setRequest(getCr());
 		} else {

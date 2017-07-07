@@ -88,7 +88,7 @@ public class GuiView extends Application {
 				requestController.giveSR(sr);
 			break;	
 			case LEADER:
-				currentState=GUIState.QUESTION;
+				currentState=GUIState.LEADER;
 				requestController.giveSR(sr);
 				break;
 			default:
@@ -106,7 +106,9 @@ public class GuiView extends Application {
 			case ERROR:
 			case OK:
 				requestController.giveSR(sr);
-				currentState=GUIState.ACTION;
+				if(currentState==GUIState.LEADER || currentState==GUIState.VATICAN) 
+					currentState=GUIState.IDLE;
+				else currentState=GUIState.ACTION;
 			break;	
 			default:
 				System.out.println("GUIView -- Should this message get here? " + sr);
@@ -347,6 +349,7 @@ public class GuiView extends Application {
 	public static void main(String[] args) {
         Application.launch(GuiView.class, args);
     }
+
 
 	public Stage getStage() {
 		return stage;

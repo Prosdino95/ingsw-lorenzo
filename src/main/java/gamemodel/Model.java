@@ -42,7 +42,7 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	public int turn=1;
+	public int turn=2;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
@@ -252,6 +252,15 @@ public class Model implements Serializable {
 		gameState=GameState.SET_UP_ROUND;
 	}
 	
+	
+	public int getTurn() {
+		return turn;
+	}
+
+	public Map<Integer, Integer> getFaithPointsRequirement() {
+		return faithPointsRequirement;
+	}
+
 	public void giveLeaderCard(Player player, int index) {
 		player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
 	}
