@@ -30,6 +30,13 @@ import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
 import reti.server.Controller;
 
+
+/**
+ * The Model object, is THE object representing the single game. It contains
+ * the initialization and termination of the game logic, and most
+ * importantly the finite state machine keeping track of the current state
+ * of the game.
+ */
 public class Model implements Serializable {
 
 	private static final long serialVersionUID = 1L;

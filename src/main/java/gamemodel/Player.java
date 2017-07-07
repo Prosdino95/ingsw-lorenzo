@@ -25,6 +25,12 @@ import gamemodel.permanenteffect.*;
 import reti.server.GameManager;
 
 
+/**
+ * Every player of the game has a Player object associated. Keeps track of
+ * resources, points, cards, its own family members.
+ * The Player objects are also the entry point of the model, from the
+ * point of view of the controller.
+ */
 public class Player implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Team team;

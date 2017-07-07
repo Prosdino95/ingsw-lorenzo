@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import gamemodel.permanenteffect.PEffect;
 
 
+/**
+ * The TurnOrder object contains the turn rotation logic. 
+ */
 public class TurnOrder{
 	
 	private ActionOrder actionOrder;

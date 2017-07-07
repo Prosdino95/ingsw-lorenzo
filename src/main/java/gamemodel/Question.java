@@ -7,6 +7,13 @@ import java.util.List;
 import reti.ClientRequest;
 import reti.RequestType;
 
+
+/**
+ * The Question object is used to ask questions to the player. During the
+ * processing of a client request any class can ask the model to ask a
+ * certain player a question. Question asking is synchronous. The model may
+ * get a PLAYER_DEAD exception.
+ */
 public class Question implements Serializable{
 
 	private static final long serialVersionUID = 1L;

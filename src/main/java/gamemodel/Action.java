@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import gamemodel.actionSpace.ActionSpace;
 
+/**
+ * The Action object is a structure keeping track of a place family member
+ * action: which player is doing the action, which family member gets placed,
+ * the target action space and the number of servants.
+ * 
+ */
 public class Action implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

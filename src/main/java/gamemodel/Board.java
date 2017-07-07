@@ -18,6 +18,12 @@ import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
 
+
+/**
+ * The Board object is the structure containing the action spaces, and the logic
+ * of preparing the new round.
+ * 
+ */
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
