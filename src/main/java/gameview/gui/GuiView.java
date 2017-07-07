@@ -23,11 +23,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import reti.ClientRequest;
@@ -38,12 +40,14 @@ public class GuiView extends Application {
 	private ViewController viewController;
 	private Model model;
 	private GUIState currentState=GUIState.IDLE;
-	private int currentSceneIndex = 1;
-	private List<Scene> scenes = new  ArrayList<Scene>(3);
 	private ClientRequest request=null;
 
+	private int currentPaneIndex = 2;
+	private List<Pane> panes = new ArrayList<Pane>();
+
 	private Pane rootPane;
-	private Scene boardScene;
+	
+	private Pane boardPane;
 	private BoardController boardController;
 	
 	private RequestController requestController;
@@ -159,29 +163,25 @@ public class GuiView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.setStage(stage);
-		this.viewController = new ViewController();
+//		this.viewController = new ViewController();
 		
-
 		task = new Timeline();
 		task.getKeyFrames().add(
-				new KeyFrame(Duration.seconds(1), e->eventHandler()));
+		new KeyFrame(Duration.seconds(1), e->eventHandler()));
 		task.setCycleCount(Timeline.INDEFINITE);
 		task.play();
+		
+		rootPane = new Pane();
 
 		FXMLLoader loader;
 		
 		loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Board2.fxml"));		
-		rootPane = loader.load();
+		boardPane = loader.load();
 		boardController = loader.getController();
-		rootPane.setOnMouseClicked(e -> {
-			System.out.println("GUIView -- " + boardScene.getWidth());
-			//updateGui();
-		});
-		rootPane.setStyle("-fx-background-color: #228b22");
-		Scene bs = new Scene(rootPane);
-		boardScene = bs;		
-		addScene(bs);
+		boardPane.setStyle("-fx-background-color: #228b22");
+		rootPane.getChildren().add(boardPane);
+		panes.add(boardPane);
 		
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Request.fxml"));
@@ -189,50 +189,52 @@ public class GuiView extends Application {
 		requestPane = loader.load();
 		requestPane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		requestController = loader.getController();
-		bs = new Scene(requestPane);
-		addScene(bs);		
+		rootPane.getChildren().add(requestPane);
+		panes.add(requestPane);
+
 		
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));
-		Pane requestPane2;
-		requestPane2 = loader.load();
-		requestPane2.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
+		Pane playerBoardPane;
+		playerBoardPane = loader.load();
+		playerBoardPane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		pbc = loader.getController();
-		bs = new Scene(requestPane2);
-		addScene(bs);	
-		
+		rootPane.getChildren().add(playerBoardPane);
+		panes.add(playerBoardPane);
+
+
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/PlayerBoard2.fxml"));
-		Pane requestPane3;
-		requestPane3 = loader.load();
-		requestPane3.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
+		Pane playerBoard2Pane;
+		playerBoard2Pane = loader.load();
+		playerBoard2Pane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
 		pbc2 = loader.getController();
-		bs = new Scene(requestPane3);
-		addScene(bs);	
+		rootPane.getChildren().add(playerBoard2Pane);
+		panes.add(playerBoard2Pane);
 	
+		rootPane.setOnKeyPressed(e -> {
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			if (getPressed()) return;
+			setPressed(true);
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			switch (e.getCode()) {
+			case A:
+				paneGoLeft();
+				break;
+			case D:
+				paneGoRight();
+				break;
+			default:
+				System.out.println("Don't know what to do with " + e.getCode());
+			}
+			
+		});
+		rootPane.setOnKeyReleased(e -> {
+			setPressed(false);
+		});
 		
-		for(Scene s:scenes){
-			s.setOnKeyPressed(e -> {
-				System.out.println("GUIView -- You pressed key " + e.getCode());
-				if (getPressed()) return;
-				setPressed(true);
-				System.out.println("GUIView -- You pressed key " + e.getCode());
-				switch (e.getCode()) {
-				case A:
-					sceneGoLeft();
-					break;
-				case D:
-					sceneGoRight();
-					break;
-				default:
-//					System.out.println("Don't know what to do with " + e.getCode());
-				}
-				
-			});
-			s.setOnKeyReleased(e -> {
-				setPressed(false);
-			});
-		}
+	
+	
 		
 	/*	Model m = new Model(4);
 		m.setupRound();
@@ -260,10 +262,33 @@ public class GuiView extends Application {
 		player.giveLeaderCard(girolamo);
 */
 		
-		
+		Scene scene=new Scene(rootPane);
+		scene.setOnKeyPressed(e -> {
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			if (getPressed()) return;
+			setPressed(true);
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			switch (e.getCode()) {
+			case A:
+				paneGoLeft();
+				break;
+			case D:
+				paneGoRight();
+				break;
+			default:
+				System.out.println("Don't know what to do with " + e.getCode());
+			}
+			
+		});
+		scene.setOnKeyReleased(e -> {
+			setPressed(false);
+		});
+	
+		stage.setScene(scene);
 		stage.setTitle("Il magnifico");
 		stage.show();
 		updateGui();
+		
 	}
 	
 	private boolean getPressed() {
@@ -274,41 +299,35 @@ public class GuiView extends Application {
 		pressed = b;
 	}
 
-	private Scene getCurrentScene() {
-		return scenes.get(currentSceneIndex);
+	private Pane getCurrentPane() {
+		return panes.get(currentPaneIndex);
 	}
 
-	private Scene getScene(int index) {
-		if (index >= 0 && index < scenes.size())
-			return scenes.get(index);
+	private Pane getScene(int index) {
+		if (index >= 0 && index < panes.size())
+			return panes.get(index);
 		else
 			return null;
 	}
 
-	private void addScene(Scene scene) {
-		scenes.add(scene);
+	private void paneGoRight() {
+		Pane next = getScene(currentPaneIndex + 1);
+		if (next != null) {
+			currentPaneIndex += 1;
+		} else {
+			currentPaneIndex = 0;
+		}
+		updateGui();
 	}
 
-	private void sceneGoRight() {
-		Scene next = getScene(currentSceneIndex + 1);
+	private void paneGoLeft() {
+		Pane next = getScene(currentPaneIndex - 1);
 		if (next != null) {
-			currentSceneIndex += 1;
+			currentPaneIndex -= 1;
 		} else {
-			currentSceneIndex = 0;
+			currentPaneIndex = panes.size() - 1;
 		}
-		changeScene();
-		//updateGui();
-	}
-
-	private void sceneGoLeft() {
-		Scene next = getScene(currentSceneIndex - 1);
-		if (next != null) {
-			currentSceneIndex -= 1;
-		} else {
-			currentSceneIndex = scenes.size() - 1;
-		}
-		changeScene();
-		//updateGui();
+		updateGui();
 	}
 		
 	
@@ -327,21 +346,11 @@ public class GuiView extends Application {
 		pbc2.update(player);
 		boardController.update(this.model);
 		requestController.update();
-		System.out.println("GUIView -- You're in scene " + this.getCurrentScene());
-		System.out.println("GUIView -- Index " + this.currentSceneIndex);
-		if (getStage().getScene() != getCurrentScene()) {
-			// Non dovrei invertire show e hide? Lo scatto e' supervisibile
-			//getStage().hide();
-			getStage().setScene(getCurrentScene());
-			//getStage().show();
-		}
+		System.out.println("GUIView -- You're in scene " + this.getCurrentPane());
+		System.out.println("GUIView -- Index " + this.currentPaneIndex);
+		getCurrentPane().toFront();
 	}
 	
-	void changeScene(){
-		if (getStage().getScene() != getCurrentScene())
-			getStage().setScene(getCurrentScene());
-	}
-
 	public void setModel(Model m) {
 		this.model = m; 
 	}
