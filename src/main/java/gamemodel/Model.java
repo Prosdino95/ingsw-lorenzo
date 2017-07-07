@@ -38,7 +38,7 @@ public class Model implements Serializable {
 	private transient TurnOrder turnOrder;
 	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
-	private transient Controller controller;
+	private transient Controller controller = new FakeController(this);
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();

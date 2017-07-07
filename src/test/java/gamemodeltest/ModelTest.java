@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import gamemodel.GameState;
 import gamemodel.Model;
 import gamemodel.Point;
 
@@ -50,7 +51,14 @@ public class ModelTest
 		assertEquals(new Point(0,0,7),model2.getPlayers().get(1).getPoint());
 		assertEquals(new Point(7,0,5),model2.getPlayers().get(2).getPoint());
 	}
+	
+	@Test
+	public void finiteStateMachineTest() throws InterruptedException {
+		Model m = new Model(4, 0);
+		while (m.getState() != GameState.GAME_FINISH) {
+			m.updateState();
+			System.out.println(m.getState());
+		}
+	}
 
-	
-	
 }
