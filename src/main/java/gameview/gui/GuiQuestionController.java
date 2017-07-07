@@ -88,6 +88,7 @@ public class GuiQuestionController {
 			VBox vbox=new VBox();
 			vbox.setStyle("-fx-background-color: transparent;");
 			RadioButton rbutton=new RadioButton();
+			rbutton.setFocusTraversable(false);
 			if(id%4==0){
 				hbox=new HBox();
 				hbox.setSpacing(20);

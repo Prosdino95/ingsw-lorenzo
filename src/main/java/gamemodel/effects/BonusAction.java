@@ -42,7 +42,7 @@ public class BonusAction implements IstantEffect {
 
 	public BonusAction(Board board, int actionValue, ActionSpaceType asType) {
 		if (asType != ActionSpaceType.HARVEST &&
-			asType != ActionSpaceType.PRODUCTION) throw new RuntimeException();
+			asType != ActionSpaceType.PRODUCTION) throw new AssertionError();
 		this.board = board;
 		this.actionValue = actionValue;
 		this.asType = asType;
@@ -90,15 +90,8 @@ public class BonusAction implements IstantEffect {
 				chosenServantsNo = defaultNS;
 		}
 		
-//		System.out.println(chosenActionSpace);
-		System.out.println(player);
-		
 		player.placeFamilyMember(new Action(player, chosenActionSpace, familyMember, chosenServantsNo));
 		player.removePermanentEffect(tempEffect);
-
-//		System.out.println(chosenActionSpace);
-		System.out.println(player);
-
 
 	}
 

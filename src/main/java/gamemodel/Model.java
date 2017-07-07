@@ -137,8 +137,7 @@ public class Model implements Serializable {
 				try {
 					currentPlayer.finishAction();
 				} catch (GameException e) {
-					// TODO Auto-generated catch block
-					throw new RuntimeException();
+					throw new AssertionError();
 				}
 			break;
 		case SET_UP_ROUND:
@@ -279,7 +278,7 @@ public class Model implements Serializable {
 		for (Player p : players) {
 			if (p.getTeam() == team) return p;
 		}
-		throw new RuntimeException();
+		throw new AssertionError();
 	}
 	
 
@@ -348,8 +347,7 @@ public class Model implements Serializable {
 					}
 					catch (GameException e) 
 					{
-						// TODO Auto-generated catch block
-						throw new RuntimeException();
+						throw new AssertionError();
 					}
 				}
 			int resources=player.getResource().getGold();

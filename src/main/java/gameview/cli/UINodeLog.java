@@ -108,7 +108,7 @@ public class UINodeLog extends UINode
 			break;
 		case VATICAN_TIME:
 			System.out.println("it's time to play with the Pope, unless you're too poor");
-			System.out.println("yes or not???");
+			System.out.println("1)yes \n 2)not");
 			try {
 				tree.sendRequestToServer(new ClientRequest(this.tree.getString(),
 						RequestType.VATICAN_REPORT));

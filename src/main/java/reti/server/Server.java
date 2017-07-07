@@ -1,5 +1,6 @@
 package reti.server;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -15,6 +16,8 @@ import java.util.concurrent.*;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 
+import gamemodel.jsonparsing.CustomizationFileReader;
+
 public class Server {
 	
 	private ExecutorService pool = Executors.newCachedThreadPool();
@@ -27,31 +30,25 @@ public class Server {
 	private int gameDelay;
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
+		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);	
 		Server server=new Server();
 		server.setUpServer();
-		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));		
+		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));
 		server.serverSocket=new ServerSocket(server.port);			
 		//Registry registry = LocateRegistry.getRegistry();
 		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
 		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
 		server.start();
+		
 	}
 
-	private void setUpServer() throws IOException{
-		Path path = FileSystems.getDefault().getPath("Config/ServerConfig.json");
-		List<String> jsonFile=Files.readAllLines(path);
-		StringBuilder builder = new StringBuilder();
-		for(String s : jsonFile) {
-		    builder.append(s);
-		}
-		String config = builder.toString();
+	private void setUpServer() throws IOException{	
+		String config = CustomizationFileReader.reedFile(new File("Config/ServerConfig.json"));
 		JsonObject item=Json.parse(config).asObject();	
 		port=item.getInt("port", 3003);
 		delay=item.getInt("server-delay", 1000);
 		gameDelay=item.getInt("game-deley", 200000);
-		//FileSystems.getDefault().close();
 	}
 
 	private void start() throws IOException {

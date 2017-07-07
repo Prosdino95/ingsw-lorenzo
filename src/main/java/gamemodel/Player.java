@@ -104,7 +104,7 @@ public class Player implements Serializable{
 		if(r==null) return;
 		
 		if(!r.isEnought(new Resource(0,0,0,0)))
-			throw new RuntimeException();
+			throw new AssertionError();
 		
 		for(PermanentEffect permanentEffect:this.getPEffects(PEffect.DEBUFF_RESOURCE))
 		{
@@ -424,22 +424,11 @@ public class Player implements Serializable{
 			str += "\n"
 				  + "| " + team + "\n" +
 					"| He has [" + resource + "] resources and [" + point + "] points\n";
-			      
-			
-//			Boolean b = buildings != null;
-//			Boolean t = territories != null;
-//			Boolean c = characters != null;
-//			Boolean v = ventures != null;
-
-//			if (b || t || c || v)
+			      		
 				str += "| His cards -> ";
-//			if (b)
 				str += buildings + " ";
-//			if (t)
 				str += this.territories + " ";
-//			if (v)
 				str += this.ventures + " ";
-//			if (c)
 				str += this.characters + " ";
 				
 			str += "\n";
@@ -503,7 +492,7 @@ public class Player implements Serializable{
 			if (permanentEffects.contains(eff))
 				permanentEffects.removeIf(e -> e.equals(eff));
 			else
-				throw new RuntimeException();
+				throw new AssertionError();
 		}
 
 		public boolean isDead() {

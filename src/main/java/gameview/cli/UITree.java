@@ -107,7 +107,6 @@ public class UITree {
 				}
 			}
 		};
-				new UINodeChooseValue<>("Player", System.out::println, () -> this.getModel().getPlayers(), this);
 				
 		UINodeSetRequest giveMeMoney = 
 				new UINodeSetRequest("I WANT money. Now.", 
@@ -219,8 +218,7 @@ public class UITree {
 		try {
 			s = inKeyboard.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 Thread.currentThread().interrupt();
 		}
 		try{
 			Integer.parseInt(s);
@@ -264,8 +262,7 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 Thread.currentThread().interrupt();
 		}
 		return choice;
 	}
@@ -281,8 +278,7 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 Thread.currentThread().interrupt();
 		}
 		return choice;
 	}

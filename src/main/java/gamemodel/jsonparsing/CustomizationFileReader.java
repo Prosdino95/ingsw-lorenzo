@@ -17,7 +17,7 @@ public class CustomizationFileReader<T> {
 		return parser.apply(json);
 	}
 		
-	private static String reedFile(File f){
+	public static String reedFile(File f){
     	StringBuilder config = new StringBuilder();
     	try {
     	    BufferedReader reader = new BufferedReader(new FileReader(f));

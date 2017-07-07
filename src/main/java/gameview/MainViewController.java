@@ -1,5 +1,7 @@
 package gameview;
 
+import java.io.IOException;
+
 import gameview.cli.CLIView;
 import gameview.gui.GuiView;
 import javafx.beans.value.ChangeListener;
@@ -53,7 +55,6 @@ public class MainViewController {
 	
 	public void connect() throws Exception{
 		if(viewChoose=="cli"){
-			Runtime.getRuntime().exec("/Users/ProsdoTheWolf/Desktop/test.sh");
 			CLIView.cliStart(networkChoose);
 		}
 		if(viewChoose=="gui"){
