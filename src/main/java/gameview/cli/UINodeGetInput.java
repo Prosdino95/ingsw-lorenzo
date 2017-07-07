@@ -24,7 +24,7 @@ public class UINodeGetInput extends UINode {
 		try {
 			set.accept(choose);
 		} catch (NumberFormatException e) {
-			System.out.println("QUANTI => Mi serve un numero");
+			System.out.println("How many => I need a number");
 			run();
 		}
 		super.run();

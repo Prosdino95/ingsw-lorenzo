@@ -45,7 +45,7 @@ public class UINodeChooseValue<E extends Object> extends UINode {
 			setter.accept(choose);			
 			super.run();
 		} catch(IndexOutOfBoundsException e) {
-			System.out.println("Invalin choise");
+			System.out.println("Invalid choise");
 			run();
 		}
 	}

@@ -1,4 +1,4 @@
-package gameview.gui;
+	package gameview.gui;
 
 
 import java.util.ArrayList;
