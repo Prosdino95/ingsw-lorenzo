@@ -37,7 +37,7 @@ public class Player implements Serializable{
 	private Board board;	
 	private transient List<PermanentEffect> permanentEffects = new ArrayList<>();	
 	private transient Action currentAction = new Action();
-	private transient Model model;
+	private Model model;
 	private boolean death=false;
 	private List<LeaderCard> leaderCards = new ArrayList<>();
 	private List<FamilyMember> familyMembers; 
@@ -444,7 +444,10 @@ public class Player implements Serializable{
 					
 			str += "| His leader cards -> ";
 			str += this.getLCList();
-				
+			str += "\n";
+			str += "| Excomunivation in Game -> ";
+			for(int c=0;c<3;c++)
+				str += model.getBoard().getExcommunicationCards()[c];
 			return str;
 		}
 

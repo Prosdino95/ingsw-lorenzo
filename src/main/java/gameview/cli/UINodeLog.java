@@ -101,7 +101,7 @@ public class UINodeLog extends UINode
 		case GAME_FINISH:
 			break;
 		case PLAYER_PLAING:
-			System.out.println("it's Player turn :"+model.getCurrentPlayer());
+			System.out.println("it's Player turn :"+model.getCurrentPlayer().toString2());
 			break;
 		case SET_UP_ROUND:
 			System.out.println("the turn is finished:"+model.turn);
