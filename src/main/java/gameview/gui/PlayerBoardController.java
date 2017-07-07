@@ -39,7 +39,11 @@ public class PlayerBoardController
 	private RequestController rc;
 	private GuiView gv;
 	
+	private Player playerToBeShown;
+	
 	LeaderCardAction lcAction;
+	private int playerIndex = 0;
+	private boolean controlsEnabled = true;
 
 	public void initialize(RequestController rc, GuiView gv)
 	{
@@ -64,9 +68,11 @@ public class PlayerBoardController
 		leaderCardPaneList.add(leader3);
 	}
 	
-	public void update(Player player) 
+	public void update() 
 	{
+		Player player = this.getPlayerToBeShown();
 		if(player==null) return;
+		
 		for(Pane p:territoryCardPaneList)
 			p.getChildren().clear();
 		for(int c=0;c<player.getTerritories().size();c++)
@@ -80,6 +86,7 @@ public class PlayerBoardController
 			pane.setScaleY(1.5);
 			territoryCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
+
 		for(Pane p:buildingCardPaneList)
 			p.getChildren().clear();
 		for(int c=0;c<player.getBuildings().size();c++)
@@ -107,6 +114,7 @@ public class PlayerBoardController
 			Pane pane=gc.getPane();
 			lcPane.getChildren().add(gc.getPane());
 		
+			 
 			int d = c;
 			pane.setOnMouseEntered(e -> {
 				pane.toFront();
@@ -127,11 +135,13 @@ public class PlayerBoardController
 				
 			});
 			
-			pane.setOnMouseClicked(e -> {
-				ClientRequest cr = this.getNextRequest(cc);
-				rc.setCr(cr);
-				gv.updateGui();
-			});			
+			if (this.controlsEnabled) {
+				pane.setOnMouseClicked(e -> {
+					ClientRequest cr = this.getNextRequest(cc);
+					rc.setCr(cr);
+					gv.updateGui();
+				});
+			}
 			showCurrentRequest();
 		}
 
@@ -167,5 +177,27 @@ public class PlayerBoardController
 		
 	}
 
-	
+	@FXML public void showMyPlayer() {
+		playerToBeShown = gv.myPlayer();
+		controlsEnabled = true;
+		gv.updateGui();
+	}
+
+	@FXML public void showNextPlayer() {
+		System.out.println(gv.otherPlayers());
+		playerToBeShown = gv.otherPlayers().get(nextPlayerIndex());
+		controlsEnabled = false;
+		gv.updateGui();
+	}
+
+	private int nextPlayerIndex() {
+		playerIndex += 1;
+		if (playerIndex  >= gv.otherPlayers().size())
+			playerIndex = 0;
+		return playerIndex;
+	}
+
+	public Player getPlayerToBeShown() {
+		return playerToBeShown;
+	}
 }

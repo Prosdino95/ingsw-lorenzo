@@ -43,6 +43,8 @@ public class PlayerBoardController2
 	List<Pane> resPoint=new ArrayList<>();
 	List<Pane> excommunicationCardPaneList=new ArrayList<>();
 	
+	PlayerBoardController otherPB;
+	
 	public void initialize(Object object)
 	{
 		characterCardPaneList.add(character0);
@@ -69,8 +71,10 @@ public class PlayerBoardController2
 		excommunicationCardPaneList.add(excommunication2);	
 	}
 	
-	public void update(Player player) 
+	public void update(PlayerBoardController pbc) 
 	{
+		otherPB = pbc;
+		Player player = otherPB.getPlayerToBeShown();
 		if(player==null) return;
 		
 		churchDetail0.getChildren().clear();

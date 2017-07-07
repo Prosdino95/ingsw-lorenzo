@@ -46,7 +46,7 @@ public class GuiView extends Application {
 	private boolean pressed= false;
 	private Player player;
 	private Timeline task;
-	private String networkChoose;
+	private String networkChoose="socket";
 
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
@@ -228,7 +228,7 @@ public class GuiView extends Application {
 		pbc.initialize(requestController, this);
 		pbc2.initialize(null);
 
-	/*	
+		/*
 		this.model = m;
 		this.player = m.getPlayer(Team.RED);
 		player.giveCard(b.ventureCards.get(0));
@@ -243,7 +243,7 @@ public class GuiView extends Application {
 		player.giveLeaderCard(girolamo);
 		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
 		player.giveLeaderCard(girolamo);
-*/
+		*/
 		
 		Scene scene=new Scene(rootPane);
 		scene.setOnKeyPressed(e -> {
@@ -329,8 +329,8 @@ public class GuiView extends Application {
 	}*/
 	
 	void updateGui() {
-		pbc.update(player);
-		pbc2.update(player);
+		pbc.update();
+		pbc2.update(pbc);
 		boardController.update(this.model);
 		requestController.update();
 		System.out.println("GUIView -- You're in scene " + this.getCurrentPane());
@@ -361,6 +361,22 @@ public class GuiView extends Application {
 
 	public GUIState getState() {
 		return currentState;
+	}
+	
+	public Player myPlayer() {
+		if (this.player == null) return null;
+		return this.player;
+	}
+	
+	public List<Player> otherPlayers() {
+		List<Player> ps = this.model.getPlayers();
+		Player myPlayerInTheModel = null;
+		for (Player p : ps) {
+			if (p.getTeam() == this.player.getTeam())
+				myPlayerInTheModel = p;
+		}
+		ps.remove(myPlayerInTheModel);
+		return ps;
 	}
 }
 
