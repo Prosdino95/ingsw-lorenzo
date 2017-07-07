@@ -47,7 +47,7 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	public int turn=2;
+	public int turn=6;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
@@ -90,6 +90,12 @@ public class Model implements Serializable {
 		switch(gameState){
 		case GAME_FINISH:
 			whoIsWinner(players);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			controller.shutDown();
 			break;
 		case TURN_FINISH:
@@ -389,9 +395,12 @@ public class Model implements Serializable {
 				}
 		if(occurrence(players,"victory",players.get(0).getPoint().getVictory())>1)
 			for(Player player:turnOrder.getListActionOrder())
-				if(player.getPoint().getVictory()==players.get(0).getPoint().getVictory())
+				if(player.getPoint().getVictory()==players.get(0).getPoint().getVictory()){
 					players.set(0, player);
-		controller.sendMessageToAll("The winner is " + players.get(0));
+					break;
+				}
+			
+		controller.sendMessageToAll(" The winner is " + players.get(0).toString2());
 	}
 
 	public Player getCurrentPlayer() {
