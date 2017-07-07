@@ -1,13 +1,13 @@
 package gamemodel.permanenteffect;
 
 public enum PEffect {
-	DEBUFF_RESOURCE,  //no
-	DEBUFF_POINT,  //no
-	MODIFY_STRENGTH, //no
-	DISCOUNT,//no
-	FM,//no
+	DEBUFF_RESOURCE,
+	DEBUFF_POINT, 
+	MODIFY_STRENGTH, 
+	DISCOUNT,
+	FM,
 	HALVE_SERVANTS,
-	NO_ACTION_SPACE, //no
+	NO_ACTION_SPACE, 
 	NO_MATTER_IF_OCCUPIED,
 	NO_BONUS,
 	NO_VICTORY_POINTS_BOUNDED_TO_CHARACTER_CARDS,
@@ -46,13 +46,13 @@ public enum PEffect {
 		case NO_NEED_TO_SATISFY_MILITARY_POINTS_REQUIREMENT:
 			return"no MP X terrotory";
 		case NO_VICTORY_POINTS_BOUNDED_TO_CHARACTER_CARDS:
-			return"->|no character Card";
+			return"->|no character card";
 		case NO_VICTORY_POINTS_BOUNDED_TO_TERRITORY_CARDS:
-			return"->|no Territory Card";
+			return"->|no territory card";
 		case NO_VICTORY_POINTS_BOUNDED_TO_VENTURE_CARDS:
-			return"->|no venture Card";
+			return"->|no venture card";
 		case RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT:
-			return"istant effect development Card X2";
+			return"istant effect development card X2";
 		case NO_BONUS:
 			return"no tower bonus";
 		default:

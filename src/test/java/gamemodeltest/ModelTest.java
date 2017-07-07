@@ -28,28 +28,16 @@ public class ModelTest
 	}
 
 	@Test
-	public void pointsVictoryBoundedToMilitaryPointsTest() 
-	{
-		model.getPlayers().get(1).addPoint(new Point(0,0,0));
-		model.getPlayers().get(2).addPoint(new Point(7,0,0));
-		model.pointsVictoryBoundedToMilitaryPoints(model.getPlayers());
-		assertEquals(new Point(7,0,5),model.getPlayers().get(0).getPoint());
-		assertEquals(new Point(0,0,2),model.getPlayers().get(1).getPoint());
-		assertEquals(new Point(0,0,2),model.getPlayers().get(2).getPoint());
-	}
-
-	@Test
 	public void whoIsWinnerTest() 
 	{
 		
 		model2.getPlayers().get(0).addPoint(new Point(0,0,7));
 		model2.getPlayers().get(1).addPoint(new Point(7,0,5));
 		model2.getPlayers().get(2).addPoint(new Point(7,0,10));
-		
 		model2.whoIsWinner(model2.getPlayers());
-		assertEquals(new Point(7,0,10),model2.getPlayers().get(0).getPoint());
-		assertEquals(new Point(0,0,7),model2.getPlayers().get(1).getPoint());
-		assertEquals(new Point(7,0,5),model2.getPlayers().get(2).getPoint());
+		assertEquals(new Point(7,0,17),model2.getPlayers().get(0).getPoint());
+		assertEquals(new Point(7,0,12),model2.getPlayers().get(1).getPoint());
+		assertEquals(new Point(0,0,9),model2.getPlayers().get(2).getPoint());
 	}
 	
 	@Test

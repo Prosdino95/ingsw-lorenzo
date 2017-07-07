@@ -24,21 +24,17 @@ public enum GameError {
 	@Override
 	public String toString() {
 		switch(this) {
-		case RESOURCE_ERR_SERVANTS: return "servants non sufficienti";		
-		case RESOURCE_ERR_CARD: return "carta troppo costosa";
-		case FM_ERR_PA: return "punti azione insufficenti";
-		case FM_ERR_USE: return "familiare già impiegato";
-		case TWR_ERR_OCCUPY: return "torre occupata";
-		case TWR_ERR_FM: return "torre occupata già da un tuo familiare";
-		case SA_ERR_FM: return "spazio già occupato da un tuo familiare";
-		case SA_ERR: return "spazio azione occupato";
-		case SA_MAX_FM: return "spazio azione palazzo ha già 4 giocatori";
-		case ERR_NOT_TURN: return "azione fuori dal turno";
-		case VATICAN_FAIL: return "you don't have enought faith point, you are excommunicated";
-		case VATICAN_NOOO: return "you are excommunicated";
-		case MILITARY_POINT:return"punti militari insufficienti";
-		case TOO_CARD:return"possiedi gia troppe carte di questo tipo";
-		case NOT_ENOUGH_MONEY:return"Non hai abbastanza monete per occupare una torre";
+		case RESOURCE_ERR_SERVANTS: return "not enough servants";		
+		case RESOURCE_ERR_CARD: return "card too much expensive";
+		case FM_ERR_PA: return "not enough action points";
+		case FM_ERR_USE: return "family member already busy";
+		case TWR_ERR_FM: return "tower occupied by family member of yours";
+		case SA_ERR_FM: return "action space occupied by family member of yours";
+		case SA_ERR: return "action space occupied";
+		case ERR_NOT_TURN: return "that's not your turn";
+		case MILITARY_POINT:return"not enough military points";
+		case TOO_CARD:return"reached maximum of this type card";
+		case NOT_ENOUGH_MONEY:return"not enough gold to occupy tower";
 		default: return this.name().toString();
 		}
 	}

@@ -15,7 +15,7 @@ public class ExcommunicationCardController
 	public void initialize(Excommunication card)
 	{
 		Text texteffect=new Text(card.getPermanentEffect().toString());
-		texteffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+		texteffect.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 11));
 		effect.getChildren().add(texteffect);
 	}
 }

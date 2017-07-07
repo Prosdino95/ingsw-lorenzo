@@ -74,24 +74,24 @@ public class PlayerBoardController2
 		if(player==null) return;
 		
 		churchDetail0.getChildren().clear();
-		Integer fpr0=player.getModel().getFaithPointsRequirement().get(0);
-		String str0="1St period:faith req=" + fpr0 + "vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr0);
+		Integer fpr0=player.getModel().getFaithPointsRequirement().get(1);
+		String str0="1St period:faith req=" + fpr0 + " vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr0);
 		Text textchurchDetails0=new Text(str0);
-		textchurchDetails0.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+		textchurchDetails0.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 15));
 		churchDetail0.getChildren().add(textchurchDetails0);
 		
 		churchDetail1.getChildren().clear();
-		Integer fpr1=player.getModel().getFaithPointsRequirement().get(1);
-		String str1="2nd period:faith req=" + fpr1 + "vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr1);
+		Integer fpr1=player.getModel().getFaithPointsRequirement().get(2);
+		String str1="2nd period:faith req=" + fpr1 + " vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr1);
 		Text textchurchDetails1=new Text(str1);
-		textchurchDetails1.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+		textchurchDetails1.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 15));
 		churchDetail1.getChildren().add(textchurchDetails1);
 		
 		churchDetail2.getChildren().clear();
-		Integer fpr2=player.getModel().getFaithPointsRequirement().get(2);
-		String str2="3Rd period:faith req=" + fpr2 + "vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr2);
+		Integer fpr2=player.getModel().getFaithPointsRequirement().get(3);
+		String str2="3Rd period:faith req=" + fpr2 + " vic. point=" + player.getModel().getVictoryPointsBoundedTofaithPoints().get(fpr2);
 		Text textchurchDetails2=new Text(str2);
-		textchurchDetails2.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 8));
+		textchurchDetails2.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 15));
 		churchDetail2.getChildren().add(textchurchDetails2);
 		
 		for(Pane p:characterCardPaneList)
@@ -122,6 +122,7 @@ public class PlayerBoardController2
 		}
 		for(Pane p:excommunicationCardPaneList)
 			p.getChildren().clear();
+		
 		for(int c=0;c<3;c++)
 		{
 			Excommunication exCard=player.getBoard().getExcommunicationCards()[c];

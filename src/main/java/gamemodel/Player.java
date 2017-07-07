@@ -316,7 +316,7 @@ public class Player implements Serializable{
 			this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());			
 			if(period==3)
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-			model.sendMessage("you are excommunicated",this);
+			model.sendMessage("Not enought faith point, you are excommunicated",this);
 		}
 					 // TODO da testare
 		if(this.point.getFaith()>=requirement) 
@@ -326,7 +326,7 @@ public class Player implements Serializable{
 				this.permanentEffects.add(board.getExcommunicationCards()[period-1].getPermanentEffect());
 				if(period==3)
 					addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
-				model.sendMessage("hai deciso di non supportare il papa", this);
+				model.sendMessage("Decided not to support the church", this);
 			}
 			if(selection==1)
 			{

@@ -66,8 +66,10 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 			str+=" card type: " + ctype;
 		if(atype!=ActionSpaceType.TOWER)
 			str+=" action type:" + atype;
-		if(modStrength!=0)
-			str+=", increase" + modStrength;
+		if(modStrength>0)
+			str+=", increase " + modStrength;
+		if(modStrength<0)
+			str+=", decrease " + modStrength;
 		if(discount!=null)
 			str+=", discount" + discount;
 		return str;

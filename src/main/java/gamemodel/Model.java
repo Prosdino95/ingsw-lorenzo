@@ -34,8 +34,8 @@ public class Model implements Serializable {
 	private List<Player> players;
 	private Board board;	
 	private transient TurnOrder turnOrder;
-	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
-	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
+	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
+	private Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
 	private transient Controller controller = new FakeController(this);
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
@@ -222,7 +222,7 @@ public class Model implements Serializable {
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new Player(new Resource(100,100,100,100), board, Team.RED,this));
+		players.add(new Player(new Resource(5,2,2,3), board, Team.RED,this));
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
@@ -292,7 +292,7 @@ public class Model implements Serializable {
 	}
 
 
-	private int occurrence(List<Player> players,String string,int points) //testato
+	private int occurrence(List<Player> players,String string,int points)
 	{
 		int number=0;
 		if(string.equals("military"))
@@ -305,10 +305,10 @@ public class Model implements Serializable {
 					number++;
 		return number;
 	}
-	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players) //testato
+	private void pointsVictoryBoundedToMilitaryPoints(List<Player> players)
 	{
 		Player temp;
-		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti miliatri
+		for(int co=0;co<players.size();co++) // ordina in modo decrescente in base ai punti militari 
 			for(int c=0;c<(players.size()-1);c++)
 				if(players.get(c).getPoint().getMilitary()<players.get(c+1).getPoint().getMilitary())
 				{
@@ -326,7 +326,7 @@ public class Model implements Serializable {
 				players.get(c).addPoint(new Point(0,0,2));
 		}
 	}
-	private void pointsVictoryAssignment(List<Player> players) //non testato
+	private void pointsVictoryAssignment(List<Player> players)
 	{
 		for(Player player:players)
 		{
@@ -376,9 +376,9 @@ public class Model implements Serializable {
 		}
 		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
-	public void whoIsWinner(List<Player> players)  //testato
+	public void whoIsWinner(List<Player> players)
 	{
-		/*pointsVictoryAssignment(players);*/
+		pointsVictoryAssignment(players);
 		Player temp;
 		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti vittoria
 			for(int c=0;c<(players.size()-1);c++)
