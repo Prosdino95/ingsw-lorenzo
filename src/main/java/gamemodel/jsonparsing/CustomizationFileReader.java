@@ -3,6 +3,8 @@ package gamemodel.jsonparsing;
 import java.io.*;
 import java.util.*;
 import java.util.function.Function;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomizationFileReader<T> {
 	private Function<String,List<T>>parser;
@@ -26,10 +28,10 @@ public class CustomizationFileReader<T> {
     	    	 reader.close();
     	} 
     	catch (FileNotFoundException fnfe) {
-    	    fnfe.printStackTrace();
+    		Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", fnfe);
     	} 
     	catch(IOException ioe){
-    	    ioe.printStackTrace();
+    		Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", ioe);
     	}
     	
     	return config.toString();    	

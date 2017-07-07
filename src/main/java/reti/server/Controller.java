@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Action;
 import gamemodel.GameQuestion;
@@ -51,8 +53,7 @@ public class Controller{
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 					Thread.currentThread().interrupt();
 				}
 				continue;
@@ -205,12 +206,11 @@ public class Controller{
 		else
 			sr = new ServerResponse(gq);			
 		hv.sendResponse(sr);
-		//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
 			while (!requestAvailable()) {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {						
-					e.printStackTrace();
+					Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 					Thread.currentThread().interrupt();
 				}
 				if (deadHVs.contains(hv))

@@ -57,6 +57,7 @@ public class MainViewController {
 		}
 		if(viewChoose=="gui"){
 			gv=new GuiView();
+			gv.setNetworkChoose(networkChoose);
 			gv.start(stage);
 		}
 	}

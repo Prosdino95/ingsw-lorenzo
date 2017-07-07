@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Color;
 import gamemodel.Model;
@@ -31,8 +33,6 @@ public class BoardController {
 	List<Pane> asPaneList;
 	private GuiView guiView;
 	private boolean big = false;
-//	private Pane dialogPane;
-	//private RequestController requestController;
 	
 	public void update(Model model) {
 		if(model==null) return;
@@ -65,8 +65,7 @@ public class BoardController {
 				asp.getChildren().clear();
 				asp.getChildren().add(makeAS(as));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 			if (as instanceof TowerActionSpace) {
 				Card card = ((TowerActionSpace) as).getCard();
@@ -98,10 +97,8 @@ public class BoardController {
 		 cardPaneList = new ArrayList<>();
 		 asPaneList = new ArrayList<>();
 		 
-//		 dialogPane.
 		
 		this.guiView = v;
-		//this.requestController = requestController;
 		
 		 asIdList.add(0);
 		 cardPaneList.add(cartaTorre0);

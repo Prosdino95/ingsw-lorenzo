@@ -7,7 +7,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Queue;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import reti.ClientRequest;
 import reti.ServerResponse;
@@ -34,15 +35,13 @@ public class ViewController {
 			try {
 				hs=new HandlerServerRMIImpl(this);
 			} catch (RemoteException | NotBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 		} else if (networkChoose == "socket") {
 			try {
 				hs=new HandlerSocket(this);
 			} catch (IOException | InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 			new Thread((Runnable) hs).start();
 		} else {
@@ -105,7 +104,7 @@ public class ViewController {
 	    		Thread.sleep(100); 
 	    	} catch (InterruptedException e) {
 	    		Thread.currentThread().interrupt();
-	    		e.printStackTrace(); 
+	    		Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 	    	}     	
 	    	srr = getSRIn(); 
 	    	if (srr != null) return srr; 

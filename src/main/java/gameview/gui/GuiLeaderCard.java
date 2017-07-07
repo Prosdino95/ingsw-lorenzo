@@ -1,6 +1,8 @@
 package gameview.gui;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.LeaderCard;
 import javafx.fxml.FXMLLoader;
@@ -31,8 +33,7 @@ public class GuiLeaderCard
 		try {
 			pane=loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		LeaderCardController leaderCardController=loader.getController();
 		leaderCardController.initialize(leaderCard);

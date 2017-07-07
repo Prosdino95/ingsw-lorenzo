@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
@@ -45,12 +47,6 @@ public class UITree {
 	
 	public UITree(ViewController vc) {
 		this.viewController=vc;
-
-// 		// Riusciremo a infilarlo nell'albero un giorno?
-//		UINodeSetResponseType sendMessage = 
-//		new UINode("Chat", 
-//				response::setType, 
-//				ResponseType.CHAT);
 
 		UINodeLog log = new UINodeLog("", this, vc);
 		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this); 
@@ -144,10 +140,6 @@ public class UITree {
 				finishTurn
 				.addSon(
 				  talkToServer))
-//			  .addSon(
-//			    giveMeMoney
-//			    .addSon(
-//			      talkToServer))
 			  .addSon(exit)); 
 		
 		reset();
@@ -202,8 +194,8 @@ public class UITree {
 		} catch (NumberFormatException e) {
 			return getInt();
 		} catch (IOException e) {
-			e.printStackTrace();
-			return getInt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+			return 0;
 		}
 	}
 
@@ -215,6 +207,7 @@ public class UITree {
 			s = inKeyboard.readLine();
 		} catch (IOException e) {
 			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		try{
 			Integer.parseInt(s);
@@ -252,6 +245,7 @@ public class UITree {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		Integer choice = fakeIntChoices.remove(0);
 		System.out.println("Chose: " + choice);
@@ -259,6 +253,7 @@ public class UITree {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
 			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		return choice;
 	}
@@ -268,6 +263,7 @@ public class UITree {
 			Thread.sleep(this.fakeDelay );
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		String choice = stringChoices.remove(0);
 		System.out.println("Chose: " + choice);
@@ -275,6 +271,7 @@ public class UITree {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
 			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		return choice;
 	}

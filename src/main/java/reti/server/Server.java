@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
@@ -34,8 +36,7 @@ public class Server {
 		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
 		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
-		server.start();
-		
+		server.start();		
 	}
 
 	private void setUpServer() throws IOException{	
@@ -72,8 +73,7 @@ public class Server {
 			serverSocket.close();
 			live=false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 	}
 }	

@@ -10,4 +10,5 @@ public class FakeController extends Controller {
 
 	public void notifyNewModel() {}
 	public void sendMessage(String string, Player player) {}
+	public void sendMessageToAll(String message){}
 }

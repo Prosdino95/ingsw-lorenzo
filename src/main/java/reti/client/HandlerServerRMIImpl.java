@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gameview.ViewController;
 import reti.ClientRequest;
@@ -32,8 +34,7 @@ public class HandlerServerRMIImpl extends UnicastRemoteObject implements Handler
 		try {
 			hv.doRequest(request);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 	}
 

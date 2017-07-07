@@ -1,6 +1,7 @@
 package reti.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Model;
 import gamemodel.Player;
@@ -40,8 +43,12 @@ public class GameManager implements Runnable
 		Model rl=new Model(hw.size(),playerActionDelay);
 		Controller c=new Controller(rl);
 		rl.setController(c);
-		for(int i=0;i<rl.getPlayers().size();i++){
-			Player p = rl.getPlayers().get(i);
+		List<Integer> number=new ArrayList<>();
+		for(int i=0;i<rl.getPlayers().size();i++)
+			number.add(i);
+		Collections.shuffle(number);
+		for(int i=0;i<rl.getPlayers().size();i++){			
+			Player p = rl.getPlayers().get(number.get(i));
 			HandlerView hv = hw.get(i);
 			playerToHV.put(p, hv);    //TODO get random player
 			hv.setController(c);
@@ -93,8 +100,7 @@ public class GameManager implements Runnable
 		}
 		catch(Exception ex)
 		{
-			//Logger.getLogger("log").log(Level.WARNING, ex.toString());
-			ex.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", ex);
 			Thread.currentThread().interrupt();
 		}		
 	}

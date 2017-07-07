@@ -2,6 +2,8 @@ package gameview.cli;
 
 import java.io.IOException;
 import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Model;
 import gamemodel.Team;
@@ -31,7 +33,7 @@ public class UINodeLog extends UINode
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				e.printStackTrace();
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 			boolean hasMessage;
 			hasMessage = this.tree.hasMessage();

@@ -9,6 +9,8 @@ import java.net.*;
 import java.util.ArrayDeque;
 
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Player;
 import reti.ClientRequest;
@@ -55,7 +57,6 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 			try {
 				if (socket.getInputStream().available() > 1) {
 					request=readRequest();
-					//System.out.println("Server received: " + request);
 					doRequest(request);					
 				} 
 				Thread.sleep(100);
@@ -102,7 +103,7 @@ public class HandlerViewSocket implements Runnable,HandlerView{
 			in.close();
 			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}		
 	}
 

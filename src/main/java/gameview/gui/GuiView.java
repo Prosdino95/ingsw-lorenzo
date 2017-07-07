@@ -46,6 +46,7 @@ public class GuiView extends Application {
 	private boolean pressed= false;
 	private Player player;
 	private Timeline task;
+	private String networkChoose;
 
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
@@ -56,7 +57,6 @@ public class GuiView extends Application {
 	
 	public void eventHandler() {
 		if (viewController == null) {
-			//System.out.println("GUIView -- Still no internet connection :("); 
 			return;
 		}
 		while(viewController.hasMessage()) {
@@ -153,7 +153,7 @@ public class GuiView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.setStage(stage);
-//		this.viewController = new ViewController();
+		this.viewController = new ViewController(networkChoose);
 		
 		task = new Timeline();
 		task.getKeyFrames().add(
@@ -223,13 +223,6 @@ public class GuiView extends Application {
 			setPressed(false);
 		});
 		
-	
-	
-		
-	/*	Model m = new Model(4);
-		m.setupRound();
-		Board b = m.getBoard();*/
-		
 		boardController.initialize(this, requestController);
 		requestController.initialize(this);
 		pbc.initialize(requestController, this);
@@ -281,6 +274,10 @@ public class GuiView extends Application {
 		
 	}
 	
+	public void setNetworkChoose(String networkChoose) {
+		this.networkChoose = networkChoose;
+	}
+
 	private boolean getPressed() {
 		return pressed;
 	}

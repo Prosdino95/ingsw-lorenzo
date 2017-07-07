@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gameview.ViewController;
 import reti.ClientRequest;
@@ -28,9 +30,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	}
 	
 	private void send(ClientRequest request) throws IOException {
-		//ServerResponse response=null;
 		out.writeObject(request);
-		//System.out.println("HSocket --- Sending request: " + request);
 		out.flush();
 		out.reset();
 	}
@@ -51,7 +51,6 @@ public class HandlerSocket implements Runnable,HandlerServer{
 				if(s.getInputStream().available()>1)       
 				{
 					ServerResponse sr=(ServerResponse)(in.readObject());
-					//System.out.println("HSocket --- Got response " + sr);
 					vc.placeResponse(sr);
 				}	
 				if(crOut!=null)
@@ -80,8 +79,7 @@ public class HandlerSocket implements Runnable,HandlerServer{
 			in.close();
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}		
 	}
 }
