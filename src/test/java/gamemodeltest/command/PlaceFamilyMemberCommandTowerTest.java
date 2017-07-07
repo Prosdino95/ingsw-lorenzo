@@ -160,4 +160,5 @@ public class PlaceFamilyMemberCommandTowerTest {
 		assertEquals(new Resource(0,0,0,5),p3.getResource());
 		
 	}
+	
 }

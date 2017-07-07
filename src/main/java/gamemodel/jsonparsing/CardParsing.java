@@ -74,6 +74,7 @@ public class CardParsing {
 			break;
 		case VENTURE:cards.add(new VentureCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type));
 			break;
+		case ALL:
 		default:
 			throw new AssertionError();
 		}

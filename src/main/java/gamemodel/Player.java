@@ -430,9 +430,13 @@ public class Player implements Serializable{
 			str += "| His leader cards -> ";
 			str += this.getLCList();
 			str += "\n";
-			str += "| Excomunivation in Game -> ";
-			for(int c=0;c<3;c++)
-				str += model.getBoard().getExcommunicationCards()[c];
+			
+			int fpr1=model.getFaithPointsRequirement().get(1);
+			str+="1St period:faith req=" +fpr1+" vic. point=" + model.getVictoryPointsBoundedTofaithPoints().get(fpr1)+"\n";
+			int fpr2=model.getFaithPointsRequirement().get(2);
+			str+="1St period:faith req=" +fpr2+" vic. point=" + model.getVictoryPointsBoundedTofaithPoints().get(fpr2)+"\n";
+			int fpr3=model.getFaithPointsRequirement().get(3);
+			str+="1St period:faith req=" +fpr3+" vic. point=" + model.getVictoryPointsBoundedTofaithPoints().get(fpr3)+"\n";
 			return str;
 		}
 
