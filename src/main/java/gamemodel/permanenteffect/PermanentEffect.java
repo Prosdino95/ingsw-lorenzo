@@ -30,5 +30,9 @@ public class PermanentEffect implements Serializable
 		this.tag.add(tag);		
 	}
 	
-
+	public String toString()
+	{
+		return tag.toString();
+		
+	}
 }

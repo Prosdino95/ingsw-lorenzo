@@ -1,9 +1,10 @@
 package gamemodel.command;
 
-import gamemodel.*;
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.FamilyMember;
+import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.RealActionSpace;
-import gamemodel.actionSpace.TowerActionSpace;
 
 public class PlaceFamilyMemberCommandMarket implements Command {
 	private FamilyMember f;
@@ -48,6 +49,7 @@ public class PlaceFamilyMemberCommandMarket implements Command {
 					if(IsEnoughtStrong())
 						if(controlServant()){
 							f.getPlayer().getFamilyMember(f.getColor()).use();
+							a.setFamilyMember(f);
 							a.activateEffect(f);
 							a.occupy();				
 							}

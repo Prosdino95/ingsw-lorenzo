@@ -21,9 +21,6 @@ public class UINodeTalkToServer extends UINode {
 		
 		do {
 			response = tree.sendRequestToServer(request);
-			
-			//System.out.print("UINodeTalkToServer -- Received response: ");
-			//System.out.println(response);
 
 			switch (response.getType()) {
 			case QUESTION:
@@ -41,20 +38,15 @@ public class UINodeTalkToServer extends UINode {
 				finishedTalking = true;
 				break;
 			case NEW_MODEL:
-				System.out.println("UINodeTalkToServer -- Maybe make this be the ok response?");
-				throw new RuntimeException();
-//				break;
+				throw new AssertionError();
 			case OK:
 				System.out.println("Received ok from server");
 				finishedTalking = true;
 				break;
-			case MESSAGE:
-				System.out.println("UINodeTalkToServer -- AAAAAAAAAAAAAAAH");				
-				throw new RuntimeException();
-//				break;
+			case MESSAGE:			
+				throw new AssertionError();
 			default:
-				System.out.println("UINodeTalkToServer -- AAAAAAAAAAAAAAAH");				
-				break;
+				throw new AssertionError();			
 			}
 		} while (!finishedTalking);
 		

@@ -2,6 +2,7 @@ package gamemodeltest;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class LeaderCardTest {
 		Board b = new Board();
 		b.setDice(2, 4, 1);
 		Player p = new Player(new Resource(0, 0, 0, 0), new Point(0, 0, 0)) {
+			private static final long serialVersionUID = 1L;
 			public int countCard(CardType type) {
 				return 3;
 			}

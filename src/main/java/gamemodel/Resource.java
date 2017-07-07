@@ -80,15 +80,16 @@ public class Resource implements Serializable {
 	public String toString() {
 		String srt="";
 		if(gold!=0)
-			srt+=" gold="+this.gold;
+			srt+=" G="+this.gold;
 		if(stone!=0)
-			srt+=" stone="+this.stone;
+			srt+=" St="+this.stone;
 		if(wood!=0)
-			srt+=" wood="+this.wood;
+			srt+=" W="+this.wood;
 		if(servant!=0)
-			srt+=" servants="+this.servant;
+			srt+=" Se="+this.servant;
 		return srt;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -120,5 +121,4 @@ public class Resource implements Serializable {
 			return false;
 		return true;
 	}
-
 }

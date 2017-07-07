@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.PlayerBoardController2">
+   <children>
+      <ImageView fitHeight="230.8" fitWidth="854.7" layoutX="11.111111111111112" layoutY="21.36752136752137">
+         <image>
+            <Image url="@characterCardPlayer.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="230.8" fitWidth="854.7" layoutX="11.111111111111112" layoutY="256.4102564102564">
+         <image>
+            <Image url="@ventureCardPlayer.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="character0" layoutX="17.094017094017094" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane layoutX="11.0" layoutY="497.0" prefHeight="171.0" prefWidth="541.0">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="19.0" layoutY="24.0" preserveRatio="true">
+               <image>
+                  <Image url="@woodresource.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="45.0" layoutX="152.0" layoutY="21.0" preserveRatio="true">
+               <image>
+                  <Image url="@coinResource.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="6.0" layoutY="94.0" preserveRatio="true">
+               <image>
+                  <Image url="@Stone.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="wood" layoutX="66.0" layoutY="31.0" prefHeight="41.0" prefWidth="77.0" />
+            <TextFlow fx:id="stone" layoutX="75.0" layoutY="95.0" prefHeight="41.0" prefWidth="69.0" />
+            <TextFlow fx:id="gold" layoutX="204.0" layoutY="28.0" prefHeight="41.0" prefWidth="77.0" />
+            <ImageView fitHeight="95.0" fitWidth="60.0" layoutX="281.0" layoutY="15.0" preserveRatio="true">
+               <image>
+                  <Image url="@faith.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="faith" layoutX="356.0" layoutY="28.0" prefHeight="41.0" prefWidth="69.0" />
+            <ImageView fitHeight="94.0" fitWidth="69.0" layoutX="277.0" layoutY="81.0" preserveRatio="true">
+               <image>
+                  <Image url="@military.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="military" layoutX="346.0" layoutY="96.0" prefHeight="41.0" prefWidth="69.0" />
+            <ImageView fitHeight="95.0" fitWidth="69.0" layoutX="464.0" layoutY="15.0" preserveRatio="true">
+               <image>
+                  <Image url="@victory.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="victory" layoutX="461.0" layoutY="116.0" prefHeight="41.0" prefWidth="69.0" textAlignment="CENTER" />
+            <ImageView fitHeight="79.0" fitWidth="53.0" layoutX="152.0" layoutY="86.0" preserveRatio="true">
+               <image>
+                  <Image url="@servants.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="servants" layoutX="204.0" layoutY="95.0" prefHeight="41.0" prefWidth="77.0" />
+         </children></Pane>
+      <Pane layoutX="552.0" layoutY="497.0" prefHeight="171.0" prefWidth="325.0">
+         <children>
+            <Pane fx:id="excommunication0" layoutX="5.0" layoutY="1.0" prefHeight="169.0" prefWidth="89.4" />
+            <Pane fx:id="excommunication1" layoutX="120.0" layoutY="1.0" prefHeight="169.0" prefWidth="89.4" />
+            <Pane fx:id="excommunication2" layoutX="230.0" layoutY="1.0" prefHeight="169.0" prefWidth="89.4" />
+         </children></Pane>
+      <Pane layoutX="905.982905982906" layoutY="21.0" prefHeight="448.71794871794873" prefWidth="52.991452991452995" style="-fx-background-color: #ff1a;">
+         <children>
+            <ImageView fitHeight="448.7" fitWidth="74.3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@personalBonusTile.jpg" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane fx:id="character1" layoutX="164.10256410256412" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character2" layoutX="307.69230769230774" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character3" layoutX="451.2820512820513" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character4" layoutX="594.0170940170941" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="character5" layoutX="738.4615384615385" layoutY="36.75213675213676" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture0" layoutX="17.094017094017094" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture1" layoutX="164.10256410256412" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture2" layoutX="307.69230769230774" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture3" layoutX="451.2820512820513" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture4" layoutX="594.0170940170941" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane fx:id="venture5" layoutX="738.4615384615385" layoutY="271.7948717948718" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+      <Pane layoutX="883.0" layoutY="475.0" prefHeight="192.0" prefWidth="192.0">
+         <children>
+            <TextFlow fx:id="churchDetail0" prefHeight="64.0" prefWidth="192.0" textAlignment="CENTER" />
+            <TextFlow fx:id="churchDetail1" layoutY="64.0" prefHeight="64.0" prefWidth="192.0" textAlignment="CENTER" />
+            <TextFlow fx:id="churchDetail2" layoutY="128.0" prefHeight="64.0" prefWidth="192.0" textAlignment="CENTER" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package gamemodeltest.effects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import gamemodel.GameQuestion;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.Question;
 import gamemodel.Resource;
-import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.command.GameException;
-import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
 
@@ -42,6 +38,7 @@ public class HarvesterAndBuildingsTest {
 		IstantEffect ex2=new Exchange(new Point(0,0,0),new Point(0,0,0),new Resource(5,0,0,0),new Resource(0,0,2,0),null);
 		permanentEffects.add(ex1);
 		permanentEffects.add(ex2);
+		System.out.println(ex1);
 		try {
 			card.activePermanentEffect(player);
 		} catch (GameException e) {

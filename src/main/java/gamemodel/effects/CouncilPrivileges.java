@@ -81,8 +81,6 @@ public class CouncilPrivileges implements IstantEffect,Serializable
 
 	@Override
 	public String toString() {
-		return "CouncilPrivileges=" + numberOfCouncilPrivileges;
+		return " CP=" + numberOfCouncilPrivileges;
 	}
-	
-	
 }

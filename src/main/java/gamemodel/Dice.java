@@ -15,7 +15,7 @@ public class Dice implements Serializable
 		dice.put(Color.ORANGE, 0);
 	}
 	
-	public int getValue(Color c) {
+	public Integer getValue(Color c) {
 		return dice.get(c);
 	}
 
@@ -53,6 +53,6 @@ public class Dice implements Serializable
 	
 	@Override
 	public String toString() {
-		return "Dice [dice=" + dice + "]";
+		return "Black: " + dice.get(Color.BLACK) + " Orange: " + dice.get(Color.ORANGE) + " White: " + dice.get(Color.WHITE);
 	}
 }

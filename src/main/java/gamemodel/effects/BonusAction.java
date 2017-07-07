@@ -8,7 +8,6 @@ import gamemodel.Board;
 import gamemodel.Color;
 import gamemodel.FamilyMember;
 import gamemodel.GameQuestion;
-import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Resource;
@@ -42,7 +41,7 @@ public class BonusAction implements IstantEffect {
 
 	public BonusAction(Board board, int actionValue, ActionSpaceType asType) {
 		if (asType != ActionSpaceType.HARVEST &&
-			asType != ActionSpaceType.PRODUCTION) throw new RuntimeException();
+			asType != ActionSpaceType.PRODUCTION) throw new AssertionError();
 		this.board = board;
 		this.actionValue = actionValue;
 		this.asType = asType;
@@ -90,22 +89,22 @@ public class BonusAction implements IstantEffect {
 				chosenServantsNo = defaultNS;
 		}
 		
-//		System.out.println(chosenActionSpace);
-		System.out.println(player);
-		
 		player.placeFamilyMember(new Action(player, chosenActionSpace, familyMember, chosenServantsNo));
 		player.removePermanentEffect(tempEffect);
-
-//		System.out.println(chosenActionSpace);
-		System.out.println(player);
-
 
 	}
 
 	@Override
 	public String toString() {
-		return "BonusAction [discount=" + discount + ", actionValue=" + actionValue + ", cardType=" + cardType + "]";
+		String str="Bonus action:";
+		if(cardType!=null)
+			str+=" C Type= " + cardType + ",";
+		if(asType!=null)
+			str+=" AS type= " + asType + ",";
+		if(actionValue!=0)
+			str+=" strength= " + actionValue + ",";
+		if(discount!=null)
+			str+=" discount= " + discount;
+		return str;
 	}
-	
-	
 }

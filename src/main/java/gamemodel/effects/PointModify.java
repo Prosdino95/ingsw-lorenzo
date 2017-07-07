@@ -7,9 +7,6 @@ import gamemodel.Point;
 
 public class PointModify implements IstantEffect,EffectRollBack,Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Point points;
 	
@@ -18,6 +15,11 @@ public class PointModify implements IstantEffect,EffectRollBack,Serializable
 		this.points=points;
 	}
 	
+	public Point getPoints() 
+	{
+		return points;
+	}
+
 	@Override
 	public void activate(Player player) 
 	{
@@ -29,16 +31,8 @@ public class PointModify implements IstantEffect,EffectRollBack,Serializable
 		player.subPoint(points);
 	}
 
-	/*@Override
-	public String toString() {
-		return "PointModify [points=" + points + "]";
-	}*/
-
 	@Override
 	public String toString() {
 		return "" + points;
 	}
-	
-	
-
 }

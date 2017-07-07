@@ -1,10 +1,12 @@
 package gamemodel.command;
 
-import gamemodel.*;
-import gamemodel.actionSpace.ActionSpace;
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.Color;
+import gamemodel.FamilyMember;
+import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
-import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {
@@ -74,7 +76,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 		if(type==ActionSpaceType.HARVEST){			
 			for(int i=0;i<f.getPlayer().getTerritories().size();i++){
 				HarvesterAndBuildings c=(HarvesterAndBuildings)f.getPlayer().getTerritories().get(i);
-				if(f.getActionpoint()<c.getActionCost())
+				if(f.getActionpoint()>=c.getActionCost())
 					c.activePermanentEffect(f.getPlayer());
 			}
 				
@@ -82,7 +84,7 @@ public class PlaceFamilyMemberCommandHAndP implements Command {
 		if(type==ActionSpaceType.PRODUCTION){
 			for(int i=0;i<f.getPlayer().getBuildings().size();i++){
 				HarvesterAndBuildings c=(HarvesterAndBuildings)f.getPlayer().getBuildings().get(i);
-				if(f.getActionpoint()<c.getActionCost())
+				if(f.getActionpoint()>=c.getActionCost())
 					c.activePermanentEffect(f.getPlayer());
 			}			
 		}		

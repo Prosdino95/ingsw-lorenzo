@@ -1,7 +1,12 @@
 package reti.server;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -18,18 +23,32 @@ public class GameManager implements Runnable
 	List<HandlerView> hw = new ArrayList<>();
 	protected String whoWokeMeUp="";
 	private boolean isFull=false;
-	private final int delay=1000;
+	private int joinDelay;
 	private Timer timer=new Timer();
+	private int playerActionDelay;
 	
+	public GameManager(){
+		this.joinDelay=1000;
+		this.playerActionDelay=200000;
+	}
 	
+	public GameManager(int delay,int gameDelay){
+		this.joinDelay=delay;
+		this.playerActionDelay=gameDelay;
+	}
+		
 	private void setupGame()
 	{
 		System.out.println("creazione partita");      
-		Model rl=new Model(hw.size());
+		Model rl=new Model(hw.size(),playerActionDelay);
 		Controller c=new Controller(rl);
 		rl.setController(c);
-		for(int i=0;i<rl.getPlayers().size();i++){
-			Player p = rl.getPlayers().get(i);
+		List<Integer> number=new ArrayList<>();
+		for(int i=0;i<rl.getPlayers().size();i++)
+			number.add(i);
+		Collections.shuffle(number);
+		for(int i=0;i<rl.getPlayers().size();i++){			
+			Player p = rl.getPlayers().get(number.get(i));
 			HandlerView hv = hw.get(i);
 			playerToHV.put(p, hv);    //TODO get random player
 			hv.setController(c);
@@ -39,11 +58,11 @@ public class GameManager implements Runnable
 		}
 		c.setPlayerToHV(playerToHV);
 		System.out.println("game partito con " + hw.size());
-		c.giveLeaderCard();
 		c.notifyNewModel();
 		for(HandlerView h: hw){
 			h.sendResponse(new ServerResponse(h.getPlayer()));
 		}
+		c.giveLeaderCard();
 		c.run();
 	}
 	
@@ -81,8 +100,7 @@ public class GameManager implements Runnable
 		}
 		catch(Exception ex)
 		{
-			//Logger.getLogger("log").log(Level.WARNING, ex.toString());
-			ex.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", ex);
 			Thread.currentThread().interrupt();
 		}		
 	}
@@ -90,7 +108,7 @@ public class GameManager implements Runnable
 	private void updateTimer() {
 		timer.cancel();
 		timer=new Timer();
-		timer.schedule(new Task(this), delay);
+		timer.schedule(new Task(this), joinDelay);
 		
 	}
 

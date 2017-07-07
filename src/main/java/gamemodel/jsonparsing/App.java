@@ -4,6 +4,8 @@ import java.util.*;
 
 
 
+
+
 import gamemodel.actionSpace.*;
 import gamemodel.card.*;
 import gamemodel.Board;
@@ -20,12 +22,12 @@ public class App{
     	testTCard();
     	testCCard();
     	testVCard();
-    	testEx();
     	testLCard();
-    	testpoints();
+    	testPoints();
+    	testEx();
     } 
     
-    private static void testpoints() {
+    private static void testPoints() {
     	List<Integer> Bcard= new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
     	for(Integer a:Bcard)
     		System.out.println(a);

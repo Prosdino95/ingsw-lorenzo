@@ -22,7 +22,7 @@ public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	Board b;
 	Player p1,p2;
 	MemoryActionSpace a0;
-	RealActionSpace a1;
+	ActionSpace a1;
 	IstantEffect e;
 	GameError s;
 	int id0,id1;

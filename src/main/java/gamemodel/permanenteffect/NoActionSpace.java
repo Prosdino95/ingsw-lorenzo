@@ -18,12 +18,10 @@ public class NoActionSpace extends PermanentEffect
 	{
 		return this.atype;
 	}
-
+	
 	@Override
-	public String toString() {
-		return "NoActionSpace [atype=" + atype + "]";
+	public String toString()
+	{
+		return " No action space: " + atype;
 	}
-	
-	
-	
 }

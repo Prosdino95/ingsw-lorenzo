@@ -2,19 +2,17 @@ package gamemodel;
 
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
-
-
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gamemodel.actionSpace.*;
-import gamemodel.card.*;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
+import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.Excommunication;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.GameError;
@@ -43,27 +41,27 @@ public class Model implements Serializable {
 	private List<Player> players;
 	private Board board;	
 	private transient TurnOrder turnOrder;
-	private transient Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
-	private transient Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
-	private transient Controller controller;
+	private Map<Integer,Integer> faithPointsRequirement= new HashMap<>();
+	private Map<Integer,Integer> victoryPointsBoundedTofaithPoints=new HashMap<>();
+	private transient Controller controller = new FakeController(this);
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	public int turn=1;
+	public int turn=2;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
-	private int delay=200000;
-	
-	
-	public static void main(String[] args){
-		// Model m=new Model(4);
-		//System.out.println(m.getBoard().getActionSpaces());
-		//m.nextTurn();
-	}
+	private int delay;
+
 	
 	public Model(int num){
-		initializeGame(num);	
+		initializeGame(num);
+		this.delay=200000;
+	}
+	
+	public Model(int num, int delay){
+		initializeGame(num);
+		this.delay=delay;
 	}
 	
 	
@@ -92,8 +90,6 @@ public class Model implements Serializable {
 		switch(gameState){
 		case GAME_FINISH:
 			whoIsWinner(players);
-			//TODO messaggio vittoria
-			System.out.println("finitoooooooooooooooo");
 			controller.shutDown();
 			break;
 		case TURN_FINISH:
@@ -138,8 +134,7 @@ public class Model implements Serializable {
 				try {
 					currentPlayer.finishAction();
 				} catch (GameException e) {
-					// TODO Auto-generated catch block
-					throw new RuntimeException();
+					throw new AssertionError();
 				}
 			break;
 		case SET_UP_ROUND:
@@ -230,6 +225,10 @@ public class Model implements Serializable {
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
+		if(num<4){
+			board.getActionSpaces().remove(board.getActionSpace(20));
+			board.getActionSpaces().remove(board.getActionSpace(21));
+		}
 		
 		List<Excommunication> ex=new CustomizationFileReader<Excommunication>("Config/Excommunication.json",new ExcommunicationParsing()::parsing).parse();
 		board.setEXCard(ex);
@@ -249,8 +248,17 @@ public class Model implements Serializable {
 		gameState=GameState.SET_UP_ROUND;
 	}
 	
+	
+	public int getTurn() {
+		return turn;
+	}
+
+	public Map<Integer, Integer> getFaithPointsRequirement() {
+		return faithPointsRequirement;
+	}
+
 	public void giveLeaderCard(Player player, int index) {
-				player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
+		player.giveLeaderCard((LeaderCard) leaderCard.remove(index));		
 	}
 
 
@@ -267,7 +275,7 @@ public class Model implements Serializable {
 		for (Player p : players) {
 			if (p.getTeam() == team) return p;
 		}
-		throw new RuntimeException();
+		throw new AssertionError();
 	}
 	
 
@@ -276,14 +284,14 @@ public class Model implements Serializable {
 	}
 
 	public Integer answerToQuestion(Question gq, Player player) throws GameException {
-		if (controller == null) {
+		if (controller instanceof FakeController) {
 			throw new GameException(GameError.NOT_PLAYING_ONLINE);
 		}
 		return controller.answerToQuestion(gq, player);
 	}
 
 
-	private int occurrence(List<Player> players,String string,int points) //testato
+	private int occurrence(List<Player> players,String string,int points)
 	{
 		int number=0;
 		if(string.equals("military"))
@@ -296,10 +304,10 @@ public class Model implements Serializable {
 					number++;
 		return number;
 	}
-	/*private*/ public void pointsVictoryBoundedToMilitaryPoints(List<Player> players) //testato
+	private void pointsVictoryBoundedToMilitaryPoints(List<Player> players)
 	{
 		Player temp;
-		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti miliatri
+		for(int co=0;co<players.size();co++) // ordina in modo decrescente in base ai punti militari 
 			for(int c=0;c<(players.size()-1);c++)
 				if(players.get(c).getPoint().getMilitary()<players.get(c+1).getPoint().getMilitary())
 				{
@@ -317,7 +325,7 @@ public class Model implements Serializable {
 				players.get(c).addPoint(new Point(0,0,2));
 		}
 	}
-	private void pointsVictoryAssignment(List<Player> players) //non testato
+	private void pointsVictoryAssignment(List<Player> players)
 	{
 		for(Player player:players)
 		{
@@ -336,8 +344,7 @@ public class Model implements Serializable {
 					}
 					catch (GameException e) 
 					{
-						// TODO Auto-generated catch block
-						throw new RuntimeException();
+						throw new AssertionError();
 					}
 				}
 			int resources=player.getResource().getGold();
@@ -368,9 +375,9 @@ public class Model implements Serializable {
 		}
 		pointsVictoryBoundedToMilitaryPoints(players);		
 	}
-	public void whoIsWinner(List<Player> players)  //testato
+	public void whoIsWinner(List<Player> players)
 	{
-		/*pointsVictoryAssignment(players);*/
+		pointsVictoryAssignment(players);
 		Player temp;
 		for(int co=0;co<players.size();co++)   //ordina in modo decrescente la lista dei giocatori in base ai punti vittoria
 			for(int c=0;c<(players.size()-1);c++)
@@ -383,14 +390,8 @@ public class Model implements Serializable {
 		if(occurrence(players,"victory",players.get(0).getPoint().getVictory())>1)
 			for(Player player:turnOrder.getListActionOrder())
 				if(player.getPoint().getVictory()==players.get(0).getPoint().getVictory())
-				{
-					
 					players.set(0, player);
-					//System.out.println("The winner is " + player);
-					break;
-				}
-		else
-			System.out.println("The winner is " + players.get(0));  //TODO migliorare
+		controller.sendMessageToAll("The winner is " + players.get(0));
 	}
 
 	public Player getCurrentPlayer() {

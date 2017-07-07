@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.PlayerBoardController">
+  <children>
+    <ImageView fitHeight="230.8" fitWidth="854.7" layoutX="11.111111111111112" layoutY="8.547008547008547">
+      <image>
+        <Image url="@terrytoryCardPlayer.jpg" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="230.8" fitWidth="854.7" layoutX="11.111111111111112" layoutY="243.5897435897436">
+      <image>
+        <Image url="@buildingCardPlayer.jpg" />
+      </image>
+    </ImageView>
+    <Pane fx:id="building0" layoutX="17.94871794871795" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="building1" layoutX="164.95726495726495" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="building2" layoutX="311.965811965812" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="building3" layoutX="452.13675213675214" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="building4" layoutX="594.8717948717949" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="building5" layoutX="737.6068376068376" layoutY="257.2649572649573" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory0" layoutX="17.94871794871795" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory1" layoutX="164.95726495726495" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory2" layoutX="311.965811965812" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory3" layoutX="452.13675213675214" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory4" layoutX="594.8717948717949" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane fx:id="territory5" layoutX="737.6068376068376" layoutY="18.803418803418804" prefHeight="210.25641025641028" prefWidth="126.4957264957265" />
+    <Pane layoutX="11.111111111111112" layoutY="478.63247863247864" prefHeight="198.2905982905983" prefWidth="855.5555555555557">
+      <children>
+        <Pane fx:id="leader0" layoutX="11.965811965811966" layoutY="13.675213675213676" prefHeight="170.94017094017096" prefWidth="102.56410256410257" />
+        <Pane fx:id="leader1" layoutX="213.67521367521368" layoutY="13.675213675213676" prefHeight="170.94017094017096" prefWidth="102.56410256410257" />
+        <Pane fx:id="leader2" layoutX="427.35042735042737" layoutY="13.675213675213676" prefHeight="170.94017094017096" prefWidth="102.56410256410257" />
+        <Pane fx:id="leader3" layoutX="641.0256410256411" layoutY="13.675213675213676" prefHeight="170.94017094017096" prefWidth="102.56410256410257" />
+      </children>
+    </Pane>
+
+    <Pane layoutX="905.0" layoutY="7.0" prefHeight="227.0" prefWidth="180.0">
+      <children>
+        <ImageView fitHeight="227.0" fitWidth="191.0" layoutX="-8.0" layoutY="8.0">
+          <image>
+            <Image url="@paper2.png" />
+          </image>
+        </ImageView>
+   	<TextFlow fx:id="currentRequestFlow" layoutX="35.0" layoutY="47.0" prefHeight="134.0" prefWidth="131.0" />
+      </children>
+    </Pane>
+
+      
+   </children>
+</AnchorPane>

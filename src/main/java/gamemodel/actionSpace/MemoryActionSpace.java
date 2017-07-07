@@ -12,10 +12,11 @@ import gamemodel.FamilyMember;
 import gamemodel.Player;
 import gamemodel.effects.IstantEffect;
 
-public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Serializable {
+public class MemoryActionSpace extends ActionSpace implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private List<Player> players=new ArrayList<Player>();
+	private List<Player> players=new ArrayList<>();
+	private List<FamilyMember> fm=new ArrayList<>();
 
 	public MemoryActionSpace(int id,int actionCost, IstantEffect effect, ActionSpaceType type) {
 		super(id,actionCost, effect, type);
@@ -28,6 +29,10 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	public List<Player> getPlayers() {
 		return players;
 	}
+	
+	public List<FamilyMember> getFm() {
+		return fm;
+	}
 
 	public boolean controlPlayer(FamilyMember f) {
 		if(f.getColor()==Color.UNCOLORED)
@@ -39,6 +44,7 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	}
 
 	public void addPlayer(FamilyMember f){
+		fm.add(f);
 		if(f.getColor()!=Color.UNCOLORED || this.getType()==ActionSpaceType.COUNCIL_PALACE)
 			players.add(f.getPlayer());			
 	}
@@ -46,30 +52,27 @@ public class MemoryActionSpace extends RealActionSpace implements ActionSpace,Se
 	@Override
 	public void prepareForNewRound(){
 		super.prepareForNewRound();
+		this.fm.clear();
 		this.players.clear();
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
-		return "MemoryActionSpace [players=" + players + ", getPlayers()=" + getPlayers() + ", getEffects()="
-				+ getEffects() + "]";
-	}*/
+		String str = "\n";
 
-	public String toString() {
-		String str = "";
-		str += this.getId();
-		str += "-> ";
-		str += this.getType();
-		str+=" ";
-		if(this.getEffects()!=null)
-			str +=this.getEffects();
-		if(!this.players.isEmpty()){
-			str+=", players:[";
-			for(Player p:players)
-				str +=p.getTeam()+" ";
-			str+="] ";
-		}	
-		str+="\n";
+		str += "-" + this.getType() + " action space";
+		if(!this.getEffects().isEmpty()) {
+			str += "\n";
+			str += "- Effects: \n";
+			for (IstantEffect e : this.getEffects()) {
+				str += "-- " + e + "\n";
+			}
+		}
+		if(!this.fm.isEmpty()) {
+			str+="- Occupied by " + this.fm;
+		}
+		str += "\n";
+
 		return str;
 	}
 	

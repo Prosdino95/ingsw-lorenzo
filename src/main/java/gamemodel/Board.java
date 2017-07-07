@@ -1,9 +1,6 @@
 package gamemodel;
 
 import java.io.Serializable;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,8 +8,6 @@ import java.util.Random;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
-import gamemodel.actionSpace.RealActionSpace;
-import gamemodel.actionSpace.RealTowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
@@ -26,14 +21,12 @@ import gamemodel.card.Excommunication;
  */
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	private List<ActionSpace> actionSpaces;
-	
 	private transient List<Card> territoryCards;
 	private transient List<Card> buildingCards;
 	private transient List<Card> characterCards; 
 	private transient List<Card> ventureCards;
-	private transient Dice dice;
+	private Dice dice;
 	private Excommunication[]excommunicationCards=new Excommunication[3];
 
 	
@@ -81,7 +74,7 @@ public class Board implements Serializable {
 				if (card==null) {
 					System.err.println("Finished cards");
 				}
-				((RealTowerActionSpace) as).attachDevelopmentCard(card);
+				((TowerActionSpace) as).attachDevelopmentCard(card);
 			}
 		}
 		dice.rollDice();
@@ -103,31 +96,33 @@ public class Board implements Serializable {
 	}
 
 	private Card getCard(int turn,List<Card>card) {
-		int p;
 		for(Card c: card)
 			if(c.getPeriod()==((turn+1)/2))			
 				return card.remove(card.indexOf(c));				
 		return null;
 	}
 
-	public void addActionSpace(RealActionSpace a) {
+	public void addActionSpace(ActionSpace a) {
 		this.actionSpaces.add(a);
 	}
 
-	public RealActionSpace getActionSpace(int id) {
+	public ActionSpace getActionSpace(int id) {
 		for (ActionSpace as : this.actionSpaces) {
-			if (as.getId() == id) return (RealActionSpace) as;
+			if (as.getId() == id) return (ActionSpace) as;
 		}
 		return null;
 	}
 
 	public String toString() {
 		String str = "";
-		str += "Action Spaces\n";
+		str += "Here come the action spaces\n";
 		for (ActionSpace as : actionSpaces) {
 			str += as.toString();
-			str += "\n";
 		}
+		str += "\n";
+		
+		str += "The dices -> " + dice + "\n";
+		str += "And the excommunication cards -> " + excommunicationCards + "\n"; 
 		return str;
 	}
 
@@ -159,13 +154,13 @@ public class Board implements Serializable {
 	
 	public void setEXCard(List<Excommunication>ex){
 		int random=new Random().nextInt(7);
-		//TODO da fare meglio, ora si suppone una lsita orinata secondo il periodo
 		excommunicationCards[0]=ex.get(random);
 		excommunicationCards[1]=ex.get(random+7);
 		excommunicationCards[2]=ex.get(random+14);	
 	}
 
 	public LeaderCard getLC(Integer lcId) {
+		// TODO
 		// La board tiene una mappa da id a carta leader
 		return null;
 	}

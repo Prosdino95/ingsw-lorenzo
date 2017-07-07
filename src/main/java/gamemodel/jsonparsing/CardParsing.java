@@ -1,16 +1,22 @@
 package gamemodel.jsonparsing;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
-import gamemodel.card.*;
+import gamemodel.Board;
+import gamemodel.Point;
+import gamemodel.Resource;
+import gamemodel.card.Card;
+import gamemodel.card.CardType;
+import gamemodel.card.CharactersCard;
+import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.VentureCard;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
-import gamemodel.*;
 
 public class CardParsing {
 	
@@ -20,7 +26,8 @@ public class CardParsing {
 	private int actionCost;
 	private Resource rRequirement,rPrice;
 	private Point pRequirement,pPrice;
-	private List<IstantEffect> istantEffects,activateEffects;
+	private List<IstantEffect> istantEffects=new ArrayList<>();
+	private List<IstantEffect> activateEffects=new ArrayList<>();
 	private PermanentEffect permanentEffects;
 	private CardType type;
 	private int id=0;	
@@ -67,6 +74,9 @@ public class CardParsing {
 			break;
 		case VENTURE:cards.add(new VentureCard(id,name,period,rRequirement, rPrice, pRequirement, pPrice, istantEffects,activateEffects, type));
 			break;
+		case ALL:
+		default:
+			throw new AssertionError();
 		}
 	}
 

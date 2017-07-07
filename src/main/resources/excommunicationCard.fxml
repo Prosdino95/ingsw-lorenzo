@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="163.0" prefWidth="90.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.ExcommunicationCardController">
+   <children>
+      <ImageView fitHeight="169.0" fitWidth="89.4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@excommunicationCard.png" />
+         </image>
+      </ImageView>
+      <TextFlow fx:id="effect" layoutX="1.0" layoutY="82.0" prefHeight="82.0" prefWidth="89.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

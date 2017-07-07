@@ -1,6 +1,7 @@
 package gamemodeltest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,10 +13,9 @@ import org.junit.Test;
 import gamemodel.Player;
 import gamemodel.Team;
 import gamemodel.TurnOrder;
+import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
-import gamemodel.card.Card;
-import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.PEffect;
 import gamemodel.permanenteffect.PermanentEffect;

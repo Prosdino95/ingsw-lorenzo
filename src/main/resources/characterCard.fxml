@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.CharacterCardController">
+   <children>
+      <ImageView fitHeight="137.7" fitWidth="85.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@characterCard.png" />
+         </image>
+      </ImageView>
+      <TextFlow fx:id="cardName" layoutX="4.0" prefHeight="5.0" prefWidth="73.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardPrice" layoutX="3.0" layoutY="23.0" prefHeight="17.0" prefWidth="19.0" textAlignment="CENTER" />
+      <TextFlow fx:id="instantEffect" layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="56.0" textAlignment="CENTER" />
+      <TextFlow fx:id="permanentEffect" layoutX="5.0" layoutY="94.0" prefHeight="38.0" prefWidth="70.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

@@ -1,13 +1,15 @@
 package reti;
 
 
-import gamemodel.actionSpace.ActionSpace;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.*;
+import gamemodel.Color;
+import gamemodel.FamilyMember;
+import gamemodel.LeaderCard;
+import gamemodel.Player;
+import gamemodel.actionSpace.ActionSpace;
+import gameview.gui.LeaderCardAction;
 
 public class ClientRequest  implements Serializable{
 	
@@ -21,31 +23,39 @@ public class ClientRequest  implements Serializable{
 	private Color which;
 	private String answer;
 	private Player player;
-	private LeaderCard leaderCard;
-	private String what;
+	private LeaderCardAction action;
 	private Integer lcID;
+	private transient LeaderCard sleaderCard;
 	
 	public ClientRequest(String string) {
 		type = RequestType.ANSWER;
 		answer = string;
 	}
 	
+	public ClientRequest(LeaderCard lc, LeaderCardAction action) {
+		type = RequestType.LEADERCARD;
+		this.setAction(action); 
+		sleaderCard = lc;
+		this.lcID = lc.getId();
+	}
+	
+	
 	public void setWhichLeaderCard(LeaderCard lc) {
-		leaderCard = lc;
+		sleaderCard = lc;
 		lcID = lc.getId();
 	}
 	
 	public LeaderCard getLeaderCard() {
-		return leaderCard;
+		return sleaderCard;
 	}
 
 	
-	public void setWhatLC(String what) {
-		this.what = what;
+	public ClientRequest() {
+		this.type=RequestType.FINISHACTION;
 	}
 
-	public ClientRequest() {
-		super();
+	public ClientRequest(RequestType t) {
+		this.type = t;
 	}
 	
 	public ClientRequest(String a, RequestType type) {
@@ -58,6 +68,7 @@ public class ClientRequest  implements Serializable{
 	}
 	
 	public void setServants(String servants) {
+		this.type = RequestType.PLACEFAMILYMEMBER;
 		this.servants= Integer.parseInt(servants);
 	}
 		
@@ -66,14 +77,26 @@ public class ClientRequest  implements Serializable{
 	}
 	
 	public void setWhere(ActionSpace where){
+		this.type = RequestType.PLACEFAMILYMEMBER;
 		this.where=where.getId();
 	}
-	
-	public void setWhich(FamilyMember which){
-		this.which=which.getColor();
-		
+
+	public void setWhere(Integer id){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=Color.UNCOLORED;
+		this.where=id;
 	}
-	
+
+	public void setWhich(FamilyMember which){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=which.getColor();
+	}
+
+	public void setWhich(Color color){
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=color;
+	}
+
 
 	public int getWhere() {
 		return where;
@@ -93,8 +116,35 @@ public class ClientRequest  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ClientRequest [type=" + type + ", where=" + where + ", servants=" + servants + ", which=" + which
-				+ ", answer=" + answer + "]";
+		String str = "";
+		str += this.type;
+		str += " ";
+		switch (this.type) {
+		case ANSWER:
+			str += "Answer: " + answer;
+			break;
+		case CHAT:
+			break;
+		case FINISHACTION:
+			break;
+		case IWANTAMODEL:
+			break;
+		case IWANTMONEY:
+			break;
+		case LEADERCARD:
+			str += "LeaderCard: " + sleaderCard + " Action: " + getAction();
+			break;
+		case PLACEFAMILYMEMBER:
+			str += "Where: " + where + " Servants: " + servants + "Which: " + which;
+			break;
+		case VATICAN_REPORT:
+			str += "Answer: " + answer;
+			break;
+		default:
+			break;
+		}
+
+		return str;
 	}
 
 	public void cleanUp() {
@@ -113,28 +163,25 @@ public class ClientRequest  implements Serializable{
 		return player;
 	}
 
-	public List<String> possibleLeaderCardActions() {
-		List<String> lst = new ArrayList<>();
-		if (leaderCard.getPlayed()) {
-			if (leaderCard.getPermanentEffect() == null) {
-				lst.add("Nothing");
-			} else if (leaderCard.getPlayedOPR()) { 
-				lst.add("Nothing");
-			} else {
-				lst.add("Activate OPR effect");
-			}
-		} else {
-			lst.add("Scartare");
-			lst.add("Play it");
-		}
-		return lst;
-	}
+	public List<LeaderCardAction> possibleLeaderCardActions() {
+		return sleaderCard.getPossibleActions();
 
-	public String getWhatLC() {
-		return what;
 	}
 
 	public Integer getLeaderCardID() {
 		return lcID;
+	}
+
+	public void setServants(int i) {
+		this.type = RequestType.PLACEFAMILYMEMBER;
+		servants = i;
+	}
+
+	public LeaderCardAction getAction() {
+		return action;
+	}
+
+	public void setAction(LeaderCardAction action) {
+		this.action = action;
 	}
 }

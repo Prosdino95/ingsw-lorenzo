@@ -8,8 +8,7 @@ public class FamilyMember implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FamilyMember [actionPoint=" + actionPoint + ", color=" + color + ", used=" + used
-				+ "]";
+		return player.getTeam() + "'s " + color + " family member";
 	}
 
 	private Player player;

@@ -1,7 +1,6 @@
 package gamemodeltest.command;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +9,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import gamemodel.*;
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.Color;
+import gamemodel.Model;
+import gamemodel.Player;
+import gamemodel.Resource;
+import gamemodel.Team;
+import gamemodel.Tower;
 import gamemodel.actionSpace.ActionSpaceType;
-import gamemodel.actionSpace.RealTowerActionSpace;
-import gamemodel.card.Card;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.CardType;
-import gamemodel.card.Card;
+import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
@@ -26,11 +31,11 @@ public class PlaceFamilyMemberCommandTowerTest {
 	Tower t,t1;
 	Board b;
 	Player p1,p2,p3;
-	RealTowerActionSpace a0,a1,a2;
+	TowerActionSpace a0,a1,a2;
 	IstantEffect e;
 	GameError s;
 	int id0,id1,id2;
-	Card c0,c1;
+	HarvesterAndBuildings c0,c1;
 	List<IstantEffect> effects=new ArrayList<>();
 	static Model model;
 	
@@ -45,14 +50,14 @@ public class PlaceFamilyMemberCommandTowerTest {
 		t=new Tower();
 		b=new Board();
 		b.setDice(1, 7, 7);
-		c0=new Card(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects, CardType.BUILDING);
-		c1=new Card(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects, CardType.TERRITORY);
+		c0=new HarvesterAndBuildings(0,null,0,new Resource(3,3,3,0), new Resource(3,3,3,0),null, null,effects,effects, CardType.BUILDING,0);
+		c1=new HarvesterAndBuildings(1,null,0,new Resource(0,0,0,0), new Resource(0,0,0,0),null, null,effects,effects, CardType.TERRITORY,0);
 		p1=new Player(new Resource(1,1,1,5), b, Team.RED,model);
 		p2=new Player(new Resource(2,5,5,5), b, Team.BLUE,model);
-		a0=new RealTowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
-		a1=new RealTowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
+		a0=new TowerActionSpace(0,5, e, t, ActionSpaceType.TOWER);
+		a1=new TowerActionSpace(1,0, e, t, ActionSpaceType.TOWER);
 		t1=new Tower();
-		a2=new RealTowerActionSpace(2,5, e, t1, ActionSpaceType.TOWER);
+		a2=new TowerActionSpace(2,5, e, t1, ActionSpaceType.TOWER);
 		p1.prepareForNewRound();
 		p2.prepareForNewRound();
 		a0.attachDevelopmentCard(c0);
@@ -155,4 +160,5 @@ public class PlaceFamilyMemberCommandTowerTest {
 		assertEquals(new Resource(0,0,0,5),p3.getResource());
 		
 	}
+	
 }

@@ -101,6 +101,7 @@ public class PlaceFamilyMemberCommandTower implements Command {
 				f.getPlayer().getFamilyMember(f.getColor()).use();
 				t.getTower().occupyTower();									
 				t.giveCard(f);
+				t.setFamilyMember(f);
 				t.occupy();
 				t.getTower().addPlayer(f);
 			}

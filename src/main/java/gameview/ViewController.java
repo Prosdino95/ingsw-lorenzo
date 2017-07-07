@@ -4,9 +4,11 @@ package gameview;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Queue;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import reti.ClientRequest;
 import reti.ServerResponse;
@@ -17,19 +19,38 @@ import reti.client.HandlerSocket;
 public class ViewController {
 		
 	private Queue<ServerResponse> serverMessages=new ArrayDeque<>();
-	private ClientRequest crOut;
 	private ServerResponse srIn = null;
 	private HandlerServer hs;
 	private boolean live=true;
 
 	
-	public ViewController() throws IOException, InterruptedException, NotBoundException{
-		super();
-		hs=new HandlerSocket(this);
-		//hs=new HandlerServerRMIImpl(this);
-		new Thread((Runnable) hs).start();
+	public ViewController() {
+		this("socket");
 	}
 	
+
+	public ViewController(String networkChoose) {
+		super();
+		if (networkChoose == "rmi") {
+			try {
+				hs=new HandlerServerRMIImpl(this);
+			} catch (RemoteException | NotBoundException e) {
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+			}
+		} else if (networkChoose == "socket") {
+			try {
+				hs=new HandlerSocket(this);
+			} catch (IOException | InterruptedException e) {
+				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+			}
+			new Thread((Runnable) hs).start();
+		} else {
+			
+		}
+		
+	}
+
+
 	public boolean hasMessage()
 	{
 		return !serverMessages.isEmpty();
@@ -48,10 +69,9 @@ public class ViewController {
 		case MESSAGE:
 		case NEW_MODEL:
 		case PLAYER_ASSIGNED:
-		case VATICAN_SUPPORT:
 		case LEADER:	
-					this.serverMessages.add(sr);
-					break;
+			this.serverMessages.add(sr);
+			break;
 		default:
 			System.out.println("What is going on ???");
 			break;
@@ -67,7 +87,6 @@ public class ViewController {
 	
 	private void setSRIn(ServerResponse response){
 		this.srIn=response;
-		this.crOut=null;
 	}
 
 
@@ -85,7 +104,7 @@ public class ViewController {
 	    		Thread.sleep(100); 
 	    	} catch (InterruptedException e) {
 	    		Thread.currentThread().interrupt();
-	    		e.printStackTrace(); 
+	    		Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 	    	}     	
 	    	srr = getSRIn(); 
 	    	if (srr != null) return srr; 
@@ -99,19 +118,4 @@ public class ViewController {
 }
 
 
-/*public static void main(String[] args) throws IOException, InterruptedException
-{
-	System.out.println("ciao");
-	ExecutorService pool = Executors.newCachedThreadPool();
-		try{BufferedReader inK = new BufferedReader(new InputStreamReader(System.in));
-		ServerSocket ss=new ServerSocket(3001);
-		Socket s=ss.accept();
-		ObjectOutputStream out2 = new ObjectOutputStream(s.getOutputStream());	
-		while(true){							
-			ServerResponse sr= new ServerResponse(inK.readLine());
-			out2.writeObject(sr);
-			out2.flush();
-			out2.reset();}
-		}
-		catch(Exception e){}
-}*/
+

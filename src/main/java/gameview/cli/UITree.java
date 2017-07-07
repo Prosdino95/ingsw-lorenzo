@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpace;
 import gameview.ViewController;
+import gameview.gui.LeaderCardAction;
 import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
 // TODO: Cosa succede se tutte le scelte vanno in error?
 // TODO: Finale di partita
-// TODO: Carte leader, funzionano?
-// TODO: Forse giveMeMoney e' da rimuovere
-// TODO: Mentre navigo l'albero non posso tornare indietro?
 
 public class UITree {
 	private UINode root;
@@ -35,10 +35,10 @@ public class UITree {
 	private List<String> stringChoices;
 	private List<ServerResponse> messages;
 	private List<ServerResponse> responses;
-	private long fakeDelay = 1000;
+	private long fakeDelay = 400;
 	
 	public UITree(List<Integer> intChoices, List<String> stringChoices, List<ServerResponse> messages, LinkedList<ServerResponse> responses2) {
-		this((ViewController)null);
+		this((ViewController) null);
 		this.fakeIntChoices = intChoices;
 		this.stringChoices = stringChoices;
 		this.messages = messages;
@@ -47,12 +47,6 @@ public class UITree {
 	
 	public UITree(ViewController vc) {
 		this.viewController=vc;
-
-// 		// Riusciremo a infilarlo nell'albero un giorno?
-//		UINodeSetResponseType sendMessage = 
-//		new UINode("Chat", 
-//				response::setType, 
-//				ResponseType.CHAT);
 
 		UINodeLog log = new UINodeLog("", this, vc);
 		UINodeChooseUI menu = new UINodeChooseUI("Menu'", this); 
@@ -89,16 +83,27 @@ public class UITree {
 						() -> this.getPlayer().getLCList(), 
 						this);
 		
-		UINodeChooseValue<String> whatLeader = 
-				new UINodeChooseValue<String>("What do you want to do with it?", 
-						request::setWhatLC,
+		UINodeChooseValue<LeaderCardAction> whatLeader = 
+				new UINodeChooseValue<>("What do you want to do with it?", 
+						request::setAction,
 						request::possibleLeaderCardActions,
 						this);
 		
-		UINodeSetRequest giveMeMoney = 
-				new UINodeSetRequest("I WANT money. Now.", 
-						request::setType, 
-						RequestType.IWANTMONEY, this);
+		UINodeChooseUI examineGame = new UINodeChooseUI("Examine game", this);
+		UINode board = new UINode("The board", this) {
+			public void run() {
+				System.out.println(tree.getModel().getBoard());
+			}
+		}; 
+		UINode players = new UINode("The players", this) {
+			public void run() {
+				for (Player p : this.tree.getModel().getPlayers()) {
+					System.out.print(p + "\n");
+				}
+			}
+		};
+				
+
 		UINode exit= new UINode("exit",this){				
 			@Override
 			public void run(){
@@ -128,13 +133,13 @@ public class UITree {
 				    .addSon(
 				      talkToServer))))
 			  .addSon(
+				examineGame
+				.addSon(board)
+				.addSon(players))
+			  .addSon(
 				finishTurn
 				.addSon(
 				  talkToServer))
-			  .addSon(
-			    giveMeMoney
-			    .addSon(
-			      talkToServer))
 			  .addSon(exit)); 
 		
 		reset();
@@ -143,7 +148,7 @@ public class UITree {
 
 	protected void shutdown() {
 		live=false;
-		if (viewController == null)
+		if (isOffline())
 			return;
 		viewController.shutdown();
 		
@@ -163,7 +168,7 @@ public class UITree {
 
 	public ServerResponse sendRequestToServer(ClientRequest request) {
 		ServerResponse srr;
-		if (viewController == null)
+		if (isOffline())
 			return this.responses.remove(0);
 		else 
 			srr = viewController.syncSend(request);
@@ -174,6 +179,7 @@ public class UITree {
 		while (live) {
 			while (next != null) {
 				next.run();
+				
 				next = next.getNextNode();
 			}
 			reset();
@@ -181,27 +187,34 @@ public class UITree {
 	}
 
 	public int getInt() throws OfflineException {
-		if (viewController == null)
+		if (isOffline())
 			throw new OfflineException();
 		try {
 			return Integer.parseInt(inKeyboard.readLine());
 		} catch (NumberFormatException e) {
 			return getInt();
 		} catch (IOException e) {
-			e.printStackTrace();
-			return getInt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+			return 0;
 		}
 	}
 
 	public String getString() throws OfflineException {
-		if (viewController == null)
+		if (isOffline())
 			throw new OfflineException();
+		String s = "0";
 		try {
-			return inKeyboard.readLine();
+			s = inKeyboard.readLine();
 		} catch (IOException e) {
-			e.printStackTrace();
+			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
-		return getString();
+		try{
+			Integer.parseInt(s);
+		}catch(NumberFormatException e){
+			return getString();
+		}		
+		return s;
 	}
 
 	
@@ -231,10 +244,17 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Thread.currentThread().interrupt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		Integer choice = fakeIntChoices.remove(0);
 		System.out.println("Chose: " + choice);
+		try {
+			Thread.sleep(this.fakeDelay);
+		} catch (InterruptedException e) {
+			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+		}
 		return choice;
 	}
 
@@ -242,23 +262,33 @@ public class UITree {
 		try {
 			Thread.sleep(this.fakeDelay );
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Thread.currentThread().interrupt();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		String choice = stringChoices.remove(0);
 		System.out.println("Chose: " + choice);
+		try {
+			Thread.sleep(this.fakeDelay);
+		} catch (InterruptedException e) {
+			 Thread.currentThread().interrupt();
+			 Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
+		}
 		return choice;
 	}
 
 	public boolean hasMessage() {
-		if (viewController == null) {
+		if (isOffline()) {
 			return !messages.isEmpty();
 		}
 		return viewController.hasMessage();
 	}
+	
+	boolean isOffline() {
+		return viewController == null;
+	}
 
 	public ServerResponse getMessage() {
-		if (viewController == null) {
+		if (isOffline()) {
 			return messages.remove(0);
 		}
 		return viewController.getMessage();

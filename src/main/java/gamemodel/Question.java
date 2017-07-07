@@ -45,7 +45,7 @@ public class Question implements Serializable{
 		return serialVersionUID;
 	}
 	
-	static List<Object> yesOrNo()
+	public static List<Object> yesOrNo()
 	{
 		List<Object> list=new ArrayList<Object>();
 		list.add("Nope");

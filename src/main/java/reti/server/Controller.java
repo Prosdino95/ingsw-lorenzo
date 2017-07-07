@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import gamemodel.Action;
 import gamemodel.GameQuestion;
@@ -19,6 +22,7 @@ import gamemodel.Resource;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gameview.gui.LeaderCardAction;
 import reti.ClientRequest;
 import reti.ResponseType;
 import reti.ServerResponse;
@@ -49,8 +53,7 @@ public class Controller{
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 					Thread.currentThread().interrupt();
 				}
 				continue;
@@ -77,6 +80,7 @@ public class Controller{
 			break;
 		case VATICAN_REPORT:
 			hv.getPlayer().vaticanReport(Integer.parseInt(request.getAnswer()));
+			hv.sendResponse(new ServerResponse());
 			break;
 		case CHAT:
 			break;
@@ -84,12 +88,10 @@ public class Controller{
 			break;
 		case LEADERCARD:
 			Integer id = request.getLeaderCardID();
-			String action = request.getWhatLC();
+			LeaderCardAction action = request.getAction();
 			Player p = hv.getPlayer();
 			switch (action) {
-			case "Nothing":
-				break;
-			case "Activate OPR effect":
+			case ACTIVATE:
 				try {
 					p.activateOPT(id);
 					hv.sendResponse(new ServerResponse());
@@ -97,7 +99,7 @@ public class Controller{
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
 				break;
-			case "Scartare":
+			case DISCARD:
 				try {
 					p.discardLC(id);
 					hv.sendResponse(new ServerResponse());
@@ -105,7 +107,7 @@ public class Controller{
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
 				break;
-			case "Play it":
+			case PLAY:
 				try {
 					p.playLC(id);
 					hv.sendResponse(new ServerResponse());
@@ -113,10 +115,13 @@ public class Controller{
 					hv.sendResponse(new ServerResponse(e.getType()));
 				}
 				break;
+			default:
+				break;
 			}
 			this.notifyNewModel();
 			break;
 		case ANSWER:
+			assert(false);
 			break;
 		case IWANTMONEY:
 			Player pl = hv.getPlayer();
@@ -133,21 +138,26 @@ public class Controller{
 	}
 	
 	public void giveLeaderCard() {
-		//TODO ordine turno
-		int index;
+		int index=0,i,j;
+		Random random=new Random();
+		List<Object> cards=new ArrayList<>(); 
 		sendMessageToAll("now it's time to choose your leaders, so wait your turn");
-//		for(int i=0;i<4;i++)
-		for(int i=0;i<1;i++)
-				for(HandlerView hv:playerToHV.values()){
-					try {
-						index=answerToQuestion(new Question(GameQuestion.LEADER,game.getLeaderCards()),hv);
-						game.giveLeaderCard(hv.getPlayer(), index);
-						hv.sendResponse(new ServerResponse());
-					} catch (GameException e) {
-						game.giveLeaderCard(hv.getPlayer(), 0);
-					}				
+		for(i=0;i<1;i++){
+			for(j=0;j<4;j++){
+				index=random.nextInt(game.getLeaderCards().size());
+				cards.add(game.getLeaderCards().remove(index));
+			}			
+			for(HandlerView hv:playerToHV.values())
+				try {
+					index=answerToQuestion(new Question(GameQuestion.LEADER,cards),hv);
+					hv.getPlayer().giveLeaderCard((LeaderCard)cards.remove(index));
+					hv.sendResponse(new ServerResponse());
+				} catch (GameException e) {
+					game.giveLeaderCard(hv.getPlayer(), 0);
 				}
-			sendMessageToAll("iniziamo a giocare");
+			cards.clear();
+		}
+		sendMessageToAll("iniziamo a giocare");
 	}
 
 	public void notifyNewModel() 
@@ -196,12 +206,11 @@ public class Controller{
 		else
 			sr = new ServerResponse(gq);			
 		hv.sendResponse(sr);
-		//TODO sistemare coda che potrebbe ricevere cose che non sono risponte
 			while (!requestAvailable()) {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {						
-					e.printStackTrace();
+					Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 					Thread.currentThread().interrupt();
 				}
 				if (deadHVs.contains(hv))

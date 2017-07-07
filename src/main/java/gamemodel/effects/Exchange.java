@@ -5,7 +5,6 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
-import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
 public class Exchange implements IstantEffect,Serializable 
@@ -27,13 +26,19 @@ public class Exchange implements IstantEffect,Serializable
 		this.councilPrivilegesIn=councilPrivilegesIn;
 	}
 	
+	public boolean canExchange(Player player){
+		return (player.isEnoughtPoint(this.pointsOut) && player.isEnoughtResource(this.resourcesOut));
+	}
+	
 	@Override
 	public void activate(Player player) throws GameException
 	{
 		if(!player.isEnoughtPoint(this.pointsOut))
-			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+			return;
+			//throw new GameException(GameError.RESOURCE_ERR_EFFECT);
 		if(!player.isEnoughtResource(this.resourcesOut))
-			throw new GameException(GameError.RESOURCE_ERR_EFFECT);
+			return;
+			//throw new GameException(GameError.RESOURCE_ERR_EFFECT);
 		player.addPoint(pointsIn);
 		player.subPoint(pointsOut);
 		player.addResources(resourcesIn);
@@ -42,33 +47,23 @@ public class Exchange implements IstantEffect,Serializable
 			councilPrivilegesIn.activate(player);
 	}
 
-/*	@Override
-	public String toString() {
-		return "Exchange [pointsIn=" + pointsIn + ", pointsOut=" + pointsOut + ", resourcesIn=" + resourcesIn
-				+ ", resourcesOut=" + resourcesOut + ", councilPrivilegesIn=" + councilPrivilegesIn + "]";
-	}	*/	
-	
 	@Override
 	public String toString() {
-		String str =
-				"\n"+ 
-				"Exchange: "+"\n";
-		str+="give --> ";
+		//String str ="Exchange:\n";
+		String str="";
+		//str+="give-->";
 		if(this.pointsOut!=null)
-			str+=pointsOut+"";
+			str+=pointsOut;
 		if(this.resourcesOut!=null)
-			str+=resourcesOut+"\n";
-		str+="receive --> ";
+			str+=resourcesOut;
+		str+=" -->";
 		if(this.councilPrivilegesIn!=null)
 			str+=councilPrivilegesIn;
 		if(this.pointsIn!=null)
 			str+=pointsIn;			
 		if(this.resourcesIn!=null)		
 			str+=resourcesIn;
-			
 		return str;
-		
 	}
-	
 }
 

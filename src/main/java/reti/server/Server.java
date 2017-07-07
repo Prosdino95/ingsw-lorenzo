@@ -1,12 +1,19 @@
 package reti.server;
 
+import java.io.File;
 import java.io.IOException;
-
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
-import java.rmi.registry.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
+
+import gamemodel.jsonparsing.CustomizationFileReader;
 
 public class Server {
 	
@@ -15,21 +22,34 @@ public class Server {
 	private GameManager gm;
 	private boolean live=true;
 	
+	private int delay;
+	private int port;
+	private int gameDelay;
+	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);		
+		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);	
 		Server server=new Server();
-		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));		
-		server.serverSocket=new ServerSocket(3003);			
+		server.setUpServer();
+		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));
+		server.serverSocket=new ServerSocket(server.port);			
 		//Registry registry = LocateRegistry.getRegistry();
 		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
 		//registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
-		server.start();
+		server.start();		
+	}
+
+	private void setUpServer() throws IOException{	
+		String config = CustomizationFileReader.reedFile(new File("Config/ServerConfig.json"));
+		JsonObject item=Json.parse(config).asObject();	
+		port=item.getInt("port", 3003);
+		delay=item.getInt("server-delay", 1000);
+		gameDelay=item.getInt("game-deley", 200000);
 	}
 
 	private void start() throws IOException {
 		System.out.println("server start");
-		gm=new GameManager();
+		gm=new GameManager(delay,gameDelay);
 		pool.execute(gm);
 		while(live){
 			Socket s=serverSocket.accept();				
@@ -41,7 +61,7 @@ public class Server {
 	
 	public synchronized void addHV(HandlerView hv){
 		if(gm == null || gm.getIsFull()) {
-			gm = new GameManager();
+			gm = new GameManager(delay,gameDelay);
 			new Thread(gm).start();
 		}
 		gm.addHV(hv);
@@ -53,8 +73,7 @@ public class Server {
 			serverSocket.close();
 			live=false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 	}
 }	
