@@ -1,7 +1,5 @@
 package gameview;
 
-import java.io.IOException;
-
 import gameview.cli.CLIView;
 import gameview.gui.GuiView;
 import javafx.beans.value.ChangeListener;

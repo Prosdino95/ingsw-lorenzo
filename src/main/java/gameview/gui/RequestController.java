@@ -7,26 +7,18 @@ import java.util.List;
 
 import gamemodel.Color;
 import gamemodel.Player;
-import gamemodel.Team;
-import gameview.ViewController;
 import gameview.gui.actionspacecontroll.MakeFM;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
-import reti.ClientRequest;
-import reti.RequestType;
-import reti.ResponseType;
-import reti.ServerResponse;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import reti.ClientRequest;
+import reti.RequestType;
+import reti.ServerResponse;
 
 public class RequestController {
 	private ClientRequest cr = new ClientRequest();

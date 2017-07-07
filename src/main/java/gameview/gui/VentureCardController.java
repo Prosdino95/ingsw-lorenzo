@@ -1,7 +1,6 @@
 package gameview.gui;
 
 import gamemodel.card.Card;
-import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.PointModify;

@@ -2,19 +2,17 @@ package gamemodel;
 
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
-
-
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gamemodel.actionSpace.*;
-import gamemodel.card.*;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
+import gamemodel.card.Card;
 import gamemodel.card.CardType;
+import gamemodel.card.Excommunication;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.command.GameError;
@@ -287,7 +285,7 @@ public class Model implements Serializable {
 	}
 
 	public Integer answerToQuestion(Question gq, Player player) throws GameException {
-		if (controller == null) {
+		if (controller instanceof FakeController) {
 			throw new GameException(GameError.NOT_PLAYING_ONLINE);
 		}
 		return controller.answerToQuestion(gq, player);

@@ -1,9 +1,10 @@
 package gamemodel.command;
 
-import gamemodel.*;
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.FamilyMember;
+import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.TowerActionSpace;
 
 public class PlaceFamilyMemberCommandMarket implements Command {
 	private FamilyMember f;

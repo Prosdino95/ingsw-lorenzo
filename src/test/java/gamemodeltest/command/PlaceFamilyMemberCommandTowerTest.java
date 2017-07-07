@@ -1,7 +1,6 @@
 package gamemodeltest.command;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +9,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import gamemodel.*;
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.Color;
+import gamemodel.Model;
+import gamemodel.Player;
+import gamemodel.Resource;
+import gamemodel.Team;
+import gamemodel.Tower;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
-import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
-import gamemodel.card.Card;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;

@@ -1,14 +1,15 @@
 package reti;
 
 
-import gamemodel.actionSpace.ActionSpace;
-import gameview.gui.LeaderCardAction;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.*;
+import gamemodel.Color;
+import gamemodel.FamilyMember;
+import gamemodel.LeaderCard;
+import gamemodel.Player;
+import gamemodel.actionSpace.ActionSpace;
+import gameview.gui.LeaderCardAction;
 
 public class ClientRequest  implements Serializable{
 	

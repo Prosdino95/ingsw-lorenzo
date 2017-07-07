@@ -5,15 +5,11 @@ import java.io.IOException;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Team;
-import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class TestDavide extends Application {

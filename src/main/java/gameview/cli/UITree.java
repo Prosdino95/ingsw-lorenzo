@@ -19,7 +19,6 @@ import reti.ServerResponse;
 
 public class UITree {
 	private UINode root;
-	private UINode prev;
 	private UINode next;
 	private ClientRequest request = new ClientRequest();
 	private ViewController viewController;
@@ -108,10 +107,7 @@ public class UITree {
 			}
 		};
 				
-		UINodeSetRequest giveMeMoney = 
-				new UINodeSetRequest("I WANT money. Now.", 
-						request::setType, 
-						RequestType.IWANTMONEY, this);
+
 		UINode exit= new UINode("exit",this){				
 			@Override
 			public void run(){

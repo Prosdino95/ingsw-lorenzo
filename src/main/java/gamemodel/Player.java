@@ -1,14 +1,8 @@
 package gamemodel;
 
 import java.io.Serializable;
-
-
-
 import java.util.ArrayList;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,10 +13,15 @@ import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
-import gamemodel.command.*;
+import gamemodel.command.Command;
+import gamemodel.command.GameError;
+import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
-import gamemodel.permanenteffect.*;
-import reti.server.GameManager;
+import gamemodel.permanenteffect.Debuff;
+import gamemodel.permanenteffect.FamilyMemberModify;
+import gamemodel.permanenteffect.PEffect;
+import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 
 
 public class Player implements Serializable{
@@ -80,11 +79,6 @@ public class Player implements Serializable{
 		familyMembers.add(new FamilyMember(this,Color.WHITE));
 		familyMembers.add(new FamilyMember(this,Color.ORANGE));
 		familyMembers.add(new FamilyMember(this,Color.UNCOLORED));
-	}
-	
-	private void setFamilyMember(Color color,int actionPoint) {
-		FamilyMember f = getFamilyMember(color); 
-		f.setActionpoint(actionPoint);		
 	}
 	
 	public PersonalBonusTile getPersonalBonusTile() 

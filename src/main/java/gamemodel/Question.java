@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import reti.ClientRequest;
-import reti.RequestType;
-
 public class Question implements Serializable{
 
 	private static final long serialVersionUID = 1L;

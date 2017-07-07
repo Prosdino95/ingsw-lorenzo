@@ -18,7 +18,6 @@ import reti.client.HandlerSocket;
 public class ViewController {
 		
 	private Queue<ServerResponse> serverMessages=new ArrayDeque<>();
-	private ClientRequest crOut;
 	private ServerResponse srIn = null;
 	private HandlerServer hs;
 	private boolean live=true;
@@ -89,7 +88,6 @@ public class ViewController {
 	
 	private void setSRIn(ServerResponse response){
 		this.srIn=response;
-		this.crOut=null;
 	}
 
 

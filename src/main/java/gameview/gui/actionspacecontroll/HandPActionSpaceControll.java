@@ -2,12 +2,7 @@ package gameview.gui.actionspacecontroll;
 
 import java.util.List;
 
-
-
-import gamemodel.Color;
 import gamemodel.FamilyMember;
-import gamemodel.Player;
-import gamemodel.Team;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.MemoryActionSpace;
 import javafx.fxml.FXML;

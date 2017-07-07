@@ -8,7 +8,6 @@ import gamemodel.Board;
 import gamemodel.Color;
 import gamemodel.FamilyMember;
 import gamemodel.GameQuestion;
-import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.Resource;

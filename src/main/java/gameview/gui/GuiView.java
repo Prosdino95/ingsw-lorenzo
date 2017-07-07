@@ -2,21 +2,13 @@ package gameview.gui;
 
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import gamemodel.GameQuestion;
-import gamemodel.Board;
-import gamemodel.LeaderCard;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Question;
-import gamemodel.Point;
-import gamemodel.Requirement;
-import gamemodel.Resource;
 import gamemodel.Team;
-import gamemodel.effects.IstantEffect;
-import gamemodel.effects.PointModify;
 import gameview.ViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,13 +16,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import reti.ClientRequest;

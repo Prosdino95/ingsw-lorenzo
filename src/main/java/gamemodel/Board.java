@@ -1,9 +1,6 @@
 package gamemodel;
 
 import java.io.Serializable;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,8 +8,6 @@ import java.util.Random;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
-import gamemodel.actionSpace.ActionSpace;
-import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
@@ -95,7 +90,6 @@ public class Board implements Serializable {
 	}
 
 	private Card getCard(int turn,List<Card>card) {
-		int p;
 		for(Card c: card)
 			if(c.getPeriod()==((turn+1)/2))			
 				return card.remove(card.indexOf(c));				

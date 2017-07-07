@@ -5,7 +5,6 @@ import java.io.Serializable;
 import gamemodel.Player;
 import gamemodel.Point;
 import gamemodel.Resource;
-import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 
 public class Exchange implements IstantEffect,Serializable 

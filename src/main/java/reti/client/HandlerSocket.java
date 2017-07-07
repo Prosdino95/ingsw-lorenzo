@@ -40,9 +40,6 @@ public class HandlerSocket implements Runnable,HandlerServer{
 		
 	}
 	
-	private synchronized ClientRequest getCROut() {
-		return this.crOut;		
-	}
 	@Override
 	public void run() 
 	{

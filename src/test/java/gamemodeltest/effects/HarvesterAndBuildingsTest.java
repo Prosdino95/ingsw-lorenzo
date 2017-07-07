@@ -1,6 +1,6 @@
 package gamemodeltest.effects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import gamemodel.GameQuestion;
 import gamemodel.Model;
 import gamemodel.Player;
 import gamemodel.Point;
-import gamemodel.Question;
 import gamemodel.Resource;
-import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.command.GameException;
-import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
 

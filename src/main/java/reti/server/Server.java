@@ -2,16 +2,11 @@ package reti.server;
 
 import java.io.File;
 import java.io.IOException;
-
-
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.rmi.AlreadyBoundException;
-import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;

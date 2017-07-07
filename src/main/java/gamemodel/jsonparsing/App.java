@@ -17,16 +17,17 @@ public class App{
 	
     public static void main( String[] args )
     {	
-    	//testAS();
-    	//testBCard();
-    	//testTCard();
-    	//testCCard();
-    	//testVCard();
-    	//test();
+    	testAS();
+    	testBCard();
+    	testTCard();
+    	testCCard();
+    	testVCard();
     	testLCard();
+    	testPoints();
+    	testEx();
     } 
     
-    private static void testpoints() {
+    private static void testPoints() {
     	List<Integer> Bcard= new CustomizationFileReader<Integer>("Config/FaithRequirements.json",new FaithRequirements()::parsing).parse();
     	for(Integer a:Bcard)
     		System.out.println(a);

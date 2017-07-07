@@ -1,7 +1,6 @@
 package gamemodel.jsonparsing;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import com.eclipsesource.json.Json;
@@ -12,7 +11,6 @@ import gamemodel.Board;
 import gamemodel.CardRequirement;
 import gamemodel.LeaderCard;
 import gamemodel.Requirement;
-import gamemodel.Resource;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 

@@ -2,8 +2,6 @@ package gameview.gui;
 
 import java.util.List;
 
-
-
 import gamemodel.GameQuestion;
 import gamemodel.Player;
 import gamemodel.actionSpace.TowerActionSpace;
@@ -15,10 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;

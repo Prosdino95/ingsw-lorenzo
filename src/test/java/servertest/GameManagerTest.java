@@ -1,13 +1,10 @@
 package servertest;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import reti.server.GameManager;
 import reti.server.HandlerViewSocket;
 import reti.server.Server;
 

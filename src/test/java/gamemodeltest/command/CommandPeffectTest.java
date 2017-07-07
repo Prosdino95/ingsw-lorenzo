@@ -1,15 +1,25 @@
 package gamemodeltest.command;
 
-import static org.junit.Assert.*;
-
-
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import gamemodel.*;
-import gamemodel.actionSpace.*;
+
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.Color;
+import gamemodel.Model;
+import gamemodel.Player;
+import gamemodel.Resource;
+import gamemodel.Team;
+import gamemodel.Tower;
+import gamemodel.actionSpace.ActionSpace;
+import gamemodel.actionSpace.ActionSpaceType;
+import gamemodel.actionSpace.MemoryActionSpace;
+import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
@@ -18,7 +28,6 @@ import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
 import gamemodel.permanenteffect.NoActionSpace;
-import gamemodel.permanenteffect.PEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
 

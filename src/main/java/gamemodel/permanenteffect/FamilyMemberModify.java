@@ -1,7 +1,6 @@
 package gamemodel.permanenteffect;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 
 import gamemodel.Color;
