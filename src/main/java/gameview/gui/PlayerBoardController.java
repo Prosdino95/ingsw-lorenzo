@@ -67,6 +67,8 @@ public class PlayerBoardController
 	public void update(Player player) 
 	{
 		if(player==null) return;
+		for(Pane p:territoryCardPaneList)
+			p.getChildren().clear();
 		for(int c=0;c<player.getTerritories().size();c++)
 		{
 			HarvesterAndBuildings cc=player.getTerritories().get(c);
@@ -78,6 +80,8 @@ public class PlayerBoardController
 			pane.setScaleY(1.5);
 			territoryCardPaneList.get(c).getChildren().add(gc.getPane());
 		}
+		for(Pane p:buildingCardPaneList)
+			p.getChildren().clear();
 		for(int c=0;c<player.getBuildings().size();c++)
 		{
 			HarvesterAndBuildings cc=player.getBuildings().get(c);

@@ -91,8 +91,10 @@ public class Player implements Serializable{
 	{
 		return personalBonusTile;
 	}
-
-	 public void subResources(Resource r) {
+	public Model getModel() {
+		return model;
+	}
+	public void subResources(Resource r) {
 		if (r == null) return;  
 	    this.resource.subResources(r); 
 	 } 

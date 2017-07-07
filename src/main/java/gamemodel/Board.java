@@ -154,7 +154,6 @@ public class Board implements Serializable {
 	
 	public void setEXCard(List<Excommunication>ex){
 		int random=new Random().nextInt(7);
-		//TODO da fare meglio, ora si suppone una lsita orinata secondo il periodo
 		excommunicationCards[0]=ex.get(random);
 		excommunicationCards[1]=ex.get(random+7);
 		excommunicationCards[2]=ex.get(random+14);	
