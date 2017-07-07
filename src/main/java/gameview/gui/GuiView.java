@@ -165,11 +165,11 @@ public class GuiView extends Application {
 		this.setStage(stage);
 //		this.viewController = new ViewController();
 		
-//		task = new Timeline();
-//		task.getKeyFrames().add(
-//		new KeyFrame(Duration.seconds(1), e->eventHandler()));
-//		task.setCycleCount(Timeline.INDEFINITE);
-//		task.play();
+		task = new Timeline();
+		task.getKeyFrames().add(
+		new KeyFrame(Duration.seconds(1), e->eventHandler()));
+		task.setCycleCount(Timeline.INDEFINITE);
+		task.play();
 		
 		rootPane = new Pane();
 
@@ -180,14 +180,7 @@ public class GuiView extends Application {
 		boardPane = loader.load();
 		boardController = loader.getController();
 		boardPane.setStyle("-fx-background-color: #228b22");
-//		boardPane.setOnMouseClicked(e -> {
-//			System.out.println("alskdnalskdal sndlansk ajsdk ans");
-//		});
-		boardPane.setOnKeyPressed(e -> {
-			System.out.println("alskdnalskdal sndlansk ajsdk ans");
-		});
-		
-//		rootPane.getChildren().add(boardPane);
+		rootPane.getChildren().add(boardPane);
 		panes.add(boardPane);
 		
 		loader = new FXMLLoader();
@@ -240,29 +233,8 @@ public class GuiView extends Application {
 			setPressed(false);
 		});
 		
-		for(Pane p : panes){
-			p = new Pane();
-			p.setOnKeyPressed(e -> {
-				System.out.println("GUIView -- You pressed key " + e.getCode());
-				if (getPressed()) return;
-				setPressed(true);
-				System.out.println("GUIView -- You pressed key " + e.getCode());
-				switch (e.getCode()) {
-				case A:
-					paneGoLeft();
-					break;
-				case D:
-					paneGoRight();
-					break;
-				default:
-					System.out.println("Don't know what to do with " + e.getCode());
-				}
-				
-			});
-			p.setOnKeyReleased(e -> {
-				setPressed(false);
-			});
-		}
+	
+	
 		
 	/*	Model m = new Model(4);
 		m.setupRound();
@@ -290,7 +262,28 @@ public class GuiView extends Application {
 		player.giveLeaderCard(girolamo);
 */
 		
-		Scene scene=new Scene(boardPane);
+		Scene scene=new Scene(rootPane);
+		scene.setOnKeyPressed(e -> {
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			if (getPressed()) return;
+			setPressed(true);
+			System.out.println("GUIView -- You pressed key " + e.getCode());
+			switch (e.getCode()) {
+			case A:
+				paneGoLeft();
+				break;
+			case D:
+				paneGoRight();
+				break;
+			default:
+				System.out.println("Don't know what to do with " + e.getCode());
+			}
+			
+		});
+		scene.setOnKeyReleased(e -> {
+			setPressed(false);
+		});
+	
 		stage.setScene(scene);
 		stage.setTitle("Il magnifico");
 		stage.show();
@@ -303,7 +296,7 @@ public class GuiView extends Application {
 	}
 
 	private synchronized void setPressed(boolean b) {
-		pressed = false;
+		pressed = b;
 	}
 
 	private Pane getCurrentPane() {
