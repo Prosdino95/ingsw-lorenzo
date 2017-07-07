@@ -22,7 +22,7 @@ public class MainView extends Application {
 		FXMLLoader loader=new FXMLLoader();
 		loader.setLocation(getClass().getResource("/MainView.fxml"));		
 		Pane root = loader.load();
-		root.setBackground(new Background(new BackgroundImage(new Image("/test.jpg"), null, null, null, null)));
+		//root.setBackground(new Background(new BackgroundImage(new Image("/lorenzo.jpg"), null, null, null, null)));
 		controller=loader.getController();
 		controller.initialize(stage);
 		root.getStylesheets().add(getClass().getResource("/radio.css").toExternalForm());

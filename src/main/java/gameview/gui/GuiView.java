@@ -24,6 +24,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import reti.ClientRequest;
 import reti.ServerResponse;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 public class GuiView extends Application {
 	private Stage stage;
@@ -152,6 +155,17 @@ public class GuiView extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		
+		
+		
+		String musicFile = "src/main/resources/Medieval Music.ogg";
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+		
+		
+		
+		
 		this.setStage(stage);
 		this.viewController = new ViewController(networkChoose);
 		
