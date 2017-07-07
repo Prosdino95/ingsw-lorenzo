@@ -52,7 +52,8 @@ public class Requirement implements Serializable{
 			s+=resource;
 		if(point!=null)
 			s+=point;
-		s+=cardReq;
+		if(cardReq!=null)
+			s+=cardReq;
 		return s;
 	}
 	

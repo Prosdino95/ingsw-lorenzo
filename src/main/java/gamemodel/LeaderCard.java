@@ -48,8 +48,10 @@ public class LeaderCard implements Serializable {
 		else if (state == LeaderState.NOT_PLAYED)
 			throw new GameException(GameError.LEADER_CARD_STILL_NOT_PLAYED);
 			
-		for(IstantEffect e:oncePerRound)
+		for(IstantEffect e:oncePerRound){
+			state=LeaderState.USED_OPR;
 			e.activate(owner);
+		}
 	}
 
 	void discard() {

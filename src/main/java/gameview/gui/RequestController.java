@@ -122,7 +122,7 @@ public class RequestController {
 	public void showCurrentRequest() {
 		Text t = new Text(this.getCr().toString());
 		List<Node> children = currentRequestFlow.getChildren();
-		while (!children.isEmpty()) children.remove(0);
+		if (!children.isEmpty()) children.clear();
 		this.currentRequestFlow.getChildren().add(t);
 	}
 	

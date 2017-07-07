@@ -82,6 +82,7 @@ public class ClientRequest  implements Serializable{
 
 	public void setWhere(Integer id){
 		this.type = RequestType.PLACEFAMILYMEMBER;
+		this.which=Color.UNCOLORED;
 		this.where=id;
 	}
 

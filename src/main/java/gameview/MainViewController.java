@@ -18,8 +18,9 @@ public class MainViewController {
 	private final ToggleGroup network = new ToggleGroup();
 	private final ToggleGroup view = new ToggleGroup();
 	private String networkChoose="rmi";
-	private String viewChoose="cli";
+	private String viewChoose="gui";
 	private Stage stage;
+	private GuiView gv;
 	
 	public void initialize(Stage stage){
 		this.stage=stage;
@@ -56,8 +57,14 @@ public class MainViewController {
 			CLIView.cliStart(networkChoose);
 		}
 		if(viewChoose=="gui"){
-			new GuiView().start(stage);	
+			gv=new GuiView();
+			gv.start(stage);
 		}
+	}
+
+	public void stop(){
+		if(gv!=null)
+			gv.stop();
 	}
 
 

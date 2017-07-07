@@ -225,7 +225,7 @@ public class Model implements Serializable {
 
 		// Initialize players
 		players = new ArrayList<Player>();
-		players.add(new Player(new Resource(5,2,2,3), board, Team.RED,this));
+		players.add(new Player(new Resource(100,100,100,100), board, Team.RED,this));
 		players.add(new Player(new Resource(6,2,2,3), board, Team.BLUE,this));
 		if(num>=3)players.add(new Player(new Resource(7,2,2,3), board, Team.GREEN,this));
 		if(num==4)players.add(new Player(new Resource(8,2,2,3), board, Team.YELLOW,this));
