@@ -52,7 +52,7 @@ public class GuiView extends Application {
 	private boolean dx=false,sx=false;
 	private boolean r=false,p=false;
 	
-	String musicFile = "src/main/resources/bip.wav";
+	String musicFile = "src/main/resources/Medieval Music.mp3";
 	Media sound = new Media(new File(musicFile).toURI().toString());
 	MediaPlayer mediaPlayer = new MediaPlayer(sound);
 	public void muteVolume()
@@ -177,11 +177,7 @@ public class GuiView extends Application {
 		MediaView video =new MediaView(credit);
 		credit.setMute(true);
 		mediaPlayer.setAutoPlay(true);
-		//mediaPlayer.play();
-		
-		
-		
-		
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		
 		this.setStage(stage);
 		this.viewController = new ViewController(networkChoose);

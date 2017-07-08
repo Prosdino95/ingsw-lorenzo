@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 
 public class MainViewController {
-	@FXML RadioButton rmi,gui,socket,cli,buttonPlay;
+	@FXML RadioButton rmi,gui,socket,cli;
 	
 	
 	private final ToggleGroup network = new ToggleGroup();
