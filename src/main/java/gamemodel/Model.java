@@ -51,17 +51,17 @@ public class Model implements Serializable {
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 
-	private int delay;
+	private int playerActionDelay;
 
 	
 	public Model(int num){
 		initializeGame(num);
-		this.delay=200000;
+		this.playerActionDelay=200000;
 	}
 	
 	public Model(int num, int delay){
 		initializeGame(num);
-		this.delay=delay;
+		this.playerActionDelay=delay;
 	}
 	
 	
@@ -93,7 +93,6 @@ public class Model implements Serializable {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e1) {
-				Thread.currentThread().interrupt();
 				Thread.currentThread().interrupt();
 			}
 			controller.shutDown();
@@ -415,9 +414,8 @@ public class Model implements Serializable {
 		controller.sendMessage(string, player);		
 	}
 
-	// TODO
-	public Integer getTurnDelay() {
-		return delay;
+	public Integer getActionDelay() {
+		return playerActionDelay;
 	}
 	
 	public void setCurretPlayer(Player p){

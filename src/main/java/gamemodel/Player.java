@@ -324,7 +324,7 @@ public class Player implements Serializable{
 				addPoint(new Point(0,0,model.getVictoryPointsBoundedTofaithPoints().get(this.point.getFaith())));
 			model.sendMessage("Not enought faith point, you are excommunicated",this);
 		}
-					 // TODO da testare
+
 		if(this.point.getFaith()>=requirement) 
 		{
 			if(selection==0)
@@ -371,7 +371,7 @@ public class Player implements Serializable{
 		private void updateTimer(){
 			Turn turn=new Turn(this);
 			timer=new Timer();
-			timer.schedule(turn, model.getTurnDelay());
+			timer.schedule(turn, model.getActionDelay());
 		}
 		
 		public void timerFinished() {

@@ -159,12 +159,6 @@ public class Board implements Serializable {
 		excommunicationCards[2]=ex.get(random+14);	
 	}
 
-	public LeaderCard getLC(Integer lcId) {
-		// TODO
-		// La board tiene una mappa da id a carta leader
-		return null;
-	}
-
 	public List<TowerActionSpace> getActionSpaces(CardType cardType) {
 		List<TowerActionSpace> lst = new ArrayList<>();
 		for (ActionSpace as : actionSpaces) {

@@ -16,9 +16,6 @@ import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
-// TODO: Cosa succede se tutte le scelte vanno in error?
-// TODO: Finale di partita
-
 public class UITree {
 	private UINode root;
 	private UINode next;

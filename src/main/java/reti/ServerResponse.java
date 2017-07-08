@@ -133,7 +133,6 @@ public class ServerResponse implements Serializable {
 	}
 
 	public boolean assignedPlayer() {
-		// TODO Auto-generated method stub
 		return type == ResponseType.PLAYER_ASSIGNED;
 	}
 

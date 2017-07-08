@@ -50,7 +50,7 @@ public class GameManager implements Runnable
 		for(int i=0;i<rl.getPlayers().size();i++){			
 			Player p = rl.getPlayers().get(number.get(i));
 			HandlerView hv = hw.get(i);
-			playerToHV.put(p, hv);    //TODO get random player
+			playerToHV.put(p, hv);
 			hv.setController(c);
 			hv.setPlayer(p);
 			if(hv instanceof HandlerViewSocket)

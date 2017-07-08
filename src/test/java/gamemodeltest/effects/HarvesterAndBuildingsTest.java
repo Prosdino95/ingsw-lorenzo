@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,8 +44,7 @@ public class HarvesterAndBuildingsTest {
 		try {
 			card.activePermanentEffect(player);
 		} catch (GameException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		assertEquals(new Resource(8,6,4,4),player.getResource());
 		
