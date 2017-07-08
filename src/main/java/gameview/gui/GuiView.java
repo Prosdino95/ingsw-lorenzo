@@ -13,9 +13,11 @@ import gameview.ViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
@@ -34,15 +36,11 @@ public class GuiView extends Application {
 	private Model model;
 	private GUIState currentState=GUIState.IDLE;
 	private ClientRequest request=null;
-
 	private int currentPaneIndex = 2;
 	private List<Pane> panes = new ArrayList<Pane>();
-
 	private Pane rootPane;
-	
 	private Pane boardPane;
 	private BoardController boardController;
-	
 	private RequestController requestController;
 	private PlayerBoardController pbc;
 	private PlayerBoardController2 pbc2;
@@ -50,7 +48,21 @@ public class GuiView extends Application {
 	private Player player;
 	private Timeline task;
 	private String networkChoose="socket";
-
+	
+	String musicFile = "src/main/resources/Medieval Music.mp3";
+	Media sound = new Media(new File(musicFile).toURI().toString());
+	MediaPlayer mediaPlayer = new MediaPlayer(sound);
+	public void muteVolume()
+	{
+		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING))
+		{
+			mediaPlayer.pause();
+	
+		}
+			
+		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PAUSED))
+			mediaPlayer.play();
+	}
 	
 	public static void setAll(double x,double y,double w,double h,Region r,double ww,double wh){
 		r.setLayoutX(x*ww);
@@ -158,7 +170,7 @@ public class GuiView extends Application {
 		
 		
 		
-		
+		mediaPlayer.play();
 		
 		
 		
@@ -256,6 +268,18 @@ public class GuiView extends Application {
 		*/
 		
 		Scene scene=new Scene(rootPane);
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event) 
+            {
+                switch (event.getCode()) 
+                {
+                    case V:   muteVolume(); break;
+          
+				default:
+					break;
+                }
+            }
+        });
 		scene.setOnKeyPressed(e -> {
 			System.out.println("GUIView -- You pressed key " + e.getCode());
 			if (getPressed()) return;

@@ -50,18 +50,7 @@ public class MainView extends Application {
 		stage.setScene(scene);
 		
 		
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) 
-            {
-                switch (event.getCode()) 
-                {
-                    case V:    controller.muteButtonAction(); break;
-          
-				default:
-					break;
-                }
-            }
-        });
+		
 		
 		
 		stage.show();

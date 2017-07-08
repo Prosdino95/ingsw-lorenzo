@@ -20,21 +20,7 @@ import javafx.stage.Stage;
 
 public class MainViewController {
 	@FXML RadioButton rmi,gui,socket,cli;
-	@FXML ImageView volumeButton;
-	String musicFile = "src/main/resources/Medieval Music.mp3";
-	Media sound = new Media(new File(musicFile).toURI().toString());
-	MediaPlayer mediaPlayer = new MediaPlayer(sound);
-	@FXML public void muteButtonAction()
-	{
-		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING))
-		{
-			mediaPlayer.pause();
 	
-		}
-			
-		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PAUSED))
-			mediaPlayer.play();
-	}
 	
 	private final ToggleGroup network = new ToggleGroup();
 	private final ToggleGroup view = new ToggleGroup();
@@ -48,7 +34,7 @@ public class MainViewController {
 		
 		
 		
-		mediaPlayer.play();
+	
 		
 		this.stage=stage;
 		gui.setToggleGroup(view);
