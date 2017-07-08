@@ -19,13 +19,13 @@ public class VaticanTest {
 
 	@Test
 	public void pointsOkNoSupport() {
-		p.addPoint(new Point(0, 100, 0));
+		p.addPoint(new Point(0, 15, 0));
 		p.vaticanReport(0);
 	}
 
 	@Test
 	public void pointsOkSupport() {
-		p.addPoint(new Point(0, 100, 0));
+		p.addPoint(new Point(0, 15, 0));
 		p.vaticanReport(1);
 	}
 

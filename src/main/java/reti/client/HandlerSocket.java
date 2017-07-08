@@ -1,5 +1,6 @@
 package reti.client;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -7,6 +8,10 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
+
+import gamemodel.jsonparsing.CustomizationFileReader;
 import gameview.ViewController;
 import reti.ClientRequest;
 import reti.ServerResponse;
@@ -19,10 +24,13 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	private ViewController vc;
 	private ClientRequest crOut;
 	private boolean live=true;
+	private String serverIp;
+	private int port;
 	
 	
 	public HandlerSocket(ViewController vc) throws IOException, InterruptedException{
-		s = new Socket("localhost", 3003);
+		setUpClient() ;
+		s = new Socket(serverIp, port);
 		out = new ObjectOutputStream(s.getOutputStream());
 		in= new ObjectInputStream(s.getInputStream());
 		this.vc=vc;
@@ -36,8 +44,14 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	}
 
 	public void doRequest(ClientRequest request) {
-		this.crOut=request;
-		
+		this.crOut=request;	
+	}
+	
+	private void setUpClient() throws IOException{	
+		String config = CustomizationFileReader.reedFile(new File("Config/ClientConfig.json"));
+		JsonObject item=Json.parse(config).asObject();	
+		port=item.getInt("port", 3003);
+		serverIp=item.getString("server-ip", "localhost");
 	}
 	
 	@Override

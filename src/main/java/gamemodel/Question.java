@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import reti.ClientRequest;
-import reti.RequestType;
-
 
 /**
  * The Question object is used to ask questions to the player. During the

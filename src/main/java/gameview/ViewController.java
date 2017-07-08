@@ -4,7 +4,6 @@ package gameview;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
@@ -34,7 +33,7 @@ public class ViewController {
 		if (networkChoose == "rmi") {
 			try {
 				hs=new HandlerServerRMIImpl(this);
-			} catch (RemoteException | NotBoundException e) {
+			} catch (NotBoundException | IOException e) {
 				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 		} else if (networkChoose == "socket") {
