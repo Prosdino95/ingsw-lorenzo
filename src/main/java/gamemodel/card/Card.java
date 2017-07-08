@@ -140,6 +140,14 @@ public class Card implements Serializable {
 				+ ", istantEffect=" + istantEffect +", type=" + type + ", id="
 				+ id + ", requirementCard=" +"]";
 	}
+	
+	
+	public static void main(String[] args)
+	{
+		Resource c=new Resource(2,3,4,5);
+		System.out.println(c);
+		
+	}
 
 
 }
