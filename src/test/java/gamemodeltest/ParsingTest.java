@@ -1,6 +1,6 @@
-import static org.junit.Assert.*;
-
+package gamemodeltest;
 import java.util.List;
+
 
 import org.junit.Before;
 import org.junit.Test;
