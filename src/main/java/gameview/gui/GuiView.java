@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -196,7 +197,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/Board2.fxml"));		
 		boardPane = loader.load();
 		boardController = loader.getController();
-		boardPane.setStyle("-fx-background-color: #228b22");
+		boardPane.setBackground(new Background(new BackgroundImage(new Image("/greenBackground.jpg"), null, null, null, null)));
 		rootPane.getChildren().add(boardPane);
 		panes.add(boardPane);
 		
@@ -214,7 +215,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/PlayerBoard.fxml"));
 		Pane playerBoardPane;
 		playerBoardPane = loader.load();
-		playerBoardPane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
+		playerBoardPane.setBackground(new Background(new BackgroundImage(new Image("/greyBackground.jpg"), null, null, null, null)));
 		pbc = loader.getController();
 		rootPane.getChildren().add(playerBoardPane);
 		panes.add(playerBoardPane);
@@ -224,7 +225,7 @@ public class GuiView extends Application {
 		loader.setLocation(getClass().getResource("/PlayerBoard2.fxml"));
 		Pane playerBoard2Pane;
 		playerBoard2Pane = loader.load();
-		playerBoard2Pane.setBackground(new Background(new BackgroundImage(new Image("/wood.jpg"), null, null, null, null)));
+		playerBoard2Pane.setBackground(new Background(new BackgroundImage(new Image("/greyBackground.jpg"), null, null, null, null)));
 		pbc2 = loader.getController();
 		rootPane.getChildren().add(playerBoard2Pane);
 		panes.add(playerBoard2Pane);
@@ -269,7 +270,7 @@ public class GuiView extends Application {
 		});
 	
 		stage.setScene(scene);
-		stage.setTitle("Il magnifico");
+		stage.setTitle("Lorenzo il magnifico");
 		stage.show();
 		updateGui();
 		
