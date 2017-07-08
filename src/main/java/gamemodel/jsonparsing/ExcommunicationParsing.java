@@ -11,6 +11,10 @@ import com.eclipsesource.json.JsonValue;
 import gamemodel.card.Excommunication;
 import gamemodel.permanenteffect.PermanentEffect;
 
+/**
+ * This class have the methods for parsing 
+ * Excommunication Cards from configuration file;
+ */
 public class ExcommunicationParsing {
 	private int period;
 	private PermanentEffect permanentEffects;

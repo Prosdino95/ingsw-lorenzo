@@ -12,6 +12,10 @@ import gamemodel.actionSpace.*;
 import gamemodel.card.CardType;
 import gamemodel.effects.*;
 
+/**
+ * This class have the methods for parsing 
+ * tower Space actions from configuration file;
+ */
 public class TowerASParsing {
 	
 	private int cost;

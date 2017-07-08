@@ -6,7 +6,11 @@ import java.util.List;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 
-
+/**
+ * This class have the methods for parsing 
+ * faith points requirements for the Vatican Support. 
+ * from configuration file;
+ */
 public class FaithRequirements {
 	
 	List<Integer> points=new ArrayList<>();

@@ -17,7 +17,10 @@ import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
-
+/**
+ * This class have the methods for parsing 
+ * Development Cards from configuration file;
+ */
 public class CardParsing {
 	
 	private List<Card> cards=new ArrayList<>();

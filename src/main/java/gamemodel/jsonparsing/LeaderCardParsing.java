@@ -13,7 +13,10 @@ import gamemodel.card.LeaderCard;
 import gamemodel.card.Requirement;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
-
+/**
+ * This class have the methods for parsing 
+ * Leader Cards from configuration file;
+ */
 public class LeaderCardParsing {
 	
 	private int id;

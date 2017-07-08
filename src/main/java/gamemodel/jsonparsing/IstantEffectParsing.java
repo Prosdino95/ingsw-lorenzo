@@ -14,7 +14,11 @@ import gamemodel.*;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 
-
+/**
+ * This class have the methods for parsing 
+ * Instant effect from configuration file;
+ * this class is used for card and action space parsing.
+ */
 public class IstantEffectParsing {
 	
 	private List<IstantEffect> istantEffect;

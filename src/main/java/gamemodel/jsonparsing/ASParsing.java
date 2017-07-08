@@ -12,7 +12,10 @@ import gamemodel.Board;
 import gamemodel.actionSpace.*;
 import gamemodel.effects.*;
 
-
+/**
+ * This class have the methods for parsing 
+ * Space actions from configuration file;
+ */
 public class ASParsing {
 	
 	private List<ActionSpace> AS=new ArrayList<>();

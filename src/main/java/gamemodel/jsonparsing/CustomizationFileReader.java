@@ -6,6 +6,16 @@ import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class is used to parsing the configuration files. 
+ * This class takes a string that represent the file's path, 
+ * and a function use for the parsing.
+ * This function accepts one String and produces a list of T.
+ * The parameter T represent the object 
+ * type is produced by the function.
+ * The class CustomizationFileReader have a method that apply the 
+ * function and return a List of T;
+ */
 public class CustomizationFileReader<T> {
 	private Function<String,List<T>>parser;
 	private String json;
