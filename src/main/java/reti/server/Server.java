@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -27,14 +29,14 @@ public class Server {
 	private int gameDelay;
 	
 	public static void main(String[]args) throws IOException, ClassNotFoundException, AlreadyBoundException{
-		//LocateRegistry.createRegistry(Registry.REGISTRY_PORT);	
+		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);	
 		Server server=new Server();
 		server.setUpServer();
 		Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown(server)));
 		server.serverSocket=new ServerSocket(server.port);			
-		//Registry registry = LocateRegistry.getRegistry();
-		//RMIAcceptImpl rai= new RMIAcceptImpl(server);
-		//registry.bind("rai",rai);
+		Registry registry = LocateRegistry.getRegistry();
+		RMIAcceptImpl rai= new RMIAcceptImpl(server);
+		registry.bind("rai",rai);
 		System.out.println("RegistroPronto");
 		server.start();		
 	}

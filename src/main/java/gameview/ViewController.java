@@ -34,7 +34,7 @@ public class ViewController {
 		if (networkChoose == "rmi") {
 			try {
 				hs=new HandlerServerRMIImpl(this);
-			} catch (RemoteException | NotBoundException e) {
+			} catch (NotBoundException | IOException e) {
 				Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 			}
 		} else if (networkChoose == "socket") {

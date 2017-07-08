@@ -28,6 +28,8 @@ import reti.ClientRequest;
 import reti.ServerResponse;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
 import java.io.File;
 
 public class GuiView extends Application {
@@ -48,6 +50,8 @@ public class GuiView extends Application {
 	private Player player;
 	private Timeline task;
 	private String networkChoose="socket";
+	private boolean dx=false,sx=false;
+	private boolean r=false,p=false;
 	
 	String musicFile = "src/main/resources/Medieval Music.mp3";
 	Media sound = new Media(new File(musicFile).toURI().toString());
@@ -169,6 +173,15 @@ public class GuiView extends Application {
 	public void start(Stage stage) throws Exception {
 		
 		
+		String file = "src/main/resources/Medieval Music.mp3"; 
+	    Media sound = new Media(new File(file).toURI().toString()); 
+	    mediaPlayer = new MediaPlayer(sound);
+	    mediaPlayer.play();
+	    file="src/main/resources/Credits.mp4";
+		MediaPlayer credit = new MediaPlayer(new Media(new File(file).toURI().toString()));
+		MediaView video =new MediaView(credit);
+		credit.setMute(true);
+
 		
 		mediaPlayer.play();
 		
@@ -223,49 +236,11 @@ public class GuiView extends Application {
 		pbc2 = loader.getController();
 		rootPane.getChildren().add(playerBoard2Pane);
 		panes.add(playerBoard2Pane);
-	
-		rootPane.setOnKeyPressed(e -> {
-			System.out.println("GUIView -- You pressed key " + e.getCode());
-			if (getPressed()) return;
-			setPressed(true);
-			System.out.println("GUIView -- You pressed key " + e.getCode());
-			switch (e.getCode()) {
-			case A:
-				paneGoLeft();
-				break;
-			case D:
-				paneGoRight();
-				break;
-			default:
-				System.out.println("Don't know what to do with " + e.getCode());
-			}
-			
-		});
-		rootPane.setOnKeyReleased(e -> {
-			setPressed(false);
-		});
 		
 		boardController.initialize(this, requestController);
 		requestController.initialize(this);
 		pbc.initialize(requestController, this);
 		pbc2.initialize(null);
-
-		/*
-		this.model = m;
-		this.player = m.getPlayer(Team.RED);
-		player.giveCard(b.ventureCards.get(0));
-		Requirement req = new Requirement(new Resource(0, 0, 1, 0));
-		List<IstantEffect> ie = new ArrayList<>();
-		ie.add(new PointModify(new Point(0, 1, 0)));
-		LeaderCard girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
-		player.giveLeaderCard(girolamo);
-		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
-		player.giveLeaderCard(girolamo);
-		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
-		player.giveLeaderCard(girolamo);
-		girolamo = new LeaderCard(0, "Girolamo Savonarola", req, ie);
-		player.giveLeaderCard(girolamo);
-		*/
 		
 		Scene scene=new Scene(rootPane);
 		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -281,10 +256,8 @@ public class GuiView extends Application {
             }
         });
 		scene.setOnKeyPressed(e -> {
-			System.out.println("GUIView -- You pressed key " + e.getCode());
 			if (getPressed()) return;
 			setPressed(true);
-			System.out.println("GUIView -- You pressed key " + e.getCode());
 			switch (e.getCode()) {
 			case A:
 				paneGoLeft();
@@ -292,8 +265,22 @@ public class GuiView extends Application {
 			case D:
 				paneGoRight();
 				break;
+			case M:
+				mediaPlayer.setMute(!mediaPlayer.isMute());
+				break;
+			case RIGHT:
+			case LEFT:	
+			case R:
+			case P:	
+				credits(e,credit,video);
+				break;
 			default:
-				System.out.println("Don't know what to do with " + e.getCode());
+				System.out.println("ciao");
+				mediaPlayer.setMute(false);
+				paneGoLeft();
+				credit.stop();
+				stage.setScene(scene);
+				break;
 			}
 			
 		});
@@ -308,6 +295,34 @@ public class GuiView extends Application {
 		
 	}
 	
+	private void credits(KeyEvent e, MediaPlayer c, MediaView v) {
+		if(r && p && dx && sx){
+			mediaPlayer.setMute(true);
+			Pane pa=new Pane(v);
+			Scene scene=new Scene(pa);
+			Scene original=stage.getScene();
+			scene.setOnKeyPressed(ev-> stopCredit(c,original));
+			stage.setScene(scene);
+			c.play();
+			c.setMute(false);
+			r=p=dx=sx=false;return;
+		}			
+		switch(e.getCode()){
+		case RIGHT:dx=true;break;
+		case LEFT:sx=true;break;
+		case R:r=true;break;
+		case P:p=true;break;
+		default:break;
+		}
+	}
+	
+	private void stopCredit(MediaPlayer c, Scene scene){
+			System.out.println("ciao");
+			mediaPlayer.setMute(false);
+			c.stop();
+			stage.setScene(scene);
+	}
+
 	public void setNetworkChoose(String networkChoose) {
 		this.networkChoose = networkChoose;
 	}
