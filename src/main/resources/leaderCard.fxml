@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.LeaderCardController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.gui.LeaderCardController">
    <children>
       <ImageView fx:id="card" fitHeight="180.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,6 +14,6 @@
       </ImageView>
       <TextFlow fx:id="effect" layoutX="0.0" layoutY="113.0" prefHeight="64.0" prefWidth="99.0" textAlignment="CENTER" />
       <TextFlow fx:id="cardName" layoutX="29.0" layoutY="5.5" prefHeight="11.5" prefWidth="52.5" textAlignment="CENTER" />
-      <TextFlow fx:id="cardRequirement" layoutX="55.0" layoutY="36.0" prefHeight="41.5" prefWidth="25.0" textAlignment="CENTER" />
+      <TextFlow fx:id="cardRequirement" layoutX="55.0" layoutY="36.0" prefHeight="41.5" prefWidth="25.0" />
    </children>
 </AnchorPane>
