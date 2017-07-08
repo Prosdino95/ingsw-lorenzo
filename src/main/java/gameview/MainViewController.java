@@ -1,6 +1,6 @@
 package gameview;
 
-import java.io.File;
+import java.io.IOException;
 
 import gameview.cli.CLIView;
 import gameview.gui.GuiView;
@@ -10,9 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -30,12 +27,6 @@ public class MainViewController {
 	private GuiView gv;
 	
 	public void initialize(Stage stage){
-		
-		
-		
-		
-	
-		
 		this.stage=stage;
 		gui.setToggleGroup(view);
 		cli.setToggleGroup(view);
@@ -64,14 +55,18 @@ public class MainViewController {
 		});
 	}
 	
-	public void connect() throws Exception{
+	public void connect() throws IOException {
 		if(viewChoose=="cli"){
 			CLIView.cliStart(networkChoose);
 		}
 		if(viewChoose=="gui"){
 			gv=new GuiView();
 			gv.setNetworkChoose(networkChoose);
-			gv.start(stage);
+			try {
+				gv.start(stage);
+			} catch (Exception e) {
+				throw new IOException(); 
+			}
 		}
 	}
 

@@ -13,7 +13,6 @@ import gameview.ViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -53,7 +52,7 @@ public class GuiView extends Application {
 	private boolean dx=false,sx=false;
 	private boolean r=false,p=false;
 	
-	String musicFile = "src/main/resources/Medieval Music.mp3";
+	String musicFile = "src/main/resources/bip.wav";
 	Media sound = new Media(new File(musicFile).toURI().toString());
 	MediaPlayer mediaPlayer = new MediaPlayer(sound);
 	public void muteVolume()
@@ -173,17 +172,14 @@ public class GuiView extends Application {
 	public void start(Stage stage) throws Exception {
 		
 		
-		String file = "src/main/resources/Medieval Music.mp3"; 
-	    Media sound = new Media(new File(file).toURI().toString()); 
-	    mediaPlayer = new MediaPlayer(sound);
-	    mediaPlayer.play();
-	    file="src/main/resources/Credits.mp4";
+	    String file="src/main/resources/Credits.mp4";
 		MediaPlayer credit = new MediaPlayer(new Media(new File(file).toURI().toString()));
 		MediaView video =new MediaView(credit);
 		credit.setMute(true);
-
+		mediaPlayer.setAutoPlay(true);
+		//mediaPlayer.play();
 		
-		mediaPlayer.play();
+		
 		
 		
 		
@@ -243,18 +239,7 @@ public class GuiView extends Application {
 		pbc2.initialize(null);
 		
 		Scene scene=new Scene(rootPane);
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) 
-            {
-                switch (event.getCode()) 
-                {
-                    case V:   muteVolume(); break;
-          
-				default:
-					break;
-                }
-            }
-        });
+		
 		scene.setOnKeyPressed(e -> {
 			if (getPressed()) return;
 			setPressed(true);
@@ -265,8 +250,7 @@ public class GuiView extends Application {
 			case D:
 				paneGoRight();
 				break;
-			case M:
-				mediaPlayer.setMute(!mediaPlayer.isMute());
+			case V: muteVolume(); 
 				break;
 			case RIGHT:
 			case LEFT:	

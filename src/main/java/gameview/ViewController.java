@@ -4,7 +4,6 @@ package gameview;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.logging.Level;
