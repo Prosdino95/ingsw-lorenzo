@@ -158,10 +158,6 @@ public class GuiView extends Application {
 		
 		
 		
-		String musicFile = "src/main/resources/Medieval Music.ogg";
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
 		
 		
 		

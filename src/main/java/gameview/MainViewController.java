@@ -1,5 +1,7 @@
 package gameview;
 
+import java.io.File;
+
 import gameview.cli.CLIView;
 import gameview.gui.GuiView;
 import javafx.beans.value.ChangeListener;
@@ -8,6 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -15,6 +20,22 @@ import javafx.stage.Stage;
 
 public class MainViewController {
 	@FXML RadioButton rmi,gui,socket,cli;
+	@FXML ImageView volumeButton;
+	String musicFile = "src/main/resources/Medieval Music.mp3";
+	Media sound = new Media(new File(musicFile).toURI().toString());
+	MediaPlayer mediaPlayer = new MediaPlayer(sound);
+	@FXML public void muteButtonAction()
+	{
+		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING))
+		{
+			mediaPlayer.pause();
+	
+		}
+			
+		if(mediaPlayer.getStatus().equals(MediaPlayer.Status.PAUSED))
+			mediaPlayer.play();
+	}
+	
 	private final ToggleGroup network = new ToggleGroup();
 	private final ToggleGroup view = new ToggleGroup();
 	private String networkChoose="rmi";
@@ -23,6 +44,12 @@ public class MainViewController {
 	private GuiView gv;
 	
 	public void initialize(Stage stage){
+		
+		
+		
+		
+		mediaPlayer.play();
+		
 		this.stage=stage;
 		gui.setToggleGroup(view);
 		cli.setToggleGroup(view);
