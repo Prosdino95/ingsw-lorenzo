@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameview.MainViewController">
    <children>
@@ -14,23 +15,43 @@
             <Image url="@lorenzo.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="192.0" layoutY="363.0" mnemonicParsing="false" onAction="#connect" text="Connect" />
-      <Pane layoutX="264.0" layoutY="183.0" prefHeight="116.0" prefWidth="116.0">
+      <Button fx:id="buttonPlay" layoutX="161.0" layoutY="485.0" mnemonicParsing="false" onAction="#connect" text="Play">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Pane layoutX="229.0" layoutY="401.0" prefHeight="84.0" prefWidth="119.0">
          <children>
-            <RadioButton fx:id="rmi" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" style="-fx-font-weight: 700;" stylesheets="@radio.css" text="RMI" textFill="#e3dcdc" />
-            <RadioButton fx:id="socket" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" stylesheets="@radio.css" text="Socket" textAlignment="CENTER" textFill="#e43434" />
+            <ImageView fitHeight="84.0" fitWidth="119.0" layoutY="-1.0" opacity="0.39" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../../../../../../home/davide/Scaricati/white-background-2.jpg" />
+               </image>
+            </ImageView>
+            <RadioButton fx:id="rmi" layoutX="18.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" stylesheets="@radio.css" text="RMI" textFill="#171717">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="socket" layoutX="18.0" layoutY="45.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="100.0" stylesheets="@radio.css" text="SOCKET" textFill="#111010">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></RadioButton>
          </children>
       </Pane>
-      <Pane layoutX="65.0" layoutY="183.0" prefHeight="116.0" prefWidth="72.0" style="-fx-background-color: ff1a;">
+      <Pane layoutX="89.0" layoutY="401.0" prefHeight="84.0" prefWidth="72.0">
          <children>
-            <RadioButton fx:id="cli" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" stylesheets="@radio.css" text="CLI" />
-            <RadioButton fx:id="gui" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" stylesheets="@radio.css" text="GUI" />
+            <ImageView fitHeight="84.0" fitWidth="72.0" layoutY="-1.0" opacity="0.39" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../../../../../../home/davide/Scaricati/white-background-2.jpg" />
+               </image>
+            </ImageView>
+            <RadioButton fx:id="cli" mnemonicParsing="false" prefHeight="39.0" prefWidth="72.0" stylesheets="@radio.css" text="CLI" textFill="#111010">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="gui" layoutY="45.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="72.0" stylesheets="@radio.css" text="GUI" textFill="#070707">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></RadioButton>
          </children>
       </Pane>
-      <ImageView fx:id="volumeButton" fitHeight="116.0" fitWidth="116.0" layoutX="274.0" layoutY="24.0" onMouseClicked="#muteButtonAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@volume%20button.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
