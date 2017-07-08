@@ -53,7 +53,7 @@ public class Model implements Serializable {
 	private transient PlaceFMCommandFactory commandFactory;
 	private transient Map<Integer,Integer> victoryPointsBoundedToTerritoryCards= new HashMap<>();
 	private transient Map<Integer,Integer> victoryPointsBoundedToCharacterCards= new HashMap<>();
-	public int turn=6;
+	public int turn=1;
 	private Player currentPlayer;
 	private transient List<Object> leaderCard=new ArrayList<>();
 	private GameState gameState; 

@@ -27,11 +27,10 @@ public class HandlerServerRMIImpl extends UnicastRemoteObject implements Handler
 	private transient ViewController vc;
 	private transient HandlerViewRMI hv;
 	private String serverIp;
-	private Registry registry;
 	
 	public HandlerServerRMIImpl(ViewController viewController) throws NotBoundException, IOException {
 		setUpClient();
-		registry=LocateRegistry.getRegistry(serverIp);
+		Registry registry=LocateRegistry.getRegistry(serverIp);
 		RMIAccept acc=(RMIAccept) registry.lookup("rai");
 		this.hv=acc.accept(this);
 		this.vc=viewController;

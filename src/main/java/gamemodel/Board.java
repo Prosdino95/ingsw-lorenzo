@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +13,6 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
-import gamemodel.card.LeaderCard;
 import gamemodel.player.Color;
 import gamemodel.player.Player;
 

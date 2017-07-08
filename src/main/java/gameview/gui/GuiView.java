@@ -1,6 +1,7 @@
 	package gameview.gui;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +20,15 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import reti.ClientRequest;
 import reti.ServerResponse;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-
-import java.io.File;
 
 public class GuiView extends Application {
 	private Stage stage;
@@ -38,7 +36,7 @@ public class GuiView extends Application {
 	private Model model;
 	private GUIState currentState=GUIState.IDLE;
 	private ClientRequest request=null;
-	private int currentPaneIndex = 2;
+	private int currentPaneIndex = 1;
 	private List<Pane> panes = new ArrayList<Pane>();
 	private Pane rootPane;
 	private Pane boardPane;
@@ -233,7 +231,7 @@ public class GuiView extends Application {
 		boardController.initialize(this, requestController);
 		requestController.initialize(this);
 		pbc.initialize(requestController, this);
-		pbc2.initialize(null);
+		pbc2.initialize(pbc);
 		
 		Scene scene=new Scene(rootPane);
 		

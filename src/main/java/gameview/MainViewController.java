@@ -33,7 +33,7 @@ public class MainViewController {
 		rmi.setToggleGroup(network);
 		socket.setToggleGroup(network);
 		rmi.setSelected(true);
-		cli.setSelected(true);		
+		gui.setSelected(true);		
 		network.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 			@Override
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
@@ -57,6 +57,7 @@ public class MainViewController {
 	
 	public void connect() throws IOException {
 		if(viewChoose=="cli"){
+			stage.hide();
 			CLIView.cliStart(networkChoose);
 		}
 		if(viewChoose=="gui"){
