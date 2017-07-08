@@ -359,7 +359,7 @@ public class GuiView extends Application {
 	
 	void updateGui() {
 		pbc.update();
-		pbc2.update(pbc);
+		pbc2.update();
 		boardController.update(this.model);
 		requestController.update();
 		System.out.println("GUIView -- You're in scene " + this.getCurrentPane());

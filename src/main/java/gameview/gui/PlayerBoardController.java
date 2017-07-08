@@ -70,6 +70,10 @@ public class PlayerBoardController
 	
 	public void update() 
 	{
+		Player pl = gv.myPlayer();
+		if (playerToBeShown == null && pl != null)
+			playerToBeShown = pl;
+
 		Player player = this.getPlayerToBeShown();
 		if(player==null) return;
 		

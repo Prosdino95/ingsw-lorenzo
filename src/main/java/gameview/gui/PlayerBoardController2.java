@@ -45,8 +45,9 @@ public class PlayerBoardController2
 	
 	PlayerBoardController otherPB;
 	
-	public void initialize(Object object)
+	public void initialize(PlayerBoardController pbc)
 	{
+		otherPB = pbc;
 		characterCardPaneList.add(character0);
 		characterCardPaneList.add(character1);
 		characterCardPaneList.add(character2);
@@ -71,9 +72,8 @@ public class PlayerBoardController2
 		excommunicationCardPaneList.add(excommunication2);	
 	}
 	
-	public void update(PlayerBoardController pbc) 
+	public void update() 
 	{
-		otherPB = pbc;
 		Player player = otherPB.getPlayerToBeShown();
 		if(player==null) return;
 		
