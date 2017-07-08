@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.card;
 
 public enum LeaderState {
 	NOT_PLAYED,

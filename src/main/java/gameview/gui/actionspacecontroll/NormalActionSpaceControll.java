@@ -1,9 +1,9 @@
 package gameview.gui.actionspacecontroll;
 
 
-import gamemodel.FamilyMember;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.effects.IstantEffect;
+import gamemodel.player.FamilyMember;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;

@@ -3,8 +3,8 @@ package gamemodel.permanenteffect;
 import java.util.List;
 import java.util.function.Consumer;
 
-import gamemodel.Color;
-import gamemodel.FamilyMember;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
 
 public class FamilyMemberModify extends PermanentEffect {
 	private static final long serialVersionUID = 1L;

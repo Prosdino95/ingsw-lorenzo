@@ -1,8 +1,8 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.io.Serializable;
 
-import gamemodel.card.CardType;
+import gamemodel.player.Player;
 
 public class CardRequirement implements Serializable {
 	

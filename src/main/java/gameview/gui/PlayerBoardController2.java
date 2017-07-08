@@ -3,10 +3,10 @@ package gameview.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.Player;
 import gamemodel.card.CharactersCard;
 import gamemodel.card.Excommunication;
 import gamemodel.card.VentureCard;
+import gamemodel.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;

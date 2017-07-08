@@ -4,11 +4,11 @@ package reti;
 import java.io.Serializable;
 import java.util.List;
 
-import gamemodel.Color;
-import gamemodel.FamilyMember;
-import gamemodel.LeaderCard;
-import gamemodel.Player;
 import gamemodel.actionSpace.ActionSpace;
+import gamemodel.card.LeaderCard;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
 import gameview.gui.LeaderCardAction;
 
 public class ClientRequest  implements Serializable{

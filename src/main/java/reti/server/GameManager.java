@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import gamemodel.Model;
-import gamemodel.Player;
+import gamemodel.player.Player;
 import reti.ServerResponse;
 
 public class GameManager implements Runnable 

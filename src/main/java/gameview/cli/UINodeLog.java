@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import gamemodel.Model;
-import gamemodel.Team;
+import gamemodel.player.Team;
 import gameview.ViewController;
 import reti.ClientRequest;
 import reti.RequestType;

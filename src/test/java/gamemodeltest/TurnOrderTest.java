@@ -10,8 +10,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import gamemodel.Player;
-import gamemodel.Team;
 import gamemodel.TurnOrder;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
@@ -19,6 +17,8 @@ import gamemodel.card.CharactersCard;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.PEffect;
 import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.player.Player;
+import gamemodel.player.Team;
 
 public class TurnOrderTest {
 	List<Player> players;

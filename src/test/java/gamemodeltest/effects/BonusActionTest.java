@@ -6,13 +6,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Resource;
-import gamemodel.Team;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.command.GameException;
 import gamemodel.effects.BonusAction;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 
 /*
  * Sono tutti test finti! Dovrei mettermi dietro a farli bene,

@@ -1,7 +1,7 @@
 package gameview.gui;
 
-import gamemodel.LeaderCard;
-import gamemodel.LeaderState;
+import gamemodel.card.LeaderCard;
+import gamemodel.card.LeaderState;
 import javafx.fxml.FXML;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;

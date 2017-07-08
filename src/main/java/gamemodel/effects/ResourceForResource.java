@@ -3,10 +3,10 @@ package gamemodel.effects;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.card.CardType;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class ResourceForResource implements IstantEffect,Serializable
 {

@@ -5,12 +5,8 @@ import java.util.List;
 
 import gamemodel.Action;
 import gamemodel.Board;
-import gamemodel.Color;
-import gamemodel.FamilyMember;
 import gamemodel.GameQuestion;
-import gamemodel.Player;
 import gamemodel.Question;
-import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
@@ -18,6 +14,10 @@ import gamemodel.card.CardType;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.permanenteffect.StrengthModifyAndDiscount;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
 
 public class BonusAction implements IstantEffect {
 	/**

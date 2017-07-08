@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.actionSpace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,6 +6,10 @@ import java.util.List;
 
 import gamemodel.card.CardType;
 import gamemodel.permanenteffect.PEffect;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
 
 public class Tower implements Serializable {
 	private static final long serialVersionUID = 1L;

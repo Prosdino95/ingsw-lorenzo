@@ -2,8 +2,8 @@ package gamemodel.effects;
 
 import java.io.Serializable;
 
-import gamemodel.Player;
-import gamemodel.Resource;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
 
 public class ResourceModify implements IstantEffect,EffectRollBack,Serializable
 {

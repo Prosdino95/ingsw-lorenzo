@@ -2,8 +2,8 @@ package gamemodel.effects;
 
 import java.io.Serializable;
 
-import gamemodel.Player;
-import gamemodel.Point;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
 
 public class PointModify implements IstantEffect,EffectRollBack,Serializable
 {

@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Resource;
-import gamemodel.Team;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 import gameview.cli.UITree;
 import reti.ServerResponse;
 

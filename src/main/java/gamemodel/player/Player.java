@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import gamemodel.Action;
+import gamemodel.Board;
+import gamemodel.Model;
+import gamemodel.Question;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
 import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.LeaderCard;
 import gamemodel.card.VentureCard;
 import gamemodel.command.Command;
 import gamemodel.command.GameError;

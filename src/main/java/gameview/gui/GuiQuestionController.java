@@ -3,8 +3,8 @@ package gameview.gui;
 import java.util.List;
 
 import gamemodel.GameQuestion;
-import gamemodel.Player;
 import gamemodel.actionSpace.TowerActionSpace;
+import gamemodel.player.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

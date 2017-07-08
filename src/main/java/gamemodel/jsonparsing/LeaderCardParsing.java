@@ -8,9 +8,9 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 import gamemodel.Board;
-import gamemodel.CardRequirement;
-import gamemodel.LeaderCard;
-import gamemodel.Requirement;
+import gamemodel.card.CardRequirement;
+import gamemodel.card.LeaderCard;
+import gamemodel.card.Requirement;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 

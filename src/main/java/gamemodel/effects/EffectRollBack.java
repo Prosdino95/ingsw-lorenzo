@@ -2,7 +2,7 @@ package gamemodel.effects;
 
 import java.io.Serializable;
 
-import gamemodel.Player;
+import gamemodel.player.Player;
 
 public interface EffectRollBack extends Serializable
 {

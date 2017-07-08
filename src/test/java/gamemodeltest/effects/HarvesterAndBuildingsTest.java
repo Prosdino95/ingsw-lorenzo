@@ -11,14 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.card.CardType;
 import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.command.GameException;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class HarvesterAndBuildingsTest {
 

@@ -1,6 +1,6 @@
 package gameview.gui.actionspacecontroll;
 
-import gamemodel.FamilyMember;
+import gamemodel.player.FamilyMember;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

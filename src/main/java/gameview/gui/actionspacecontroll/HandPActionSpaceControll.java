@@ -2,9 +2,9 @@ package gameview.gui.actionspacecontroll;
 
 import java.util.List;
 
-import gamemodel.FamilyMember;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.MemoryActionSpace;
+import gamemodel.player.FamilyMember;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;

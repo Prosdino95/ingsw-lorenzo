@@ -2,8 +2,7 @@ package reti.server;
 
 import java.io.IOException;
 
-
-import gamemodel.Player;
+import gamemodel.player.Player;
 import reti.ClientRequest;
 import reti.ServerResponse;
 

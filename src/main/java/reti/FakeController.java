@@ -1,5 +1,7 @@
-package gamemodel;
+package reti;
 
+import gamemodel.Model;
+import gamemodel.player.Player;
 import reti.server.Controller;
 
 public class FakeController extends Controller {

@@ -16,6 +16,10 @@ import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
+import gamemodel.player.Color;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 
 public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	

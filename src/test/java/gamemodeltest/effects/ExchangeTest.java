@@ -9,14 +9,14 @@ import org.junit.Test;
 
 import gamemodel.Board;
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
-import gamemodel.Team;
 import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.Exchange;
 import gamemodel.effects.IstantEffect;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 
 public class ExchangeTest 
 {

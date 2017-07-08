@@ -10,20 +10,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
-import gamemodel.CardRequirement;
-import gamemodel.Color;
+import gamemodel.card.CardRequirement;
 import gamemodel.card.CardType;
-import gamemodel.FamilyMember;
-import gamemodel.LeaderCard;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Requirement;
-import gamemodel.Resource;
+import gamemodel.card.LeaderCard;
+import gamemodel.card.Requirement;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.PointModify;
 import gamemodel.permanenteffect.FamilyMemberModify;
 import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class LeaderCardTest {
 	LeaderCard girolamo;

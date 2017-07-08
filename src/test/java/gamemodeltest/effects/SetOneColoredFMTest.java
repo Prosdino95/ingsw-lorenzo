@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import gamemodel.Color;
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Resource;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.SetOneColoredFM;
+import gamemodel.player.Color;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
 
 public class SetOneColoredFMTest {
 	IstantEffect e;

@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.FamilyMember;
 import gamemodel.GameQuestion;
-import gamemodel.Player;
 import gamemodel.Question;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
 
 public class SetOneColoredFM implements IstantEffect,Serializable {
 

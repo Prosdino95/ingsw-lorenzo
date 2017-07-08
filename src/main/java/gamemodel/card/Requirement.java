@@ -1,6 +1,10 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.io.Serializable;
+
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class Requirement implements Serializable{
 	

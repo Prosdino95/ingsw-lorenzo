@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import gamemodel.Color;
-import gamemodel.FamilyMember;
-import gamemodel.Player;
 import gamemodel.effects.IstantEffect;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
 
 public class MemoryActionSpace extends ActionSpace implements Serializable {
 	

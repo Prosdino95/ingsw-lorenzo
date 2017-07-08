@@ -4,6 +4,9 @@ import gamemodel.*;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.CardType;
 import gamemodel.permanenteffect.PEffect;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Resource;
 
 public class PlaceFamilyMemberCommandTower implements Command {
 	

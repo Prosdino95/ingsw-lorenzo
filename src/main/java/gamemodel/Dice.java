@@ -3,6 +3,9 @@ package gamemodel;
 import java.io.Serializable;
 import java.util.*;
 
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+
 public class Dice implements Serializable 
 {
 

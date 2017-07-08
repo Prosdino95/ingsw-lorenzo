@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gamemodel.LeaderCard;
+import gamemodel.card.LeaderCard;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 

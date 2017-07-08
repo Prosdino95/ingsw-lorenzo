@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.player;
 
 import java.io.Serializable;
 

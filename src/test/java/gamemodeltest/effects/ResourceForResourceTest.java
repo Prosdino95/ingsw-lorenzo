@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
-import gamemodel.Team;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.ResourceForResource;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 
 public class ResourceForResourceTest 
 {

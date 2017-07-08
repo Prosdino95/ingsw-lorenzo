@@ -3,6 +3,8 @@ package gamemodel;
 import java.io.Serializable;
 
 import gamemodel.actionSpace.ActionSpace;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Player;
 
 /**
  * The Action object is a structure keeping track of a place family member

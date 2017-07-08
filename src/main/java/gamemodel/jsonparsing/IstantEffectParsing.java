@@ -8,6 +8,8 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 import gamemodel.effects.*;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 import gamemodel.*;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;

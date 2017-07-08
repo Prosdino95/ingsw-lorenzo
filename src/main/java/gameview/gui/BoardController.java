@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gamemodel.Color;
 import gamemodel.Model;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
+import gamemodel.player.Color;
 import gameview.gui.actionspacecontroll.ActionSpaceControll;
 import javafx.event.Event;
 import javafx.fxml.FXML;

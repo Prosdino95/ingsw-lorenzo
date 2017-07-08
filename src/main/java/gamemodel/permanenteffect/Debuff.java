@@ -1,7 +1,7 @@
 package gamemodel.permanenteffect;
 
-import gamemodel.Point;
-import gamemodel.Resource;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class Debuff extends PermanentEffect 
 {

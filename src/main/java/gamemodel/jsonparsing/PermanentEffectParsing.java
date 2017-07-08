@@ -3,10 +3,10 @@ package gamemodel.jsonparsing;
 
 import com.eclipsesource.json.JsonValue;
 
-import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.permanenteffect.*;
+import gamemodel.player.Resource;
 
 public class PermanentEffectParsing {
 	

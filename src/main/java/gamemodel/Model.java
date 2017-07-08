@@ -14,6 +14,7 @@ import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
 import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.LeaderCard;
 import gamemodel.card.VentureCard;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
@@ -26,6 +27,11 @@ import gamemodel.jsonparsing.FaithRequirements;
 import gamemodel.jsonparsing.LeaderCardParsing;
 import gamemodel.jsonparsing.TowerASParsing;
 import gamemodel.permanenteffect.PEffect;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
+import reti.FakeController;
 import reti.server.Controller;
 
 

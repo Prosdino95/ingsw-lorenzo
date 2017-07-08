@@ -12,6 +12,9 @@ import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.Excommunication;
+import gamemodel.card.LeaderCard;
+import gamemodel.player.Color;
+import gamemodel.player.Player;
 
 
 /**

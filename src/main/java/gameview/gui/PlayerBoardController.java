@@ -3,9 +3,9 @@ package gameview.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.LeaderCard;
-import gamemodel.Player;
 import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.card.LeaderCard;
+import gamemodel.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;

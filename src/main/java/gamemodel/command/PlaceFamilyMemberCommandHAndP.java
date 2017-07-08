@@ -2,12 +2,12 @@ package gamemodel.command;
 
 import gamemodel.Action;
 import gamemodel.Board;
-import gamemodel.Color;
-import gamemodel.FamilyMember;
-import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.card.HarvesterAndBuildings;
+import gamemodel.player.Color;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Resource;
 
 public class PlaceFamilyMemberCommandHAndP implements Command {
 	protected FamilyMember f;

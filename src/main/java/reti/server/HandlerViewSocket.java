@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gamemodel.Player;
+import gamemodel.player.Player;
 import reti.ClientRequest;
 import reti.ServerResponse;
 

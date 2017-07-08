@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import gamemodel.Color;
-import gamemodel.Player;
+import gamemodel.player.Color;
+import gamemodel.player.Player;
 import gameview.gui.actionspacecontroll.MakeFM;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,11 +1,12 @@
 package gamemodel.card;
 
 import java.util.List;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
+
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class VentureCard extends Card {
 

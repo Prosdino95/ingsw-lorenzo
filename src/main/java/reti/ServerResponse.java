@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import gamemodel.*;
 import gamemodel.command.GameError;
+import gamemodel.player.Player;
+import gamemodel.player.Team;
 
 public class ServerResponse implements Serializable {
 	private static final long serialVersionUID = 1L;

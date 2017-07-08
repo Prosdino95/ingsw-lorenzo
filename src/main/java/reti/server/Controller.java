@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 
 import gamemodel.Action;
 import gamemodel.GameQuestion;
-import gamemodel.LeaderCard;
-import gamemodel.Player;
-import gamemodel.Point;
 import gamemodel.Question;
-import gamemodel.Resource;
+import gamemodel.card.LeaderCard;
 import gamemodel.Model;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 import gameview.gui.LeaderCardAction;
 import reti.ClientRequest;
 import reti.ResponseType;

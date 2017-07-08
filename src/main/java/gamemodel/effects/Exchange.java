@@ -2,10 +2,10 @@ package gamemodel.effects;
 
 import java.io.Serializable;
 
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.command.GameException;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class Exchange implements IstantEffect,Serializable 
 {

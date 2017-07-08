@@ -2,6 +2,8 @@ package gamemodel.command;
 
 import gamemodel.*;
 import gamemodel.actionSpace.*;
+import gamemodel.player.FamilyMember;
+import gamemodel.player.Resource;
 
 public class PlaceFamilyMemberCommandCouncilPlace implements Command {
 	private FamilyMember f;

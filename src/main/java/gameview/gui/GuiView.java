@@ -6,9 +6,9 @@ import java.util.List;
 
 import gamemodel.GameQuestion;
 import gamemodel.Model;
-import gamemodel.Player;
 import gamemodel.Question;
-import gamemodel.Team;
+import gamemodel.player.Player;
+import gamemodel.player.Team;
 import gameview.ViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

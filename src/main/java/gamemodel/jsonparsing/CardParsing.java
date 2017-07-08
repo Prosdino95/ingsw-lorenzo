@@ -8,8 +8,6 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 import gamemodel.Board;
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.card.Card;
 import gamemodel.card.CardType;
 import gamemodel.card.CharactersCard;
@@ -17,6 +15,8 @@ import gamemodel.card.HarvesterAndBuildings;
 import gamemodel.card.VentureCard;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class CardParsing {
 	

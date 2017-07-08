@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Board;
-import gamemodel.LeaderCard;
 import gamemodel.actionSpace.ActionSpace;
 import gamemodel.actionSpace.TowerActionSpace;
 import gamemodel.card.Card;
 import gamemodel.card.Excommunication;
+import gamemodel.card.LeaderCard;
 import gamemodel.jsonparsing.ASParsing;
 import gamemodel.jsonparsing.CardParsing;
 import gamemodel.jsonparsing.CustomizationFileReader;

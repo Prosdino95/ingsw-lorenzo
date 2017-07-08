@@ -4,12 +4,11 @@ import java.io.Serializable;
 
 import java.util.List;
 
-import gamemodel.FamilyMember;
-import gamemodel.Tower;
 import gamemodel.card.Card;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PEffect;
+import gamemodel.player.FamilyMember;
 
 public class TowerActionSpace extends ActionSpace implements Serializable {
 

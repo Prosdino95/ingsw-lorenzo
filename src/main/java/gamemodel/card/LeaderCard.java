@@ -1,4 +1,4 @@
-package gamemodel;
+package gamemodel.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import gamemodel.command.GameException;
 import gamemodel.effects.CouncilPrivileges;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.player.Player;
 import gameview.gui.LeaderCardAction;
 
 public class LeaderCard implements Serializable {
@@ -37,7 +38,7 @@ public class LeaderCard implements Serializable {
 		this.oncePerRound = opr2;
 	}
 	
-	void activateOPT() throws GameException {
+	public void activateOPT() throws GameException {
 		if (oncePerRound == null) {
 			System.out.println("Why did you call activate??? This card has only a permanent effect");
 			return;
@@ -54,11 +55,11 @@ public class LeaderCard implements Serializable {
 		}
 	}
 
-	void discard() {
+	public void discard() {
 		new CouncilPrivileges(1).activate(owner);
 	}
 	
-	void play() throws GameException {
+	public void play() throws GameException {
 		if (requirement.isSatisfiedBy(owner)) {
 			state = LeaderState.PLAYED;
 		} else {

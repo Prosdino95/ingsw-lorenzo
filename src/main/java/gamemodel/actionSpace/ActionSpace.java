@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.*;
 
 import gamemodel.Action;
-import gamemodel.FamilyMember;
 import gamemodel.command.GameException;
 import gamemodel.effects.*;
 import gamemodel.permanenteffect.*;
+import gamemodel.player.FamilyMember;
 
 public class ActionSpace implements Serializable {
 

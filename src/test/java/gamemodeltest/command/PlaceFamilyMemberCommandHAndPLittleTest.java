@@ -8,17 +8,17 @@ import org.junit.Test;
 
 import gamemodel.Action;
 import gamemodel.Board;
-import gamemodel.Color;
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Resource;
-import gamemodel.Team;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.actionSpace.MemoryActionSpace;
 import gamemodel.command.GameError;
 import gamemodel.command.GameException;
 import gamemodel.effects.IstantEffect;
 import gamemodel.effects.TestEffects;
+import gamemodel.player.Color;
+import gamemodel.player.Player;
+import gamemodel.player.Resource;
+import gamemodel.player.Team;
 
 public class PlaceFamilyMemberCommandHAndPLittleTest {
 	

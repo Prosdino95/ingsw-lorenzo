@@ -3,10 +3,10 @@ package gamemodel.card;
 import java.io.Serializable;
 import java.util.List;
 
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class CharactersCard extends Card implements Serializable {
 

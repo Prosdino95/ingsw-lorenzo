@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import gamemodel.GameState;
 import gamemodel.Model;
-import gamemodel.Point;
+import gamemodel.player.Point;
 
 public class ModelTest 
 {

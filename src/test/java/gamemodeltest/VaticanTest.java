@@ -4,9 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gamemodel.Model;
-import gamemodel.Player;
-import gamemodel.Point;
-import gamemodel.Team;
+import gamemodel.player.Player;
+import gamemodel.player.Point;
+import gamemodel.player.Team;
 
 public class VaticanTest {
 	Player p;

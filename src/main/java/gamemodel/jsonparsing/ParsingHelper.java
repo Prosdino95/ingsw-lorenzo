@@ -2,11 +2,11 @@ package gamemodel.jsonparsing;
 
 import com.eclipsesource.json.JsonValue;
 
-import gamemodel.Color;
-import gamemodel.Point;
-import gamemodel.Resource;
 import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
+import gamemodel.player.Color;
+import gamemodel.player.Point;
+import gamemodel.player.Resource;
 
 public class ParsingHelper {
 	

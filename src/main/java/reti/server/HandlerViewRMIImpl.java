@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import gamemodel.Player;
+import gamemodel.player.Player;
 import reti.ClientRequest;
 import reti.HandlerServerRMI;
 import reti.HandlerViewRMI;
