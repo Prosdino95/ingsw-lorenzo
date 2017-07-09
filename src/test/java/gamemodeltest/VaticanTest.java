@@ -15,6 +15,7 @@ public class VaticanTest {
 	public void setUpBeforeClass() throws Exception {
 		Model m = new Model(4);
 		p = m.getPlayer(Team.RED);
+		m.setTurn(2);
 	}
 
 	@Test

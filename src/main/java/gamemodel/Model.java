@@ -435,6 +435,10 @@ public class Model implements Serializable {
 	public GameState getState() {
 		return gameState;
 	}
+	
+	public void setTurn(int turn){
+		this.turn=turn;
+	}
 
 
 }

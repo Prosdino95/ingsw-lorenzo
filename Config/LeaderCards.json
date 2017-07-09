@@ -40,15 +40,6 @@
 		},
 		{
 			"id":4,
-			"name":"Federico da Montefeltro",
-			"requirements":{
-				"type":"card",
-				"territory":5
-			},
-			"activate-effect":[]
-		},
-		{
-			"id":5,
 			"name":"Girolamo Savonarola",
 			"requirements":{
 				"type":"resource",
@@ -63,7 +54,7 @@
 					]
 		},
 		{
-			"id":6,
+			"id":5,
 			"name":"Giovanni delle Bande Nere",
 			"requirements":{
 				"type":"point",
@@ -80,7 +71,7 @@
 					]
 		},
 		{
-			"id":7,
+			"id":6,
 			"name":"Sandro Botticelli",
 			"requirements":{
 				"type":"resource",
@@ -96,7 +87,7 @@
 					]
 		},
 		{
-			"id":8,
+			"id":7,
 			"name":"Michelangelo Buonarroti",
 			"requirements":{
 				"type":"resource",
@@ -111,7 +102,7 @@
 					]
 		},
 		{
-			"id":9,
+			"id":8,
 			"name":"Ludovico III Gonzaga",
 			"requirements":{
 				"type":"resource",
@@ -126,7 +117,7 @@
 					]
 		},
 		{
-			"id":10,
+			"id":9,
 			"name":"Leonardo da Vinci",
 			"requirements":{
 				"type":"card",
@@ -143,7 +134,7 @@
 					]
 		},
 		{
-			"id":11,
+			"id":10,
 			"name":"Pico della Mirandola",
 			"requirements":{
 				"type":"card",
@@ -157,7 +148,7 @@
 			}
 		},
 		{
-			"id":12,
+			"id":11,
 			"name":"Sisto IV",
 			"requirements":{
 				"type":"resource",
@@ -171,7 +162,7 @@
 			}
 		},
 		{
-			"id":13,
+			"id":12,
 			"name":"Lucrezia Borgia",
 			"requirements":{
 				"type":"card",
@@ -183,7 +174,7 @@
 			}
 		},
 		{
-			"id":14,
+			"id":13,
 			"name":"Sigismondo Malatesta",
 			"requirements":{
 				"type":"point",
@@ -197,7 +188,7 @@
 			}
 		},
 		{
-			"id":16,
+			"id":14,
 			"name":"Ludovico il Moro",
 			"requirements":{
 				"type":"card",
@@ -212,8 +203,8 @@
 			}
 		},
 		{
-			"id":17,
-			"name":"Ludovico il Moro",
+			"id":15,
+			"name":"Cesare Borgia",
 			"requirements":{
 				"type":"all",
 				"building":3,
@@ -221,12 +212,11 @@
 				"faith":2
 			},
 			"permanent-effect":{
-				"type":"family-member-set",
-				"set":5
+				"type":"no-need-to-satisfy-military-point-requirement"
 			}
 		},
 		{
-			"id":18,
+			"id":16,
 			"name":"Santa Rita",
 			"requirements":{
 				"type":"point",
@@ -237,7 +227,7 @@
 			}
 		},
 		{
-			"id":19,
+			"id":17,
 			"name":"Cosimo de' Medici",
 			"requirements":{
 				"type":"card",
@@ -257,7 +247,7 @@
 					]
 		},
 		{
-			"id":20,
+			"id":18,
 			"name":"Bartolomeo Colleoni",
 			"requirements":{
 				"type":"card",

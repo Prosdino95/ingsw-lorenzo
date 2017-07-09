@@ -26,12 +26,7 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 		this.atype = atype;
 		this.ctype = ctype;
 	}
-	/*public StrengthModifyAndDiscount(int modStrength, CardType ctype,Resource discount) {
-		super(PEffect.MODIFY_STRENGTH);
-		this.modStrength = modStrength;
-		this.ctype = ctype;
-		this.discount=discount;
-	}*/
+	
 	public StrengthModifyAndDiscount(Resource discount, CardType type) {
 		super(PEffect.DISCOUNT);
 		this.ctype=type;
@@ -64,7 +59,7 @@ public class StrengthModifyAndDiscount extends PermanentEffect {
 		String str="";
 		if(ctype!=null)
 			str+=" card type: " + ctype;
-		if(atype!=ActionSpaceType.TOWER)
+		if(atype!=null && atype!=ActionSpaceType.TOWER)
 			str+=" action type:" + atype;
 		if(modStrength>0)
 			str+=", increase " + modStrength;

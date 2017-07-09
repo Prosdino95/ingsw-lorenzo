@@ -36,6 +36,7 @@ public class PermanentEffectParsing {
 		case"no-need-to-pay-3-coins":return new PermanentEffect(PEffect.NO_NEED_TO_PAY_3_COINS);
 		case"five_addictional-victory-points-when-support-the-church":return new PermanentEffect(PEffect.FIVE_ADDITIONAL_VICTORY_POINTS_WHEN_SUPPORT_THE_CHURCH);
 		case"resoutce-twice-from-development-cards-istamt-effect":return new PermanentEffect(PEffect.RESOURCES_TWICE_FROM_DEVELOPEMENT_CARDS_ISTANT_EFFECT);
+		case"no-need-to-satisfy-military-point-requirement":return new PermanentEffect(PEffect.NO_NEED_TO_SATISFY_MILITARY_POINTS_REQUIREMENT);
 		default: throw new AssertionError();			
 		}
 	}
