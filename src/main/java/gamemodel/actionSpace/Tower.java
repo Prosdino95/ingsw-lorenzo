@@ -11,6 +11,12 @@ import gamemodel.player.FamilyMember;
 import gamemodel.player.Player;
 import gamemodel.player.Resource;
 
+/**
+ * This class is needed because at a higher level than the single tower action
+ * space, the model must keep track of which players are currently occupying a
+ * particular tower: if some player wants to put a family member in an already
+ * occupied tower he must pay an additional amount of resources.
+ */
 public class Tower implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean towerFree=true;

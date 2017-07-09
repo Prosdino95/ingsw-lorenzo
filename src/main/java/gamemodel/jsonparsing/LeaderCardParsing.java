@@ -14,8 +14,8 @@ import gamemodel.card.Requirement;
 import gamemodel.effects.IstantEffect;
 import gamemodel.permanenteffect.PermanentEffect;
 /**
- * This class have the methods for parsing 
- * Leader Cards from configuration file;
+ * This class has the methods for parsing 
+ * Leader Cards from the configuration file;
  */
 public class LeaderCardParsing {
 	

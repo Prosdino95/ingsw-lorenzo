@@ -12,6 +12,11 @@ import gamemodel.player.Color;
 import gamemodel.player.FamilyMember;
 import gamemodel.player.Player;
 
+/** 
+ * The memory action space may represent a Harvest or Production action space.
+ * The key fact that distinguishes it from a normal action space is the fact
+ * that it has to keep track of the players in it.
+ */
 public class MemoryActionSpace extends ActionSpace implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

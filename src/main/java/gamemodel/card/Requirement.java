@@ -6,6 +6,10 @@ import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 
+/**
+ * This and the CardRequirement class represent the resources that a player 
+ * must have to take a card.
+ */
 public class Requirement implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

@@ -8,8 +8,8 @@ import gamemodel.player.Color;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 /**
- * This class have some useful methods for parsing. 
- * the methods are Statics and protected so each class
+ * This class has some useful methods for parsing. 
+ * All the methods are static and protected so each class
  * in the jsonparsing package can call this methods for parsing
  * some common Objects like Points,Resource,CardType...
  */

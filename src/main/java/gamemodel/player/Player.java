@@ -34,6 +34,7 @@ import gamemodel.permanenteffect.StrengthModifyAndDiscount;
  * resources, points, cards, its own family members.
  * The Player objects are also the entry point of the model, from the
  * point of view of the controller.
+ * If there was a Kitchen Sink Award, the Player object would certainly get it.
  */
 public class Player implements Serializable{
 	private static final long serialVersionUID = 1L;

@@ -13,8 +13,8 @@ import gamemodel.actionSpace.*;
 import gamemodel.effects.*;
 
 /**
- * This class have the methods for parsing 
- * Space actions from configuration file;
+ * This class has the methods for parsing 
+ * action spaces from the configuration file;
  */
 public class ASParsing {
 	

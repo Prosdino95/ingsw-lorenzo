@@ -2,6 +2,10 @@ package gamemodel.player;
 
 import java.io.Serializable;
 
+/**
+ * A Resource object does not represent a single resource, but a bag of
+ * resources or a resource vector.
+ */
 public class Resource implements Serializable {
 
 	private static final long serialVersionUID = 1L;

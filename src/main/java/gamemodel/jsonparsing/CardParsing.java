@@ -18,8 +18,8 @@ import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 /**
- * This class have the methods for parsing 
- * Development Cards from configuration file;
+ * This class has the methods for parsing 
+ * Development Cards from the configuration file;
  */
 public class CardParsing {
 	

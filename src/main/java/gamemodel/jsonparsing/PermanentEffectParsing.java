@@ -7,10 +7,10 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 import gamemodel.permanenteffect.*;
 import gamemodel.player.Resource;
-/*
- * This class have the methods for parsing 
- * Permanent effect Cards from configuration file;
- * this class is used for card and action space parsing.
+/**
+ * This class has the methods for parsing 
+ * Permanent effect Cards from the configuration file;
+ * this class is used for the card and action space parsing.
  */
 public class PermanentEffectParsing {
 	

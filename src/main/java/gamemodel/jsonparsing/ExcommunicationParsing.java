@@ -12,8 +12,8 @@ import gamemodel.card.Excommunication;
 import gamemodel.permanenteffect.PermanentEffect;
 
 /**
- * This class have the methods for parsing 
- * Excommunication Cards from configuration file;
+ * This class has the methods for parsing 
+ * Excommunication Cards from the configuration file;
  */
 public class ExcommunicationParsing {
 	private int period;

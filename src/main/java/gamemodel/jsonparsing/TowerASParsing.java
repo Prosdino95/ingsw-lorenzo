@@ -13,8 +13,8 @@ import gamemodel.card.CardType;
 import gamemodel.effects.*;
 
 /**
- * This class have the methods for parsing 
- * tower Space actions from configuration file;
+ * This class has the methods for parsing 
+ * tower action spaces from the configuration file;
  */
 public class TowerASParsing {
 	

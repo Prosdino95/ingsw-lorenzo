@@ -14,6 +14,11 @@ import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 
+/**
+ * This object may represent a Territory or a Building card, the logic in common
+ * that made this class possible was the activation of its (not-so-)permanent effect
+ * when occupying respectively a Harvest or a Production action space.
+ */
 public class HarvesterAndBuildings extends Card implements Serializable
 {
 

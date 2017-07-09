@@ -15,9 +15,9 @@ import gamemodel.actionSpace.ActionSpaceType;
 import gamemodel.card.CardType;
 
 /**
- * This class have the methods for parsing 
- * Instant effect from configuration file;
- * this class is used for card and action space parsing.
+ * This class has the methods for parsing 
+ * Instant effect from the configuration file;
+ * it is used for the card and action space parsing.
  */
 public class IstantEffectParsing {
 	
