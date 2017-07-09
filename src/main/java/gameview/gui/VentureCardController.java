@@ -11,6 +11,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The VentureCardController object contains all the personalization we let players do about venture card,like
+ * the name of the card,the price,the effects and so on
+ * 
+ */
+
 public class VentureCardController 
 {
 	@FXML TextFlow cardName;

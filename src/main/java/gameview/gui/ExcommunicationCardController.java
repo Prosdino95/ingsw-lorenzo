@@ -8,6 +8,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The ExcommunicationCardController object contains all the personalization we let players do about excommunication 
+ * card,like its effect 
+ *
+ */
+
+
 public class ExcommunicationCardController 
 {
 	@FXML TextFlow effect;

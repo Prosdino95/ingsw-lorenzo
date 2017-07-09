@@ -11,6 +11,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The HandPActionSpaceControll object contains all the personalization we let players do about harvester and
+ * building action spaces,like the action value. This class also contains the logic to show family
+ * members in harvester and building action spaces
+ * 
+ */
+
+
+
+
 public class HandPActionSpaceControll implements ActionSpaceControll {
 	@FXML TextFlow asActionPoint;
 	@FXML TextFlow asActionPoint2;

@@ -20,6 +20,15 @@ import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
+
+/**
+ * The RequestController object contains the structure of graphical representation and some logic of the 
+ * interaction between client and server. 
+ * 
+ */
+
+
+
 public class RequestController {
 	private ClientRequest cr = new ClientRequest();
 	

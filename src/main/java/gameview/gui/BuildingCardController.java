@@ -10,6 +10,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The BuildingCardController object contains all the personalization we let players do about building card,like
+ * the name of the card,the price,the effects and so on
+ * 
+ */
+
 public class BuildingCardController 
 {
 	@FXML TextFlow cardName;

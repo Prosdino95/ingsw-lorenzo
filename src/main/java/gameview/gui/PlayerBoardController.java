@@ -12,6 +12,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import reti.ClientRequest;
 
+/**
+ * The PlayerBoardController contains a part of the player status,in particular his leader,territory and building 
+ * cards. this class implements the logic that let a player watch other players status
+ * 
+ *
+ */
+
+
+
 public class PlayerBoardController 
 {
 	@FXML Pane territory0;

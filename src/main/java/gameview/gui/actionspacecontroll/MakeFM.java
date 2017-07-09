@@ -5,6 +5,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/**
+ * The MakeFM object contains the logic that let us to create a graphical family member  from our model family member
+ * 
+ *
+ */
+
+
+
 public class MakeFM {
 	
 	public static void makeFM(Pane p,FamilyMember fm){

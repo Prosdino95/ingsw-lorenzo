@@ -9,6 +9,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The NormalActionSpaceControll object contains all the personalization we let players do about, for example, 
+ * the towers action spaces, like  the action value and its immediate effect. This class also contains the logic to show family
+ * members in action spaces
+ */
+
+
 public class NormalActionSpaceControll implements ActionSpaceControll {
 	
 	@FXML TextFlow actionCost;

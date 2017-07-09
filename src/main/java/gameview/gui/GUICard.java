@@ -6,6 +6,13 @@ import gamemodel.card.CardType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+/**
+ * The GUICard object contains the logic the let us to create a graphical developer card from our model card
+ * 
+ *
+ */
+
+
 public class GUICard
 {
 	Card card;

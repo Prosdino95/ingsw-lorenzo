@@ -22,6 +22,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import reti.ServerResponse;
 
+/**
+ * The GuiQuestionController object contains the structure of graphical representation and some logic of the 
+ * interaction between client and server. 
+ * 
+ */
+
 public class GuiQuestionController {
 	
 	@FXML TextFlow text;

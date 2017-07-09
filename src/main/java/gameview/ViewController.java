@@ -15,6 +15,14 @@ import reti.client.HandlerServer;
 import reti.client.HandlerServerRMIImpl;
 import reti.client.HandlerSocket;
 
+
+/**
+ * The ViewController object contains some background logic of the interaction between client and server. 
+ * 
+ */
+
+
+
 public class ViewController {
 		
 	private Queue<ServerResponse> serverMessages=new ArrayDeque<>();

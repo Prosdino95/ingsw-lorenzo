@@ -5,6 +5,13 @@ import gamemodel.card.Excommunication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+/**
+ * The GuiExcommunicationCard object contains the logic the let us to create a graphical excommunication card from 
+ * our model card
+ * 
+ *
+ */
+
 public class GuiExcommunicationCard 
 {
 	Excommunication card;

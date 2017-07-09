@@ -30,6 +30,14 @@ import javafx.util.Duration;
 import reti.ClientRequest;
 import reti.ServerResponse;
 
+/**
+ * The GuiView object contains the structure of our player's gui view and implements all its features,like the
+ * game music, the possibility to view a different slice of my own state by pressing a keyboard key like told 
+ *	in readme file and so on
+ */
+
+
+
 public class GuiView extends Application {
 	private Stage stage;
 	private ViewController viewController;

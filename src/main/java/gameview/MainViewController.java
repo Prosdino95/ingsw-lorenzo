@@ -13,6 +13,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 
+/**
+ * The MainViewController class contains our stylistic choices for the main view window
+ * 
+ */
 
 
 public class MainViewController {

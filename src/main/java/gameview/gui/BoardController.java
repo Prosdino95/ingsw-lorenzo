@@ -1,8 +1,5 @@
 package gameview.gui;
 
-
-
-
 import java.io.IOException;
 
 
@@ -26,6 +23,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Popup;
+
+/**
+ * The BoardController object is the structure containing the action spaces, and the logic
+ * of preparing the new round for the gui.
+ * 
+ */
 
 public class BoardController {
 	List<Integer> asIdList;

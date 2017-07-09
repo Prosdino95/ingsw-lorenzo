@@ -10,6 +10,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The CharacterCardController object contains all the personalization we let players do about character card,like
+ * the name of the card,the price,the effects and so on
+ * 
+ */
+
 public class CharacterCardController 
 {
 	@FXML TextFlow cardName;

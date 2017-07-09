@@ -8,6 +8,12 @@ import gamemodel.card.LeaderCard;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+/**
+ * The GuiLeaderCard object contains the logic that let us to create a graphical leader card from our model card
+ * 
+ *
+ */
+
 public class GuiLeaderCard 
 {
 	LeaderCard leaderCard;

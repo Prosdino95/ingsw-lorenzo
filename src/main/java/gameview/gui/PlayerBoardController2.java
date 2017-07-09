@@ -15,6 +15,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The PlayerBoardController2 class contains another part of the player status,in particular his venture and
+ * character cards. this class also contains players' bonus tile,resources and points and shows excommunication 
+ * cards of the match
+ *
+ */
+
+
+
+
 public class PlayerBoardController2 
 {
 	@FXML Pane character0;

@@ -1,6 +1,10 @@
 package gameview;
 
-
+/**
+ * The MainView class loads its own xfml configuration file and launches the beginning window for the player in 
+ * order to choose the connection:rmi/socket and the kind of view:cli/gui
+ * 
+ */
 
 
 import javafx.application.Application;

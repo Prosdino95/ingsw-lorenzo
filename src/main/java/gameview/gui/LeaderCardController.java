@@ -12,6 +12,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The LeaderCardController object contains all the personalization we let players do about leader card,like
+ * its name and effect; this class also shows the possibility to change leader card graphical representation   
+ * due to its changing state during the match
+ */
+
+
 public class LeaderCardController 
 {
 	@FXML TextFlow effect;

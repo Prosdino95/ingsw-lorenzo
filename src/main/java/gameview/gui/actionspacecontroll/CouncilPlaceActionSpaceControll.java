@@ -12,6 +12,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The CouncilPlaceActionSpaceControll object contains all the personalization we let players do about council place
+ * action space,like the action value and its immediate effect. This class also contains the logic to show family
+ * members in council place 
+ * 
+ */
+
+
 public class CouncilPlaceActionSpaceControll implements ActionSpaceControll {
 
 	@FXML HBox familyMembersSpace;
