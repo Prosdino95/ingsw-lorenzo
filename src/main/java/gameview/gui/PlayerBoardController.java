@@ -73,6 +73,10 @@ public class PlayerBoardController
 		Player pl = gv.myPlayer();
 		if (playerToBeShown == null && pl != null)
 			playerToBeShown = pl;
+		
+		if(pl!= null)
+			if(pl.equals(playerToBeShown))
+				this.playerToBeShown=pl;
 
 		Player player = this.getPlayerToBeShown();
 		if(player==null) return;

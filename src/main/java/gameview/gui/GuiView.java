@@ -90,10 +90,8 @@ public class GuiView extends Application {
 					break;
 				}
 				Team team = sr.getPlayerTeam();
-				System.out.println("GUIView -- Your player got assigned, you're team: " + team);
 				this.setPlayer(team);
 				requestController.generateFM();
-				System.out.println("GUIView -- Now get out of this log and play!");
 			break;
 			case MESSAGE:
 				requestController.giveSR(sr);
@@ -103,7 +101,6 @@ public class GuiView extends Application {
 				requestController.giveSR(sr);
 				break;
 			default:
-				System.out.println("GUIView -- Should this message get here? " + sr);
 				break;
 			}
 		}
@@ -351,11 +348,6 @@ public class GuiView extends Application {
 	    return srr;
 	}
 
-/*	public void updateModelAndGui(Model m) {
-		setModel(m);
-		updateGui();
-	}*/
-	
 	void updateGui() {
 		pbc.update();
 		pbc2.update();
