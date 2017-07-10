@@ -2,7 +2,8 @@ package gameview.cli;
 
 
 /**
- * The UINodeChooseUI object represents the mechanism by which  a client can move through the choices tree
+ * The UINodeChooseUI object represents the root node where you can choose type of action between:
+ * place family member,view the board,play a leader card and so on
  */
 
 

@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+* The UINodeChooseValue object represents how you can make your choice in the tree
+*/
+
 public class UINodeChooseValue<E extends Object> extends UINode {
 	Consumer<E> setter;
 	Supplier<List<E>> getterList;

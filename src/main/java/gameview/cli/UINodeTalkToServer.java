@@ -1,11 +1,15 @@
 package gameview.cli;
 
 import java.io.IOException;
-
-
 import gamemodel.Question;
 import reti.ClientRequest;
 import reti.ServerResponse;
+
+/**
+* The UINodeTalkToServer object represents some logic in tree structure and communication between 
+* client and server,in particular when a player reaches a leaf node means that the action is finished 
+* and makes a package request to be sent to server that has to confirm or not player's action
+*/
 
 public class UINodeTalkToServer extends UINode {
 

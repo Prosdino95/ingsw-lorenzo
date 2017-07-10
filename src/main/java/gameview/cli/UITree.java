@@ -24,7 +24,9 @@ import reti.ServerResponse;
  * The UITree object represents the structure we use to organize the command line interface;in particular we use 
  * a tree structure where the first nodes represent different kind of action like for example place family member or 
  * play leader card. Every time you go deep in the tree you're closer to complete your action. 
+ * We have different kind of nodes and we have a class for each of them
  */
+
 
 
 

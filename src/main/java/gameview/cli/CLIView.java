@@ -1,12 +1,9 @@
 package gameview.cli;
 
-
-
 /**
  * The CLIView class represents the way to run the command line interface directly form here or by login window
  * 
  */
-
 
 import java.io.IOException;
 

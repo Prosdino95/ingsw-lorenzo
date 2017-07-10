@@ -1,7 +1,6 @@
 package gameview.cli;
-
 /**
- * The UINode object represents just a tree's node 
+ * The UINode object represents just a tree's node and its logic
  */
 
 
