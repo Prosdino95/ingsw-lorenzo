@@ -13,6 +13,13 @@ import gamemodel.player.Color;
 import gamemodel.player.Player;
 import gamemodel.player.Resource;
 
+/**
+* The SetOneColoredFMTest class tests the following effect:"one of your colored family member has value of 6,no
+* matter dice value 
+* 
+*
+*/
+
 public class SetOneColoredFMTest {
 	IstantEffect e;
 	Player p;

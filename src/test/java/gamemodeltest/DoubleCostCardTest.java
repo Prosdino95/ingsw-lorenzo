@@ -14,6 +14,11 @@ import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 
+/**
+* The DoubleCostCardTest class tests if the double card cost effect works fine
+* 
+*
+*/
 public class DoubleCostCardTest {
 	Card c;
 	Player p;

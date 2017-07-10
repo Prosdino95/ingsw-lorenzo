@@ -30,7 +30,7 @@ public class CharacterCardController
 		cardName.getChildren().add(textCardName);
 		
 		Integer cardPrice=card.getResourcePrice().getGold();
-		Text textCardPrice=new Text(cardPrice.toString()+" c");
+		Text textCardPrice=new Text(cardPrice.toString()+" G");
 		textCardPrice.setFont(Font.font("verdana", FontWeight.EXTRA_LIGHT, FontPosture.REGULAR, 10));
 		this.cardPrice.getChildren().add(textCardPrice);
 

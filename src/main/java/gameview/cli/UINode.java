@@ -1,5 +1,10 @@
 package gameview.cli;
 
+/**
+ * The UINode object represents just a tree's node 
+ */
+
+
 
 import java.io.IOException;
 import java.util.ArrayList;

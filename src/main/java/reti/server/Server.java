@@ -62,7 +62,7 @@ public class Server {
 		pool.execute(gm);
 		while(live){
 			Socket s=serverSocket.accept();				
-			System.out.println("ricevuta nuova connessione");
+			System.out.println("received new connection");
 			HandlerViewSocket hv =new HandlerViewSocket(s);		
 			addHV(hv);			
 		}		

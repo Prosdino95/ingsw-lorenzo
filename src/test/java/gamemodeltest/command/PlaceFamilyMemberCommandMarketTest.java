@@ -19,6 +19,12 @@ import gamemodel.player.Player;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+/**
+* The PlaceFamilyMemberCommandMarketTest class represents the move checker for market action
+* space and tests the rule game set related to it
+*
+*/
+
 
 public class PlaceFamilyMemberCommandMarketTest {
 	

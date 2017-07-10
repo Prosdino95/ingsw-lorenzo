@@ -20,6 +20,16 @@ import reti.ClientRequest;
 import reti.RequestType;
 import reti.ServerResponse;
 
+/**
+ * The UITree object represents the structure we use to organize the command line interface;in particular we use 
+ * a tree structure where the first nodes represent different kind of action like for example place family member or 
+ * play leader card. Every time you go deep in the tree you're closer to complete your action. 
+ */
+
+
+
+
+
 public class UITree {
 	private UINode root;
 	private UINode next;
@@ -144,7 +154,7 @@ public class UITree {
 			  .addSon(exit)); 
 		
 		reset();
-		System.out.println("Hi, this is Lorenzo!");
+		System.out.println("Hi, this is Lorenzo il Magnifico!");
 	}
 
 	protected void shutdown() {

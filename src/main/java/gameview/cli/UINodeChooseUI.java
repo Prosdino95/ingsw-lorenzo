@@ -1,6 +1,12 @@
 package gameview.cli;
 
 
+/**
+ * The UINodeChooseUI object represents the mechanism by which  a client can move through the choices tree
+ */
+
+
+
 public class UINodeChooseUI extends UINode {
 
 	int choose;

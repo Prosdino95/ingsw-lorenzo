@@ -46,7 +46,7 @@ public class GameManager implements Runnable
 		
 	private void setupGame()
 	{
-		System.out.println("creazione partita");      
+		System.out.println("creating match");      
 		Model rl=new Model(hw.size(),playerActionDelay);
 		Controller c=new Controller(rl);
 		rl.setController(c);
@@ -64,7 +64,7 @@ public class GameManager implements Runnable
 				pool.execute((Runnable) hv);
 		}
 		c.setPlayerToHV(playerToHV);
-		System.out.println("game partito con " + hw.size());
+		System.out.println("game started with " + hw.size());
 		c.notifyNewModel();
 		for(HandlerView h: hw){
 			h.sendResponse(new ServerResponse(h.getPlayer()));
@@ -76,7 +76,7 @@ public class GameManager implements Runnable
 	public synchronized void addHV(HandlerView hv)
 	{
 		hw.add(hv);
-		System.out.println("aggiunto in"+this);
+		System.out.println("added in "+this);
 		if(hw.size()==4)
 			isFull=true;
 		whoWokeMeUp="Add";

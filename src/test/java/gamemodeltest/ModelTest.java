@@ -11,6 +11,12 @@ import gamemodel.GameState;
 import gamemodel.Model;
 import gamemodel.player.Point;
 
+/**
+* The ModelTest class tests the whole final part of a match,in particular the final scoring and the announcement ".
+* of the winner
+*
+*/
+
 public class ModelTest 
 {
 	Model model;

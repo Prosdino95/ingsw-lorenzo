@@ -13,6 +13,12 @@ import gamemodel.player.Team;
 import gameview.cli.UITree;
 import reti.ServerResponse;
 
+/**
+* The CLITest class tests the command line interface
+* 
+*
+*/
+
 public class CLITest {
 
 	@Before

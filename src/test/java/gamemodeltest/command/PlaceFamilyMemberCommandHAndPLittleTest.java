@@ -20,6 +20,14 @@ import gamemodel.player.Player;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+
+/**
+* The PlaceFamilyMemberCommandHandPLittleTest class represents the move checker for harvester and production action
+* spaces and tests the rule game set related to them
+*
+*/
+
+
 public class PlaceFamilyMemberCommandHAndPLittleTest {
 	
 	Board b;

@@ -15,6 +15,16 @@ import gamemodel.player.Point;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+
+/**
+* The ResourceforResourceTest class tests all combinations of the following kind of effect: "for each something
+* you have,receive 2 of something else".
+* 
+*
+*/
+
+
+
 public class ResourceForResourceTest 
 {
 	Board b;

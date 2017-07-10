@@ -7,7 +7,11 @@ import gamemodel.Model;
 import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Team;
-
+/**
+* The VaticanTest class tests if vatican support phase works fine
+* 
+*
+*/
 public class VaticanTest {
 	Player p;
 	

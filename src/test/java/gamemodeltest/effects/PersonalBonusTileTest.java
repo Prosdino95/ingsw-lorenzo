@@ -14,7 +14,15 @@ import gamemodel.player.Point;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
-public class PersonalBonusTile 
+/**
+* The PersonalBonusTileTest class tests the activation of personal bonus tile
+*
+* 
+*
+*/
+
+
+public class PersonalBonusTileTest 
 {
 	Player player;
 	Board board;

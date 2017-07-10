@@ -21,6 +21,14 @@ import gamemodel.player.Player;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+/**
+* The PlaceFamilyMemberCommandCouncilPlaceTest class represents the move checker for council place action space
+* and tests the rule game set related to it
+*
+*/
+
+
+
 public class PlaceFamilyMemberCommandCouncilPlaceTest {
 	
 	Board b;

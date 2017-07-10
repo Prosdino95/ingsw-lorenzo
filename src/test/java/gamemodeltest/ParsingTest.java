@@ -19,6 +19,17 @@ import gamemodel.jsonparsing.FaithRequirements;
 import gamemodel.jsonparsing.LeaderCardParsing;
 import gamemodel.jsonparsing.TowerASParsing;
 
+/**
+* The ParsingTest class tests the parsing for all the customizable things we have,like cards,action spaces 
+* and so on".
+* 
+*
+*/
+
+
+
+
+
 public class ParsingTest {
 	static Board board;
 

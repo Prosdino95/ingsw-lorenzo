@@ -15,9 +15,7 @@ import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
 /*
- * Sono tutti test finti! Dovrei mettermi dietro a farli bene,
- * per ora mi basta sapere che si arriva alla fine di activate
- * senza exception che non siano GameException.  
+ * The BonusActionTest tests if the bonus action effect works fine  
  */
 
 public class BonusActionTest {

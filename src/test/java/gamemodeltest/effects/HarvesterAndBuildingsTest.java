@@ -20,6 +20,15 @@ import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 
+
+/**
+* The HarvesterAndBuildingsTest class tests the activation of harvester and building permanent effects
+* on territory and building cards 
+* 
+*
+*/
+
+
 public class HarvesterAndBuildingsTest {
 
 	HarvesterAndBuildings card;

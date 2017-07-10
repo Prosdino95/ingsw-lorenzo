@@ -20,6 +20,13 @@ import gamemodel.permanenteffect.PermanentEffect;
 import gamemodel.player.Player;
 import gamemodel.player.Team;
 
+
+/**
+* The TurnOrderTest class tests if the turn order works fine
+* 
+*
+*/
+
 public class TurnOrderTest {
 	List<Player> players;
 	LinkedList<Player> result;

@@ -26,6 +26,14 @@ import gamemodel.player.Player;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+
+/**
+* The PlaceFamilyMemberCommandTowerTest class represents the move checker for  tower action
+* space and tests the rule game set related to it
+*
+*/
+
+
 public class PlaceFamilyMemberCommandTowerTest {
 	
 	Tower t,t1;

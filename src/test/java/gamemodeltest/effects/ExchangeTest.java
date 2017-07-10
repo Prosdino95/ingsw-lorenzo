@@ -18,6 +18,13 @@ import gamemodel.player.Point;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+/**
+* The ExchangeTest class tests all combinations of exchange effect
+* 
+*
+*/
+
+
 public class ExchangeTest 
 {
 	Board b;

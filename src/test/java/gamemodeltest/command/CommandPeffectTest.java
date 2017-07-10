@@ -31,6 +31,12 @@ import gamemodel.player.Player;
 import gamemodel.player.Resource;
 import gamemodel.player.Team;
 
+/**
+* The CommandPeffctTest class tests some permanent effects activation
+* 
+*
+*/
+
 public class CommandPeffectTest {
 	 Player p;
 	 GameError s;

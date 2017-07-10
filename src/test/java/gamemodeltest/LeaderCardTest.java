@@ -25,6 +25,14 @@ import gamemodel.player.Player;
 import gamemodel.player.Point;
 import gamemodel.player.Resource;
 
+/**
+* The LeaderCardTest class tests the activation of leader card's effects".
+* 
+*
+*/
+
+
+
 public class LeaderCardTest {
 	LeaderCard girolamo;
 	LeaderCard ludovico;
