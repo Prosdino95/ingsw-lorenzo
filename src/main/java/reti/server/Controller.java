@@ -27,6 +27,12 @@ import reti.ClientRequest;
 import reti.ResponseType;
 import reti.ServerResponse;
 
+/**
+ * The controller class is the link connecting the model of a game to its 
+ * players. When a request reaches the controller, he gets the player
+ * associated with the user, interprets the request, and call the right method
+ * inside the model.
+ */
 public class Controller{
 	
 	Model game;

@@ -7,6 +7,10 @@ import gamemodel.command.GameError;
 import gamemodel.player.Player;
 import gamemodel.player.Team;
 
+/**
+ * The ServerResponse object represents the message the server sends to the 
+ * client.
+ */
 public class ServerResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Question question;

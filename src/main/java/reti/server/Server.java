@@ -17,6 +17,13 @@ import com.eclipsesource.json.JsonObject;
 
 import gamemodel.jsonparsing.CustomizationFileReader;
 
+/**
+ * The Server object is that which accepts the socket connection and holds the current
+ * GameManager object. If the user connects via socket, it gets added to the 
+ * GameManager by the thread running inside the server. If the user connects 
+ * via RMI, he can add himself to the current GameManager. For this reason the user
+ * accepting method (addHV) must be synchronized.
+ */
 public class Server {
 	
 	private ExecutorService pool = Executors.newCachedThreadPool();

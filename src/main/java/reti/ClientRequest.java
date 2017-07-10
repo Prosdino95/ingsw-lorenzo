@@ -11,11 +11,12 @@ import gamemodel.player.FamilyMember;
 import gamemodel.player.Player;
 import gameview.gui.LeaderCardAction;
 
+/**
+ * The ClientRequest object represents the message the client is sending to the
+ * server. 
+ */
 public class ClientRequest  implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private RequestType type;
 	private int where;

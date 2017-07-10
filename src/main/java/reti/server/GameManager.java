@@ -16,6 +16,13 @@ import gamemodel.Model;
 import gamemodel.player.Player;
 import reti.ServerResponse;
 
+/**
+ * The GameManager is the still not adult controller: it keeps track of the
+ * players associated with a certain game while the game still has not been
+ * created. When the GameManager decides the players are enough, either because
+ * the delay passed or because the game reached 4 players, it detaches itself
+ * from the Server object, creates the Model and becomes a real Controller.
+ */
 public class GameManager implements Runnable 
 {
 	private ExecutorService pool = Executors.newCachedThreadPool();
