@@ -60,18 +60,18 @@ The GUI can be in one of these 3 states:
 * Idle state
 
 When in the **question state**, the user will see the question and the
-various choices on the left. He should choose the answer and send it
-by pushing the Send Request button.
+various choices on the left part of the request screen. He should
+choose the answer and send it by pushing the Send Request button.
 
-The **action state** means that it's the user's turn, he can place a family
-member by selecting an action space and a family member by pressing on
-them, adding servants if needed and sending the request. He might
-also want to do a leader card action, by clicking repeatedly
-on a leader card you can choose between one of the possible leader
-card actions.
-Once the user is satisfied, he can push the Finish Action button.
-The action might also terminate if the user (probably trying to understand
-the UI) lets the "action delay" time pass.
+The **action state** means that it's the user's turn, he can place a
+family member by selecting an action space and a family member by
+pressing on them in the board screen, adding servants if needed and
+sending the request. He might also want to do a leader card action, by
+clicking repeatedly on a leader card he can choose between one of the
+possible leader card actions.  Once the user is satisfied, he can push
+the Finish Action button.  The action might also terminate if the user
+(probably trying to understand the UI) lets the "action delay" time
+pass.
 
 During both the question and action state in the request screen the
 user can see the request that's getting formed in the upper right
