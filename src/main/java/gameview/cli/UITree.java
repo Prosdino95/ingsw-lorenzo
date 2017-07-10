@@ -249,7 +249,7 @@ public class UITree {
 			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		Integer choice = fakeIntChoices.remove(0);
-		System.out.println("Chose: " + choice);
+		System.out.println("Choose: " + choice);
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {
@@ -267,7 +267,7 @@ public class UITree {
 			Logger.getLogger("errorlog.log").log(Level.ALL, "error: ", e);
 		}
 		String choice = stringChoices.remove(0);
-		System.out.println("Chose: " + choice);
+		System.out.println("Choose: " + choice);
 		try {
 			Thread.sleep(this.fakeDelay);
 		} catch (InterruptedException e) {

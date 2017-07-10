@@ -44,7 +44,7 @@ public class UINodeChooseUI extends UINode {
 			return descendants.get(choose);					
 			}
 		catch(IndexOutOfBoundsException e){
-			System.out.println("Invalid choise");
+			System.out.println("Invalid choice");
 			print();
 			return getNextNode();
 			}	

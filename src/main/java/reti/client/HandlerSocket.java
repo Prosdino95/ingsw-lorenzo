@@ -57,7 +57,6 @@ public class HandlerSocket implements Runnable,HandlerServer{
 	@Override
 	public void run() 
 	{
-		System.out.println("run");
 		try {
 			while(live)
 			{

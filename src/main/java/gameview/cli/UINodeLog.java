@@ -40,25 +40,24 @@ public class UINodeLog extends UINode
 			if(hasMessage) {		
 				sr=tree.getMessage();
 				
-				// System.out.println(sr);
 				switch (sr.getType()) {
 				case NEW_MODEL:
 					newModel(sr.getModel());
 					
 					break;
 				case MESSAGE:
-					System.out.print("Someone sent you this message: ");
+
 					System.out.println(sr.getMessage());
 					break;
 				case PLAYER_ASSIGNED:
 					if (!tree.hasModel) {
-						System.out.println("They sent me the player but I still did not get the model...");
+
 						break;
 					}
 					Team team = sr.getPlayerTeam();
 					System.out.println("Your player got assigned, you're team: " + team);
 					tree.setPlayer(team);
-					System.out.println("Now get out of this log and play!");
+
 					break;
 				case LEADER:
 					System.out.println(sr.getQuestion());
@@ -75,12 +74,11 @@ public class UINodeLog extends UINode
 						s = i.toString();
 						tree.sendRequestToServer(new ClientRequest(s));
 					} catch (OfflineException e) {
-						System.out.println("Catched offline exception");
 					}
 					leaderPlayed  = true;
 					break;
 				default:
-					System.out.println("Should this message get here? " + sr);
+
 					break;
 				}
 			}
@@ -97,25 +95,24 @@ public class UINodeLog extends UINode
 	}
 	
 	private void newModel(Model model){
-		System.out.print("A new model has arrived... It says:");
 		tree.setModel(model);
 		switch(model.getState()){
 		case GAME_FINISH:
 			break;
 		case PLAYER_PLAING:
-			System.out.println("it's player turn :"+model.getCurrentPlayer().toString2());
+			System.out.println("It's the turn of player "+model.getCurrentPlayer().toString2());
 			break;
 		case SET_UP_ROUND:
-			System.out.println("the turn is finished:"+model.turn);
+			System.out.println("Setting up turn " + model.turn + ".");
 			break;
 		case VATICAN_TIME:
-			System.out.println("it's time to play with the Pope, unless you're too poor");
-			System.out.println("1)yes \n 2)not");
+			System.out.println("It's time to play with the Pope, unless you're too poor");
+			System.out.println("Do you want to support him?");
+			System.out.println("1)Yes \n 2)No");
 			try {
 				tree.sendRequestToServer(new ClientRequest(this.tree.getString(),
 						RequestType.VATICAN_REPORT));
 			} catch (OfflineException e) {
-				System.out.println("Catched offline exception");
 			}
 			break;
 		default:

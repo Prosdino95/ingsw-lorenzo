@@ -80,7 +80,6 @@ public class ViewController {
 			this.serverMessages.add(sr);
 			break;
 		default:
-			System.out.println("What is going on ???");
 			break;
 		}	
 	}

@@ -29,7 +29,6 @@ public class UINodeTalkToServer extends UINode {
 				try {
 					request = new ClientRequest(this.tree.getString());
 				} catch (OfflineException e) {
-					System.out.println("Catched offline exception");
 				}
 				break;
 			case ERROR:

@@ -141,7 +141,7 @@ public class Controller{
 		int index=0,i,j;
 		Random random=new Random();
 		List<Object> cards=new ArrayList<>(); 
-		sendMessageToAll("now it's time to choose your leaders, so wait your turn");
+		sendMessageToAll("Now it's time to choose your leader cards, wait for your turn");
 		for(i=0;i<4;i++){
 			for(j=0;j<4;j++){
 				index=random.nextInt(game.getLeaderCards().size());
@@ -157,7 +157,6 @@ public class Controller{
 				}
 			cards.clear();
 		}
-		sendMessageToAll("iniziamo a giocare");
 	}
 
 	public void notifyNewModel() 
