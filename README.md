@@ -27,10 +27,10 @@ these directly will by default choose the socket connection).
 When started, the server will automatically create a GameManager
 object which holds the players that are going to participate in the
 next game. When 4 players join, the game might start with 2 or 3
-players, if the ??? delay time passed without anyone joining the game.
+players, if the "join delay" time passed without anyone joining the game.
 
 From now on, the server will notify the player that should play
-next. If he doesn't send a request before the ??? delay time passes,
+next. If he doesn't send a request before the "action delay" time passes,
 he will be marked as dead and the game will proceed normally: the
 "dead" player will just pass the turn without doing any action.
 If the game is running he might still be able to rejoin the game by
@@ -66,16 +66,16 @@ by pushing the Send Request button.
 The **action state** means that it's the user's turn, he can place a family
 member by selecting an action space and a family member by pressing on
 them, adding servants if needed and sending the request. He might
-also want to do a leader card action, by clicking ??? ripetutamente ???
+also want to do a leader card action, by clicking repeatedly
 on a leader card you can choose between one of the possible leader
 card actions.
 Once the user is satisfied, he can push the Finish Action button.
 The action might also terminate if the user (probably trying to understand
-the UI) lets the ??? action delay ??? time pass.
+the UI) lets the "action delay" time pass.
 
-During both the question and action state in the ??? screen ??? the
+During both the question and action state in the request screen the
 user can see the request that's getting formed in the upper right
-corner of the screen in the ??? asldnal screen ???.
+corner.
 
 The **idle state** means it's someone else's turn, the player can
 still navigate in the GUI but he can't send requests to the server.
@@ -93,4 +93,12 @@ Configurability is limited and as such it needs to be handled with
 care: unexpected changes may lead to incoherences or may cause a
 crash.
 
-??? Description of the json format ???
+## UML
+
+We have uploaded 4 UML diagrams, one for each of the model, view and
+controller. One also roughly showing the interconnections between the
+three of them. Due to the complexity of the diagrams, we choosed to
+not have a unique diagram spanning the whole MVC. For the same reason,
+for the Model UML we have decided not to put much emphasis on the
+interconnections between the single classes but to show more generally
+which packages are the most in relation to which.
