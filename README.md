@@ -102,3 +102,14 @@ not have a unique diagram spanning the whole MVC. For the same reason,
 for the Model UML we have decided not to put much emphasis on the
 interconnections between the single classes but to show more generally
 which packages are the most in relation to which.
+
+## Copyright
+
+All code was witten by:
+Davide Palesano
+Marco Prosdocimi
+Arash Roknian
+For spoftware engineering project,
+Politecnico di Milano 2017
+
+Assets and concepts of the game are proprety by Cranio Creators http://www.craniocreations.it
