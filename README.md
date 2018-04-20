@@ -106,10 +106,10 @@ which packages are the most in relation to which.
 ## Copyright
 
 All code was witten by:
-Davide Palesano
-Marco Prosdocimi
-Arash Roknian
-For spoftware engineering project,
+Davide Palesano,
+Marco Prosdocimi,
+Arash Roknian,
+For software engineering project,
 Politecnico di Milano 2017
 
 Assets and concepts of the game are proprety by Cranio Creators http://www.craniocreations.it
